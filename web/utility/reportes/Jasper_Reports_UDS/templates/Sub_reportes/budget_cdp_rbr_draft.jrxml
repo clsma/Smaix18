@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="300" pageHeight="842" columnWidth="300" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="20ed3f6b-ab10-480a-81ee-2caa8e8b8a5e">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="bold" forecolor="#000504" vAlign="Middle" isBlankWhenNull="false" fontSize="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+	<style name="filed" forecolor="#000504" vAlign="Middle" fontSize="9"/>
+	<style name="value" style="filed" hAlign="Right" pattern="#,##0.00"/>
+	<parameter name="pcodcia" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA["/home/clsma/JavaApplication1/src/solicituddedisponibilidad/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ptxtxml" class="java.lang.String"/>
+	<parameter name="recordset" class="java.sql.ResultSet" isForPrompting="false"/>
+	<parameter name="prutaImagen" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString language="plsql">
+		<![CDATA[{call sma_budget_reports_draft.cdp_draft($P{ptxtxml},$P{recordset})}]]>
+	</queryString>
+	<field name="OCODCDP" class="java.lang.String"/>
+	<field name="VLRCDP" class="java.math.BigDecimal"/>
+	<field name="VLRPST" class="java.math.BigDecimal"/>
+	<field name="OVLRCDP" class="java.lang.String"/>
+	<field name="NROSCP" class="java.lang.String"/>
+	<field name="OTXTHEA" class="java.lang.String"/>
+	<field name="ONOMRBR" class="java.lang.String"/>
+	<field name="OCODRBR" class="java.lang.String"/>
+	<field name="OFCHCDP" class="java.sql.Timestamp"/>
+	<field name="OTXTOBS" class="java.lang.String"/>
+	<field name="OOBSCDP" class="java.lang.String"/>
+	<field name="OJEFPST" class="java.lang.String"/>
+	<field name="ORECUDC" class="java.lang.String"/>
+	<field name="OKRGREC" class="java.lang.String"/>
+	<field name="OAGNPSP" class="java.lang.String"/>
+	<field name="NOMPRS" class="java.lang.String"/>
+	<field name="APEPRS" class="java.lang.String"/>
+	<field name="NOMCIA" class="java.lang.String"/>
+	<field name="NITCIA" class="java.lang.String"/>
+	<field name="CODCST" class="java.lang.String"/>
+	<field name="NOMCST" class="java.lang.String"/>
+	<field name="CODCDP" class="java.lang.String"/>
+	<field name="NROCDP" class="java.lang.String"/>
+	<field name="CODDIV" class="java.lang.String"/>
+	<field name="NOMDIV" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band>
+			<staticText>
+				<reportElement style="bold" mode="Transparent" x="86" y="-16" width="78" height="15" isRemoveLineWhenBlank="true" backcolor="#CCCCCC" uuid="fa51bcf9-9f23-4793-89de-61c341b4631b"/>
+				<textElement textAlignment="Center">
+					<font isBold="false" pdfFontName="Helvetica-Bold" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[VALOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="bold" mode="Transparent" x="9" y="-16" width="77" height="15" isRemoveLineWhenBlank="true" backcolor="#CCCCCC" uuid="f1f3a504-2a16-450d-adb4-0920f5e1adc3"/>
+				<textElement textAlignment="Center">
+					<font isBold="false" pdfFontName="Helvetica-Bold" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[RUBRO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15">
+			<textField pattern="$ #,##0">
+				<reportElement style="value" x="81" y="0" width="74" height="15" isRemoveLineWhenBlank="true" uuid="a1e36337-bc66-4783-b5c6-6e56fcbfe2a8"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VLRCDP}]]></textFieldExpression>
+			</textField>
+			<textField pattern="$ #,##0">
+				<reportElement style="value" x="24" y="0" width="62" height="15" isRemoveLineWhenBlank="true" uuid="de3514c2-0aab-4c87-86fa-849645e179eb"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{OCODRBR}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="15">
+			<staticText>
+				<reportElement style="bold" positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="0" y="0" width="89" height="15" isRemoveLineWhenBlank="true" uuid="9bf7aca4-4052-4d01-9582-fa2ed055be39"/>
+				<textElement textAlignment="Right">
+					<font isBold="false" pdfFontName="Helvetica-Bold" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[SOLICITUD No:]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="filed" positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="95" y="0" width="107" height="15" isRemoveLineWhenBlank="true" uuid="fa283046-5d37-4291-aa8f-44c8bdf5658d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NROSCP}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

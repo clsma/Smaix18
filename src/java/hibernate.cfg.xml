@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+         <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
+        <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
+<!--
+	<property name="hibernate.connection.url">jdbc:oracle:thin:@192.168.0.202:1521:orcl</property>
+        <property name="hibernate.connection.username">sma_ix14_test_uds</property> 
+        <property name="hibernate.connection.password">F1rm3_5m2#</property>-->
+
+        
+<!--        <property name="hibernate.connection.url">jdbc:oracle:thin:@192.168.0.203:1521:prod</property>
+        <property name="hibernate.connection.username">sma_ix14_prod_uds</property> 
+        <property name="hibernate.connection.password">f1rm3_C1_5m2_1td2#</property>-->
+<!--        
+	<property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:orcl</property>
+        <property name="hibernate.connection.username">sma_ix14_test_uds</property> 
+        <property name="hibernate.connection.password">F1rm3_5m2#</property>        -->
+        
+<!--
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@176.31.239.189:1521:xe</property>
+        <property name="hibernate.connection.username">SMAUCI_PROD</property> 
+        <property name="hibernate.connection.password">SMAUCI_PROD</property>-->
+
+
+<!--        CONEXION DESARROLLO - IX18 - 203 --> 
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@127.0.0.1:1521:prod</property>
+        <property name="hibernate.connection.username">SMA_DBDEV</property>
+        <property name="hibernate.connection.password">SMA_DBDEV</property>
+        
+    </session-factory>
+</hibernate-configuration>

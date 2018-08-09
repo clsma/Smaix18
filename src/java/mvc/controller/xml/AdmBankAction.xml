@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMABKO">
+        <desc>Inserción tabla de bancos</desc>
+        <sql>
+            INSERT INTO SMABKO(NROBKO, CODBKO, NOMBKO, NPQBKO, DIRBKO, TELBKO, FAXBKO, PRSBKO, CODPQK, OBSBKO, CRDBKO, WWWBKO, EMLBKO, SQLBKR)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMABKO">
+        <desc>Actualizar registro de la tabla bancos</desc>
+        <sql>
+            UPDATE SMABKO SET NOMBKO = ?, NPQBKO = ?, DIRBKO = ?, TELBKO = ?, FAXBKO = ?, PRSBKO = ?, CRDBKO = ?, WWWBKO = ?, EMLBKO = ? WHERE NROBKO = ?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMABKO">
+        <desc>Eliminar registro de la tabla bancos</desc>
+        <sql>
+            DELETE FROM SMABKO WHERE NROBKO = ?
+        </sql>
+    </statement>
+    
+</sentencias>

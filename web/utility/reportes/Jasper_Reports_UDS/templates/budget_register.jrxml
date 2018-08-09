@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="475" leftMargin="90" rightMargin="30" topMargin="20" bottomMargin="20" uuid="20ed3f6b-ab10-480a-81ee-2caa8e8b8a5e">
+	<property name="ireport.zoom" value="1.000000000000002"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="bold" forecolor="#000504" vAlign="Middle" isBlankWhenNull="false" fontSize="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+	<style name="filed" forecolor="#000504" vAlign="Middle" fontSize="9"/>
+	<style name="value" style="filed" hAlign="Right" pattern="#,##0.00"/>
+	<parameter name="pcodcia" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA["/home/clsma/JavaApplication1/src/solicituddedisponibilidad/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ptxtxml" class="java.lang.String"/>
+	<parameter name="recordset" class="java.sql.ResultSet" isForPrompting="false"/>
+	<parameter name="prutaImagen" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString language="plsql">
+		<![CDATA[{CALL sma_reports.budget_register($P{ptxtxml},$P{recordset})}]]>
+	</queryString>
+	<field name="NRORDP" class="java.lang.String"/>
+	<field name="FCHRDP" class="java.lang.String"/>
+	<field name="CODSPR" class="java.lang.String"/>
+	<field name="NOMSPR" class="java.lang.String"/>
+	<field name="AGNRDP" class="java.math.BigDecimal"/>
+	<field name="NOMRBR" class="java.lang.String"/>
+	<field name="CODRBR" class="java.lang.String"/>
+	<field name="VLRRDI" class="java.math.BigDecimal"/>
+	<field name="VLSRDI" class="java.lang.String"/>
+	<field name="NROCDP" class="java.lang.String"/>
+	<field name="DSPRDP" class="java.lang.String"/>
+	<field name="NOMCIA" class="java.lang.String"/>
+	<field name="NITCIA" class="java.lang.String"/>
+	<field name="OJEFPST" class="java.lang.String"/>
+	<field name="NROSCK" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="40">
+			<textField>
+				<reportElement style="bold" x="0" y="0" width="340" height="20" uuid="c52534fd-52ef-462d-94ce-70ad2534fd6d"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMCIA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="20" width="340" height="20" uuid="2d29af7d-e9c0-4403-8e56-340ad6db001e"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["NIT:   "+$F{NITCIA}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="241" splitType="Stretch">
+			<rectangle radius="5">
+				<reportElement x="0" y="8" width="265" height="50" isRemoveLineWhenBlank="true" uuid="b1cad3d4-fe23-4cbc-96a7-8302536858b4"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="202" y="62" width="248" height="110" isRemoveLineWhenBlank="true" uuid="aba6cb39-5992-48eb-9310-b50c6a9cb303"/>
+			</rectangle>
+			<staticText>
+				<reportElement style="bold" x="213" y="83" width="89" height="15" isRemoveLineWhenBlank="true" uuid="b5e7440c-50c8-42d3-ba59-8ab630e5ecd1"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ACTA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="bold" x="213" y="99" width="89" height="15" isRemoveLineWhenBlank="true" uuid="9b632531-0ac5-4cbe-a8f2-868704bbe285"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PLAZO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="bold" x="213" y="67" width="89" height="15" isRemoveLineWhenBlank="true" uuid="9dca0bf7-c64e-4ca9-acb2-0955f4d46aa5"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[BENEFICIARIO :]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="filed" stretchType="RelativeToBandHeight" x="307" y="67" width="131" height="15" isRemoveLineWhenBlank="true" uuid="efbea220-6e9d-42b4-a817-fd0a8113d335"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isItalic="true" pdfFontName="Helvetica-Oblique"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMSPR}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="3" y="28" width="260" height="16" isRemoveLineWhenBlank="true" uuid="6beb6323-21cf-471c-b0b6-3eea25dbccde"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FCHRDP}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="bold" x="213" y="115" width="89" height="15" isRemoveLineWhenBlank="true" uuid="c247f51a-a2ef-4ec3-91f6-53ef61142125"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONTRATACIÓN:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="bold" x="213" y="131" width="89" height="15" isRemoveLineWhenBlank="true" uuid="18e61373-fa06-430f-bf20-a9cc3366bf95"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[INTERVENTOR:]]></text>
+			</staticText>
+			<rectangle radius="5">
+				<reportElement x="0" y="224" width="450" height="17" isRemoveLineWhenBlank="true" uuid="8fb75666-37eb-43f8-a512-7e8bf07f3c4a"/>
+			</rectangle>
+			<textField>
+				<reportElement style="filed" x="11" y="181" width="439" height="25" isRemoveLineWhenBlank="true" uuid="8a83bf63-efce-47b1-8e92-74a0d5210e1e"/>
+				<textElement verticalAlignment="Top">
+					<font size="9" isItalic="true" pdfFontName="Helvetica-Oblique"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VLSRDI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="bold" x="3" y="12" width="260" height="16" isRemoveLineWhenBlank="true" uuid="df2e93ee-f044-414c-9df2-2fb1b5cf35ed"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["REGISTRO PRESUPUESTAL  No.  "+$F{NRORDP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="28" width="180" height="16" isRemoveLineWhenBlank="true" uuid="410d0ca1-8199-49a6-b317-7563072f6f16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["01-Ene-"+$F{AGNRDP}+"  al  31-Dic-"+$F{AGNRDP}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="bold" x="271" y="13" width="173" height="15" isRemoveLineWhenBlank="true" uuid="f7ff9849-2bb3-4030-86b3-d4a1b3afc9b1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[VIGENCIA]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement style="filed" x="307" y="99" width="131" height="15" isRemoveLineWhenBlank="true" uuid="812cafbb-b07f-4b3d-9a0d-7fca36c63ff6"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FCHRDP}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="bold" x="11" y="225" width="354" height="15" isRemoveLineWhenBlank="true" uuid="55f2e475-b7c5-42b2-aa16-a09a0c3216c0"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[AFECTACIÓN PRESUPUESTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="bold" x="11" y="206" width="75" height="15" isRemoveLineWhenBlank="true" uuid="29a88b7c-5b75-440f-9890-1713fa22eb80"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[CONCEPTO :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="307" y="131" width="89" height="15" isRemoveLineWhenBlank="true" uuid="d10bbb99-2800-4556-83e6-005a8352677f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="false" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[N/A]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="value" stretchType="RelativeToBandHeight" x="68" y="206" width="382" height="15" isRemoveLineWhenBlank="true" uuid="6967164d-0966-4461-a650-a306df4f9fff"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DSPRDP}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="filed" stretchType="RelativeToBandHeight" x="307" y="83" width="131" height="15" isRemoveLineWhenBlank="true" uuid="795b5507-48c6-41bb-ba85-4fc75b553c08"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isItalic="true" pdfFontName="Helvetica-Oblique"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NROSCK}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="2" y="72" width="180" height="100" uuid="37794406-c7ee-45f3-9dbe-69a432583a80"/>
+				<subreportParameter name="pcodcia">
+					<subreportParameterExpression><![CDATA[$P{pcodcia}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<subreportParameter name="pnrordp">
+					<subreportParameterExpression><![CDATA[$F{NRORDP}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="recordset"/>
+				<subreportParameter name="prutaImagen"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "budget_rdp_rbr.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="32">
+			<subreport>
+				<reportElement x="0" y="0" width="475" height="32" uuid="1b78fc93-8463-4d66-bc27-69ed12e59129"/>
+				<subreportParameter name="pvlrrdi">
+					<subreportParameterExpression><![CDATA[$F{VLRRDI}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="codrbr">
+					<subreportParameterExpression><![CDATA[$F{CODRBR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "budget_detail.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="55" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="5" width="475" height="50" uuid="5aff2783-fed8-425d-9894-7979ae7a8ba9"/>
+				<subreportParameter name="pcodcia">
+					<subreportParameterExpression><![CDATA[$P{pcodcia}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "piedePagina.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="130">
+			<line>
+				<reportElement x="0" y="1" width="448" height="1" uuid="b2c8cd23-88f8-4bb2-85aa-4bfc84e4bb14"/>
+			</line>
+			<subreport>
+				<reportElement stretchType="RelativeToBandHeight" x="40" y="10" width="410" height="32" uuid="606e80be-645b-4530-becb-bcd01e53e2a9"/>
+				<subreportParameter name="pnrocdp">
+					<subreportParameterExpression><![CDATA[$F{NROCDP}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="VLRCDP">
+					<subreportParameterExpression><![CDATA[$F{VLRRDI}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="recordset">
+					<subreportParameterExpression><![CDATA[$P{recordset}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "source_rdp.jasper"]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement x="18" y="100" width="164" height="15" uuid="4f2a31fc-732a-46c4-841d-3f8b43659a03"/>
+				<textFieldExpression><![CDATA[$F{OJEFPST}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="bold" x="18" y="115" width="194" height="15" uuid="856e4785-eca4-4607-a99a-49ee21f196f9"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jefe División Financiera]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

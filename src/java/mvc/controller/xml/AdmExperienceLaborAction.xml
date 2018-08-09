@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAEXL">
+        <desc>Inserción tabla de Areas</desc>
+        <sql>
+           INSERT INTO smaexl(
+            nroexl, codprs, tpoprs, codunv, nomcar, funexl, logexl, 
+            fchvin, fchret, tpoexl, sqlbkr)
+            VALUES ( ?, ?, ?, ?, ?, ?, ?, 
+            ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAEXL">
+        <desc>Update tabla de Areas</desc>
+        <sql>
+           UPDATE smaexl
+            SET codprs=?, tpoprs=?, codunv=?, nomcar=?, funexl=?, 
+                logexl=?, fchvin=?, fchret=?, tpoexl=?, sqlbkr=?
+            WHERE nroexl=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAEXL">
+        <desc>Delete tabla de Areas</desc>
+        <sql>
+           DELETE FROM SMAEXL
+            WHERE NROEXL=?
+        </sql>
+    </statement>
+    
+</sentencias>
+
+

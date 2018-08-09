@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAPAI">
+        <desc>Inserción tabla de paises</desc>
+        <sql>
+            [record]
+            [codpai value="?"][/codpai]
+            [isapai value="?"][/isapai]
+            [isbpai value="?"][/isbpai]
+            [nompai value="?"][/nompai]
+            [sqlbkr value="?"][/sqlbkr]
+            [/record]
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAPAI">
+        <desc>Actualizar registro de la tabla paises</desc>
+        <sql>
+            UPDATE SMAPAI SET CODPAI = ?, ISAPAI = ?, ISBPAI = ?, NOMPAI = ?, SQLBKR = ? WHERE IDEPAI = ?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAPAI">
+        <desc>Eliminar registro de la tabla paises</desc>
+        <sql>
+            DELETE FROM SMAPAI WHERE IDEPAI = ?
+        </sql>
+    </statement>
+    
+    <statement name="SELECT_PAISES">
+        <desc>Obtiene listado de paises</desc>
+        <sql>
+            SMA_SYSTEM_MANAGER.get_paises( ?, ? )
+        </sql>
+    </statement>
+    
+</sentencias>

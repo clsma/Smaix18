@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAWRK">
+        <desc>Inserción tabla de Contratos</desc>
+        <sql>
+           INSERT INTO SMAWRK (CODCIA, AGNPRS, PRDPRS, 
+            NROWRK, CODMPY, MPYWRK, 
+            FCHWRK, BGNWRK, ENDWRK, 
+            FHJWRK, KTGMPY, KLCMPY, 
+            DIRMPY, PGDWRK, IDECIU, 
+            VLRWRK, INTWRK, MODWRK, 
+            TPOWRK, MDLWRK, DPNNMT, 
+            NRONMT, NVLWRK, SKLWRK, 
+            GRDWRK, STDWRK, DSPWRK, 
+            OBJWRK, OBSWRK, CODCST, 
+            NVLSNE, ZNAWRK, HRPWRK, 
+            HRAWRK, CODBKO, CTAWRK, 
+            TPCWRK, PTOWRK) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAWRK">
+        <desc>Update tabla de Contratos</desc>
+        <sql>
+           Update SMAPBK Set CODCST=?, NROPRS=?, TPOPRS=?, TPOPBK=?, NOMPBK=?, EDTPBK=?, AGNPBK=?, SQLBKR=?
+            Where NROPBK=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAWRK">
+        <desc>Delete tabla de Contratos</desc>
+        <sql>
+           
+        </sql>
+    </statement>
+    
+</sentencias>

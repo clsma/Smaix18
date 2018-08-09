@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAKLG">
+        <desc>Inserción tabla de cuentas bancarias</desc>
+        <sql>
+            INSERT INTO SMAKLG(IDEKLG,CODKLG,IDECIU,NOMKLG,TPOKLG,CLSKLG,NVLKLG,SQLBKR)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAKLG">
+        <desc>Actualizar registro de la tabla cuentas bancarias</desc>
+        <sql>
+            UPDATE SMAKLG SET CODKLG=?,IDECIU=?,NOMKLG=?,TPOKLG=?,CLSKLG=?,NVLKLG=? ,SQLBKR=?  where  IDEKLG=? 
+
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAKLG">
+        <desc>Eliminar registro de la tabla Colegios</desc>
+        <sql>
+            DELETE FROM SMAKLG WHERE IDEKLG = ? 
+        </sql>
+    </statement>
+    
+</sentencias>

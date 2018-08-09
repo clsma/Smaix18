@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE taglib
+ PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN"
+ "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+
+<taglib>
+
+	<tlibversion>1.0</tlibversion>
+	<jspversion>1.1</jspversion>
+	<shortname>davisjsp</shortname>
+	<uri></uri>
+	<info>
+		A Tag Library of Useful JSP stuff http://www.guydavis.ca.
+	</info>
+
+	<!-- Tree Tag: Be sure to get the icons and set the correct icon path! -->
+	<tag>
+		<name>tree</name>
+		<tagclass>taglib.form.TreeTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<info>Outputs node in a HTML menu tree</info>
+
+		<!-- REQUIRED: Indicates which level this branch is on the tree (0, 1, 2, ...) -->
+		<attribute>
+			<name>level</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<!-- REQUIRED: The text that will be displayed for this item (one line only) -->
+		<attribute>
+			<name>text</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<!-- OPTIONAL: The style of toggle icons ('mac' = Macintosh, 'win' = Windows, default is plus/minus) -->
+		<attribute>
+			<name>style</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<!-- OPTIONAL: The filname of the icon (in the icon path) to display for this item (default is none) -->
+		<attribute>
+			<name>icon</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<!-- OPTIONAL: The hyperlink to use for the text string set above (default is no link) -->
+		<attribute>
+			<name>link</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<!-- OPTIONAL: The frame in which to render the hyperlink (default is no frame) -->
+		<attribute>
+			<name>target</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<!-- OPTIONAL: Indicates whether this is a leaf node or not (i.e. no sub-branches) -->
+		<attribute>
+			<name>leaf</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<!-- OPTIONAL: Indicates whether to disable word wrap for the data cell (default is true) -->
+		<attribute>
+			<name>nowrap</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<!-- REQUIRED (once per page): Tells TreeTag if this is a fake tag used to just set browser -->
+		<attribute>
+			<name>script</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<!-- REQUIRED (once per page): Use with script to pass the USER_AGENT variable before starting tree -->
+		<attribute>
+			<name>browser</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<!-- OPTIONAL: Path to the icons (default is /includes/tree_menu/)
+			Set once per page (recommend when setting browser) -->
+		<attribute>
+			<name>iconPath</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+	</tag>
+
+
+	<!-- A replacement of the "a" tag in HTML with support tooltips and status messages -->
+	<tag>
+		<name>link</name>
+		<tagclass>ca.guydavis.site.LinkTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<info>Outputs a href link with all the fixings.</info>
+		<attribute>
+			<name>href</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>classid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>status</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>tip</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>style</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>onclick</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>target</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+
+</taglib>
+
+
+

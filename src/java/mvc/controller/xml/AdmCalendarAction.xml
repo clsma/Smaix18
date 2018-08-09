@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAKLS">
+        <desc>Inserción tabla de calendarios</desc>
+        <sql>
+            INSERT INTO SMAKLS ( CODCIA, CODKLS, NOMKLS, AGNPRS, PRDPRS, TPOKLS, FCHKLS, STDKLS, SQLBKR ) 
+                        VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ? )
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAKLS">
+        <desc>Update tabla de calendarios</desc>
+        <sql>
+            UPDATE SMAKLS SET NOMKLS = ?, AGNPRS = ?, 
+                              PRDPRS = ?, TPOKLS = ?, 
+                              FCHKLS = ?, STDKLS = ?, 
+                              SQLBKR = ? 
+            WHERE CODKLS = ?
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAAXK">
+        <desc>Inserción tabla de Actividades de calendario</desc>
+        <sql>
+            INSERT INTO SMAAXK ( NROAXK, CODKLS, CODAXK, BGNAXK, ENDAXK, AGNPRS, PRDPRS, STDAXK, TIPAXK, SQLBKR )
+                        VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAAXK">
+        <desc>Eliminar tabla de Actividades de calendario</desc>
+        <sql>
+            DELETE FROM SMAAXK WHERE CODKLS = ?            
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAKXP">
+        <desc>Inserción tabla de programas por calendario</desc>
+        <sql>
+            INSERT INTO SMAKXP ( NROKXP, CODKLS, IDEPGM, STDKXP) 
+                        VALUES ( ?, ?, ?, ?)                     
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAKXP">
+        <desc>Eliminar tabla de programas por calendario</desc>
+        <sql>
+            DELETE FROM SMAKXP WHERE CODKLS = ? 
+        </sql>
+    </statement>
+</sentencias>

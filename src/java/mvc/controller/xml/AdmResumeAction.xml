@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAMPY">
+        <desc>Inserción tabla de Empleado</desc>
+        <sql>
+           Insert into SMAMPY (NROMPY,NROPRS,CODMPY,STDMPY,MILMPY,NDMMPY
+            ,LBCMPY,CIUEXP,PAIMPY,ZNAMPY,ESTMPY,PRFMPY,FCHMPY,PENMPY,CESMPY
+            ,ARPMPY,NRODIV,CODCST) values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAMPY">
+        <desc>Update tabla de Empleado</desc>
+        <sql>
+           Update SMAMPY set NROPRS=?,CODMPY=?,STDMPY=?,MILMPY=?,NDMMPY=?
+            ,LBCMPY=?,CIUEXP=?,PAIMPY=?,ZNAMPY=?,ESTMPY=?,PRFMPY=?,FCHMPY=?,PENMPY=?,CESMPY=?
+            ,ARPMPY=?,NRODIV=?,CODCST=?,SQLBKR=?
+            Where NROMPY=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAMPY">
+        <desc>Delete tabla de Empleado</desc>
+        <sql>
+           Delete From SMAMPY Where NROMPY=?
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAANX">
+        <desc>Delete tabla de Empleado</desc>
+        <sql>
+           INSERT INTO SMAANX (NROANX, TPOANX, IDEANX, DIRANX, EVNANX, OBSANX, SQLBKR)
+            VALUES (?,?,?,?,?,?,?)
+
+        </sql>
+    </statement>
+
+    
+    <statement name="INSERT_SMAPRS">
+        <desc>Delete tabla de Persona</desc>
+        <sql>
+           Insert into SMAPRS
+            (NROPRS,CODCIA,TITPRS,CODPRS,APEPRS,
+            NOMPRS,NPQPRS,NACPRS,FHNPRS,IDEPRS,
+            NRIPRS,EPSPRS,SNGPRS,CIVPRS,SEXPRS,
+            DIRPRS,TELPRS,CELPRS,IDECIU,EMLPRS,
+            PSWPRS,EXPPRS,ESKPRS,ESTPRS,SNPPRS,
+            NROXVT,PSNPRS,PNOPRS,SNOPRS,PAPPRS,
+            SAPPRS,BROPRS,ZNAPRS,DISPRS,VTOPRS,
+            MILPRS,NRMPRS,NDMPRS,DIFPRS,TEFPRS,
+            SBNPRS,TRJPRS,TDIPRS) 
+            values (?,?,?,?,?
+                   ,?,?,?,?,?
+                   ,?,?,?,?,?
+                   ,?,?,?,?,?
+                   ,?,?,?,?,?
+                   ,?,?,?,?,?
+                   ,?,?,?,?,?
+                   ,?,?,?,?,?
+                   ,?,?,?)
+        </sql>
+    </statement>
+    
+    
+    <statement name="UPDATE_SMAPRS">
+        <desc>Delete tabla de Persona</desc>
+        <sql>
+           Update SMAPRS set
+            CODCIA=?,TITPRS=?,CODPRS=?,APEPRS=?,
+            NOMPRS=?,NPQPRS=?,NACPRS=?,FHNPRS=?,IDEPRS=?,
+            NRIPRS=?,EPSPRS=?,SNGPRS=?,CIVPRS=?,SEXPRS=?,
+            DIRPRS=?,TELPRS=?,CELPRS=?,IDECIU=?,EMLPRS=?,
+            PSWPRS=?,EXPPRS=?,ESKPRS=?,ESTPRS=?,SNPPRS=?,
+            NROXVT=?,PSNPRS=?,PNOPRS=?,SNOPRS=?,PAPPRS=?,
+            SAPPRS=?,BROPRS=?,ZNAPRS=?,DISPRS=?,VTOPRS=?,
+            MILPRS=?,NRMPRS=?,NDMPRS=?,DIFPRS=?,TEFPRS=?,
+            SBNPRS=?,TRJPRS=?,TDIPRS=?
+            Where NROPRS=?
+        </sql>
+    </statement>
+    
+    
+    <statement name="DELETE_SMAGNR">
+        <desc>Delete tabla de Empleado</desc>
+        <sql>
+           DELETE FROM TABLE WHERE CAMPO=?
+
+        </sql>
+    </statement>
+
+    
+</sentencias>

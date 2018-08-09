@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAPSD">
+        <desc>Inserción tabla de Pensum</desc>
+        <sql>
+           Insert into SMAPSD (CODCIA,NROPSD,IDEPGM,NROPSM,NOMPSD,TPOPSD,RSLPSD,TPONRM,NRONRM,FCHNRM,CODORG,STDPSD) 
+            values (?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAPSD">
+        <desc>Update tabla de Pensum</desc>
+        <sql>
+           Update  SMAPSD set 
+            CODCIA=?,IDEPGM=?,
+            NROPSM=?,NOMPSD=?,TPOPSD=?,
+            RSLPSD=?,TPONRM=?,NRONRM=?,
+            FCHNRM=?,CODORG=?,STDPSD=?
+            Where NROPSD=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAPSD">
+        <desc>Delete tabla de Pensum</desc>
+        <sql>
+           
+        </sql>
+    </statement>
+    
+</sentencias>

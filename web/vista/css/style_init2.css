@@ -1,0 +1,107 @@
+body {margin:0; padding:0; background:url(../images/wr_body.gif) top left;}
+td {border-collapse:collapse;}
+table {border-collapse:collapse;}
+img {border:0;}
+td {border:0;}
+table {border:0;}
+td {margin:0; padding:0;}
+form {margin:0; padding:0;}
+td{font:11px/12px tahoma, arial, helvetica, sans-serif; color:#292727; vertical-align:top;  text-align:left;}
+
+a{ color:#292727;}
+a:hover{text-decoration:none;}
+
+ul {list-style:none; padding:0;}
+
+
+
+.r1 ul { margin:0; padding:0; list-style:none;}
+.r1 li { background:url(../imagesR/r1.gif) center left no-repeat; margin:0 0 0 0; padding:0 0 0 11px;}
+.r1 li a {line-height:16px; color:#FD7914; text-decoration:underline;}
+.r1 li a:hover { text-decoration:none; color:#FD7914;}
+
+
+/*header*/
+.indent_logo{ height:101px;}
+.indent_logo img{ margin:27px 0 0 22px;}
+.menu{ height:51px;}
+.top_line{ height:15px; width:100%; background:#E4E4D6;}
+.big_foto{ height:130px; padding-top:12px;}
+.big_foto_1{ height:70px; padding-top:5px;}
+.big_foto_2{ height:70px; padding-top:5px;}
+
+/*footer*/
+.footer{ color:#828282; text-align:center; padding:20px 0 11px 0;}
+.footer a{ color:#828282; text-decoration:underline}
+.footer a:hover{ color:#828282; text-decoration:none}
+.footer span{ color:#5F5C5C; word-spacing:21px;}
+.footer span a{ color:#5F5C5C; text-decoration:none; word-spacing:normal;}
+.footer span a:hover{ color:#5F5C5C; text-decoration:underline;}
+
+
+
+
+/*wrapper*/
+.wr_white { width:100%;}
+.wr_white .t { background:#FFFFFF url(../imagesR/m2-l-t.gif) no-repeat left top;}
+.wr_white .b { background:url(../imagesR/m2-r-t.gif) no-repeat right top;}
+.wr_white .l { background:url(../imagesR/m2-l-b.gif) no-repeat left bottom;}
+.wr_white .r { background:url(../imagesR/m2-r-b.gif) no-repeat right bottom;}
+
+.wr_white_dark { width:100%;}
+.wr_white_dark .t { background:#F9FAF6 url(../imagesR/m2-l-t2.gif) no-repeat left top;}
+.wr_white_dark .b { background:url(../imagesR/m2-r-t2.gif) no-repeat right top;}
+.wr_white_dark .l { background:url(../imagesR/m2-l-b2.gif) no-repeat left bottom;}
+.wr_white_dark .r { background:url(../imagesR/m2-r-b2.gif) no-repeat right bottom;}
+
+.wr_white li { background:url(imagesR/wr_white_x.gif) bottom left repeat-x; margin:0 0 0 0; padding:0 0 2px 0; width:155px;}
+.wr_white li a { background:url(imagesR/wr_white_bgr.gif) center left no-repeat; line-height:22px; color:#4E4D4D; text-decoration:none; padding-left:17px;}
+.wr_white li a:hover { text-decoration:none; color:#D6300D;}
+
+/**/
+
+.wr_green { width:100%;}
+.wr_green .t { background:#DFE3CF url(../imagesR/m2-l-t1.gif) no-repeat left top;}
+.wr_green .b { background:url(../imagesR/m2-r-t1.gif) no-repeat right top;}
+.wr_green .l { background:url(../imagesR/m2-l-b1.gif) no-repeat left bottom;}
+.wr_green .r { background:url(../imagesR/m2-r-b1.gif) no-repeat right bottom;}
+
+.wr_green li { background:url(../imagesR/list_red.gif) top left no-repeat; margin:0 0 0 0; padding:0 0 0 13px;}
+.wr_green li a {line-height:24px; color:#292727; text-decoration:underline;}
+.wr_green li a:hover { text-decoration:none; color:#292727}
+
+
+/*content*/
+.bgr1{background:none !important}
+.h{ background:url(../imagesR/h.gif) top left no-repeat; height:17px;}
+.h img{ margin:0 0 0 25px;}
+
+.img1 img{ margin-right:7px;}
+
+strong a{ color:#3081AB;  background:url(../imagesR/marker.gif) no-repeat left top; background-position:0 3px; padding-left:10px; text-decoration:none; font-size:9px; text-transform:uppercase; font-family:Verdana, Arial, Helvetica, sans-serif}
+strong a:hover{ text-decoration:none; color:#D6300D;}
+
+.col_2 strong a{ color:#D6300D;  background:url(../imagesR/marker1.gif) no-repeat left top; background-position:0 3px; padding-left:10px; text-decoration:none; font-size:9px; text-transform:uppercase; font-family:Verdana, Arial, Helvetica, sans-serif}
+.col_2 strong a:hover{ text-decoration:none; color:#3081AB;}
+
+.line_x{ background:url(../imagesR/line_x.gif) top left repeat-x; width:337px; height:1px; margin:9px 0 10px 0;}
+
+.text1{ line-height:14px;}
+.text1 span{ font-size:9px; color:#3081AB;}
+.text1 span img{ vertical-align:middle; margin:0 7px 0 0;}
+
+.indent_img{width:319px;}
+.indent_img img{margin:0 20px 0 5px; float:left}
+.link{padding:13px 0 0 0; text-align:right;}
+
+.text2{padding:7px 31px 16px 15px; color:#4E4D4D;}
+.text2 div{ margin-top:11px;}
+.text2 a{ color:#D6300D; text-decoration:underline}
+.text2 a:hover{ color:#D6300D; text-decoration:none}
+.text2 strong{ display:block;}
+
+
+
+
+
+

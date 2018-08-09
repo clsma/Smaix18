@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMASCP">
+        <desc>Inserción tabla de Retencion</desc>
+        <sql>
+            INSERT INTO SMASCP (NROSCP,CODCIA,TPOSCP,NROPRS,STDSCP,NROBDG,FCHSCP,ITMSCP,NVLSCP,OBSSCP,SYSSCP,CODSCP,NROPSP,TIPSCP,NROFJE)
+                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMASPY">
+        <desc>Update tabla de Retencion</desc>
+        <sql>
+            INSERT INTO SMASPY (NROSPY, NROSCP, NROPYS,
+            VLRSPY, STDSPY, DSPSPY) VALUES (?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMASXQ">
+        <desc>Update tabla de Retencion</desc>
+        <sql>
+            INSERT INTO SMASXQ (NROSXQ, NROSCP, NROPRS, TPOSXQ, STDSXQ, OBSSXQ, FCHSXQ) 
+            VALUES (?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMASCP">
+        <desc>Update tabla de Retencion</desc>
+        <sql>
+            UPDATE SMASCP SET STDSCP=?
+                WHERE NROSCP=?
+        </sql>
+    </statement>
+    
+
+    <statement name="DELETE_SMACHK">
+        <desc>Delete tabla de Chequera</desc>
+        <sql>
+           DELETE FROM SMACHK
+            WHERE NROCHK=?
+        </sql>
+    </statement>
+    
+</sentencias>
+

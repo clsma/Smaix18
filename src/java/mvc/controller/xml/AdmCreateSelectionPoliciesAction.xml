@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+   <statement name="INSERT_SMASIS">
+        <desc>Inserción tabla de politicas de seleccion</desc>
+        <sql>
+           INSERT INTO SMASIS( NROSIS, CODCIA, TPOSIS, NOMSIS, NROXVT, STDSIS) 
+                      VALUES ( ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+     <statement name="UPDATE_SMASIS">
+        <desc>Update tabla de politicas de seleccion</desc>
+        <sql>
+          UPDATE SMASIS SET TPOSIS = ?, NOMSIS = ?, NROXVT = ?, STDSIS = ? WHERE NROSIS = ?           
+        </sql>
+    </statement>
+    
+     <statement name="DELETE_SMASIS">
+        <desc>Delete tabla de politicas de seleccion</desc>
+        <sql>
+          DELETE SMASIS  WHERE NROSIS = ?            
+        </sql>
+    </statement>
+</sentencias>
+
+

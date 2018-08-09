@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAKJA">
+        <desc>Insert tabla de Caja</desc>
+        <sql>
+           INSERT INTO SMAKJA (CODCIA, NROKJA, CODUSR, 
+            NOMKJA, TPOKJA, STDKJA, 
+            NROSDE, NVLKJA, NROPQK, 
+            TRJPQK, CHQPQK, ORNPQK, 
+            CODCMP, EFEKJA, TRJKJA, 
+            CHQKJA, ORNKJA, SEQKJA, 
+            TRNKJA, ARQKJA, NROCMP, 
+            SQLBKR) 
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAKJA">
+        <desc>Update tabla de Caja</desc>
+        <sql>
+           UPDATE SMAKJA SET CODCIA=?, CODUSR=?, 
+            NOMKJA=?, TPOKJA=?, STDKJA=?, 
+            NROSDE=?, NVLKJA=?, NROPQK=?, 
+            TRJPQK=?, CHQPQK=?, ORNPQK=?, 
+            CODCMP=?, EFEKJA=?, TRJKJA=?, 
+            CHQKJA=?, ORNKJA=?, SEQKJA=?, 
+            TRNKJA=?, ARQKJA=?, NROCMP=? 
+            WHERE NROKJA=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAKJA">
+        <desc>Update tabla de Caja</desc>
+        <sql>
+           DELETE FROM SMAKJA 
+            WHERE NROKJA=?
+        </sql>
+    </statement>
+    
+   
+    
+</sentencias>
+

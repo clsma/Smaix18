@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAPIA">
+        <desc>Insert tabla de PIA</desc>
+        <sql>
+             Insert into SMAPIA (
+            CODCIA,
+NROPIA,
+CODPIA,
+SRCPIA,
+FCHPIA,
+DSPPIA,
+TPOPIA,
+SQLBKR)
+                        values(?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    
+    <statement name="UPDATE_SMAPIA">
+        <desc>Update tabla de PIA</desc>
+        <sql>
+             Update SMAPIA set srcpia=? Where nropia=?
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAPIC">
+        <desc>Update tabla de PIC</desc>
+        <sql>
+             INSERT INTO SMAPIC (
+            CODCIA, NROPIC, CODPIC, 
+            TITPIC, DSPPIC, TMPPIC, 
+            CSTPIC, MONPIC, CTRPIC, 
+            CODCIU, STDPIC,
+            NROPRS) values(?,?,?,?,?,?,?,?,?,?,?,?) 
+        </sql>
+    </statement>
+    
+    
+    <statement name="UPDATE_SMAPIC_EMP">
+        <desc>Update tabla de PIC</desc>
+        <sql>
+             UPDATE smapic set codemp=? where nropic=?
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAPIC_DSP">
+        <desc>Update tabla de PIC</desc>
+        <sql>
+             UPDATE smapic set PROPIC=?, MAKPIC=?, OBGPIC=?, MTDPIC=?, BIBPIC=?, OBEPIC=? where nropic=?
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAPIC_GDI">
+        <desc>Update tabla de PIC</desc>
+        <sql>
+             UPDATE smapic set nropig=? where nropic=?
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAPIE">
+        <desc>Update tabla de PIE</desc>
+        <sql>
+             Insert into smapie (
+CODCIA,
+NROPIC,
+NROPIL,
+SQLBKR)            values(?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAPIL">
+        <desc>Inserción tabla de Areas De Investigacion</desc>
+        <sql>
+           INSERT INTO SMAPIL (NROPIL, NOMPIL, FCHPIL, TPOPIL, SQLBKR)
+            VALUES (?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    
+    <statement name="INSERT_SMAPID">
+        <desc>Inserción tabla de PID</desc>
+        <sql>
+           INSERT INTO SMAPID (NROPID, NROPIC, CODPRS, 
+            TPOPRS, FNCPID, MESPID, 
+            HRAPID, SEMPID, HRSPID, 
+            VLHPID, TOTPID, APEPID, 
+            CNPPID, NRORBR, SQLBKR)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAPID">
+        <desc>Inserción tabla de PID</desc>
+        <sql>
+           UPDATE  SMAPID set  NROPIC=?, CODPRS=?, 
+            TPOPRS=?, FNCPID=?, MESPID=?, 
+            HRAPID=?, SEMPID=?, HRSPID=?, 
+            VLHPID=?, TOTPID=?, APEPID=?, 
+            CNPPID=?, NRORBR=?, SQLBKR=?
+            where NROPID=?
+        </sql>
+    </statement>
+   
+    <statement name="INSERT_SMAPIS">
+        <desc>Inserción tabla de PIS</desc>
+        <sql>
+           INSERT INTO SMAPIS (NROPIS, NROPIC, NRORBR, 
+            VLRPIS, APEPIS, CNPPIS, SQLBKR)
+            VALUES (?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAPIS">
+        <desc>Inserción tabla de PIS</desc>
+        <sql>
+           UPDATE SMAPIS set NROPIC=?, NRORBR=?, 
+            VLRPIS=?, APEPIS=?, CNPPIS=?, SQLBKR=?
+            Where NROPIS=?
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAPIT">
+        <desc>Inserción tabla de PIT</desc>
+        <sql>
+           INSERT INTO SMAPIT
+            (NROPIT, NROPIC, RSTPIT, 
+            CODPIT, SQLBKR) VALUES (?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAPIY">
+        <desc>Inserción tabla de PIY</desc>
+        <sql>
+           INSERT INTO SMAPIY  (
+            NROPIY,
+NROPIT,
+CODPIY,
+SQLBKR)
+            VALUES(?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAPIB">
+        <desc>Inserción tabla de PIB</desc>
+        <sql>
+           INSERT INTO SMAPIB
+(NROPIB,
+NROPIT,
+CODPIB,
+SQLBKR
+)            VALUES(?,?,?,?)
+        </sql>
+    </statement>
+    
+    
+    <statement name="DELETE_SMAPIB">
+        <desc>Inserción tabla de PIB</desc>
+        <sql>
+           DELETE FROM SMAPIB WHERE NROPIT=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAPIY">
+        <desc>Inserción tabla de PIB</desc>
+        <sql>
+           DELETE FROM SMAPIY WHERE NROPIT=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAPIT">
+        <desc>Inserción tabla de PIB</desc>
+        <sql>
+           DELETE FROM SMAPIT WHERE NROPIT=?
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAPII">
+        <desc>Inserción tabla de PII</desc>
+        <sql>
+           INSERT INTO SMAPII (NROPII, NROPIC, NRORBR,
+            JSTPII, VLRPII, CANPII,
+            APEPII, CNPPII, ITMPII,
+            TOTPII, SQLBKR) 
+            VALUES (?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAPII">
+        <desc>Inserción tabla de PII</desc>
+        <sql>
+           UPDATE SMAPII SET NROPIC=?, NRORBR=?,
+            JSTPII=?, VLRPII=?, CANPII=?,
+            APEPII=?, CNPPII=?, ITMPII=?,
+            TOTPII=?, SQLBKR=? 
+            WHERE NROPII=?
+        </sql>
+    </statement>
+    
+    
+    <statement name="INSERT_SMAPSI">
+        <desc>Inserción tabla de PSI</desc>
+        <sql>
+           INSERT INTO SMAPSI (NROPSI, NROPIC, NRORBR, 
+            VLRPSI, CPTPSI, VEXPSI,
+            STDPSI, SQLBKR) VALUES (?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+     <statement name="UPDATE_SMAPSI">
+        <desc>Inserción tabla de PSI</desc>
+        <sql>
+           UPDATE SMAPSI set  NROPIC=?, NRORBR=?, 
+            VLRPSI=?, CPTPSI=?, VEXPSI=?,
+            STDPSI=?, SQLBKR=?
+            WHERE NROPSI=?
+        </sql>
+    </statement>
+    
+    
+    <statement name="UPDATE_SMAPIT">
+        <desc>Inserción tabla de PIT</desc>
+        <sql>
+           UPDATE SMAPIT set
+            NROPIC=?, RSTPIT=?, 
+             SQLBKR=? 
+            WHERE NROPIT=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAPIY">
+        <desc>Inserción tabla de PIT</desc>
+        <sql>
+           Delete From smapiy where nropit=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAPIB">
+        <desc>Inserción tabla de PIT</desc>
+        <sql>
+           Delete From smapib where nropit=?
+        </sql>
+    </statement>
+    
+    
+    <statement name="INSERT_SMAPIM">
+        <desc>Inserción tabla de PIM</desc>
+        <sql>
+           INSERT INTO SMAPIM (NROPIM, NROPIC, TPOPIM, CODPIM, PZOPIM, SQLBKR) VALUES (?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    
+    <statement name="INSERT_SMAPIK">
+        <desc>Inserción tabla de PIK</desc>
+        <sql>
+           INSERT INTO SMAPIK (NROPIK, NROPIM, CODPIK, SPTPIK, NUMPIK, TIEPIK, SQLBKR) VALUES (?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAPIK">
+        <desc>Inserción tabla de PIK</desc>
+        <sql>
+           UPDATE SMAPIK SET  CODPIK=?, SPTPIK=?, NUMPIK=?, TIEPIK=? WHERE NROPIK=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAPIK">
+        <desc>Inserción tabla de PIK</desc>
+        <sql>
+           DELETE FROM SMAPIK WHERE NROPIK=?
+        </sql>
+    </statement>
+    
+    
+    <statement name="UPDATE_SMAPIC_ALL">
+        <desc>Update tabla de Proyecto</desc>
+        <sql>
+           UPDATE SMAPIC SET
+            TITPIC=?, DSPPIC=?, 
+            CODCIU=?
+            WHERE NROPIC=?
+        </sql>
+    </statement>
+    
+    
+    <statement name="DELETE_SMAPIE_PIC">
+        <desc>Delete tabla de PIE</desc>
+        <sql>
+           DELETE FROM SMAPIE WHERE NROPIC=?
+        </sql>
+    </statement>
+    
+    
+    
+    <statement name="INSERT_SMACXA">
+        <desc>Insert tabla de Cronograma</desc>
+        <sql>
+            INSERT INTO SMACXA (NROCXA, NROCRO, ACTCXA,
+            DSPCXA, BGNCXA, ENDCXA,
+            CODPRS, STDCXA, BEXCXA,
+            ENXCXA, PTJCXA, IDECXA,
+            SQLBKR) 
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    
+    <statement name="INSERT_SMAAPA">
+        <desc>Insert tabla de Cronograma</desc>
+        <sql>
+            INSERT INTO SMAAPA (NROAPA, NROCXA, TPOAPA,
+            CODAPA, SQLBKR) VALUES (?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    
+    <statement name="UPDATE_SMACXA">
+        <desc>Insert tabla de Cronograma</desc>
+        <sql>
+            UPDATE SMACXA SET ACTCXA=?,
+            DSPCXA=?, BGNCXA=?, ENDCXA=?,
+            CODPRS=?
+            WHERE NROCXA=?
+        </sql>
+    </statement>
+    
+    
+    <statement name="DELETE_SMAPII">
+        <desc>Eliminar Rubros x Proyectos</desc>
+        <sql>
+            DELETE FROM SMAPII
+            WHERE NRORBR=? AND NROPIC=?
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMACRO">
+        <desc>Insertar Cronograma</desc>
+        <sql>
+            INSERT INTO SMACRO (NROCRO, TPOCRO, CODCRO,
+            NOMCRO, FCHCRO, STDCRO,
+            SQLBKR) VALUES (?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    
+
+    <statement name="INSERT_SMACSG">
+        <desc>Insertar Avance</desc>
+        <sql>
+            INSERT INTO SMACSG (NROCSG, NROCXA, FCHCSG,
+            PTJCSG, NOMCSG, DSPCSG,
+            STDCSG, SQLBKR) VALUES (?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    
+    <statement name="UPDATE_SMACSG">
+        <desc>Update Avance</desc>
+        <sql>
+            UPDATE  SMACSG Set  NROCXA=?, FCHCSG=?,
+            PTJCSG=?, NOMCSG=?, DSPCSG=?,
+            STDCSG=?
+            Where NROCSG=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMACXA">
+        <desc>Delete Cronograma</desc>
+        <sql>
+            DELETE FROM SMACXA
+            Where nrocxa=?
+        </sql>
+    </statement>
+    
+    
+    <statement name="UPDATE_SMAPIC_STD">
+        <desc>Update Estado</desc>
+        <sql>
+            UPDATE SMAPIC SET STDPIC=? 
+            WHERE NROPIC=?
+        </sql>
+    </statement>
+    
+    
+    <statement name="UPDATE_SMACRO">
+        <desc>Update Cronograma</desc>
+        <sql>
+            UPDATE SMACRO SET NOMCRO=? 
+            WHERE CODCRO=?
+        </sql>
+    </statement>
+    
+    
+    <statement name="INSERT_SMAUSR">
+        <desc>Insert Usuario</desc>
+        <sql>
+            INSERT INTO SMAUSR (NROUSR, NROPRS, NPQUSR,
+            NROSGU, CODUSR, STDUSR,
+            SQLBKR) VALUES (?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMACXA_AVD">
+        <desc>Update Actividad</desc>
+        <sql>
+            UPDATE smacxa SET ptjcxa=?
+            WHERE nrocxa=?
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMACSG_AVD_ALL">
+        <desc>Update Actividad</desc>
+        <sql>
+            UPDATE smacsg SET stdcsg=?
+            WHERE nrocxa=?
+        </sql>
+    </statement>
+    
+    
+    <statement name="DELETE_SMAAPI">
+        <desc>Delete Productos/Resultados e Impactos de un Avance</desc>
+        <sql>
+            DELETE FROM SMAAPI
+                WHERE nrocsg=?
+                AND tpoapi='IMP'
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAAPI_RST">
+        <desc>Delete Productos/Resultados e Impactos de un Avance</desc>
+        <sql>
+            DELETE FROM SMAAPI
+                WHERE nrocsg=?
+                AND tpoapi='RST'
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAAPI_SMAAPY">
+        <desc>Delete Productos/Resultados e Impactos de un Avance</desc>
+        <sql>
+            DELETE FROM SMAAPY
+                WHERE nroapi=?
+        </sql>
+    </statement>
+    
+    
+    <statement name="INSERT_SMAAPI">
+        <desc>Insert Productos/Resultados e Impactos de un Avance</desc>
+        <sql>
+            INSERT INTO SMAAPI (NROAPI, NROCSG, CODAPI,
+            TPOAPI, SQLBKR) VALUES (?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    
+    <statement name="DELETE_SMAAPY">
+        <desc>Delete (Proyecto Investigacion) - Indicadores de un Producto/Resultado de un Avance</desc>
+        <sql>
+            DELETE FROM SMAAPY 
+                WHERE NROAPI=?
+        </sql>
+    </statement>
+    
+    
+    <statement name="INSERT_SMAAPY">
+        <desc>Insert (Proyecto Investigacion) - Indicadores de un Producto/Resultado de un Avance</desc>
+        <sql>
+            INSERT INTO SMAAPY (NROAPY, NROAPI,
+            NROPIY, SQLBKR) VALUES (?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAPMK">
+        <desc>Insert (Proyecto de Investigacion) - Tabla encargada de Administrar el marco teorico del proyecto</desc>
+        <sql>
+            INSERT INTO SMAPMK (NROPMK, NROPIC, DSPPMK) VALUES (?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAPMK">
+        <desc>Insert (Proyecto de Investigacion) - Tabla encargada de Administrar el marco teorico del proyecto</desc>
+        <sql>
+            UPDATE SMAPMK SET DSPPMK=?
+            WHERE NROPIC=?
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAPPR">
+        <desc>Insert (Proyecto de Investigacion) - Tabla encargada de Administrar el Plantamiento del proyecto</desc>
+        <sql>
+            INSERT INTO SMAPPR (NROPPR, NROPIC, DSPPPR) VALUES (?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAPPR">
+        <desc>Insert (Proyecto de Investigacion) - Tabla encargada de Administrar el Plantamiento del proyecto</desc>
+        <sql>
+            UPDATE SMAPPR SET DSPPPR=?
+            WHERE NROPIC=?
+        </sql>
+    </statement>
+    
+    
+    <statement name="INSERT_SMAPOG">
+        <desc>Insert (Proyecto de Investigacion) - Tabla encargada de Administrar los objetivos generales del proyecto</desc>
+        <sql>
+            INSERT INTO SMAPOG (NROPOG, NROPIC, DSPPOG) VALUES (?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAPOG">
+        <desc>Insert (Proyecto de Investigacion) - Tabla encargada de Administrar los objetivos generales del proyecto</desc>
+        <sql>
+            UPDATE SMAPOG SET DSPPOG=?
+            WHERE NROPIC=?
+        </sql>
+    </statement>
+    
+    
+    <statement name="INSERT_SMAPOE">
+        <desc>Insert (Proyecto de Investigacion) - Tabla encargada de Administrar los objetivos especificos del proyecto</desc>
+        <sql>
+            INSERT INTO SMAPOE (NROPOE, NROPIC, DSPPOE) VALUES (?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAPOE">
+        <desc>Insert (Proyecto de Investigacion) - Tabla encargada de Administrar los objetivos especificos del proyecto</desc>
+        <sql>
+            UPDATE SMAPOE SET DSPPOE=?
+            WHERE NROPIC=?
+        </sql>
+    </statement>
+    
+    
+    <statement name="INSERT_SMAPTD">
+        <desc>Insert (Proyecto de Investigacion) - Tabla encargada de Administrar la Metodologia del proyecto</desc>
+        <sql>
+            INSERT INTO SMAPTD (NROPTD, NROPIC, DSPPTD) VALUES (?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAPTD">
+        <desc>Insert (Proyecto de Investigacion) - Tabla encargada de Administrar la Metodologia del proyecto</desc>
+        <sql>
+            UPDATE SMAPTD SET DSPPTD=?
+            WHERE NROPIC=?
+        </sql>
+    </statement>
+    
+    
+    <statement name="INSERT_SMAPBI">
+        <desc>Insert (Proyecto de Investigacion) - Tabla encargada de Administrar la Bibliografia del proyecto</desc>
+        <sql>
+            INSERT INTO SMAPBI (NROPBI, NROPIC, DSPPBI) VALUES (?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAPBI">
+        <desc>Insert (Proyecto de Investigacion) - Tabla encargada de Administrar la Bibliografia del proyecto</desc>
+        <sql>
+            UPDATE SMAPBI SET DSPPBI=?
+            WHERE NROPIC=?
+        </sql>
+    </statement>
+    
+    
+    <statement name="DELETE_SMAAPA">
+        <desc>Delete (Proyecto Investigacion) - Actividad de Cronograma</desc>
+        <sql>
+            DELETE FROM SMAAPA
+                WHERE NROCXA=?
+        </sql>
+    </statement>
+    
+    
+    
+
+    
+</sentencias>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" columnCount="2" pageWidth="612" pageHeight="565" columnWidth="306" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="a4ce4300-24d4-4d32-8d45-9252437d4052">
+	<property name="ireport.zoom" value="1.771561000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#C8E6DE"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="pcodcia" class="java.lang.String"/>
+	<parameter name="prutaImagen" class="java.lang.String"/>
+	<parameter name="recordset" class="java.sql.ResultSet" isForPrompting="false"/>
+	<parameter name="ptitrpt" class="java.lang.String"/>
+	<parameter name="pideirp" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT UPPER(SMAIRP.TITIRP),SMAIRP.CODIRP,SMAIRP.VERIRP,SMAIRP.fchirp,SMACIA.NOMCIA
+from SMAIRP JOIN SMACIA ON SMAIRP.CODCIA = SMACIA.CODCIA
+WHERE SMAIRP.CODCIA = $P{pcodcia} and SMAIRP.IDEIRP = nvl($P{pideirp},SMAIRP.IDEIRP)]]>
+	</queryString>
+	<field name="UPPER(SMAIRP.TITIRP)" class="java.lang.String"/>
+	<field name="CODIRP" class="java.lang.String"/>
+	<field name="VERIRP" class="java.lang.String"/>
+	<field name="FCHIRP" class="java.sql.Timestamp"/>
+	<field name="NOMCIA" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="76" splitType="Stretch">
+			<rectangle>
+				<reportElement x="125" y="3" width="430" height="73" uuid="77e80c8d-0499-4177-ad14-c559c45a8b40"/>
+			</rectangle>
+			<line>
+				<reportElement x="124" y="3" width="1" height="73" uuid="4772c354-3679-4db2-8766-424d5c6c2e63"/>
+			</line>
+			<line>
+				<reportElement x="125" y="51" width="430" height="1" uuid="b206d431-7063-47ef-9a8c-76f9d4e65cb9"/>
+			</line>
+			<line>
+				<reportElement x="400" y="3" width="1" height="73" uuid="294b6e24-2ae4-4251-8043-46ac59faf755"/>
+			</line>
+			<line>
+				<reportElement x="472" y="3" width="1" height="73" uuid="1b781aa5-2ce1-4f98-81e1-af96a8348d4d"/>
+			</line>
+			<staticText>
+				<reportElement x="403" y="7" width="36" height="14" forecolor="#1E1E1E" uuid="ee6e36db-1db0-4db8-9af0-14a86e27b74e"/>
+				<textElement>
+					<font fontName="SansSerif" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Código:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="403" y="23" width="36" height="14" forecolor="#1E1E1E" uuid="3a8f0907-a182-4c70-be82-86d93c216b07"/>
+				<textElement>
+					<font fontName="SansSerif" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Versión:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="403" y="39" width="48" height="13" forecolor="#1E1E1E" uuid="d62e0aa4-df7e-4176-8808-a9195b37b1e7"/>
+				<textElement>
+					<font fontName="SansSerif" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Elaborado:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="403" y="59" width="70" height="14" forecolor="#1E1E1E" uuid="10f41069-8754-43a7-bdcf-94671c93b7ed"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="SansSerif" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Impresión:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="401" y="34" width="154" height="1" uuid="7accb08a-1743-4a2f-9847-e27d516c751c"/>
+			</line>
+			<line>
+				<reportElement x="401" y="18" width="154" height="1" uuid="7bdf8076-9f89-44d6-add8-f1f7d06fc825"/>
+			</line>
+			<textField isStretchWithOverflow="true" pattern="dd MMMMM yyyy">
+				<reportElement x="473" y="54" width="82" height="11" uuid="e6684f9b-21dc-4835-8cda-2074ff5f6dca"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="496" y="22" width="22" height="13" uuid="5fbafdd9-c094-4119-aaa8-024a8b739b9a"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[No.]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToBandHeight" x="125" y="20" width="275" height="16" uuid="59bba494-764a-4217-8f17-3dcc3603f19f"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMCIA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="475" y="7" width="80" height="11" uuid="245ae322-926e-459f-b9ae-8c22ecdeb91c"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CODIRP}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="475" y="40" width="80" height="11" uuid="62ac37c7-e470-44af-b662-ffa14ab72294"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FCHIRP}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="511" y="22" width="18" height="11" uuid="28f42f81-ec41-4f75-8b7d-b6828bc8217e"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VERIRP}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="FillFrame">
+				<reportElement x="47" y="5" width="65" height="70" uuid="1ccf5ad3-ad95-4379-996d-3061d2e09516"/>
+				<imageExpression><![CDATA[$P{prutaImagen}+"logo_head_report.png"]]></imageExpression>
+			</image>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="125" y="52" width="275" height="23" uuid="41b047e6-27e0-465d-b8e9-542c0d08ffa1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ptitrpt}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+</jasperReport>

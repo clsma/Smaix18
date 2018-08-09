@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAQTR">
+        <desc>INSERCIÓN EN TABLA DE CUESTIONARIOS</desc>
+        <sql>INSERT INTO SMAQTR ( CODCIA, NROQTR, NOMQTR, INTQTR, FCHBGN, FCHEND, HORBGN, HOREND, 
+                                  MIXQST, MIXANS, NUMTRY, METGRD, SHWGRD, SHWANS, ALWCHK, MAXGRD, 
+                                  FCHMKE, FCHEDT, TMEQTR, CODPRS, TPOPRS, TPOQTR, DGRQTR, TPCQTR, SQLBKR )
+                         VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, 
+                                  ?, ?, ?, ?, ?, ?, ?, ?, 
+                                  ?, ?, ?, ?, ?, ?, ?, ?, ? )
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAQTR">
+        <desc>ACTUALIZACIÓN TABLA DE CUESTIONARIOS</desc>
+        <sql>
+            UPDATE SMAQTR SET NOMQTR = ?,
+                              INTQTR = ?, 
+                              FCHBGN = ?, 
+                              FCHEND = ?, 
+                              HORBGN = ?, 
+                              HOREND = ?, 
+                              MIXQST = ?, 
+                              MIXANS = ?, 
+                              METGRD = ?, 
+                              SHWGRD = ?, 
+                              SHWANS = ?, 
+                              ALWCHK = ?, 
+                              MAXGRD = ?, 
+                              FCHMKE = ?, 
+                              FCHEDT = ?, 
+                              TMEQTR = ?, 
+                              CODPRS = ?, 
+                              TPOPRS = ?, 
+                              TPOQTR = ?, 
+                              DGRQTR = ?, 
+                              TPCQTR = ?,
+                              SQLBKR = ? 
+                        WHERE CODCIA = ?
+                          AND NROQTR = ?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAQTR">
+        <desc>ELIMINACIÓN EN TABLA DE CUESTIONARIOS</desc>
+        <sql>
+            DELETE FROM SMAQTR WHERE NROQTR = ?
+        </sql>
+    </statement>
+        
+</sentencias>

@@ -1,0 +1,350 @@
+.textload {
+  font-family: Verdana ,Tahoma ,Helvatica ,Times New Roman; 
+  font-size: 11px; 
+  color: #0066FF;       
+}
+
+.caption{
+  font-family: Verdana ,Tahoma ,Helvatica ,Times New Roman; 
+  font-size: 11px; 
+  color:#000000; 
+  font-weight:bold;
+}
+ 
+.text {
+	font-family: Verdana ,Tahoma ,Helvatica ,Times New Roman; 
+	font-size: 11px;
+	color:#000000;
+	border: 1px #000000 solid;
+	background-color:#FFFFFF;
+	font-weight: normal;
+}
+
+.combo { 
+	font-family: Verdana ,Tahoma ,Helvatica ,Times New Roman; 
+	font-size: 11px; 
+	color:#000000; 
+	border: 1px #000000 solid; 
+	background-color:#FFFFFF;  
+	font-weight: normal;
+}
+
+body {
+	scrollbar-face-color:#5f789a; 
+	scrollbar-highlight-color:#efefef; 
+	scrollbar-shadow-color:#efefef; 
+	scrollbar-3dlight-color:#efefef; 
+	scrollbar-arrow-color:#000000; 
+	scrollbar-track-color:#efefef; 
+	scrollbar-darkshadow-color:#efefef;
+}
+
+ 
+.boton { 
+	font-family: Verdana ,Tahoma ,Helvatica ,Times New Roman; 
+	font-size: 10px; 
+	color:#FFFFFF; 
+	border: 1px #666666 solid; 
+	background-color: #5f789a;  
+	font-weight: bold
+}
+
+.rowtitle {
+  background-color:#DBDBDB;
+  font-family: Verdana ,Tahoma ,Helvatica ,Times New Roman; 
+  font-size: 11px; 
+  color:#000000; 
+  font-weight:bold;
+}
+
+.title{ 
+  font-family: Verdana ,Tahoma ,Helvatica ,Times New Roman; 
+  font-size: 12px; 
+  color:#010066; 
+  font-weight:bold;
+  background-color:#DBDBDB;
+}
+
+.rowtitle2 {
+  background-color:#fc0;
+  font-family: Verdana ,Tahoma ,Helvatica ,Times New Roman; 
+  font-size: 11px; 
+  color:#000000; 
+  font-weight:bold;
+}
+
+.tablas {
+  border: 1px solid #a1a5a9;
+  background-color:#FFFFFF;
+  aling: center;
+}
+
+table {
+	border: 1px solid #666;
+	width: 100%;
+	margin: 20px 0 20px 0 !important;	
+}
+
+a.hypgrl { 
+	font-family: Verdana, Tahoma, sans-serif, Helvatica, Times New Roman;
+    font-size: 10px;
+	font-weight: bold;
+	color:#5f789a;
+}
+
+/* Estilo HYP para las Grids (Tablas) */
+a.hypgrid { 
+	font-family: Verdana ,Tahoma ,Helvatica ,Times New Roman;
+    font-size: 11px;
+	font-weight: normal;
+	color:#000000;
+	text-decoration:none; 
+}
+
+a.hypgrid:visited { 
+	font-family: Verdana ,Tahoma ,Helvatica ,Times New Roman;
+    font-size: 11px;
+	font-weight: normal;
+	color:#000000;
+	text-decoration:none; 
+}
+
+a.hypgrid:hover {
+	font-family: Verdana ,Tahoma ,Helvatica ,Times New Roman; 
+	font-size: 11px;
+	font-weight: normal;
+	background-color:#CCCCCC;
+	text-decoration: underline overline;
+	color:#003399;
+}
+
+/* Estilo HYP para los botones de comandos */
+a.hypbtn { 
+	font-family: Verdana ,Tahoma ,Helvatica ,Times New Roman; 
+  font-size: 11px;
+	font-weight: bold;
+	color:#FFFFFF;
+	font-style:italic;
+	text-decoration:none;
+	font-style:italic;
+}
+
+a.hypbtn:visited { 
+	font-family: Verdana ,Tahoma ,Helvatica ,Times New Roman; 
+    font-size: 11px;
+	font-weight: bold;
+	color:#FFFFFF;
+	text-decoration:none;
+	font-style:italic;
+}
+
+a.hypbtn:hover {
+	font-family: Verdana ,Tahoma ,Helvatica ,Times New Roman; 
+	font-size: 11px;
+	font-weight: bold;
+	color:#FFFFFF;
+	text-decoration: underline;
+	font-style:italic;
+}
+
+th,td {
+	padding: 2px 4px 2px 4px !important;
+	text-align: left;
+	vertical-align: top;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-style: normal;
+}
+
+thead tr {
+	background-color: #fc0;
+}
+
+th.sorted {
+	background-color: #DB9B36;
+}
+
+th a,th a:visited {
+	color: black;
+}
+
+th a:hover {
+	text-decoration: underline;
+	color: black;
+}
+
+th.sorted a,th.sortable a {
+	background-position: right;
+	display: block;
+	width: 100%;
+	background: url(../img/displaytag/arrow_off.png) no-repeat right;	
+}
+
+th.sortable a {
+	background-image: url(../img/displaytag/arrow_off.png) ;
+}
+
+th.order1 a {
+	background-image: url(../img/displaytag/arrow_down.png);
+}
+
+th.order2 a {
+	background-image: url(../img/displaytag/arrow_up.png);
+}
+
+tr.odd {
+	background-color: #fff
+}
+
+tr.tableRowEven,tr.even {
+	background-color: #fea
+}
+
+div.exportlinks {
+	background-color: #FFFFEC;
+	border: 1px dotted #999;
+	padding: 2px 4px 2px 4px;
+	margin: 2px 0 10px 0;
+	width: 100%;	
+	font-family: Verdana ,Tahoma ,Helvatica ,Times New Roman; 
+	font-size: 10px; 	
+	color:#5f789a;   
+}
+
+span.export {
+	padding: 0 4px 1px 20px;
+	display: inline;
+	display: inline-block;
+	cursor: pointer;
+	font-family: Verdana ,Tahoma ,Helvatica ,Times New Roman; 
+  	font-size: 10px; 
+  	font-weight: bold;
+	color:#5f789a;
+}
+
+span.excel {
+	background: url(../img/displaytag/ico_file_excel.png) no-repeat;
+}
+span.csv {
+	background: url(../img/displaytag/ico_file_csv.png) no-repeat;
+}
+span.xml {
+	background: url(../img/displaytag/ico_file_xml.png) no-repeat;
+}
+span.pdf {
+	background: url(../img/displaytag/ico_file_pdf.png) no-repeat;
+}
+
+span.rtf {
+	background: url(../img/displaytag/ico_file_rtf.png) no-repeat;
+}
+
+span.pagebanner {
+	background-color: #FFFFEC;	
+	padding: 2px 4px 2px 4px;
+	width: 100%;
+	margin-top: 10px;
+	display: block;
+	border-bottom: none;	
+	font-family: Verdana ,Tahoma ,Helvatica ,Times New Roman; 
+	font-size: 10px; 
+	color:#5f789a;
+}
+
+span.pagelinks {
+	background-color: #FFFFEC;	
+	padding: 2px 4px 2px 4px;
+	width: 100%;
+	display: block;
+	border-top: none;
+	margin-bottom: 6px;	
+	font-family: Verdana ,Tahoma ,Helvatica ,Times New Roman; 
+	font-size: 10px; 
+	color:#5f789a;  
+}
+
+/* alternative styles */
+table.its thead tr {
+	background-color: #69c;
+}
+
+table.its tr.even {
+	background-color: #def;
+}
+
+table.mars thead tr {
+	background-color: #9c9;
+}
+
+table.mars tr.even {
+	background-color: #ccb;
+}
+
+table.mars tr.odd {
+	background-color: #eec;
+}
+
+table.simple thead tr th {
+	background-color: #eee;
+}
+
+table.simple tr.even {
+	background-color: #eee;
+}
+
+table.simple {
+	border: 1px solid #ccc;
+	border-collapse: collapse;
+}
+
+table.simple td,table.simple th {
+	border: 1px solid #ccc;
+}
+
+table.nocol tbody td,table.nocol tbody th {
+	border-left: none;
+	border-right: none;
+}
+
+table.report td,table.report th {
+	font: menu;
+}
+
+table.report th {
+	background: buttonface;
+	border-width: 1px;
+	border-style: solid;
+	border-color: threedhighlight threedshadow threedshadow threedhighlight;
+	cursor: hand;
+}
+
+table.report idcol {
+	background: buttonface;
+}
+
+table.report tr.even {
+	background-color: #399;
+}
+
+table.report tbody {
+	height: 100px;
+	overflow: auto;
+}
+
+table.report {
+	height: 120px;
+	overflow: auto;
+}
+
+table.report tbody tr {
+	height: 10px;
+}
+
+table.mark td.tableCellError {
+	background-color: #d00;
+	color: #fff;
+}
+
+table.simple td.textRed {
+	color: #b11;
+}

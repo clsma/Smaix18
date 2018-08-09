@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMADKS">
+        <desc>Inserción tabla de Departamentos academicos</desc>
+        <sql>
+            INSERT INTO SMADKS(CODCIA,CODDKS,IDEDKS,NOMDKS,NPQDKS,NROCST,NROPRS,STDDKS,TPODKS ) 
+            VALUES ( ?, ?, ?, ?, ?, ?,?,?,? )
+        </sql>
+    </statement>
+    
+    
+    <statement name="UPDATE_SMACIU">
+        <desc>Update tabla de departamentos</desc>
+        <sql>
+            UPDATE SMADKS SET CODDKS=?,NOMDKS=?,NPQDKS=?,NROCST=?,NROPRS=?,STDDKS=?,TPODKS=? where idedks=? and  codcia=?
+        </sql>
+    </statement>
+    <statement name="DELETE_SMADKS">
+        <desc>Delete tabla de departamentos</desc>
+        <sql>
+            DELETE SMADKS  WHERE  IDEDKS=? and codcia =?  
+        </sql>
+    </statement>
+
+</sentencias>

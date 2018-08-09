@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMATRN">
+        <desc>Insert</desc>
+        <sql>
+            INSERT INTO SMATRN(CODCIA,NROTRN,NROPQP,CODCMP,NROCMP,FCHTRN,TPOTRN,OBSTRN,CODUSR,VLRTRN,STDTRN,DSPTRN,TPDTRN,DOCTRN,SQLBKR)
+            VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAMVK">
+        <desc>Insert</desc>
+        <sql>
+            INSERT INTO SMAMVK(NROMVK,NROTRN,CSCMVK,CODPQK,CODTRC,TPOTRC,TPOMVK,DBTMVK,CRDMVK,CODCST,DSPMVK,SQLBKR)
+            VALUES(?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+</sentencias>

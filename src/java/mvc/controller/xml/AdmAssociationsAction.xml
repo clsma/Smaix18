@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAGYA">
+        <desc>Inserción tabla de Idioma</desc>
+        <sql>
+           INSERT INTO SMAGYA (NROGYA, NROPRS, TPOPRS, NOMGYA, FCHVIN, SQLBKR)
+            VALUES (?,?,?,?,?,?)
+
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAGYA">
+        <desc>Update tabla de Areas</desc>
+        <sql>
+           Update SMAGYA Set  NROPRS=?, TPOPRS=?, NOMGYA=?, FCHVIN=?, SQLBKR=?
+            Where NROGYA=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAGYA">
+        <desc>Delete tabla de Areas</desc>
+        <sql>
+          
+        </sql>
+    </statement>
+    
+</sentencias>

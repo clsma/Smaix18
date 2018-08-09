@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMANNV">
+        <desc>Inserción tabla de Novedades</desc>
+        <sql>
+           INSERT INTO SMANNV (NRONNV, CODNNV, TPONNV,
+            FCHNNV, BGNNNV, ENDNNV, 
+            DIANNV, MTVNNV, JSTNNV,
+            NROPRS, ADJNNV, STDNNV, 
+            SQLBKR) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
+
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAARE">
+        <desc>Update tabla de Areas</desc>
+        <sql>
+           UPDATE SMAARE SET CODCIA=?, CODARE=?, NOMARE=?, NPQARE=?, CLRARE=?
+            WHERE NROARE=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAARE">
+        <desc>Delete tabla de Areas</desc>
+        <sql>
+           DELETE FROM SMAARE
+            WHERE NROARE=?
+        </sql>
+    </statement>
+    
+</sentencias>

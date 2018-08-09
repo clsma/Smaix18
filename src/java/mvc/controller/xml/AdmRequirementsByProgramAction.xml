@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMARCP">
+        <desc>Inserción tabla de Requerimiento por Programa</desc>
+        <sql>
+           INSERT INTO smarcp(
+            codcia, nrorcp, nropgm, tporcp, codrcp, stdrcp, sqlbkr)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMARCP">
+        <desc>Delete tabla de Areas</desc>
+        <sql>
+           DELETE FROM smarcp WHERE codcia=? and nropgm=? and tporcp=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAARE">
+        <desc>Delete tabla de Areas</desc>
+        <sql>
+           
+        </sql>
+    </statement>
+    
+</sentencias>

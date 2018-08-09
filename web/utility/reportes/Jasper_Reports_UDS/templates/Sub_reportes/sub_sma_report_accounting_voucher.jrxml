@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="comprobante de egreso" pageWidth="595" pageHeight="200" columnWidth="575" leftMargin="0" rightMargin="20" topMargin="10" bottomMargin="20" uuid="54eb822b-5485-4400-83f9-1a7e2f2d2d03">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="line" forecolor="#000D04"/>
+	<style name="filed" forecolor="#000504" fontSize="8"/>
+	<style name="tittle" forecolor="#000504" isBlankWhenNull="false" fontSize="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+	<style name="negrilla" fontSize="8" isBold="false" pdfFontName="Helvetica">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style isBold="true" pdfFontName="Helvetica-Bold"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/home/clsma/NetBeansProjects/Reportes_ix12/src/ComprobanteEgresos/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="pcodcia" class="java.lang.String"/>
+	<parameter name="ptxtxml" class="java.lang.String"/>
+	<parameter name="recordset" class="java.sql.ResultSet" isForPrompting="false"/>
+	<parameter name="ptitrpt" class="java.lang.String"/>
+	<parameter name="prutaImagen" class="java.lang.String"/>
+	<queryString language="plsql">
+		<![CDATA[{call SMA_ACCOUNTING_REPORTS.paymentvoucher_account_new_xml($P{ptxtxml},$P{recordset})}]]>
+	</queryString>
+	<field name="NROTRN" class="java.lang.String"/>
+	<field name="NROCST" class="java.lang.String"/>
+	<field name="CODCST" class="java.lang.String"/>
+	<field name="NOMCST" class="java.lang.String"/>
+	<field name="DBTMVK" class="java.math.BigDecimal"/>
+	<field name="CRDMVK" class="java.math.BigDecimal"/>
+	<field name="POSDBT" class="java.math.BigDecimal"/>
+	<field name="CODPQK" class="java.lang.String"/>
+	<field name="NOMPQK" class="java.lang.String"/>
+	<field name="TPOMVK" class="java.lang.String"/>
+	<field name="SUMDBT" class="java.math.BigDecimal"/>
+	<field name="OVLRCHX" class="java.lang.String"/>
+	<field name="VLRCXP" class="java.math.BigDecimal"/>
+	<variable name="TOTAL" class="java.math.BigDecimal" calculation="Sum"/>
+	<variable name="creditos" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{CRDMVK}]]></variableExpression>
+	</variable>
+	<variable name="debitos" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{DBTMVK}]]></variableExpression>
+	</variable>
+	<variable name="valor cheque" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{CRDMVK}]]></variableExpression>
+	</variable>
+	<columnHeader>
+		<band height="27">
+			<rectangle radius="0">
+				<reportElement x="1" y="0" width="555" height="14" uuid="9aeacb37-48e0-4fc1-885b-8706a1b9ab97"/>
+				<graphicElement>
+					<pen lineColor="#CCCCCC"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement style="filed" x="405" y="14" width="75" height="13" uuid="4e43c061-0ed4-45e5-b49f-c928d28cf76d"/>
+				<box rightPadding="3">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.0" lineColor="#CCCCCC"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Débito]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="filed" x="480" y="14" width="76" height="13" uuid="eca7e5c1-5047-4e24-a0b7-3aa46dffbae2"/>
+				<box rightPadding="3">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="1.0" lineColor="#CCCCCC"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Crédito]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="filed" x="1" y="14" width="54" height="13" uuid="d6042350-1ac6-449f-b688-fa7600d78697"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.0" lineColor="#CCCCCC"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Cuenta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="filed" x="55" y="14" width="202" height="13" uuid="45352bb3-bab0-4993-b2b6-5a85b5dc30ad"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.0" lineColor="#CCCCCC"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Nombre de la cuenta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="filed" x="257" y="14" width="148" height="13" uuid="47ee6fcd-ebab-4909-b08a-83872aa7c8f1"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.0" lineColor="#CCCCCC"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Centro de Costo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="0" width="555" height="14" uuid="d2b16853-aa8a-4c23-8a8d-b7067843ff4a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[3. MOVIMIENTO FINANCIERO Y CONTABLE]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<textField>
+				<reportElement style="filed" x="0" y="0" width="55" height="14" uuid="42312d09-969b-4476-a83a-7bb695419251"/>
+				<box leftPadding="3" rightPadding="0"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CODPQK}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="filed" stretchType="RelativeToBandHeight" x="55" y="0" width="202" height="14" uuid="8c9d5c16-100f-44fc-94f6-492d6f4aed5d"/>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMPQK}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement style="filed" x="405" y="0" width="75" height="14" uuid="fc250ca5-7af6-4d14-9b5b-cf408f6977a6">
+					<printWhenExpression><![CDATA[$F{DBTMVK}.doubleValue() != 0.0]]></printWhenExpression>
+				</reportElement>
+				<box rightPadding="3"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DBTMVK}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement style="filed" x="480" y="0" width="76" height="14" uuid="cccaaf65-0277-4e37-a93f-348ecbc3eaf7">
+					<printWhenExpression><![CDATA[$F{CRDMVK}.doubleValue() != 0.0]]></printWhenExpression>
+				</reportElement>
+				<box rightPadding="3"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CRDMVK}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="filed" stretchType="RelativeToBandHeight" x="257" y="0" width="148" height="14" uuid="b0ad3602-5dd6-48ec-a449-a825c85a632f"/>
+				<box rightPadding="3"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMCST}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45">
+			<staticText>
+				<reportElement x="337" y="3" width="62" height="13" uuid="8b1ebaa5-fea6-4d45-98ad-9eb24799785b"/>
+				<box rightPadding="0">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Sumas Iguales]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="32" width="120" height="13" uuid="5ae28a5e-7669-4543-a337-57d008755644"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Valor Neto a Pagar en letras:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="19" width="70" height="13" uuid="e4b39d33-39a4-4c42-8795-b44ad5993e85"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Neto a Pagar :]]></text>
+			</staticText>
+			<textField pattern="#,##0.00">
+				<reportElement x="402" y="3" width="75" height="14" uuid="880c92e9-616e-49d2-82a0-1c869fbc44b2"/>
+				<box topPadding="2" bottomPadding="0" rightPadding="2">
+					<topPen lineWidth="0.25" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.25" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="2.0" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="2.0" lineColor="#CCCCCC"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{debitos}]]></textFieldExpression>
+			</textField>
+			<textField pattern="$ #,##0.00">
+				<reportElement x="56" y="19" width="417" height="13" uuid="6225d058-aa9b-4c50-831b-d57bbc7ceebf"/>
+				<box topPadding="1"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VLRCXP}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="filed" x="107" y="32" width="445" height="13" uuid="f3658fcd-045c-4c05-abf3-e532000fb99c"/>
+				<box topPadding="1"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{OVLRCHX}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="480" y="3" width="75" height="14" uuid="e0f1d111-745a-4978-ba34-7d885e2873ae"/>
+				<box topPadding="2" bottomPadding="0" rightPadding="2">
+					<topPen lineWidth="0.25" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.25" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="2.0" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="2.0" lineColor="#CCCCCC"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{creditos}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+</jasperReport>

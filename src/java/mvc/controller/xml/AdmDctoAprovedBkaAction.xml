@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="CALENDAR_ACTIVITY_SEARCH">
+        <desc>Obtiene datos de calendario</desc>
+        <sql>
+            SMA_ACADEMIC.calendaractivitysearch(?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMABKA">
+        <desc>Insert en Becas</desc>
+        <sql>
+            INSERT INTO SMABKA (CODCIA, NROBKA, TPOBKA,
+            CODPDB, FCHBKA, AGNPRS,
+            PRDPRS, CODTRC, TPOTRC,
+            CODCMP, NROKMP, VLRKMP,
+            VLRBKA, PTJBKA, STDBKA,
+            CODPRS, TPOPRS, SQLBKR) 
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMACXP">
+        <desc>Update en Cuentas por Pagar</desc>
+        <sql>
+            UPDATE SMACXP SET STDCXP=?
+            WHERE NROCXP=?
+        </sql>
+    </statement>
+    
+    
+    <statement name="INSERT_SMADUD">
+        <desc>Insert en Deuda</desc>
+        <sql>
+            insert into smadud ( NRODUD, NROKMP, IDEKNP, NROCST, VLRDUD, DSPDUD, CANDUD, STDDUD, NROUSR, CODDUD 
+                                              ) values (?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    
+    
+</sentencias>

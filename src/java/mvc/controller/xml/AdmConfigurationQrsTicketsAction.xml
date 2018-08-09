@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+        
+    <statement name="INSERT_SMAGCU">
+        <desc>Insercion tabla de Usuarios por roles de gestion de la configuracion</desc>
+        <sql>
+            INSERT INTO SMAGCU( NROGCU, CODCIA, NROGCR, CODPRS, NOMGCU, APEGCU, EMLGCU, CELGCU, PSWGCU, STDGCU, TPOGCU, SQLBKR ) 
+            VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAGCQ">
+        <desc>Insercion tabla de ordenes pqrs </desc>
+        <sql>
+            INSERT INTO SMAGCQ(NROGCQ, NRODIV, TPOGCQ, STDGCQ, ASTGCQ, RSMGCQ, FCHGCQ, CTMGCU, 
+                               DEVGCU, MSNGCQ, CIAGCQ, OUTGCQ, CALGCQ, JUSGCQ, MODGCQ, SQLBKR)
+                       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAGCC">
+        <desc>Insercion tabla de comentarios pqrs </desc>
+        <sql>            
+            INSERT INTO SMAGCC(NROGCC, NROGCQ, FCHGCC, DESGCC, ADJGCC, NROGCU, SQLBKR)
+                       VALUES (?, ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAGCQ">
+        <desc>Actualizar tabla de ordenes pqrs </desc>
+        <sql>            
+            UPDATE SMAGCQ SET ASTGCQ = ?, STDGCQ = ?, NRODIV = ?, SQLBKR = ? WHERE NROGCQ = ?
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAGCQ_CLIENT">
+        <desc>Actualizar tabla de ordenes pqrs </desc>
+        <sql>            
+            UPDATE SMAGCQ SET MSNGCQ = ?, OUTGCQ = ?, CALGCQ = ?, JUSGCQ = ?, SQLBKR = ? , STDGCQ = ? WHERE NROGCQ = ?
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAGCQ_RESPONSABLE">
+        <desc>Actualizar tabla de ordenes pqrs </desc>
+        <sql>            
+            UPDATE SMAGCQ SET MSNGCQ = ?, OUTGCQ = ?, CALGCQ = ?, JUSGCQ = ?, SQLBKR = ?, STDGCQ = ? WHERE NROGCQ = ?
+        </sql>
+    </statement>
+    
+    <statement name="SMA_QRS_ACCESTOGCC">
+        <desc>Obtiene listado</desc>
+        <sql>
+            SMA_GENERAL_PQRS.sma_qrs_accestogcc( ?, ?, ?, ?, ? )
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAGCC_ADJUNT">
+        <desc>Actualizar smagcc para adjuntar archivos</desc>
+        <sql>
+            UPDATE SMAGCC SET ADJGCC = ? WHERE NROGCC = ?
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAGCY">
+        <desc>Insercion a la tabla smagcy Responsables por PQRS</desc>
+        <sql>
+            INSERT INTO SMAGCY(NROGCQ, DEVGCU, FCAGCY, SQLBKR)
+            VALUES (?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAGCY">
+        <desc>Eliminar registro en la tabla smagcy Responsables por PQRS</desc>
+        <sql>
+            DELETE FROM SMAGCY WHERE NROGCQ = ? AND DEVGCU = ? 
+        </sql>
+    </statement>
+    
+</sentencias>

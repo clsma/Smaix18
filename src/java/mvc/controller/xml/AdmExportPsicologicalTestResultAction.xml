@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+     <statement name="INSERT_SMAPDF">
+        <desc>Inserción tabla de pdf</desc>
+        <sql>
+           INSERT INTO smapdf (NROPDF, CODCIA, CODRPT, NRORPT, CODPDF,
+	                       NOMPDF, BINPDF, FCHPDF, FHVPDF, STDPDF, SQLBKR)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
+        </sql>
+    </statement>
+    
+   
+    
+</sentencias>

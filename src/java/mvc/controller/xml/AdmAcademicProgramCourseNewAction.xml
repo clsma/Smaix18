@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<sentencias version="1.0">
+    
+    <statement name="UPDATE_SMACRS">
+        <desc>Update tabla de Curso</desc>
+        <sql>
+           UPDATE SMACRS SET bgncrs=?, endcrs=?, kpccrs=?, nomcrs=?, tpocrs=?
+            WHERE codcrs=? 
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMACRS">
+        <desc>Update tabla de Curso</desc>
+        <sql>
+           DELETE FROM SMACRS 
+            WHERE codcrs=?
+        </sql>
+    </statement>
+    
+   
+    
+</sentencias>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMACTG">
+        <desc>Inserción tabla de Categorias</desc>
+        <sql>
+            INSERT INTO SMACTG(CODCIA,CODCTG,CODPRS,DSPCTG,NOMCTG,NROCTG,NUMCRS,SQLBKR,TPOCTG,TPOPRS)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+   <statement name="DELETE_SMACTG">
+        <desc>Eliminacion tabla de Categorias</desc>
+        <sql>
+           DELETE FROM SMACTG WHERE CODCIA=? AND NROCTG=? 
+        </sql>
+    </statement>
+    
+   <statement name="UPDATE_SMACTG">
+        <desc>Actualizacion tabla de Categorias</desc>
+        <sql>
+           UPDATE SMACTG SET CODCTG=?,CODPRS=?,DSPCTG=?,NOMCTG=?,NUMCRS=?,SQLBKR=?,TPOCTG=?,TPOPRS=?  WHERE NROCTG=? AND CODCIA=?
+        </sql>
+    </statement>
+</sentencias>

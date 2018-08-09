@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="credencial" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="00d5179c-8ef5-4878-a498-677848ac8f12">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="pCodCia" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="pCodDbi" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="pCelular" class="java.io.InputStream">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="pLogo" class="java.io.InputStream">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select smaprs.nriprs,
+                        smaprs.ideprs ,
+                        --sma_financesecuritycodebank( smadbi.nriprs, 2 ) as nropte,
+                        smadbi.coddbi ,
+                        smakrd.nrokrd ,
+                        smapln.nomelm ,
+                        smaprs.apeprs ,
+                        smaprs.nomprs ,
+                        smadbi.nropgm ,
+                        smapgm.nompgm ,
+                        smapgm.tpopgm ,
+                        smafac.nomfac ,
+                        smaprs.emlprs ,
+                        smaprs.dirprs ,
+                        smaprs.telprs ,
+                        smaprs.celprs ,
+                        smakrd.nrocrd ,
+                        smakrd.pqtkrd ,
+                        smaciu.nomciu ,
+                        smakrd.nrosde ,
+                        smasde.nomsde ,
+                        smakrd.codedf ,
+                        smaedf.nomedf ,
+                        smakrd.nroaul ,	
+                        smakrd.nomaul ,
+                        smakrd.fchkrd ,
+                        smakrd.horkrd ,
+                        case when smakrd.tpokrd = 0 then 'DATOS DE LA ENTREVISTA' else 'DATOS DE LA PRUEBA PISCOLOGICA' end as tpokrd
+
+                   from smadbi
+                  
+                   join smaprs
+                     on smaprs.CODCIA = $P{pCodCia}
+                    and smaprs.nroprs = smadbi.nroprs
+                  
+                   join smakrd
+                     on smakrd.codcia =      $P{pCodCia}
+                    and smakrd.coddbi =      $P{pCodDbi}
+
+                   join smasde
+                     on smasde.codcia =       $P{pCodCia}
+                    and smasde.nrosde = smakrd.nrosde
+
+                   join smaedf
+                     on smaedf.codcia =       $P{pCodCia}
+                    and smaedf.nrosde = smakrd.nrosde
+                    and smaedf.codedf = smakrd.codedf
+
+              left join (
+                           select nroelm,
+                                  trim(nomelm) as nomelm 
+                             from smaelm 
+                            where codelm = 'PLN'
+                              and tipelm = 'INGR'
+                         )  smapln
+                     on smapln.nroelm = case when trim(smadbi.plndbi) is null then '001' else smadbi.plndbi end
+              
+              /*left join smaexo
+                     on smaexo.CODCIA = smakrd.codcia
+                    and smaexo.nroexo = smakrd.nroexo
+              
+              left join smaciu
+                     on smaciu.codciu = smaexo.codciu*/
+              
+              left join smaciu
+                     on smaciu.ideciu = smakrd.lgrkrd
+
+                    join smapgm
+                      on smapgm.codcia =      $P{pCodCia}
+                     and smapgm.nropgm = smadbi.nropgm
+                     
+                    join smaprg 
+                      on smaprg.ideprg = smapgm.ideprg
+  
+                    join smafac 
+                      on smafac.codcia =  $P{pCodCia}
+                     and smafac.idefac = smaprg.idefac
+                     
+                   where smadbi.coddbi = $P{pCodDbi}]]>
+	</queryString>
+	<field name="NRIPRS" class="java.lang.String"/>
+	<field name="IDEPRS" class="java.lang.String"/>
+	<field name="CODDBI" class="java.lang.String"/>
+	<field name="NROKRD" class="java.lang.String"/>
+	<field name="NOMELM" class="java.lang.String"/>
+	<field name="APEPRS" class="java.lang.String"/>
+	<field name="NOMPRS" class="java.lang.String"/>
+	<field name="NROPGM" class="java.lang.String"/>
+	<field name="NOMPGM" class="java.lang.String"/>
+	<field name="TPOPGM" class="java.lang.String"/>
+	<field name="NOMFAC" class="java.lang.String"/>
+	<field name="EMLPRS" class="java.lang.String"/>
+	<field name="DIRPRS" class="java.lang.String"/>
+	<field name="TELPRS" class="java.lang.String"/>
+	<field name="CELPRS" class="java.lang.String"/>
+	<field name="NROCRD" class="java.lang.String"/>
+	<field name="PQTKRD" class="java.math.BigDecimal"/>
+	<field name="NOMCIU" class="java.lang.String"/>
+	<field name="NROSDE" class="java.lang.String"/>
+	<field name="NOMSDE" class="java.lang.String"/>
+	<field name="CODEDF" class="java.lang.String"/>
+	<field name="NOMEDF" class="java.lang.String"/>
+	<field name="NROAUL" class="java.lang.String"/>
+	<field name="NOMAUL" class="java.lang.String"/>
+	<field name="FCHKRD" class="java.sql.Timestamp"/>
+	<field name="HORKRD" class="java.lang.String"/>
+	<field name="TPOKRD" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="95" splitType="Stretch">
+			<line>
+				<reportElement uuid="ca0862b5-b987-4159-a013-755b323a8beb" x="0" y="0" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="1f95f2e0-e81a-4c99-88b9-92d5aab944cf" x="5" y="1" width="540" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIVERSIDAD POPULAR DEL CESAR]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="dec6b39b-0d40-4f6a-b655-dbbee81f3bcc" x="103" y="56" width="452" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="2d4ef77d-7864-42a8-a410-8acb4b45f6e0" x="261" y="59" width="100" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CREDENCIAL]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="6c3f431d-57b2-4750-9c9e-ef897cdc79f4" x="5" y="7" width="83" height="72"/>
+				<imageExpression><![CDATA[$P{pLogo}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="9d5dc004-3079-482b-99ca-2334c3ab6bd5" x="0" y="0" width="555" height="35" backcolor="#EAE5E5"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="05def85c-1a23-49b0-ac12-aeaa3c412ac7" x="5" y="3" width="550" height="12" backcolor="#C1BDBD"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CENTRO DE ADMISIONES DE REGISTRO Y CONTROL ACADÉMICO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="59bff067-5e63-4b27-91fd-477b37938a8a" x="5" y="17" width="550" height="12" backcolor="#C1BDBD"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="8" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[DATOS BASICOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c7b1a81b-5505-42e3-9c17-f7babd753b35" x="7" y="-73" width="538" height="12" backcolor="#C1BDBD"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Aqui va la dirección de la universidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fdec60cd-7f65-4e61-b59e-e14f9f06e21f" x="7" y="-59" width="538" height="12" backcolor="#C1BDBD"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Aqui va el correo de la universidad]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="164" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="058b9474-0a97-4dee-8cce-11ac3491aa76" x="0" y="1" width="555" height="51" forecolor="#A39999" backcolor="#FCFCDF"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="93ab50ed-9412-416a-b158-02add3a85719" x="5" y="4" width="83" height="15"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Identificación:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="76069ab3-ce42-4b90-ac64-d35ec19bdb84" x="91" y="4" width="100" height="15"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NRIPRS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="6de1526e-67ea-4638-a77d-e6fbf4dc6aac" x="305" y="4" width="90" height="15"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Credencial Nro:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="1af88915-6ac3-4941-ae7f-667b55c5a3e0" x="399" y="4" width="100" height="15"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NROCRD}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="33ff0c84-4dc4-4a8d-94c2-46c31d0f0965" x="5" y="20" width="83" height="15"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apellidos:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="05aefee8-1733-487f-99ff-e13b3a807726" x="91" y="20" width="100" height="15"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{APEPRS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="52fa509b-5c9e-42d6-9c00-c26fd5b973e3" x="305" y="20" width="90" height="15"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombres:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="688c2258-2775-4fb7-8531-c66f821c2b40" x="399" y="20" width="100" height="15"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMPRS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="247ea85d-b40e-437a-9bb3-372e7c501623" x="5" y="36" width="83" height="15"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Programa:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="fe139f29-319d-40a0-9ff5-bcd6d8f8b92b" x="91" y="36" width="36" height="15"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NROPGM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="da6c580b-405f-43d1-a56e-726f45f9e8aa" x="132" y="36" width="100" height="15"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMPGM}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="9d2188d9-9bca-4865-a07d-c05a9a430606" x="305" y="36" width="90" height="15"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="750b3592-a39e-4033-9fbc-794519fe6dc5" x="399" y="36" width="100" height="15"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TPOPGM}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement uuid="f5fbd5a3-2726-4d5a-a7d7-16d9af076f45" x="0" y="73" width="555" height="51" forecolor="#A39999" backcolor="#FCFCDF"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="be7100df-5a6a-480b-92da-6355fe5690ec" x="0" y="53" width="555" height="19" backcolor="#EAE5E5"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="797a2741-c6b0-4470-86f6-e9ce14be6f34" x="6" y="76" width="44" height="15"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="dbf2f193-9bf2-4d26-b023-1b26cfc12f50" x="157" y="76" width="44" height="15"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hora:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ac32320a-e0c6-4d0e-98bc-a4573d745619" x="284" y="76" width="36" height="15"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Plan:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="2592ca19-36bb-4304-91f3-4abca2d813be" x="50" y="76" width="82" height="15"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FCHKRD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="63d45ea5-099e-43aa-9833-039fe4e8a6a8" x="200" y="76" width="61" height="15"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HORKRD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3e21e52b-ffc5-4071-b148-ed513df9392d" x="327" y="76" width="165" height="15"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMELM}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="06f9e148-3b86-4845-8413-99f10c77832c" x="6" y="91" width="44" height="15"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ciudad:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="48be73f7-db0a-457b-8e81-d1506b06c0f2" x="284" y="91" width="44" height="15"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sede:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6ac0b50e-d248-47bd-bee5-75f87dd5272e" x="6" y="107" width="46" height="15"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Edificio:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="00c4ad7b-c3be-4401-b83d-2f9d89808d58" x="52" y="107" width="209" height="15"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMEDF}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d9e75f58-4009-4374-8618-455cd5695fba" x="327" y="91" width="218" height="15"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMSDE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3da73bfb-9329-4ed4-87c7-e95cf77ca081" x="50" y="91" width="97" height="15"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMCIU}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="692caa3e-4d25-4b27-a9ed-4f648d2e4f99" x="284" y="107" width="44" height="15"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Aula:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="a33ec8f8-a849-4dff-9d7c-a7ee277e3e7e" x="327" y="107" width="218" height="15"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMAUL}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement uuid="cf9a8075-dd14-4fb8-be1e-69ecd9f9c6a3" x="0" y="125" width="555" height="39" backcolor="#EAE5E5"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="afecb5e1-6c14-4fce-a24e-df84feffde68" x="8" y="128" width="540" height="35"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RECUERDE QUE EL DÍA DEL EXAMEN USTED DEBERÁ PRESENTAR ESTE DOCUMENTO Y SU
+IDENTIFICACIÓN COMO REQUISITO OBLIGATORIO PARA LA REALIZACIÓN DEL EXAMEN. LOS
+DOCUMENTOS DE IDENTIFICACIÓN VÁLIDOS SON:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="6d015f3c-8ab0-4b50-b88b-ebed83f6df60" x="7" y="56" width="541" height="13"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TPOKRD}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="345" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="dab50eff-2d52-4b22-8b71-1b9682aa3c7d" x="0" y="81" width="555" height="253" forecolor="#DADBD9"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="deb352ce-7c86-4da9-8406-a392919cdf56" x="0" y="1" width="555" height="59" forecolor="#DADBD9"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="757f943d-ca08-47f5-b416-315722223b53" x="6" y="3" width="539" height="59"/>
+				<textElement textAlignment="Justified">
+					<font size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[a. Cédula de ciudadanía ORIGINAL, para mayores de 18 años.
+b. Tarjeta de identidad ORIGINAL, para menores de 18 años.
+c. Cédula de extranjería, para extranjeros residentes en Colombia.
+d. Contraseña expedida por la Registraduría, para las personas cuyo documento de identidad se encuentre en trámite.
+e. Pasaporte, para el caso de los extranjeros no residentes en Colombia.]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement uuid="367aace7-88a8-4f1c-9e2f-00b0a9068ce7" x="0" y="60" width="555" height="19" backcolor="#EAE5E5"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="14f77977-a4b8-4c67-a3cc-a33cca1a0191" x="8" y="61" width="537" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RECUERDE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="08942229-20f5-4db0-891e-6e7d339c94c9" x="5" y="81" width="476" height="67"/>
+				<textElement>
+					<font size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[- No se permite el ingreso de celulares, buscapersonas, audifonos o cualquier otro medio de comunicación al sitio de aplicación.
+- No lleve hojas, libros, revistas, cuadernos, reglas de cálculo, calculadoras, mapas, armas, maletines, etc.
+- Llevar lápiz de mina negra No. 2, tajalápiz y borrador.
+- Verificar oportunamente la ubicación del sitio donde presentará su examen.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f4443a44-6da5-4403-89ea-dd4041a91549" x="6" y="148" width="536" height="12"/>
+				<textElement>
+					<font size="9" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[ESTUDIANTES ADMITIDOS:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2bbaf69f-cfc4-4ba5-a36d-77f45da9b6a9" x="6" y="160" width="542" height="41"/>
+				<textElement textAlignment="Justified">
+					<font size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Serán admitidos los aspirantes con los mejores puntajes obtenidos en el examen de admisión en el período 
+académico en el cual se inscribieron, en orden descendente de puntaje y de acuerdo a los cupos establecidos por el 
+Consejo Académico de la Universidad Popular Del Cesar para dicho período.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e7bda851-b523-4862-9270-4a530ba816aa" x="6" y="201" width="536" height="12"/>
+				<textElement>
+					<font size="9" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[NOTA IMPORTANTE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8b9aa50e-7bfb-4322-ac03-63bb79a07b8d" x="6" y="213" width="542" height="50"/>
+				<textElement textAlignment="Justified">
+					<font size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[En caso de presentarse empate, en el límite de cupos de cada programa, se resolverán mediante el siguiente procedimiento:
+a. Se seleccionará a los aspirantes con mejor puntaje en la prueba de razonamiento lógico.
+b. Se aplicará la Ley 403 de 1997, sobre beneficios al sufragante.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9e668f7a-fd14-444a-99db-f2d11a40f07e" x="6" y="263" width="61" height="20"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Parágrafo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ba165a0c-259e-48ab-895c-734def917a2d" x="67" y="263" width="481" height="31"/>
+				<textElement textAlignment="Justified">
+					<font size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Si se presentase el caso que uno o varios de los empatados fuese menores de edad, no se aplicará lo 
+anterior y se procederá con los siguientes.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5cb493ea-6de4-49b2-8b7c-20c9d6d64b2f" x="6" y="297" width="542" height="37"/>
+				<textElement textAlignment="Justified">
+					<font size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[c. Si persiste el empate, se seleccionará a los aspirantes con mejor puntaje en la prueba de razonamiento lógico.
+d. Si aplicado el procedimiento anterior aún continuare el empate, se ampliará el cupo inicial para admitir a los empatados.]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="da2f0ace-1249-43f6-a63e-b0fd88e12e59" x="492" y="98" width="53" height="50"/>
+				<imageExpression><![CDATA[$P{pCelular}]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="52" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="0bbc7524-23b2-45c6-9a94-07f5bbc0903f" x="5" y="4" width="543" height="26"/>
+				<textElement textAlignment="Center">
+					<font size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Articulo único. Resolución Nro. 05 de 23 de Abril de 2007 (Parágrafo 3 del Artículo 12 del Acuerdo Nro. 14 
+del 11 de Diciembre de 2009  - Reglamento Estudiantil Vigente -).]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement uuid="49a3de80-4ab7-4711-919c-4f1ac142ae87" x="0" y="31" width="555" height="18" backcolor="#EAE5E5"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="039097d4-1dfe-4cfd-97f5-6f0364c5b110" x="6" y="34" width="85" height="11"/>
+				<textElement>
+					<font size="9" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Inscripción Nro: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="68531dc7-593f-4dcd-95f9-137352955d7b" x="93" y="33" width="108" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CODDBI}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="aedc24ea-2686-4403-af87-61e0aa860b61" x="367" y="34" width="96" height="11"/>
+				<textElement>
+					<font size="9" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Verificación Nro: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="7bf07422-2e0d-4e9c-afb1-130093b42a99" x="463" y="34" width="85" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NROKRD}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

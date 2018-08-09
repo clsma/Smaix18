@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
+        <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
+
+        <!-- UCI PRODUCCIÓN -->
+<!--        <property name="hibernate.connection.url">jdbc:oracle:thin:@176.31.239.189:1521:xe</property> 
+        <property name="hibernate.connection.username">SMAUCI_PROD</property>
+        <property name="hibernate.connection.password">SDu64_2M5_UCI</property> -->
+ 
+        <!--TEST UCI-->
+<!--        <property name="hibernate.connection.url">jdbc:oracle:thin:@176.31.239.189:1521:xe</property> 
+        <property name="hibernate.connection.username">SMAUCI_DEV</property>
+        <property name="hibernate.connection.password">SMAUCI_DEV</property> -->
+
+        <!--CONEXION LOCAL --> 
+<!--        <property name="hibernate.connection.url">jdbc:        <property name="hibernate.connection.url">jdbc:oracle:thin:@158.69.183.5:1522:prod</property>
+        <property name="hibernate.connection.username">sma_dbuds</property>
+        <property name="hibernate.connection.password">5Du64_2M5#</property>oracle:thin:@localhost:1521:dev</property>
+        <property name="hibernate.connection.username">smauds_dev</property>
+        <property name="hibernate.connection.password">SMAUDS_DEV#</property>-->
+        
+<!--        UDS PRODUCCION --> 
+<!--        <property name="hibernate.connection.url">jdbc:oracle:thin:@158.69.183.5:1522:prod</property>
+        <property name="hibernate.connection.username">sma_dbuds</property>
+        <property name="hibernate.connection.password">Sdu6d_2m5#</property>-->
+
+<!--        CONEXION DESARROLLO - UDS --> 
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@158.69.183.5:1522:prue</property>
+        <property name="hibernate.connection.username">sma_dbuds</property>
+        <property name="hibernate.connection.password">sma_dbuds</property>
+
+<!--        CONEXION LOCAL - PORTATIL -->
+<!--        <property name="hibernate.connection.url">jdbc:oracle:thin:@127.0.0.1:1521:dev</property>
+        <property name="hibernate.connection.username">sma_dbuds</property>
+        <property name="hibernate.connection.password">Sdu6d_2m5#</property>-->
+
+<!--        CONEXION DESARROLLO - IX18 - 203 --> 
+     <!--   <property name="hibernate.connection.url">jdbc:oracle:thin:@127.0.0.1:1521:prod</property>
+        <property name="hibernate.connection.username">SMA_DBDEV</property>
+        <property name="hibernate.connection.password">SMA_DBDEV</property>
+-->
+    </session-factory>
+</hibernate-configuration>
+ 

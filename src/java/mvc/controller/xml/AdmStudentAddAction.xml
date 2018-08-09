@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="UPDATE_SMAPRS">
+        <desc>Actualizacion tabla de PRS</desc>
+        <sql>
+            UPDATE SMAPRS SET APEPRS=?,BROPRS=?,CELPRS=?,CIVPRS=?,DIFPRS=?,DIRPRS=?,DISPRS=?,EMLPRS=?,EPSPRS=?,ESKPRS=?,
+            ESTPRS=?,EXPPRS=?,FHNPRS=?,IDECIU=?,MILPRS=?,NACPRS=?,NDMPRS=?,NPQPRS=?,NRMPRS=?,NROXVT=?,PAPPRS=?,
+            PNOPRS=?,PSNPRS=?,PSWPRS=?,SAPPRS=?,SBNPRS=?,SEXPRS=?,SNGPRS=?,SNOPRS=?,SNPPRS=?,TDIPRS=?,TEFPRS=?,
+            TELPRS=?,TITPRS=?,TRJPRS=?,VTOPRS=?,ZNAPRS=? 
+            WHERE CODCIA=? AND NROPRS=?
+        </sql>
+    </statement>
+    <statement name="UPDATE_SMABAS">
+        <desc>Actualizacion tabla de BAS</desc>
+        <sql>
+            UPDATE SMABAS SET etnbas=?,sbnbas=?,vivbas=?,pkgbas=?,phrbas=?,dudviv=?,strbas=?,plnbas=?,agnngr=?,
+            prdngr=?,codklg=?,psnklg=?,absbas=?,aesbas=?,snpbas=?,ptjeke=? WHERE NROPRS=? 
+        </sql>
+    </statement>
+   
+</sentencias>
+        

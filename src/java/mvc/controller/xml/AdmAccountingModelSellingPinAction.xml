@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAPQM">
+        <desc>Inserción tabla de modelos contables</desc>
+        <sql>
+            INSERT INTO SMAPQM(NROPQC,NROPQM,CODPQM,TPOPQM,NROPQK,MVKPQM,PTJPQM,NRORBR)
+                        VALUES (? , ? , ? ,? , ? , ? , ? , ? )
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAPQM">
+        <desc>Borrar registro modelos contables</desc>
+        <sql>
+            DELETE FROM SMAPQM WHERE NROPQC  = ?
+        </sql>
+    </statement>
+    
+    
+    <statement name="DELETE_SMAPQM_MVKPQM">
+        <desc>Borrar registro modelos contables</desc>
+        <sql>
+            DELETE FROM SMAPQM WHERE NROPQC  = ? AND MVKPQM = ?
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAPQC">
+        <desc>Eliminar registro de la tabla cabecera modelos contables</desc>
+        <sql>
+            INSERT INTO SMAPQC( CODCIA, NROPQC, CODPQC, NOMPQC, NROPQQ, FCHPQC, STDPQC, NROCMP, CMPPQC, SQLBKR )
+                        VALUES( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? )
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAPQC_NROCMP">
+        <desc>Actualizar fuente contable</desc>
+        <sql>
+            UPDATE SMAPQC SET NROCMP = ?
+                        WHERE NROPQC = ?
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAPQF">
+        <desc>Actualizar fuente contable</desc>
+        <sql>
+            INSERT INTO SMAPQF ( NROPQF, CODPQF, TPOPQF, WRKPQF)
+                        VALUES ( ?, ?, ?, ? )
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAPQF">
+        <desc>Actualizar fuente contable</desc>
+        <sql>
+            UPDATE SMAPQF SET TPOPQF = ?, 
+                              WRKPQF = ? 
+             WHERE NROPQF = ? 
+        </sql>
+    </statement>
+    
+</sentencias>

@@ -1,0 +1,22 @@
+.btn_tab_active { 
+  background-image: url('../img/tab_activo.png'); 
+  background-repeat: no-repeat; 
+  border:none;
+  color:#FFFFFF;
+  font-weight:bolder;
+  cursor:pointer;
+}
+
+.btn_tab_inactive { 
+  background-image: url('../img/tab_inactivo.png'); 
+  background-repeat: no-repeat; 
+  border:none;
+  color:#003333;
+  font-weight:bolder;
+  cursor:pointer;
+}
+
+.div_container {
+  border: solid 1px;
+  background-color:#FBFBFB;
+}

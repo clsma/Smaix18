@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMANMA">
+        <desc>Inserción tabla de NMA</desc>
+        <sql>
+           INSERT INTO SMANMA (NRONMA, TPONMA, TPOPRS, 
+            CODNMA, NOMNMA, STDNMA, 
+            NROLEG, EXENMA, DIANMA, 
+            FCHNMA, AGNNMA, SQLBKR)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
+
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMANMA">
+        <desc>Update tabla de NMA</desc>
+        <sql>
+           UPDATE SMANMA SET  TPONMA=?, TPOPRS=?, 
+            CODNMA=?, NOMNMA=?, STDNMA=?, 
+            NROLEG=?, EXENMA=?, DIANMA=?, 
+            FCHNMA=?, AGNNMA=?, SQLBKR=?
+            WHERE NRONMA=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMANMA">
+        <desc>Delete tabla de NMA</desc>
+        <sql>
+           DELETE FROM SMANMA
+            WHERE NRONMA=?
+        </sql>
+    </statement>
+    
+</sentencias>

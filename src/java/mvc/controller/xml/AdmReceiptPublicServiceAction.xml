@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAPUB">
+        <desc>Inserción tabla de Servicios Publicos</desc>
+        <sql>
+           INSERT INTO SMAPUB (CODCIA, NROPUB, TPOPUB,
+            REFPUB, FCTPUB, FCHPUB,
+            FHVPUB, VLRPUB, FHXPUB,
+            VLXPUB, MRAPUB, NROSDE,
+            STDPUB, OBSPUB, NROSCP, 
+            CODUSR) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAARE">
+        <desc>Update tabla de Areas</desc>
+        <sql>
+           UPDATE SMAARE SET CODCIA=?, CODARE=?, NOMARE=?, NPQARE=?, CLRARE=?
+            WHERE NROARE=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAPUB">
+        <desc>Delete tabla de Servicio Publicos</desc>
+        <sql>
+           DELETE FROM SMAPUB
+            WHERE NROPUB=?
+        </sql>
+    </statement>
+    
+</sentencias>

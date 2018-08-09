@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAPRS">
+        <desc>Delete tabla de Persona</desc>
+        <sql>
+           Insert into SMAPRS
+            (NROPRS,CODCIA,TITPRS,CODPRS,APEPRS,
+            NOMPRS,NPQPRS,NACPRS,FHNPRS,IDEPRS,
+            NRIPRS,EPSPRS,SNGPRS,CIVPRS,SEXPRS,
+            DIRPRS,TELPRS,CELPRS,IDECIU,EMLPRS,
+            PSWPRS,EXPPRS,ESKPRS,ESTPRS,SNPPRS,
+            NROXVT,PSNPRS,PNOPRS,SNOPRS,PAPPRS,
+            SAPPRS,BROPRS,ZNAPRS,DISPRS,VTOPRS,
+            MILPRS,NRMPRS,NDMPRS,DIFPRS,TEFPRS,
+            SBNPRS,TRJPRS,TDIPRS) 
+            values (?,?,?,?,?
+                   ,?,?,?,?,?
+                   ,?,?,?,?,?
+                   ,?,?,?,?,?
+                   ,?,?,?,?,?
+                   ,?,?,?,?,?
+                   ,?,?,?,?,?
+                   ,?,?,?,?,?
+                   ,?,?,?)
+        </sql>
+    </statement>
+    
+    
+    <statement name="INSERT_SMAPIP">
+        <desc>Insert tabla de Persona Grupo</desc>
+        <sql>
+           Insert into smapip(nropip, nroprs, nropir, nropig, sqlbkr) values(?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    
+    <statement name="INSERT_SMAPIG">
+        <desc>Update tabla de Dueño del Grupo</desc>
+        <sql>
+           Update Smapig set codprs = ?
+            where nropig=?
+        </sql>
+    </statement>
+    
+    
+    
+    
+    
+</sentencias>

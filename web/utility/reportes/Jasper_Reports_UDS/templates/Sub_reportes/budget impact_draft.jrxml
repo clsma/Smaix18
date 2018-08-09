@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sma_subreports_budget impact" pageWidth="472" pageHeight="792" columnWidth="462" leftMargin="10" rightMargin="0" topMargin="0" bottomMargin="0" uuid="e40257c4-341f-4185-9d02-a8ee4797afa5">
+	<property name="ireport.zoom" value="5.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="negrita">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{TIPRBR}.equalsIgnoreCase("General")]]></conditionExpression>
+			<style isBold="true"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="pnrocdx" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="recordset" class="java.sql.ResultSet" isForPrompting="false"/>
+	<queryString language="plsql">
+		<![CDATA[{call sma_budget_reports_draft.impact_draft($P{pnrocdx},$P{recordset})}]]>
+	</queryString>
+	<field name="CODRBR" class="java.lang.String"/>
+	<field name="NOMRBR" class="java.lang.String"/>
+	<field name="TIPRBR" class="java.lang.String"/>
+	<field name="COACST" class="java.lang.String"/>
+	<field name="CODCST" class="java.lang.String"/>
+	<field name="NOMCST" class="java.lang.String"/>
+	<field name="VLRAFT" class="java.math.BigDecimal"/>
+	<field name="TOTAFT" class="java.math.BigDecimal"/>
+	<variable name="numtri" class="java.lang.Integer" resetType="Group" resetGroup="centro de costo" calculation="Count">
+		<variableExpression><![CDATA[$F{CODRBR}]]></variableExpression>
+	</variable>
+	<group name="centro de costo" keepTogether="true">
+		<groupExpression><![CDATA[$F{CODCST}]]></groupExpression>
+		<groupHeader>
+			<band height="46" splitType="Prevent">
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement mode="Transparent" x="1" y="31" width="357" height="15" isRemoveLineWhenBlank="true" uuid="153086c4-2618-4646-ae1a-f302d9585e22"/>
+					<textElement verticalAlignment="Middle" markup="none">
+						<font size="9" isBold="true" isItalic="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["2.2."+$F{COACST}.trim()+"   "+$F{NOMCST}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="1" y="16" width="357" height="15" isRemoveLineWhenBlank="true" uuid="e5ec3dac-f7a8-433a-b522-33eb18e4a2f7"/>
+					<textElement verticalAlignment="Middle" markup="none">
+						<font size="9" isBold="true" isItalic="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["2.2.   GASTOS"]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="1" y="1" width="357" height="15" isRemoveLineWhenBlank="true" uuid="4e7ac88a-09a5-4172-9314-db58d56786f0"/>
+					<textElement verticalAlignment="Middle" markup="none">
+						<font size="9" isBold="true" isItalic="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["2.   PRESUPUESTO DE EGRESOS"]]></textFieldExpression>
+				</textField>
+				<textField pattern="$ #,##0" isBlankWhenNull="true">
+					<reportElement x="358" y="31" width="103" height="15" isRemoveLineWhenBlank="true" uuid="e2c62385-992b-4008-963c-dd81ab725886"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{TOTAFT}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="8"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<rectangle>
+				<reportElement stretchType="RelativeToBandHeight" x="1" y="0" width="460" height="15" forecolor="#F7F5F5" backcolor="#F7F5F5" uuid="1e4b00b0-bead-4e78-a324-166bddfbb5ec">
+					<printWhenExpression><![CDATA[$F{TIPRBR}.equalsIgnoreCase("Detalle") && $V{numtri}.intValue() % 2 == 0]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField pattern="$ #,##0" isBlankWhenNull="true">
+				<reportElement style="negrita" stretchType="RelativeToBandHeight" mode="Transparent" x="358" y="0" width="103" height="15" isRemoveLineWhenBlank="true" uuid="863636ef-3e28-4976-807a-5156a8405903"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VLRAFT}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="negrita" x="1" y="0" width="357" height="15" isRemoveLineWhenBlank="true" uuid="1cc3bc78-dcfc-4524-8e97-1eb88b70bddb"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font size="9" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CODRBR} + "   " + $F{NOMRBR}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

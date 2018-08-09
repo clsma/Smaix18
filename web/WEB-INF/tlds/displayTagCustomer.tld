@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN" "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+<!-- a tag library descriptor -->
+
+
+<taglib>
+   <tlibversion>1.0</tlibversion>
+   <jspversion>1.1</jspversion>
+   <shortname>shortname</shortname>
+   <uri></uri>
+   <info>info</info>
+
+  <tag>
+    <name>listGeneric</name>
+    <tagclass>taglib.form.ListGenericTag</tagclass>
+    <bodycontent>JSP</bodycontent>
+
+	<attribute>
+		<name>model</name>
+		<required>true</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+	<attribute>
+		<name>objectGeneric</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+	<attribute>
+		<name>sql</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+	<attribute>
+		<name>filtro</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+	<attribute>
+		<name>orden</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+
+  </tag>         
+
+  <tag>
+    <name>forEachRow</name>
+    <tagclass>taglib.form.ForEachRowTag</tagclass>
+    <bodycontent>JSP</bodycontent>
+  </tag>         
+
+  <tag>
+    <name>getField</name>
+    <tagclass>taglib.form.GetFieldTag</tagclass>
+    <bodycontent>empty</bodycontent>
+	
+	<attribute>
+		<name>name</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+	<attribute>
+		<name>index</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+	<attribute>
+		<name>select</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+	<attribute>
+        <!-- type format : HEX|double -->
+		<name>format</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+
+  </tag>         
+
+</taglib>
+

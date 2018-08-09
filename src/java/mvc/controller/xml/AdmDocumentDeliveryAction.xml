@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMADQR">
+        <desc>Inserción tabla de Documento</desc>
+        <sql>
+           INSERT INTO smadqr(
+            codcia, nrodqr, nomdqr, stddqr, tpodqr, sqlbkr)
+            VALUES (?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMADQR">
+        <desc>Update tabla de Documento</desc>
+        <sql>
+           UPDATE smadqr
+            SET codcia=?,  nomdqr=?, stddqr=?, tpodqr=?, sqlbkr=?
+            WHERE nrodqr=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMADQR">
+        <desc>Delete tabla de Documento</desc>
+        <sql>
+           DELETE FROM smadqr where nrodqr=?
+        </sql>
+    </statement>
+    
+</sentencias>

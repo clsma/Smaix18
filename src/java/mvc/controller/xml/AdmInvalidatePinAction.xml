@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAPIX">
+        <desc>Inserción tabla de registros Anulacion Pin</desc>
+        <sql>
+        INSERT INTO SMAPIX (CODDBI,FCHPIX,NROPIN,NROPIX,NROUSR,STDPIN )VALUES (?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAPIN">
+        <desc>Actualizar registro de la Registros Aculacion Pin</desc>
+        <sql>
+            UPDATE SMAPIN SET STDPIN=? WHERE trim(NROPIN) = ?
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMADBI">
+        <desc>Actualizar registro de la Registros Aculacion Pin</desc>
+        <sql>
+            UPDATE SMADBI SET STDDBI=? WHERE CODDBI = ?
+        </sql>
+    </statement>
+    
+    
+</sentencias>

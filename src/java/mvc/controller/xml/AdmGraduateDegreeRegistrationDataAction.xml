@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0"> 
+    
+    <statement name="UPDATE_SMAPRS">
+        <desc>Actualizar tabla de personas </desc>
+        <sql>            
+            UPDATE SMAPRS SET NACPRS = ?,FHNPRS = ?,
+                            EPSPRS = ?,SNGPRS = ?,
+                            CIVPRS = ?,SEXPRS = ?,
+                            DIRPRS = ?,TELPRS = ?,
+                            CELPRS = ?,IDECIU = ?,
+                            EMLPRS = ?,PSWPRS = ?,
+                            EXPPRS = ?,ESKPRS = ?,
+                            ESTPRS = ?,SNPPRS = ?,
+                            NROXVT = ?,PSNPRS = ?,
+                            PNOPRS = ?,SNOPRS = ?,
+                            PAPPRS = ?,SAPPRS = ?,
+                            BROPRS = ?,ZNAPRS = ?,
+                            DISPRS = ?,VTOPRS = ?,
+                            MILPRS = ?,NRMPRS = ?,
+                            NDMPRS = ?,DIFPRS = ?,
+                            TEFPRS = ?,SBNPRS = ?,
+                            TRJPRS = ?,TDIPRS = ?,
+                            NCLPRS = ?
+                            WHERE NROPRS = ?
+        </sql>
+    </statement>
+    
+   <statement name="INSERT_SMADBI">
+        <desc>Inserción tabla de aspirantes</desc>
+        <sql>
+            INSERT INTO SMADBI (CODDBI,NROPRS,NROPGM,SMTPSM,AGADBI,
+                                SMADBI,PGSDBI,PGTDBI,RZPDBI,RZKDBI,
+                                RZIDBI,ATCDBI,PBKDBI,MPBDBI,TPODBI,
+                                STDDBI,CODOFR,INSDBI,CODBAS,NGRBAS,
+                                PLNDBI,JNDDBI,STDPLN,IDEUNV,SQLBKR) 
+                        VALUES (?,?,?,?,?,
+                                ?,?,?,?,?,
+                                ?,?,?,?,?,
+                                ?,?,?,?,?,
+                                ?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMADBI">
+        <desc>Inserción tabla de aspirantes</desc>
+        <sql>
+                UPDATE SMADBI SET SMTPSM = ? ,AGADBI = ? ,
+                                  SMADBI = ? ,PGSDBI = ? ,
+                                  PGTDBI = ? ,RZPDBI = ? ,
+                                  RZKDBI = ? ,RZIDBI = ? ,
+                                  ATCDBI = ? ,PBKDBI = ? ,
+                                  MPBDBI = ? ,TPODBI = ? ,
+                                  STDDBI = ? ,CODOFR = ? ,
+                                  INSDBI = ? ,CODBAS = ? ,
+                                  NGRBAS = ? ,PLNDBI = ? ,
+                                  JNDDBI = ? ,STDPLN = ? ,
+                                  IDEUNV = ? ,SQLBKR = ? 
+                            WHERE NROPRS = ? AND CODOFR = ?
+            
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMASDY">
+        <desc>Inserción tabla de estudios</desc>
+        <sql>
+            INSERT INTO SMASDY(NROSDY, NROPRS, 
+                               TPOSDY, TITSDY, IDEUNV, 
+                               BGNSDY, ENDSDY, SMTSDY, 
+                               PROSDY, TRJPRO, NOMTIT, 
+                               IDEKLG, TITKLG)
+                       VALUES (?, ?, 
+                               ?, ?, ?, 
+                               ?, ?, ?, 
+                               ?, ?, ?, 
+                               ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMASDY">
+        <desc>Actualizar tabla de estudios</desc>
+        <sql>
+            UPDATE SMASDY SET TPOSDY = ?, TITSDY = ?, CODUNV = ?, 
+                               BGNSDY = ?, ENDSDY = ?, SMTSDY = ?, 
+                               PROSDY = ?, TRJPRO = ?, NOMTIT = ?, 
+                               CODKLG = ?, TITKLG = ?
+                         WHERE NROPRS = ? AND NROSDY = ?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMASDY">
+        <desc>Eliminar tabla de estudios</desc>
+        <sql>
+            DELETE FROM SMASDY WHERE NROPRS = ? AND NROSDY = ?
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAXPL">
+        <desc>Insercion en la tabla de experiencia laboral</desc>
+        <sql>
+            INSERT INTO SMAXPL(CODCIA, NROXPL, KRGXPL, 
+                               BGNXPL, ENDXPL, EMPXPL, 
+                               IDECIU, NROPRS, DIRXPL,
+                               TELXPL, EMLXPL )
+                       VALUES (?, ?, ?, 
+                               ?, ?, ?, 
+                               ?, ?, ?,
+                               ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAXPL">
+        <desc>Actualizacion en la tabla de experiencia laboral</desc>
+        <sql>
+            UPDATE SMAXPL SET KRGXPL = ? , BGNXPL = ? , 
+                              ENDXPL = ? , EMPXPL = ? , 
+                              IDECIU = ? 
+                       WHERE NROPRS = ? AND NROXPL = ?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAXPL">
+        <desc>Eliminar en la tabla de experiencia laboral</desc>
+        <sql>
+            DELETE FROM SMAXPL 
+                       WHERE NROPRS = ? AND NROXPL = ?
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAIDM">
+        <desc>Insercion en la tabla de Idiomas</desc>
+        <sql>
+            INSERT INTO SMAIDM (NROIDM, NROPRS, STDIDM,
+                                RADIDM, WRTIDM, CNVIDM,
+                                RADPRC, WRTPRC, CNVPRC,
+                                BLGIDM, OTHIDM, NVLIDM,
+                                SQLBKR)
+                        VALUES (?, ?, ?,
+                                ?, ?, ?,
+                                ?, ?, ?,
+                                ?, ?, ?,
+                                ?)
+        </sql>
+    </statement>
+
+   <statement name="UPDATE_SMAIDM">
+        <desc>Actualizacion en la tabla de Idiomas</desc>
+        <sql>
+            UPDATE SMAIDM SET STDIDM = ?, RADIDM = ?, WRTIDM = ?, CNVIDM = ?,
+                              RADPRC = ?, WRTPRC = ?, CNVPRC = ?, BLGIDM = ?, 
+                              OTHIDM = ?, NVLIDM = ?, SQLBKR = ?
+                        WHERE NROPRS = ? AND NROIDM = ?
+        </sql>
+    </statement>   
+    
+    <statement name="DELETE_SMAIDM">
+        <desc>Eliminar en la tabla de Idiomas</desc>
+        <sql>
+            DELETE FROM SMAIDM WHERE NROPRS = ? AND NROIDM = ?
+        </sql>
+    </statement>   
+    
+    <statement name="INSERT_SMADBZ">
+        <desc>Insercion en la tabla de datos financieros</desc>
+        <sql>
+            INSERT INTO SMADBZ (NRODBZ,CODCIA,NROPRS,FMSDBZ,APRDBZ,NGSDBZ,VIVDBZ,DUVDBZ,NPRDBZ,NBRDBZ,STEDBZ,QCEDBZ,SQLBKR)
+                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMADBZ">
+        <desc>Actualizacion en la tabla de datos financieros</desc>
+        <sql>
+            UPDATE SMADBZ SET FMSDBZ = ?, APRDBZ = ?,
+                              NGSDBZ = ?, VIVDBZ = ?,
+                              DUVDBZ = ?, NPRDBZ = ?,
+                              NBRDBZ = ?, STEDBZ = ?,
+                              QCEDBZ = ?
+                         WHERE NROPRS = ?
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMADBC">
+        <desc>Insercion en la tabla de Datos complementarios</desc>
+        <sql>
+            INSERT INTO SMADBC (NRODBC,CODCIA,NROPRS,VULDBC,ETNDBC,RSGDBC,VCTDBC,SBNDBC,STRDBC,SCTDBC,DISDBC,CAPDBC,HNSDBC,POSDBC,HESDBC,SQLBKR)
+                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMADBC">
+        <desc>Actualizacion en la tabla de Datos complementarios</desc>
+        <sql>
+            UPDATE SMADBC SET VULDBC = ?, ETNDBC = ?,
+                              RSGDBC = ?, VCTDBC = ?,
+                              SBNDBC = ?, STRDBC = ?,
+                              SCTDBC = ?, DISDBC = ?,
+                              CAPDBC = ?, HNSDBC = ?,
+                              POSDBC = ?, HESDBC = ?
+                      WHERE NROPRS = ?
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMADBL">
+        <desc>Insercion en la tabla de Datos laborales</desc>
+        <sql>
+            INSERT INTO SMADBL (NRODBL, NROPRS, AGNPRS, 
+                                PRDPRS, TBJDBL, TPTDBL, 
+                                RIRDBL, DURDBL, SQLBKR)
+                        VALUES (?,?,?,
+                                ?,?,?,
+                                ?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMADBL">
+        <desc>Actualizacion en la tabla de Datos laborales</desc>
+        <sql>
+            UPDATE SMADBL SET AGNPRS = ?, 
+                                PRDPRS = ?, TBJDBL = ?, TPTDBL = ?, 
+                                RIRDBL = ?, DURDBL = ?
+                      WHERE NROPRS = ?
+        </sql>
+    </statement>  
+    
+    <statement name="UPDATE_SMAPIN">
+        <desc>Actualizacion en la tabla de pines</desc>
+        <sql>
+            UPDATE SMAPIN SET NROPRS = ?, 
+                              CODDBI = ?, 
+                              STDPIN = ?
+                      WHERE NROPIN = ?
+        </sql>
+    </statement>    
+    
+    <statement name="INSERT_SMAEMS">
+        <desc>Insercion en la tabla de email</desc>
+        <sql>
+            Insert into SMAEMS (NROEMS,CODCIA,CODDIV,TPOEMS,FCHEMS,
+                                FHEEMS,FHVEMS,FRMEMS,TO_EMS,CC_EMS,
+                                BCCEMS,MSGEMS,TXTEMS,ATTEMS,CODPRS,
+                                TPOPRS,STDEMS,KNDSRV,TPOSRV,CODSRV,
+                                SQLBKR) 
+                        values (?,?,?,?,?,
+                                ?,?,?,?,?,
+                                ?,?,?,?,?,
+                                ?,?,?,?,?,
+                                ?)
+        </sql>
+    </statement>           
+    
+</sentencias>

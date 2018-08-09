@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAPQQ">
+        <desc>Insertar Modelos Contables</desc>
+        <sql>
+            INSERT INTO SMAPQQ(CODCIA,NROPQQ,NOMPQQ,CODPQQ,TPOPQQ,STDPQQ,NROCMP,SQLBKR) 
+                        VALUES (?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAPQQ">
+        <desc>Actualizar Modelos Contables</desc>
+        <sql>
+            UPDATE SMAPQQ SET NOMPQQ = ?, CODPQQ = ?, TPOPQQ = ?, STDPQQ = ?, NROCMP = ? WHERE NROPQQ = ?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAPQQ">
+        <desc>Eliminar Modelos Contables</desc>
+        <sql>
+            DELETE FROM SMAPQQ WHERE NROPQQ = ?
+        </sql>
+    </statement>
+    
+</sentencias>

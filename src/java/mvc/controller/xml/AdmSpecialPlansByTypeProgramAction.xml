@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="DELETE_SMAXRT">
+        <desc>Eliminacion tabla de XRT</desc>
+        <sql>
+           DELETE FROM smaxrt where trim(tpopgm) = ? and trim(plnrqs) = ?
+        </sql>
+    </statement>
+     <statement name="INSERT_SMAXRT">
+        <desc>Inserción tabla de XRT</desc>
+        <sql>
+         INSERT INTO SMAXRT (CODCIA,NROXRT,TPOPGM, CODRQS, PLNRQS,SQLBKR) VALUES (?,?,?,?,?,?)
+        </sql>
+    </statement>
+   
+    
+</sentencias>

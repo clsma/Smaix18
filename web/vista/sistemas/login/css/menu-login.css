@@ -1,0 +1,123 @@
+#cssmenu
+{
+    width: 90%;
+    margin: 15px auto;
+    z-index: 100;
+}
+
+#cssmenu ul
+{
+    list-style:none;
+    position:relative;
+    float:left;
+    margin:0;
+    padding:0;
+    border-bottom: 1px solid gray;
+    width: 100%;
+    z-index: 100;
+}
+
+#cssmenu ul a
+{
+    display:block;
+    color: #E8F3F4;
+    text-decoration:none;
+    font-weight:700;
+    font-size:12px;
+    line-height:32px;
+    padding:0 15px;
+    font-family:"HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif
+}
+
+#cssmenu ul li
+{
+    position:relative;
+    float:left;
+    margin:0;
+    padding:0
+}
+
+#cssmenu ul li.current-menu-item
+{
+    background:#fff;
+    /*border-radius: 5px;*/
+    color: black;
+}
+
+#cssmenu ul li.current-menu-item > a
+{
+    /*background:#ddd;*/
+    color: black;
+    /*text-shadow: 0px 1px 1px black;*/
+
+}
+
+#cssmenu ul li:hover
+{
+    background:#f6f6f6
+}
+#cssmenu ul li a:hover
+{
+    color: black;
+}
+
+#cssmenu ul ul
+{
+    display:none;
+    position:absolute;
+    top:100%;
+    left:0;
+    background:#fff;
+    padding:0;
+    border-bottom: none;
+    width: 200px;
+    z-index: 800;
+    color: black;
+}
+
+#cssmenu ul ul li
+{
+    float:none;
+    width:200px
+}
+
+#cssmenu ul ul a
+{
+    line-height:120%;
+    padding:10px 15px;
+    color:black;
+}
+
+#cssmenu ul ul li a
+{
+    color:black;
+}
+
+#cssmenu ul li a:hover
+{
+    color: black;
+}
+
+#cssmenu ul ul ul
+{
+    top:0;
+    left:100%
+}
+
+#cssmenu ul li:hover > ul
+{
+    display:block
+}
+
+@media only screen and (max-width:700px) {
+    
+    nav#cssmenu ul li a{
+        color: black
+    } 
+}
+@media only screen and (max-width : 520px) {
+
+    nav#cssmenu ul li a{
+        color: black
+    }
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMASCD">
+        <desc>Inserción tabla de Solicitud</desc>
+        <sql>
+           INSERT INTO SMASCD (CODCIA, NROSCD, AGNPRS, 
+            PRDPRS, TPOSCD, AGNSCD,
+            PRDSCD, CODPRS, TPOPRS,
+            STDSCD, NROPGM, NROPSM,
+            CODMAT, NROSPL, ABGSCD,
+            PBGSCD, AENSCD, PENSCD,
+            MEMSCD, SWHSCD, DIRSCD,
+            MTVSCD, FCHSCD, NROGRP,
+            PRCPRD, NROKMP, NROPGS,
+            SQLBKR) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAARE">
+        <desc>Update tabla de Areas</desc>
+        <sql>
+           UPDATE SMAARE SET CODCIA=?, CODARE=?, NOMARE=?, NPQARE=?, CLRARE=?
+            WHERE NROARE=?
+        </sql>
+    </statement>
+    
+    
+    
+    <statement name="UPDATE_SMAPIN">
+        <desc>Update tabla de Pin</desc>
+        <sql>
+           UPDATE SMAPIN set STDPIN='Usado _'
+            WHERE IDEPIN=?
+        </sql>
+    </statement>
+    
+</sentencias>

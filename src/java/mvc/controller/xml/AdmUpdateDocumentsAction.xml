@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMADRQ">
+        <desc>Inserción tabla de Conjuntos Documento</desc>
+        <sql>
+           INSERT INTO smadrq(
+            codcia, nrodqr, nrodrq, coddqm, nomdrq, vendrq, sqlbkr)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMADRQ">
+        <desc>Delete tabla de Conjuntos Documento</desc>
+        <sql>
+           DELETE FROM smadrq where nrodqr=?
+        </sql>
+    </statement>
+    
+</sentencias>

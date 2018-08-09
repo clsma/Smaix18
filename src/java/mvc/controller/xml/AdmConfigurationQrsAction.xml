@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+           
+    <statement name="SMA_QRS_BYINFORMER">
+        <desc>Obtiene listado</desc>
+        <sql>
+            SMA_GENERAL_PQRS.sma_qrs_byinformer( ?, ?, ?, ? )
+        </sql>
+    </statement>
+    
+    <statement name="SMA_QRS_BYADMINISTRATOR">
+        <desc>Obtiene listado</desc>
+        <sql>
+            SMA_GENERAL_PQRS.sma_qrs_byadministrator( ?, ?, ?, ? )
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAGCU">
+        <desc>Insercion tabla de Usuarios por roles de gestion de la configuracion</desc>
+        <sql>
+            INSERT INTO SMAGCU( NROGCU, CODCIA, NROGCR, CODPRS, NOMGCU, APEGCU, EMLGCU, CELGCU, PSWGCU, STDGCU, TPOGCU, SQLBKR ) 
+            VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
+        </sql>
+    </statement>
+    
+</sentencias>

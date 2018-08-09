@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="CALENDARACTIVITYSEARCH">
+        <desc>Obtiene listado</desc>
+        <sql>
+            SMA_ACADEMIC.calendaractivitysearch(?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="SEARCH_PGM">
+        <desc>Buscar programas</desc>
+        <sql>
+            sma_programs_tools_app.events_registers_schema(?, ?, ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="SEARCH_RNG">
+        <desc>Listar Rangos de Creditos</desc>
+        <sql>
+            sma_programs_tools_app.get_range_credits(?, ?, ?, ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="SEARCH_EVN">
+        <desc>Buscar programas</desc>
+        <sql>
+            sma_programs_tools_app.events_registers_programs(?, ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMACEF">
+        <desc>Insercion a la tabla Cabecera configuracion eventos financieros de matriculas</desc>
+        <sql>
+            INSERT INTO SMACEF (NROCEF, CODCIA, CODCEF, IDEPGM, SMTPSM, AGNPRS, PRDPRS, STDCEF, TPOCEF, SQLBKR) 
+                        VALUES (?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMADEF">
+        <desc>Insercion a la tabla Detalle configuracion eventos financieros de matriculas</desc>
+        <sql>
+            INSERT INTO SMADEF (NRODEF, CODCIA, NROCEF, BGNDEF, ENDDEF, VLRDEF, PTJDEF, TPODEF, CODDEF, SQLBKR) 
+                        VALUES (?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMADEF">
+        <desc>Actualizacion a la tabla Detalle configuracion eventos financieros de matriculas</desc>
+        <sql>
+            UPDATE SMADEF SET NROCEF = ?, BGNDEF = ?, 
+                              ENDDEF = ?, VLRDEF = ?, 
+                              PTJDEF = ?, TPODEF = ?, 
+                              CODDEF = ?
+                        WHERE NRODEF = ?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMADEF">
+        <desc>Eliminar Registro en la tabla Detalle configuracion eventos financieros de matriculas</desc>
+        <sql>
+            DELETE FROM SMADEF WHERE NRODEF = ?
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAEVN">
+        <desc>Actualizar Eventos Financieros</desc>
+        <sql>
+            UPDATE SMAEVN SET FHAEVN = ?, PJAEVN = ?,
+                              SWAEVN = ?, FHBEVN = ?,
+                              PJBEVN = ?, SWBEVN = ?,
+                              FHCEVN = ?, PJCEVN = ?,
+                              SWCEVN = ?, FHDEVN = ?,
+                              PJDEVN = ?, SWDEVN = ?,
+                              SWITCH = ?
+                        WHERE NROEVN = ?
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAFCF">
+        <desc>Insercion en la tabla formulas por programa </desc>
+        <sql>
+            INSERT INTO SMAFCF (NROFCF, CODCIA, AGNPRS, PRDPRS, IDEPGM, NROCND, NROPRS, TPOPRS, SQLBKR)
+                        VALUES (?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+</sentencias>

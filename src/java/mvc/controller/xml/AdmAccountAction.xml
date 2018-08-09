@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAQNT">
+        <desc>Inserción tabla de cuentas bancarias</desc>
+        <sql>
+            INSERT INTO SMAQNT(CODQNT, CODCIA, CODBKO, NROQNT, TITQNT, TPOPTE, SLDQNT, TPOQNT, NRORCB, NROCMP, NROPQK, CRDQNT, FCHQNT, OBSQNT, FILQNT, RSTQNT, RSVQNT, RQPQNT, SLIQNT, CSCCHQ, CODPTE, SQLBKR, STDQNT)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAQNT">
+        <desc>Actualizar registro de la tabla cuentas bancarias</desc>
+        <sql>
+            UPDATE SMAQNT SET CODBKO = ?, NROQNT = ?, TITQNT = ?, TPOPTE = ?, SLDQNT = ?, TPOQNT = ?, CODPTE = ?, NROPQK = ?, CRDQNT = ?, FCHQNT = ?, FILQNT = ?, RSTQNT = ?, RQPQNT = ?  , STDQNT = ? WHERE CODQNT = ?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAQNT">
+        <desc>Eliminar registro de la tabla cuentas bancarias</desc>
+        <sql>
+            DELETE FROM SMAQNT WHERE CODQNT = ?
+        </sql>
+    </statement>
+    
+</sentencias>

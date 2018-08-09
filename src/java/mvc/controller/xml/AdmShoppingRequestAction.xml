@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="Lst_Scp_Sol">
+        <desc>Obtiene listado de las solicitudes por tipo, en estado Solicitada</desc>
+        <sql>
+            sma_acquisitions.shopping_request_list(?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="Lst_Art">
+        <desc>Obtiene listado de los articulos</desc>
+        <sql>
+            sma_acquisitions.purchase_get_articles(?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="Lst_Scp_Hst">
+        <desc>Obtiene listado de las solicitudes por tipo, en estado Anulado, _Recibida, _Despachada, Visto, Unificada, Despachada_, Unificada..</desc>
+        <sql>
+            sma_acquisitions.shopping_request_list_history(?, ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="UPD_SCA">
+        <desc>Actualizar Articulos por Solicitudes de Pedidos</desc>
+        <sql>
+            UPDATE SMASCA SET CNTSCA = ? WHERE NROSCA = ?
+        </sql>
+    </statement>
+    
+    <statement name="UPD_SCP">
+        <desc>Anular Solicitud de Pedido</desc>
+        <sql>
+            UPDATE SMASCP SET STDSCP = ? WHERE NROSCP = ?
+        </sql>
+    </statement>
+    
+    <statement name="INS_SCP">
+        <desc>Insertar en la tabla de solicitudes</desc>
+        <sql>
+            INSERT INTO SMASCP (NROSCP,CODCIA,TPOSCP,NROPRS,STDSCP,NROBDG,FCHSCP,ITMSCP,NVLSCP,OBSSCP,SYSSCP,CODSCP,NROPSP,TIPSCP,TPOART)
+                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="INS_SCA">
+        <desc>Registro de los articulos de una solicitud de pedido</desc>
+        <sql>
+            INSERT INTO SMASCA (NROSCA,NROSCP,NROART,CNTSCA,APBSCA,CDPSCA,IVASCA,DTOSCA,VLRSCA)
+                        VALUES (?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="INS_SCT">
+        <desc>Registro en la tabla de distribucion de pedido</desc>
+        <sql>
+            INSERT INTO SMASCT (NROSCT,NROSCP,NROART,TPOSCT,MESSCT,CNTSCT,STDSCT,CNRSCT,TRNSCT)
+                        VALUES (?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="INS_ARC">
+        <desc>Registro en la tabla caracteristicas de un articulo</desc>
+        <sql>
+            INSERT INTO SMAARC (NROARC,CODCIA,TPOARC,NROART,NROSCP,NUMARC,VLRARC)
+                        VALUES (?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+</sentencias>

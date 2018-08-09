@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAPXO">
+        <desc>Inserción tabla de PXO</desc>
+        <sql>
+           INSERT INTO smapxo(
+            codcia, nropxo, codofr, nropgm, cpopxo, slepxo, minpxo, sqlbkr)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAPXO">
+        <desc>Update tabla de SAMORF</desc>
+        <sql>
+           UPDATE smaofr SET qpoofr =? 
+            WHERE codcia=? AND codofr =?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAPXO">
+        <desc>Delete tabla de PXO</desc>
+        <sql>
+           DELETE FROM smapxo WHERE codcia=? AND codofr=?
+        </sql>
+    </statement>
+    
+</sentencias>

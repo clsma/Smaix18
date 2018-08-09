@@ -1,0 +1,211 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 29/09/2015, 01:21:13 PM
+    Author     : clsma
+*/
+
+
+.menu-vertical,
+.menu-vertical ul,
+.menu-vertical ul li,
+.menu-vertical ul li a {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    list-style: none;
+    line-height: 1;
+    display: block;
+    position: relative;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.menu-vertical {
+    width: 180px;
+    font-family: Helvetica, Arial, sans-serif;
+    color: #ffffff;
+}
+.menu-vertical ul ul {
+    display: none;
+}
+.align-right {
+    float: right;
+}
+.menu-vertical > ul > li > a {
+    padding: 12px 11px;
+/*    border-left: 1px solid #327E04;
+    border-right: 1px solid #327E04;*/
+    /*border-top: 1px solid #327E04;*/
+    cursor: pointer;
+    z-index: 2;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #ffffff;
+    /*text-shadow: 0 1px 1px rgb(195, 185, 185);*/
+    /*    background: #36aae7;
+        background:-webkit-linear-gradient(#36aae7, #1fa0e4);
+        background: -moz-linear-gradient(#36aae7, #1fa0e4);
+        background: -o-linear-gradient(#36aae7, #1fa0e4);
+        background:-ms-linear-gradient(#36aae7, #1fa0e4);
+        background: linear-gradient(#327E04, #459e00);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);*/
+}
+.menu-vertical > ul > li > a:hover,
+.menu-vertical > ul > li.active > a,
+.menu-vertical > ul > li.open > a {
+/*    color: #eeeeee;
+    background: #327E04;
+    background: -webkit-linear-gradient(#327E04, #459e00);
+    background: -moz-linear-gradient(#327E04, #459e00);
+    background: -o-linear-gradient(#327E04, #459e00);
+    background: -ms-linear-gradient(#327E04, #459e00);
+    background: linear-gradient(#327E04, #459e00);*/
+}
+.menu-vertical > ul > li.open > a {
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.15);
+    border-bottom: 1px solid #1682ba;
+}
+.menu-vertical > ul > li:last-child > a,
+.menu-vertical > ul > li.last > a {
+    border-bottom: 1px solid #1682ba;
+}
+.holder {
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.holder::after,
+.holder::before {
+    display: block;
+    position: absolute;
+    content: "";
+    width: 6px;
+    height: 6px;
+    right: 14px;
+    z-index: 10;
+    -webkit-transform: rotate(-135deg);
+    -moz-transform: rotate(-135deg);
+    -ms-transform: rotate(-135deg);
+    -o-transform: rotate(-135deg);
+    transform: rotate(-135deg);
+}
+.holder::after {
+    top: 17px;
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+}
+.menu-vertical > ul > li > a:hover > span::after,
+.menu-vertical > ul > li.active > a > span::after,
+.menu-vertical > ul > li.open > a > span::after {
+    border-color: #eeeeee;
+}
+.menu-vertical > ul > li.has-sub ul li {
+    background: #424852;
+    color: #ffffff;
+    
+}
+.menu-vertical > ul > li.has-sub ul li a{
+     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+
+.holder::before {
+    top: 18px;
+    border-top: 2px solid;
+    border-left: 2px solid;
+    border-top-color: inherit;
+    border-left-color: inherit;
+}
+.menu-vertical ul ul li a {
+    cursor: pointer;
+    border-bottom: 1px solid #32373e;
+    border-left: 1px solid #32373e;
+    border-right: 1px solid #32373e;
+    padding: 10px 22px;
+    z-index: 1;
+    text-decoration: none;
+    font-size: 13px;
+    color: #eeeeee;
+    background: #49505a;
+    /*background: red;*/
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.menu-vertical ul ul li:hover > a,
+.menu-vertical ul ul li.open > a,
+.menu-vertical ul ul li.active > a {
+    background: #424852;
+    /*background: red;*/
+    color: #ffffff;
+}
+.menu-vertical ul ul li:first-child > a {
+    box-shadow: none;
+}
+.menu-vertical ul ul ul li:first-child > a {
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+.menu-vertical ul ul ul li a {
+    padding-left: 34px;
+}
+.menu-vertical > ul > li > ul > li:last-child > a,
+.menu-vertical > ul > li > ul > li.last > a {
+    border-bottom: 0;
+}
+.menu-vertical > ul > li > ul > li.open:last-child > a,
+.menu-vertical > ul > li > ul > li.last.open > a {
+    border-bottom: 1px solid #32373e;
+}
+.menu-vertical > ul > li > ul > li.open:last-child > ul > li:last-child > a {
+    border-bottom: 0;
+}
+
+.menu-vertical ul ul li.has-sub > a::after {
+    display: block;
+    position: absolute;
+    content: "";
+    width: 5px;
+    height: 5px;
+    right: 15px;
+    z-index: 10;
+    top: 11.5px;
+    border-top: 2px solid #eeeeee;
+    border-left: 2px solid #eeeeee;
+    -webkit-transform: rotate(-135deg);
+    -moz-transform: rotate(-135deg);
+    -ms-transform: rotate(-135deg);
+    -o-transform: rotate(-135deg);
+    transform: rotate(-135deg);
+}
+
+.menu-vertical ul ul li.active > a::after,
+.menu-vertical ul ul li.open > a::after,
+.menu-vertical ul ul li > a:hover::after {
+    border-color: #ffffff;
+}
+
+.tab-disabled{
+    pointer-events: none;
+    cursor: not-allowed;
+    filter: alpha(opacity=35);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    opacity: .35;
+    background-image: none;
+
+}
+
+.tab-activated{
+    border: 2.5px solid #68A3C2 !important
+}
+
+.link-activated{
+    /*color:black !important ;*/
+    /*text-shadow: 2px 2px gray;*/
+}

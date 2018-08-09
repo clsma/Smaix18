@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="800" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="0" bottomMargin="0" uuid="2efc03d4-9e22-4eba-a560-783c8c11d8b9">
+	<property name="ireport.zoom" value="1.4641000000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="pcodcia" class="java.lang.String"/>
+	<parameter name="ptitrpt" class="java.lang.String"/>
+	<parameter name="ptxtxml" class="java.lang.String"/>
+	<parameter name="recordset" class="java.sql.ResultSet" isForPrompting="false"/>
+	<parameter name="prutaImagen" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String"/>
+	<parameter name="pideirp" class="java.lang.String"/>
+	<queryString language="plsql">
+		<![CDATA[{call sma_receivable_reports.cash_receipt($P{ptxtxml},$P{recordset})}]]>
+	</queryString>
+	<field name="FCHPGS" class="java.lang.String"/>
+	<field name="NRIPRS" class="java.lang.String"/>
+	<field name="APEPRS" class="java.lang.String"/>
+	<field name="NOMPRS" class="java.lang.String"/>
+	<field name="KNPRCV" class="java.lang.String"/>
+	<field name="NRORCV" class="java.lang.String"/>
+	<field name="OBSRCV" class="java.lang.String"/>
+	<field name="VLRRCV" class="java.math.BigDecimal"/>
+	<field name="TOTLET" class="java.lang.String"/>
+	<field name="TPOPGS" class="java.lang.String"/>
+	<field name="NROPGS" class="java.lang.String"/>
+	<field name="NOMCIU" class="java.lang.String"/>
+	<field name="ELBUSR" class="java.lang.String"/>
+	<field name="VLRCHQ" class="java.math.BigDecimal"/>
+	<field name="VLRTRJ" class="java.math.BigDecimal"/>
+	<field name="VLRORN" class="java.math.BigDecimal"/>
+	<field name="VLREFE" class="java.math.BigDecimal"/>
+	<field name="VLRDXN" class="java.math.BigDecimal"/>
+	<variable name="count" class="java.lang.Double" calculation="Count"/>
+	<group name="grupo1">
+		<groupHeader>
+			<band height="77">
+				<subreport>
+					<reportElement x="-20" y="0" width="595" height="77" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="b10b5786-de9a-4f2a-b18b-f21bb6ef8bb5"/>
+					<subreportParameter name="pcodcia">
+						<subreportParameterExpression><![CDATA[$P{pcodcia}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="ptitrpt">
+						<subreportParameterExpression><![CDATA[$P{ptitrpt}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="ptxtxml">
+						<subreportParameterExpression><![CDATA[$P{ptxtxml}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="recordset">
+						<subreportParameterExpression><![CDATA[$P{recordset}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="prutaImagen">
+						<subreportParameterExpression><![CDATA[$P{prutaImagen}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="pideirp">
+						<subreportParameterExpression><![CDATA[$P{pideirp}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "smasubreport_cash_receipt.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="grupo2">
+		<groupHeader>
+			<band height="92">
+				<subreport>
+					<reportElement x="-20" y="7" width="596" height="85" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="dd02d195-a6f9-4fcb-bcf1-5f7e00f58ec0"/>
+					<subreportParameter name="pcodcia">
+						<subreportParameterExpression><![CDATA[$P{pcodcia}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="ptitrpt">
+						<subreportParameterExpression><![CDATA[$P{ptitrpt}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="ptxtxml">
+						<subreportParameterExpression><![CDATA[$P{ptxtxml}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="recordset">
+						<subreportParameterExpression><![CDATA[$P{recordset}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="prutaImagen">
+						<subreportParameterExpression><![CDATA[$P{prutaImagen}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="pideirp">
+						<subreportParameterExpression><![CDATA[$P{pideirp}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "smasubreport_cash_receipt.jasper"]]></subreportExpression>
+				</subreport>
+				<line>
+					<reportElement x="-20" y="6" width="595" height="1" uuid="4785fbe1-e570-4473-bd97-5a8a0513a6ea"/>
+					<graphicElement>
+						<pen lineWidth="1.0" lineStyle="Dashed"/>
+					</graphicElement>
+				</line>
+				<image scaleImage="FillFrame">
+					<reportElement x="-18" y="-5" width="20" height="23" uuid="7d73d8f8-c9e4-421f-9d9a-281ecabf7197"/>
+					<imageExpression><![CDATA[$P{prutaImagen}+ "tijera.png"]]></imageExpression>
+				</image>
+			</band>
+		</groupHeader>
+	</group>
+</jasperReport>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMABDG">
+        <desc>Inserción tabla de Bodegas</desc>
+        <sql>
+          insert into smabdg (CODCIA,CODPRS,DIRBDG,DSPBDG,IDECIU,NROBDG,SCRBDG,SQLBKR,STDBDG,TELBDG,TPOBDG)
+            values (?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMABDG">
+        <desc>Inserción tabla de Bodegas</desc>
+        <sql>
+            
+              update smabdg set CODPRS=?,DIRBDG=?,DSPBDG=?,IDECIU=?,SCRBDG=?,SQLBKR=?,STDBDG=?,TELBDG=?,TPOBDG=?
+            where codcia=? and nrobdg=?
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMABXP">
+        <desc>Inserción tabla de BXP</desc>
+        <sql>
+            insert into smabxp (CODCIA,CODPRS,NROBDG,NROBXP,SQLBKR,STDBXP,TPOBXP)
+            values (?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+   
+    <statement name="UPDATE_SMABXP">
+        <desc>Inserción tabla de BXP</desc>
+        <sql>
+            update smabdg set CODPRS=?,DIRBDG=?,DSPBDG=?,IDECIU,SCRBDG=?,SQLBKR=?,STDBDG=?,TELBDG=?,TPOBDG=?
+            where codcia=? and nrobdg=?
+        </sql>
+    </statement>
+   
+    
+  
+</sentencias>

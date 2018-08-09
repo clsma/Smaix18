@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAPQR">
+        <desc>Insertar en la tabla de Esquemas Contables</desc>
+        <sql>
+            INSERT INTO SMAPQR(NROPQR,NROPQQ,NROPQK,CODPQK,TPOPQR,SQLBKR) 
+                        VALUES (?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAPQR">
+        <desc>Eliminar en la tabla de Esquemas Contables</desc>
+        <sql>
+            DELETE FROM SMAPQR WHERE NROPQR = ? AND NROPQQ = ? AND CODPQK = ?
+        </sql>
+    </statement>
+    
+</sentencias>

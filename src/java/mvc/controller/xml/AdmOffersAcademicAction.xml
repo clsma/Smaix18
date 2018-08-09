@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAOFR">
+        <desc>Inserción tabla de Ofertas</desc>
+        <sql>
+           INSERT INTO smaofr(
+            codcia, agnprs, prdprs, codofr, tpoofr, nroofr, qpoofr, tpopgm, 
+            sndeml, insofr, preofr, slcofr, mtrofr, nomofr, obsofr, bgnofr, 
+            endofr, nrodqr, vlrofr, stdofr, bgsofr, ensofr, pinofr, phoofr, 
+            ncoofr, frmofr, firofr, ffrofr, sqlbkr, prgofr, sgnofr, horofr, hofofr, hosofr, hsfofr, hopofr,hpfofr, bgndoc, enddoc, fctofr ,nrodbe)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, 
+            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
+            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
+            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? , ?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAOFR">
+        <desc>Update tabla de Oferta</desc>
+        <sql>
+           UPDATE smaofr
+            SET codcia=?, agnprs=?, prdprs=?, tpoofr=?, nroofr=?, qpoofr=?, 
+                tpopgm=?, sndeml=?, insofr=?, preofr=?, slcofr=?, mtrofr=?, nomofr=?, 
+                obsofr=?, bgnofr=?, endofr=?, nrodqr=?, vlrofr=?, stdofr=?, bgsofr=?, 
+                ensofr=?, pinofr=?, ncoofr=?, frmofr=?, firofr=?, ffrofr=?, 
+                sqlbkr=?, prgofr=?, sgnofr=?, horofr=?, hofofr=?, hosofr=?, hsfofr=?, hopofr=?, hpfofr=?, bgndoc=?, enddoc=? , fctofr =?
+          WHERE codofr=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAOFR">
+        <desc>Delete tabla de Oferta</desc>
+        <sql>
+           DELETE FROM smaofr where codofr=?
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_FOTO_SMAOFR">
+        <desc>Delete tabla de Oferta</desc>
+        <sql>
+           UPDATE smaofr set phoofr=?
+             WHERE codofr=?
+        </sql>
+    </statement>
+    
+</sentencias>

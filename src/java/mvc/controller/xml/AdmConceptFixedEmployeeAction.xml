@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMANMV">
+        <desc>Inserción tabla de Conceptos</desc>
+        <sql>
+           INSERT INTO SMANMV 
+            (NRONMV, TPONMV, CODNMV, 
+            AGNNMV, NROPRS, NROKRG, 
+            STDNMV, VLRNMV, NROWRK,
+            FCHNMV, SQLBKR) VALUES (?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMANMV">
+        <desc>Update tabla de Conceptos</desc>
+        <sql>
+           UPDATE SMANMV SET
+            CODNMV=?, 
+            AGNNMV=?, 
+            STDNMV=?, 
+            VLRNMV=?
+            WHERE NRONMV=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMANMV">
+        <desc>Delete tabla de Conceptos Fijos</desc>
+        <sql>
+           DELETE FROM SMANMV
+            WHERE NRONMV=?
+        </sql>
+    </statement>
+    
+</sentencias>

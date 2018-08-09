@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMACIU">
+        <desc>Inserción tabla de ciudades</desc>
+        <sql>
+            INSERT INTO SMACIU( IDECIU, CODCIU ,NOMCIU, NPQCIU ,IDEDPT, STDCIU ) 
+            VALUES ( ?, ?, ?, ?, ?, ? )
+        </sql>
+    </statement>
+    
+    
+    <statement name="UPDATE_SMACIU">
+        <desc>Update tabla de ciudades</desc>
+        <sql>
+            UPDATE SMACIU SET CODCIU=?,NOMCIU=?, NPQCIU=?,IDEDPT=?, STDCIU=? WHERE  IDECIU=?
+        </sql>
+    </statement>
+    <statement name="DELETE_SMACIU">
+        <desc>Delete tabla de ciudades</desc>
+        <sql>
+            DELETE SMACIU  WHERE  IDECIU=?
+        </sql>
+    </statement>
+
+</sentencias>

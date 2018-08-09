@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="UPDATE_SMAAGR">
+        <desc>Inserción tabla de Contratos</desc>
+        <sql>
+           UPDATE SMAAGR SET CODSPR=?, VLRAGR=?,
+            OBJAGR=?, FCHAGR=?, 
+            DOBAGR=?, PLZAGR=?,
+            TPOAGR=?, FCUAGR=?, 
+            TCNAGR=?, TCTAGR=?
+            WHERE NROAGR=?
+
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMACAC">
+        <desc>Eliminar tabla de Cuota</desc>
+        <sql>
+            DELETE FROM SMACAC WHERE NROAGR=?
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMACAC">
+        <desc>Insert tabla de Cuota</desc>
+        <sql>
+            INSERT INTO SMACAC (NROCAC, NROAGR, PTJCAC,
+            VLRCAC, TPOCAC, PLZCAC,
+            UPLCAC, CONCAC, SQLBKR)
+            VALUES (?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAAGR_SAT">
+        <desc>Update tabla de Contrato Satisfacion</desc>
+        <sql>
+           UPDATE SMAAGR SET RCBAGR=?
+            WHERE NROAGR=?
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAAGR_UPL">
+        <desc>Update tabla de Contrato Satisfacion</desc>
+        <sql>
+           UPDATE SMAAGR SET AOBAGR=?
+            WHERE NROAGR=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAARE">
+        <desc>Delete tabla de Areas</desc>
+        <sql>
+           DELETE FROM SMAARE
+            WHERE NROARE=?
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAAGK">
+        <desc>Update tabla de Clausulas</desc>
+        <sql>
+           UPDATE SMAAGK SET TXTAGK=?
+            WHERE NROAGK=?
+
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAAGQ">
+        <desc>Delete tabla de Clausulas</desc>
+        <sql>
+           DELETE FROM SMAAGQ 
+            WHERE NROAGK=?
+
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAAGQ">
+        <desc>Insert tabla de Clausulas</desc>
+        <sql>
+           INSERT INTO SMAAGQ (NROAGQ, NROAGK, CODAGQ, CSCAGQ, SQLBKR) VALUES (?,?,?,?,?)
+        </sql>
+    </statement>
+    
+
+</sentencias>

@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="30fa105a-773e-4699-826f-1e652510d75e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="143"/>
+	<parameter name="pphoto" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="pcodcia" class="java.lang.String"/>
+	<parameter name="ptitrpt" class="java.lang.String"/>
+	<parameter name="prutaImagen" class="java.lang.String">
+		<defaultValueExpression><![CDATA["/home/clsma/NetBeansProjects/Smaix14/web/utility/reportes/Jasper_Reports_UDS/templates/images/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ptxtxml" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="recordset" class="java.sql.ResultSet" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="pideirp" class="java.lang.String"/>
+	<queryString language="plsql">
+		<![CDATA[{call sma_admissions_reports.enrollment_summary_form($P{ptxtxml},$P{recordset})}]]>
+	</queryString>
+	<field name="NROPRS" class="java.lang.String"/>
+	<field name="NRIPRS" class="java.lang.String"/>
+	<field name="IDEPRS" class="java.lang.String"/>
+	<field name="NOMPGM" class="java.lang.String"/>
+	<field name="CODPGM" class="java.lang.String"/>
+	<field name="APEPRS" class="java.lang.String"/>
+	<field name="NOMPRS" class="java.lang.String"/>
+	<field name="SEXPRS" class="java.lang.String"/>
+	<field name="NACPRS" class="java.lang.String"/>
+	<field name="DIRPRS" class="java.lang.String"/>
+	<field name="EPSPRS" class="java.lang.String"/>
+	<field name="FHNPRS" class="java.sql.Timestamp"/>
+	<field name="NACCIU" class="java.lang.String"/>
+	<field name="CIVPRS" class="java.lang.String"/>
+	<field name="BROPRS" class="java.lang.String"/>
+	<field name="EMLPRS" class="java.lang.String"/>
+	<field name="TELPRS" class="java.lang.String"/>
+	<field name="CELPRS" class="java.lang.String"/>
+	<field name="STRDBC" class="java.lang.String"/>
+	<field name="SNPICF" class="java.lang.String"/>
+	<field name="FCHICF" class="java.sql.Timestamp"/>
+	<field name="PSTICF" class="java.math.BigDecimal"/>
+	<field name="VALPGM" class="java.math.BigDecimal"/>
+	<field name="LGRCIU" class="java.lang.String"/>
+	<field name="NOMKLG" class="java.lang.String"/>
+	<field name="NOMCCN" class="java.lang.String"/>
+	<field name="ENDDBS" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="100" splitType="Stretch">
+			<subreport>
+				<reportElement x="-13" y="0" width="200" height="100" uuid="5ff9df89-efec-4f3e-aa96-e244111309d0"/>
+				<subreportParameter name="pcodcia">
+					<subreportParameterExpression><![CDATA[$P{pcodcia}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="prutaImagen">
+					<subreportParameterExpression><![CDATA[$P{prutaImagen}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="recordset">
+					<subreportParameterExpression><![CDATA[$P{recordset}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ptitrpt">
+					<subreportParameterExpression><![CDATA[$P{ptitrpt}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="pideirp">
+					<subreportParameterExpression><![CDATA[$P{pideirp}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Head.jasper"]]></subreportExpression>
+			</subreport>
+			<textField evaluationTime="Report">
+				<reportElement x="514" y="63" width="47" height="11" uuid="07eb5842-1074-43e6-9d9d-6228b9cff383"/>
+				<textElement>
+					<font size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="63" width="59" height="11" uuid="dac01412-edd0-4ab8-8df5-9147134bb1b5"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pág "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="345" splitType="Stretch">
+			<rectangle radius="6">
+				<reportElement x="20" y="205" width="28" height="123" forecolor="#6699FF" backcolor="#2099FF" uuid="8376b930-017f-4a1e-9a02-3de8ec1ad562"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="217" y="18" width="124" height="138" forecolor="#2099FF" uuid="103ef128-4f85-4848-9a9d-d43bf0c7fe49"/>
+			</rectangle>
+			<rectangle radius="6">
+				<reportElement x="36" y="193" width="497" height="152" forecolor="#2099FF" uuid="d6d7b78b-687a-4c7b-989d-d2c8589399b2"/>
+				<graphicElement>
+					<pen lineWidth="1.75"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="19" y="205" width="17" height="123" forecolor="#FFFFFF" uuid="450c6dd0-fca3-4c04-aec2-2f320a9efb19"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
+					<font size="8" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[I. DATOS DE INSCRIPCIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="48" y="231" width="147" height="19" forecolor="#0384F0" uuid="599d5a79-d70b-4f9f-be34-86baf8399e6b"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[No. Identificación:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="48" y="260" width="147" height="19" forecolor="#0384F0" uuid="c9359167-075c-4e10-b772-d6041e08a1a2"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Programa:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="48" y="292" width="147" height="19" forecolor="#0384F0" uuid="ec4a2cb9-fad0-4a94-942f-990549719234"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Circunscripción:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="237" y="231" width="147" height="19" forecolor="#0384F0" uuid="af719db4-b47e-430e-b260-6e44e13dc53e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Tipo de Documento:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="149" y="230" width="109" height="20" uuid="5e033b32-e839-467d-9dd9-daf1ab18551c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" pdfFontName="Times-Italic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NRIPRS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="352" y="231" width="171" height="20" uuid="1c256bdd-f554-4ac5-b2ed-b633d71a89eb"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" pdfFontName="Times-Italic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IDEPRS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="109" y="259" width="391" height="20" uuid="0d03ce03-1a0d-464b-898f-b32c04053a7c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" pdfFontName="Times-Italic"/>
+				</textElement>
+				<textFieldExpression><![CDATA["("+$F{CODPGM}+") "+$F{NOMPGM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="143" y="292" width="357" height="20" uuid="649d2f11-4688-48ef-9505-9b04cbe52fff"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" pdfFontName="Times-Italic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMCCN}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="217" y="18" width="124" height="138" forecolor="#DBE7FF" backcolor="#FFFFFF" uuid="dbc9f6a5-492d-4584-8075-c4fbf8f3ae94"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[FOTO]]></text>
+			</staticText>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="217" y="18" width="124" height="138" uuid="8dde0ef8-10ce-43ac-9fd8-461205e2eb23"/>
+				<imageExpression><![CDATA[$P{pphoto}+$F{NROPRS}+".png"]]></imageExpression>
+			</image>
+		</band>
+		<band height="182">
+			<rectangle radius="6">
+				<reportElement x="19" y="33" width="28" height="122" forecolor="#6699FF" backcolor="#2099FF" uuid="66f41cea-0a99-49eb-bb79-af84317d5684"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="6">
+				<reportElement x="35" y="14" width="498" height="157" forecolor="#2099FF" uuid="247521b3-8cf0-4547-85e2-7bd13c4533f7"/>
+				<graphicElement>
+					<pen lineWidth="1.75"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="47" y="37" width="147" height="19" forecolor="#0384F0" uuid="a39693a6-ddaa-4483-88eb-5ed4cf89fb81"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Genero:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="275" y="15" width="147" height="19" forecolor="#0384F0" uuid="436121dc-ee2c-4a0a-9935-70f13ecf92bb"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Nombres:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="47" y="60" width="49" height="19" forecolor="#0384F0" uuid="88130d85-7f26-4f34-bea2-371cfd7dc295"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[E.P.S:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="47" y="15" width="147" height="19" forecolor="#0384F0" uuid="3ef29720-af2f-40d2-87e6-ac4590980f4e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Apellidos:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="15" width="17" height="156" forecolor="#FFFFFF" uuid="9a126659-1404-40cc-9ec7-e046b4f68f48"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
+					<font size="8" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[II. INFORMACION PERSONAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="47" y="84" width="147" height="19" forecolor="#0384F0" uuid="59b5e662-3732-44ce-a2a0-d3ecc2e86b55"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Lugar de Nacimiento:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="275" y="37" width="147" height="19" forecolor="#0384F0" uuid="73e186c7-f738-4153-a5e3-2728f85a236a"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Estado Civil:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="275" y="60" width="147" height="19" forecolor="#0384F0" uuid="90894ffd-1a7f-4cb1-a528-95482187bd0e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de Nacimiento:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="275" y="84" width="147" height="19" forecolor="#0384F0" uuid="0d6f88b3-828c-4b68-8d1d-5c6ebd919bc5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Direccion:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="109" y="15" width="128" height="20" uuid="b4005739-19a9-43e0-bf2f-0e9fe7a3c0ff"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" pdfFontName="Times-Italic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{APEPRS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="332" y="15" width="191" height="20" uuid="9ddc9219-8b24-4d8f-83af-3127130235de"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" pdfFontName="Times-Italic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMPRS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="346" y="36" width="177" height="20" uuid="ad4c8955-5aae-4d75-a5c8-966cdeeefdd0"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" pdfFontName="Times-Italic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CIVPRS}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="394" y="60" width="129" height="20" uuid="61792c52-5609-424c-a83c-4288bfd8edf0"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" pdfFontName="Times-Italic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FHNPRS}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="332" y="84" width="191" height="20" uuid="037279c7-4b12-4433-a529-92f46aea9385"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" pdfFontName="Times-Italic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DIRPRS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="97" y="36" width="128" height="20" uuid="88a2b31f-f085-4fce-9194-827d54921ff3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" pdfFontName="Times-Italic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SEXPRS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="83" y="60" width="128" height="20" uuid="4e685754-3707-47d4-b1bf-a05c5c4cc15a"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" pdfFontName="Times-Italic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EPSPRS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="167" y="83" width="108" height="20" uuid="f3b26f0e-416d-49eb-be48-f879198f3c7e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" pdfFontName="Times-Italic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NACCIU}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="47" y="107" width="147" height="19" forecolor="#0384F0" uuid="cd8b06ce-e1c7-4c1d-9a58-ee3ac1564616"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Lugar de Residencia:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="47" y="130" width="147" height="19" forecolor="#0384F0" uuid="e5c8bf33-7848-419e-998c-b52f9f0cbebf"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Barrio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="47" y="152" width="147" height="19" forecolor="#0384F0" uuid="7f3dfb2f-96fa-44a5-b7d9-741138a93879"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Telefono:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="275" y="107" width="147" height="19" forecolor="#0384F0" uuid="04e1b720-9e12-4f5d-ab18-91a3e5139424"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Email:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="275" y="130" width="147" height="19" forecolor="#0384F0" uuid="0417a619-7f29-487e-93ac-c1054c00b82a"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Estrato:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="275" y="152" width="147" height="19" forecolor="#0384F0" uuid="f23f6617-4c63-4df2-bec9-7a60b72a9af4"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Celular:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="313" y="107" width="210" height="20" uuid="131caa30-1d38-47c4-907f-54478815bd0e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" pdfFontName="Times-Italic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMLPRS}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="323" y="130" width="200" height="20" uuid="dc1dd32d-1d47-4f05-a35d-2e374a0f755f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" pdfFontName="Times-Italic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{STRDBC}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="323" y="152" width="200" height="20" uuid="752e4134-f528-4e76-b9d3-0ee8443e739c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" pdfFontName="Times-Italic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CELPRS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="167" y="107" width="108" height="20" uuid="cdcd5331-2339-4a74-901e-c6129fecaedb"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" pdfFontName="Times-Italic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{LGRCIU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="87" y="129" width="188" height="20" uuid="292abc9e-32b5-4cea-ac4c-1b90c41029a7"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" pdfFontName="Times-Italic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BROPRS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="102" y="151" width="173" height="20" uuid="34fcba6d-ee4c-4d5f-9187-e3416d7b3955"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" pdfFontName="Times-Italic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TELPRS}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="86">
+			<rectangle radius="6">
+				<reportElement x="35" y="2" width="131" height="24" forecolor="#6699FF" backcolor="#2099FF" uuid="55be64f5-07a0-46e7-8cd2-6ba3af61ed5a">
+					<printWhenExpression><![CDATA[$F{VALPGM}.intValue() == 1]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="6">
+				<reportElement x="35" y="19" width="497" height="67" forecolor="#2099FF" uuid="29813279-1178-4339-8736-8760893c0047">
+					<printWhenExpression><![CDATA[$F{VALPGM}.intValue() == 1]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="1.75"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="46" y="66" width="147" height="19" forecolor="#0384F0" uuid="08a095fd-9071-46b8-90ba-1959de4b737f">
+					<printWhenExpression><![CDATA[$F{VALPGM}.intValue() == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Registro SNP:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="126" y="66" width="149" height="20" uuid="13d4f64e-90b0-4967-a30e-a3e1ed4dda01">
+					<printWhenExpression><![CDATA[$F{VALPGM}.intValue() == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" pdfFontName="Times-Italic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SNPICF}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="46" y="35" width="147" height="19" forecolor="#0384F0" uuid="f721d8df-8bf3-4f35-90e4-c6e30afb18ab">
+					<printWhenExpression><![CDATA[$F{VALPGM}.intValue() == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Colegio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="313" y="26" width="147" height="19" forecolor="#0384F0" uuid="08fcda7d-9ec8-4935-a192-ce9e27e4a2ba">
+					<printWhenExpression><![CDATA[$F{VALPGM}.intValue() == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Promocion:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="314" y="67" width="147" height="19" forecolor="#0384F0" uuid="26ed726a-fa02-4eb5-b7b1-c0b15ceb9342">
+					<printWhenExpression><![CDATA[$F{VALPGM}.intValue() == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Identificación:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="34" y="2" width="132" height="17" forecolor="#FFFFFF" uuid="09f33b36-ecc1-41eb-b611-d917cd5d0f32">
+					<printWhenExpression><![CDATA[$F{VALPGM}.intValue() == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+					<font size="8" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[III. INFORMACION ACADEMICA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="314" y="47" width="147" height="19" forecolor="#0384F0" uuid="949886f9-0388-4fa6-9ea9-cfb5cb65b24c">
+					<printWhenExpression><![CDATA[$F{VALPGM}.intValue() == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Icfes:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="96" y="26" width="217" height="40" uuid="e223f1c3-7ca3-4186-9b05-e862e4378c9f">
+					<printWhenExpression><![CDATA[$F{VALPGM}.intValue() == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" pdfFontName="Times-Italic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMKLG}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="381" y="26" width="133" height="20" uuid="bea432a5-a5d1-41ac-8430-69464fa438af">
+					<printWhenExpression><![CDATA[$F{VALPGM}.intValue() == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" pdfFontName="Times-Italic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ENDDBS}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="381" y="47" width="133" height="20" uuid="0d4fe2d5-022a-4e61-ae22-0358aefd1e45">
+					<printWhenExpression><![CDATA[$F{VALPGM}.intValue() == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" pdfFontName="Times-Italic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FCHICF}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="392" y="66" width="135" height="20" uuid="b5a19428-8283-4184-b2f2-8095a012f5d2">
+					<printWhenExpression><![CDATA[$F{VALPGM}.intValue() == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" pdfFontName="Times-Italic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PSTICF}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

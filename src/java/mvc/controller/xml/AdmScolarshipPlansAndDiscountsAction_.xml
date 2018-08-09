@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+
+
+    
+    <statement name="DELETE_SMAPDE">
+        <desc>Inserción tabla de planes de becas y descuentos - EVENTOS</desc>
+        <sql>
+            DELETE SMAPDE WHERE CODPDB = ? 
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAPDP">
+        <desc>Inserción tabla de planes de becas y descuentos - PROGRAMAS</desc>
+        <sql>
+            INSERT INTO SMAPDP ( CODPDP, CODPDB, TPOPDP, IDEPGM, STDPDP )
+            VALUES ( ?, ?, ?, ?, ? )
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAPDP">
+        <desc>Inserción tabla de planes de becas y descuentos - PROGRAMAS</desc>
+        <sql>
+            DELETE SMAPDP WHERE CODPDB = ? 
+        </sql>
+    </statement>
+        
+
+    
+    <statement name="DELETE_SMAPDB">
+        <desc>Delete tabla de planes de becas y descuentos</desc>
+        <sql>
+            DELETE SMAPDB WHERE CODPDB = ? 
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAPJK">
+        <desc>Update tabla de planes de becas y descuentos (CONCEPTOS)</desc>
+        <sql>
+            INSERT INTO SMAPJK ( NROPJK, CODCIA, CODPJK, TPOPJK, IDEKNP, VLRPJK)
+                        VALUES ( ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>    
+    
+    <statement name="DELETE_SMAPJK">
+        <desc>Delete tabla de planes de becas y descuentos (CONCEPTOS)</desc>
+        <sql>
+            DELETE FROM SMAPJK WHERE CODPJK = ? AND TPOPJK = ? 
+        </sql>
+    </statement>    
+    
+    <statement name="INSERT_SMAPDR">
+        <desc>Update tabla de planes de becas y descuentos (REQUISITOS)</desc>
+        <sql>
+            INSERT INTO SMAPDR ( NROPDR, CODPDB, CODPDR, TPOPDR, STDPDR ) 
+                        VALUES ( ?, ?, ?, ?, ? )
+        </sql>
+    </statement>    
+    
+    <statement name="DELETE_SMAPDR">
+        <desc>Delete tabla de planes de becas y descuentos (REQUISITOS)</desc>
+        <sql>
+            
+        </sql>
+    </statement>    
+
+</sentencias>

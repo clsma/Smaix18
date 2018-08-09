@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAPIL">
+        <desc>Inserción tabla de Areas De Investigacion</desc>
+        <sql>
+           INSERT INTO SMAPIL (NROPIL, NOMPIL, FCHPIL, TPOPIL, SQLBKR)
+            VALUES (?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAPIL">
+        <desc>Update tabla de Areas De Investigacion</desc>
+        <sql>
+           Update SMAPIL set NOMPIL=?, FCHPIL=?, TPOPIL=?, SQLBKR=?
+            where NROPIL=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAPIL">
+        <desc>Delete tabla de Areas De Investigacion</desc>
+        <sql>
+           Delete from smapil Where nropil=?
+        </sql>
+    </statement>
+    
+</sentencias>

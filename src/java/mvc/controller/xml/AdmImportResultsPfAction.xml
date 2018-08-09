@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAFIL">
+        <desc>Insercion en la tabla maestra recuperacion de archivos icfes</desc>
+        <sql>
+            INSERT INTO SMAFIL (CODCIA,NROFIL,TPOFIL,NOMFIL,FCHFIL,NROUSR,RGSFIL,STDFIL,)
+                        VALUES (?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAFLI">
+        <desc>Inserción tabla Maestro recuperacion linea de archivos de pagos</desc>
+        <sql>
+            INSERT INTO SMAFLI (NROFLI,NROFIL,LINFLI,SQLBKR)
+                        VALUES (?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+</sentencias>

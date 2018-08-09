@@ -1,0 +1,96 @@
+.boton2 { 
+	font-family: Verdana ,Tahoma ,Helvatica ,Times New Roman; 
+	font-size: 10px; 
+	color:#000000;
+	border: 1px gray; 
+	background-color:#FFFFFF;
+	font-weight:normal;
+}
+
+body {
+	margin: 0px;
+	padding: 0px;
+}
+
+body, th, td {
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #F4F4F4;
+}
+
+form {
+	margin: 0px;
+	padding: 0px;
+}
+
+.input1 {
+}
+
+.align-justify {
+	text-align: justify;
+}
+
+.text1 {
+	color:#729327;
+}
+
+.text2 {
+	color:#E36201;
+}
+
+.text3 {
+	font-size:10px;
+	color:#787878;
+}
+
+.text4 {
+	color:#DAE6F2;
+	text-align: justify;
+}
+.text5 {
+	font-size:10px;
+	color:#FFFFFF;
+}
+.text6 {
+	color:#E36201;
+}
+a {
+	color:#E36201;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+a.link1 {
+	color:#FFFFFF;
+	text-decoration: none;
+
+}
+
+a.link1:hover {
+	text-decoration: underline;
+}
+
+a.link2 {
+	color:#FFFFFF;
+	text-decoration: underline;
+}
+
+a.link2:hover {
+	text-decoration: none;
+}
+/*
+Styles that are applied on the containing element
+like <TD></TD>. When applied, this will change both
+the text and the text links inside them.
+*/
+
+.style1 {
+}
+
+.style1 a {
+}
+
+.style1 a:hover {
+}

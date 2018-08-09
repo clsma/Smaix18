@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAELM">
+        <desc>Inserción tabla de Elementos</desc>
+        <sql>
+           INSERT INTO smaelm(
+            codelm, tipelm, nroelm, nomelm, dspelm, nvlprs, valelm, memelm, 
+            swhelm, ideelm)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, 
+            ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAELM">
+        <desc>Update tabla de Elementos</desc>
+        <sql>
+           UPDATE smaelm
+            SET nomelm=?, dspelm=?, nvlprs=?, valelm=?, 
+            memelm=?, swhelm=?, tipelm=?
+            WHERE codelm=? AND tipelm=? AND nroelm=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAELM">
+        <desc>Delete tabla de Elementos</desc>
+        <sql>
+           DELETE FROM smaelm WHERE codelm=? AND tipelm=? AND nroelm=?
+        </sql>
+    </statement>
+    
+</sentencias>

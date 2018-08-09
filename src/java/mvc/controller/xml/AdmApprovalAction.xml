@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="LIST_SOLICITUDES">
+        <desc>Select tabla de Solicitudes</desc>
+        <sql>
+           select * from table(SMA_PLANNING.applications_approval_list( ?, ?, ?, ?, ?))
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMASCP">
+        <desc>Update tabla de Solicitudes</desc>
+        <sql>
+           UPDATE SMASCP SET stdscp=?
+            WHERE NROSCP=?
+        </sql>
+    </statement>
+    
+    
+    <statement name="UPDATE_SMASCA">
+        <desc>Update tabla de Solicitudes</desc>
+        <sql>
+           UPDATE SMASCA SET APBSCA=?
+            WHERE NROSCA=? and NROSCP=?
+        </sql>
+    </statement>
+    
+
+</sentencias>

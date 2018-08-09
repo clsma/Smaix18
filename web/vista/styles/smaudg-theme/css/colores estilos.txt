@@ -1,0 +1,11 @@
+Menú   - Naranja
+	- color 1 : #ffa200 , RGB ( 255 , 162 ,0 )
+	- color 2 : #ff9900, RGB ( 255 , 153 ,0 )
+
+Botones y tablas azules :
+	- color 1 : #00a2c2  , RGB(0 165 194)  
+
+	
+Barras rojos 
+	- Color 1 : ff3b38, RGB ( 255 , 56 , 56 ) 
+	- Color 2 : ff2b32 , RGB ( 255 , 43 , 47 ) 

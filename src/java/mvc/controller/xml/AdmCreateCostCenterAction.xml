@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMACST">
+        <desc>Inserción tabla de Centro de costos</desc>
+        <sql>
+            insert into smacst(CODCIA,CODCST,CODPRS,CRDCST,DBTCST,DPNCST,EMLCST,GRPCST,NIVCST,NOMCST,NPQCST,NROCST,SQLBKR,STDCST,TIPCST,TPODIV) 
+            values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+        
+    <statement name="DELETE_SMACST">
+        <desc>Delete tabla de Centros de costos</desc>
+        <sql>
+            DELETE FROM SMACST
+            WHERE NROCST=? and CODCIA=?
+        </sql>
+    </statement>
+    
+      <statement name="UPDATE_SMACST">
+        <desc>Actualizacion tabla de Centro de costos</desc>
+        <sql>
+            update smacst set CODPRS=?,CRDCST=?,DBTCST=?,DPNCST=?,EMLCST=?,GRPCST=?,NIVCST=?,NOMCST=?,NPQCST=?,SQLBKR=?,STDCST=?,
+            TIPCST=?,TPODIV=? where CODCIA=? AND NROCST=?
+            
+        </sql>
+    </statement>
+        
+    
+</sentencias>

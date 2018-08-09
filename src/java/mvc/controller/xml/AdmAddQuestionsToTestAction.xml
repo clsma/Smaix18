@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAQXQ">
+        <desc>Inserción tabla de preguntas por cuestionario</desc>
+        <sql>
+           INSERT INTO SMAQXQ( CODCIA, NROQTR, NROQST, TPOGRD, GRDQST, SQLBKR ) 
+           VALUES ( ?, ?, ?, ?, ?, ? )
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAQXQ">
+        <desc>Eliminación tabla de preguntas por cuestionario</desc>
+        <sql>
+           DELETE FROM SMAQXQ WHERE CODCIA = ?
+                                AND NROQTR = ?
+                                AND NROQST = ?
+        </sql>
+    </statement>
+    
+</sentencias>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="200" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="20ed3f6b-ab10-480a-81ee-2caa8e8b8a5e">
+	<property name="ireport.zoom" value="1.5000000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="bold" forecolor="#000504" vAlign="Middle" isBlankWhenNull="false" fontSize="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+	<style name="filed" forecolor="#000504" vAlign="Middle" fontSize="8"/>
+	<style name="value" style="filed" hAlign="Right" pattern="#,##0.00"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA["/home/clsma/JavaApplication1/src/solicituddedisponibilidad/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="recordset" class="java.sql.ResultSet" isForPrompting="false"/>
+	<parameter name="pnrocdx" class="java.lang.String"/>
+	<queryString language="plsql">
+		<![CDATA[{CALL sma_budget_reports_draft.source_cdx($P{pnrocdx},$P{recordset})}]]>
+	</queryString>
+	<field name="CODRBR" class="java.lang.String"/>
+	<field name="NOMRBR" class="java.lang.String"/>
+	<field name="VLRDSF" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="16">
+			<staticText>
+				<reportElement style="bold" x="10" y="0" width="205" height="15" uuid="a5c88415-a89b-46cf-a680-efbc703e3e3d"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FUENTE DE RECURSOS]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="450" height="1" uuid="a897606d-af14-4068-a158-8f094e62ea28"/>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="1" height="16" uuid="678b2653-0c95-4263-a003-c3f7458ff103"/>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="450" y="0" width="1" height="16" uuid="be944c29-dec1-4397-9d97-b4ff2679d42c"/>
+			</line>
+			<line>
+				<reportElement x="0" y="15" width="450" height="1" uuid="96661b93-36b1-45ae-a464-b5ad026371dc"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16">
+			<textField>
+				<reportElement style="filed" x="10" y="0" width="329" height="15" uuid="98827085-ff26-4210-8e2d-ac0313ac2cd1"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CODRBR} + "  "+$F{NOMRBR}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="1" height="16" uuid="3c6df09e-1535-457b-83ff-98369bbfc3ed"/>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="450" y="0" width="1" height="16" uuid="410b978c-01ed-4b15-810f-5f54b9d7d208"/>
+			</line>
+			<textField pattern="#,##0">
+				<reportElement style="filed" x="342" y="1" width="100" height="15" uuid="fefc5636-3bdf-4d04-8aae-2c7e8593e350"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VLRDSF}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="4">
+			<line>
+				<reportElement x="0" y="0" width="450" height="1" uuid="9696a087-879d-4f67-8d44-ff87074972b9"/>
+			</line>
+		</band>
+	</columnFooter>
+</jasperReport>

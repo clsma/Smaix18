@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMARPG">
+        <desc>Inserción tabla de Areas</desc>
+        <sql>
+           INSERT INTO SMARPG (NRORPG, NROSCP, TXTRPG,
+            FCHRPG, VLRRPG, TOTRPG,
+            STDRPG) VALUES (?,?,?,?,?,?,?)
+
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAFPG">
+        <desc>Update tabla de Areas</desc>
+        <sql>
+           INSERT INTO SMAFPG (NROFPG, NRORPG, TPOFPG,
+            FCHFPG, FHVFPG, VLRFPG,
+            STDFPG, KPTFPG, INTFPG,
+            CXPFPG, OBLFPG) VALUES (?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMASVR">
+        <desc>Insert tabla de Svr</desc>
+        <sql>
+           INSERT INTO SMASVR (NROSVR,NROSCK,FCHSVR,BGNSVR,ENDSVR,DTOSVR,IVASVR,
+           SUBSVR,TTLSVR,STDSVR,DIASVR,PGOSVR,FLTSVR,VTOSVR,CNDSVR,OBSSVR,TXTSVR,
+           DOCSVR) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+</sentencias>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAFAC">
+        <desc>Insercion tabla de facultades</desc>
+        <sql>
+            INSERT INTO SMAFAC( IDEFAC, CODCIA, CODFAC, NOMFAC, NPQFAC, FCHFAC, DIRFAC, TELFAC, EXTFAC, CODDKN, CODKRD, CODSCR ) 
+            VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAFAC">
+        <desc>Actualizar registro de la tabla facultades</desc>
+        <sql>
+            UPDATE SMAFAC SET NOMFAC = ?, FCHFAC = ?,  DIRFAC = ?, TELFAC = ?, EXTFAC = ?, CODDKN = ?, CODSCR = ? WHERE IDEFAC = ?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAFAC">
+        <desc>Eliminar registro de la tabla facultades</desc>
+        <sql>
+            DELETE FROM SMAFAC WHERE IDEFAC = ?
+        </sql>
+    </statement>
+    
+</sentencias>

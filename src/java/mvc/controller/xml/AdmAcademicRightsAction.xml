@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="CALENDARACTIVITYSEARCH">
+        <desc>Obtiene listado</desc>
+        <sql>
+            sma_academic.calendaractivitysearch(?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAFEV">
+        <desc>Insercion en la tabla smafev</desc>
+        <sql>
+            INSERT INTO SMAFEV (NROFEV,NOMFEV,SQMFEV,NROUSR,STDFEV,CODCIA,CODDAK)
+                        VALUES (?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAFEP">
+        <desc>Insercion en la tabla smafep</desc>
+        <sql>
+            INSERT INTO SMAFEP (NROFEP,NROFEV,PGMFEP,TPOPGM,MDLPGM,IDEPGM) 
+                        VALUES (?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAFES">
+        <desc>Insercion en la tabla smafes</desc>
+        <sql>
+            INSERT INTO SMAFES (NROFES,NROFEP,SMTFEP,SMTPSM,VLRFES) 
+                        VALUES (?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAFKA">
+        <desc>Insercion en la tabla smafka</desc>
+        <sql>
+            INSERT INTO SMAFKA (NROFKA,NROFEV,NROVLA,PTJFKA) 
+                        VALUES (?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAFXQ">
+        <desc>Insercion en la tabla smafxq</desc>
+        <sql>
+            INSERT INTO SMAFXQ (NROFXQ,NROFEV,NROQNT) 
+                        VALUES (?,?,?)
+        </sql>
+    </statement>
+    
+</sentencias>

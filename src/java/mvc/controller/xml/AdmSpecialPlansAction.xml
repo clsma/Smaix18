@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMARPE">
+        <desc>Inserción tabla RPE</desc>
+        <sql>
+            INSERT INTO SMARPE(NRORPE,CODCIA,CODOFR,PLNRPE,CODRPE,TPORPE,STDRPE,SQLBKR)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+     <statement name="UPDATE_SMAPNB">
+        <desc>Inserción tabla pnb</desc>
+        <sql>
+            UPDATE SMAPNB SET NROQNT=?, PRSBKO=?, EMLBKO=?, FCHPNB=?, FHVPNB=?, STDPNB=?, FILPNB=?,SQLBKR=?
+            WHERE NROPNB=?
+            
+        </sql>
+    </statement>
+ 
+    <statement name="INSERT_SMAEMS">
+        <desc>Inserción tabla EMS</desc>
+        <sql>
+            INSERT INTO SMAEMS( NROEMS,CODCIA,CODDIV,TPOEMS,FCHEMS,FHEEMS,FHVEMS,FRMEMS,TO_EMS,CC_EMS,BCCEMS,MSGEMS,TXTEMS,ATTEMS,CODPRS,TPOPRS,STDEMS,KNDSRV,TPOSRV,CODSRV,SQLBKR)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+       <statement name="INSERT_SMAPNT">
+        <desc>Inserción tabla pnt</desc>
+        <sql>
+            INSERT INTO SMAPNT(NROPNT,NROPNB,TPOPNT ,PINPNT,VLRPNT,NROPQK, NRORBR, BGNPIN,ENDPIN ,SQLBKR)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)
+        </sql>
+    </statement>
+    
+</sentencias>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMARSL">
+        <desc>Inserción tabla de Resolucion</desc>
+        <sql>
+           INSERT INTO SMARSL (NRORSL, CODRSL, NOMRSL,
+            BGNRSL, ENDRSL, NRODIV,
+            TPORSL, DSPRSL, OBSRSL,
+            FCHRSL, STDRSL, SQLBKR) 
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
+
+        </sql>
+    </statement>
+    
+    
+</sentencias>
+

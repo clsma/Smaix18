@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMASCN">
+        <desc>Inserción tabla de Secciones y Sedes</desc>
+        <sql>
+            INSERT INTO SMASCN(CLRSCN, CODCIA,IDECIU,IDESCN,NOMSCN,NPQSCN,STDSCN,TPOSCN) 
+            VALUES ( ?, ?, ?, ?, ?, ?,?,?)
+        </sql>
+    </statement>
+    
+    
+    <statement name="UPDATE_SMASCN">
+        <desc>Update tabla de departamentos</desc>
+        <sql>
+            UPDATE SMASCN SET CLRSCN=?,IDECIU=?,NOMSCN=?,NPQSCN=?,STDSCN=?,TPOSCN=? where IDESCN=? and  CODCIA=?
+        </sql>
+    </statement>
+    <statement name="DELETE_SMASCN">
+        <desc>Delete tabla de departamentos</desc>
+        <sql>
+            DELETE SMASCN  WHERE  IDESCN=? and CODCIA =?  
+        </sql>
+    </statement>
+
+</sentencias>

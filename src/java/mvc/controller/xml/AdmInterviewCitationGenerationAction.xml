@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAKRD">
+        <desc>Inserción tabla de Credencial</desc>
+        <sql>
+           INSERT INTO smakrd(
+            codcia, nrokrd, codofr, jndkrd, pqtkrd, nrocrd, nropin, lgrkrd, 
+            fchkrd, horkrd, nrosde, codedf, nroaul, nomaul, nribas, coddbi, 
+            disbas, stdkrd, nroexo, nroixo, sqlbkr, tpokrd)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, 
+            ?, ?, ?, ?, ?, ?, ?, ?, 
+            ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAKRD">
+        <desc>Update tabla de Credencial</desc>
+        <sql>
+           
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAKRD">
+        <desc>Delete tabla de Credencial</desc>
+        <sql>
+          
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAAEG">
+        <desc>Update tabla de Programacion</desc>
+        <sql>
+          UPDATE smaaeg SET codbas=? 
+            WHERE nroaeg=?
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAPDF">
+        <desc>Inserción tabla de pdf</desc>
+        <sql>
+           INSERT INTO smapdf (NROPDF, CODCIA, CODRPT, NRORPT, CODPDF,
+	                       NOMPDF, BINPDF, FCHPDF, FHVPDF, STDPDF, SQLBKR)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
+        </sql>
+    </statement>
+    
+</sentencias>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMACLM">
+        <desc>Inserción tabla de Areas</desc>
+        <sql>
+           INSERT INTO SMACLM (NROCLM, NOMCLM, TPOCLM,
+            DSPCLM, STDCLM, SQLBKR) 
+            VALUES (?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMACPM">
+        <desc>Inserción tabla de Areas</desc>
+        <sql>
+          INSERT INTO SMACPM (NROCPM, NROCLA, NROCLM,
+            CSCCPM, SQLBKR) 
+            VALUES (?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    
+    <statement name="DELETE_SMACPM">
+        <desc>Inserción tabla de Areas</desc>
+        <sql>
+           DELETE FROM SMACPM WHERE NROCPM=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMACLM">
+        <desc>Inserción tabla de Areas</desc>
+        <sql>
+           DELETE FROM SMACLM WHERE NROCLM=?
+        </sql>
+    </statement>
+    
+    
+    
+</sentencias>

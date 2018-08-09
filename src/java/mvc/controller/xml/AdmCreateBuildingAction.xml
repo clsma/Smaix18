@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAEDF">
+        <desc>Insercion tabla de Edificios</desc>
+        <sql>
+            INSERT INTO SMAEDF (BLKEDF,CODCIA,CODEDF,CSTEDF,DIREDF,EXTEDF,LFTOBJ,NOMEDF,NROSDE,PHTOBJ,PSOEDF,SQLBKR,TELEDF,TOPOBJ,VLREDF) 
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+            
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMASDE">
+        <desc>Actualizar registro de la tabla Edificios</desc>
+        <sql>
+            UPDATE SMAEDF SET  BLKEDF=?,CSTEDF=?,DIREDF=?,EXTEDF=?,LFTOBJ=?,NOMEDF=?,PHTOBJ=?,PSOEDF=?,SQLBKR=?,
+            TELEDF=?,TOPOBJ=?,VLREDF=? WHERE CODCIA=? AND CODEDF=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAEDF">
+        <desc>Eliminar registro de la tabla facultades</desc>
+        <sql>
+            DELETE FROM SMAEDF WHERE CODCIA= ? and CODEDF=? and NROSDE=?
+        </sql>
+    </statement>
+    
+</sentencias>

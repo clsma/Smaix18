@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="comprobante de egreso" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="10" bottomMargin="20" uuid="54eb822b-5485-4400-83f9-1a7e2f2d2d03">
+	<property name="ireport.zoom" value="1.3636363636363635"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="144"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="line" forecolor="#000D04"/>
+	<style name="filed" forecolor="#000504" fontSize="8"/>
+	<style name="tittle" forecolor="#000504" isBlankWhenNull="false" fontSize="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+	<style name="negrilla" fontSize="8" isBold="false" pdfFontName="Helvetica">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style isBold="true" pdfFontName="Helvetica-Bold"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="pcodcia" class="java.lang.String"/>
+	<parameter name="ptxtxml" class="java.lang.String"/>
+	<parameter name="recordset" class="java.sql.ResultSet" isForPrompting="false"/>
+	<parameter name="ptitrpt" class="java.lang.String"/>
+	<parameter name="prutaImagen" class="java.lang.String"/>
+	<queryString language="plsql">
+		<![CDATA[{call sma_test_procedure.payment_voucher_new($P{ptxtxml},$P{recordset})}]]>
+	</queryString>
+	<field name="NROTRN" class="java.lang.String"/>
+	<field name="FCHTRN" class="java.sql.Timestamp"/>
+	<field name="NOMPRS" class="java.lang.String"/>
+	<field name="NRIPRS" class="java.lang.String"/>
+	<field name="DIRPRS" class="java.lang.String"/>
+	<field name="TELPRS" class="java.lang.String"/>
+	<field name="CODCHX" class="java.lang.String"/>
+	<field name="OVLRCHX" class="java.lang.String"/>
+	<field name="OBSCXP" class="java.lang.String"/>
+	<field name="DOCTRN" class="java.lang.String"/>
+	<field name="VLRCHX" class="java.math.BigDecimal"/>
+	<field name="CODCDP" class="java.lang.String"/>
+	<field name="CODRDP" class="java.lang.String"/>
+	<field name="VLRRDP" class="java.math.BigDecimal"/>
+	<field name="CODRBR" class="java.lang.String"/>
+	<field name="NOMRBR" class="java.lang.String"/>
+	<field name="NROMVK" class="java.lang.String"/>
+	<field name="DBTMVK" class="java.math.BigDecimal"/>
+	<field name="CRDMVK" class="java.math.BigDecimal"/>
+	<field name="TPOMVK" class="java.lang.String"/>
+	<field name="NROSCP" class="java.lang.String"/>
+	<field name="VUSUARIO" class="java.lang.String"/>
+	<variable name="TOTAL" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{CRDMVK}]]></variableExpression>
+	</variable>
+	<group name="nombre">
+		<groupExpression><![CDATA[]]></groupExpression>
+		<groupFooter>
+			<band height="137">
+				<staticText>
+					<reportElement x="420" y="0" width="44" height="15" uuid="5bad4c25-e9b1-4830-b5f1-034a7500d244"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[TOTAL]]></text>
+				</staticText>
+				<textField pattern="#,##0.00">
+					<reportElement x="466" y="0" width="89" height="15" uuid="8d49d0f2-99b9-4ddf-a76f-87382a7ac701"/>
+					<box rightPadding="3"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{TOTAL}]]></textFieldExpression>
+				</textField>
+				<subreport>
+					<reportElement x="1" y="15" width="471" height="122" uuid="b9c719c1-b2be-4863-ab46-e38841fd6182"/>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="pcodcia">
+						<subreportParameterExpression><![CDATA[$P{pcodcia}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="ptxtxml">
+						<subreportParameterExpression><![CDATA[$P{ptxtxml}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="recordset">
+						<subreportParameterExpression><![CDATA[$P{recordset}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="ptitrpt">
+						<subreportParameterExpression><![CDATA[$P{ptitrpt}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="prutaImagen">
+						<subreportParameterExpression><![CDATA[$P{prutaImagen}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "sub_sma_report_accounting_voucher.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="121"/>
+	</title>
+	<pageHeader>
+		<band height="155">
+			<rectangle radius="3">
+				<reportElement x="1" y="0" width="555" height="155" uuid="8d3d1f51-7a69-4c88-a6e9-1b6c06ce89e6"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="1" y="0" width="555" height="15" uuid="52bed402-76c4-4e27-8b8a-6fb65d19b292"/>
+				<box leftPadding="2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true" isStrikeThrough="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[1. DATOS DEL BENEFICIARIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="31" width="48" height="15" uuid="4f129017-8d24-4a84-9deb-eb165bc672c7"/>
+				<box leftPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="true" isStrikeThrough="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[CC o NIT:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="196" y="137" width="25" height="15" uuid="d646a5c0-18ee-4925-af48-768e79217360"/>
+				<box leftPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="true" isStrikeThrough="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Valor:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="82" width="33" height="15" uuid="59663f28-908a-43b1-a354-dbf7372545e4"/>
+				<box leftPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="true" isStrikeThrough="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Detalle:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="63" width="555" height="1" uuid="3ad88fc8-3cdf-49dc-acd8-bbcd5f97d7cf"/>
+			</line>
+			<staticText>
+				<reportElement x="4" y="67" width="48" height="15" uuid="42c6d3e1-2571-454d-b3ca-d15cdd7d6dc4"/>
+				<box leftPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="true" isStrikeThrough="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Concepto:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="137" width="67" height="15" uuid="c86352d7-e213-479f-b75d-0defd8897f5d"/>
+				<box leftPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="true" isStrikeThrough="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[No. documento:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="16" width="47" height="15" uuid="fdf1fbae-2bd1-4026-9ac3-09baa4e6e463"/>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" isStrikeThrough="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="46" width="48" height="15" uuid="9f149e56-182d-4195-9fa5-9f328b93afd6"/>
+				<box leftPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="true" isStrikeThrough="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Dirección:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="148" y="31" width="48" height="15" uuid="8b19d01e-0ed7-4a0a-9611-9ab3844ffad7"/>
+				<box leftPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="true" isStrikeThrough="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Teléfonos:]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="filed" x="52" y="49" width="152" height="13" uuid="598cf428-4084-4164-8a7b-f2894ab8528a"/>
+				<textFieldExpression><![CDATA[$F{DIRPRS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="filed" x="51" y="18" width="295" height="15" uuid="a219f665-4cef-4ee4-8cc1-e41f522c7a8e"/>
+				<textFieldExpression><![CDATA[$F{NOMPRS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="filed" x="52" y="33" width="96" height="15" uuid="9b7e9e4b-9719-4d4b-85e0-ab20cb4467b0"/>
+				<textFieldExpression><![CDATA[$F{NRIPRS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="filed" x="196" y="33" width="100" height="13" uuid="ee01a0c1-25b9-4ea3-b84e-1c13a27faa5c"/>
+				<textFieldExpression><![CDATA[$F{TELPRS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="filed" x="76" y="140" width="115" height="15" uuid="8de6d91a-0bbd-4eec-8137-0f61103ad4d4"/>
+				<textFieldExpression><![CDATA[$F{NROTRN}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement style="filed" x="223" y="140" width="243" height="15" uuid="0f4d7d25-b21b-4cd2-a200-d7feb1ee2372"/>
+				<textFieldExpression><![CDATA[$F{VLRCHX}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="filed" x="52" y="69" width="490" height="15" uuid="3d16b8ed-472f-48de-904b-f19d6497e4ae"/>
+				<textFieldExpression><![CDATA[$F{OBSCXP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="filed" x="52" y="84" width="490" height="15" uuid="8da3e7cc-c96e-4e41-b1b4-beb24665168e"/>
+				<textFieldExpression><![CDATA[$F{OBSCXP}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="54">
+			<rectangle>
+				<reportElement x="1" y="15" width="554" height="14" forecolor="#CCCCCC" backcolor="#FFFFFF" uuid="f0cf2cc0-3375-45f0-9fa3-529b842754d5"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="29" width="88" height="25" forecolor="#CCCCCC" backcolor="#FFFFFF" uuid="439aa90b-1c27-4da9-bd06-d11666dba419"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="89" y="29" width="88" height="25" forecolor="#CCCCCC" backcolor="#FFFFFF" uuid="3e9dc22a-d6dd-4039-871a-71d1feaeb4c0"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="177" y="29" width="88" height="25" forecolor="#CCCCCC" backcolor="#FFFFFF" uuid="7bae3169-bb29-4ce3-8310-53f6e7f71352"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="265" y="29" width="201" height="25" forecolor="#CCCCCC" backcolor="#FFFFFF" uuid="cf16e719-84bb-4199-b589-40a09ad44e72"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="466" y="29" width="89" height="25" forecolor="#CCCCCC" backcolor="#FFFFFF" uuid="25fe888b-900a-4043-92a9-59677485abd6"/>
+			</rectangle>
+			<staticText>
+				<reportElement style="filed" x="176" y="29" width="89" height="25" uuid="86ae4738-0efd-4814-8f0f-b0bcee9c5ce7"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[CODIGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="filed" x="265" y="29" width="201" height="25" uuid="4e43c061-0ed4-45e5-b49f-c928d28cf76d"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[NOMBRE DE LA CUENTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="filed" x="466" y="29" width="89" height="25" uuid="eca7e5c1-5047-4e24-a0b7-3aa46dffbae2"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[VALOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="15" width="554" height="14" uuid="d2b16853-aa8a-4c23-8a8d-b7067843ff4a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[IMPUTACION PRESUPUESTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="filed" x="-1" y="29" width="90" height="25" uuid="d6042350-1ac6-449f-b688-fa7600d78697"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Certificado de disponibilidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="filed" x="97" y="29" width="73" height="25" uuid="45352bb3-bab0-4993-b2b6-5a85b5dc30ad"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Registro presupuestal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="0" width="555" height="15" uuid="50425435-e5dc-4f71-beb8-03b745bcae00"/>
+				<box leftPadding="2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true" isStrikeThrough="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[2. MOVIMIENTO PRESUPUESTAL]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<rectangle>
+				<reportElement x="1" y="0" width="88" height="14" forecolor="#CCCCCC" backcolor="#FFFFFF" uuid="541fda74-0b1d-4a8d-8a8d-0c6e27b1ffcc"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="89" y="0" width="88" height="14" forecolor="#CCCCCC" backcolor="#FFFFFF" uuid="1bb9ca60-99cf-4bcb-8a55-d23ec6ce410e"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="177" y="0" width="88" height="14" forecolor="#CCCCCC" backcolor="#FFFFFF" uuid="a087e67e-aa22-4c6d-9831-dcc6d5862011"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="265" y="0" width="201" height="14" forecolor="#CCCCCC" backcolor="#FFFFFF" uuid="98352fc3-e3c8-449e-8a28-df637c1f8c3a"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="466" y="0" width="89" height="14" forecolor="#CCCCCC" backcolor="#FFFFFF" uuid="66c57ee2-a277-409b-886d-81a92545bd45"/>
+			</rectangle>
+			<textField>
+				<reportElement style="filed" mode="Transparent" x="4" y="0" width="85" height="14" uuid="33c3aff4-05ba-403a-b656-bdc0fdb3527a"/>
+				<box rightPadding="3"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CODCDP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="filed" mode="Transparent" x="89" y="0" width="88" height="14" uuid="471a3b08-40a7-4a8a-85a9-3f21016db170"/>
+				<box rightPadding="3"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CODRDP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="filed" mode="Transparent" x="177" y="0" width="88" height="14" uuid="ed5b0084-570c-426e-9d81-2b7c35f57667"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CODRBR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="filed" stretchType="RelativeToBandHeight" mode="Transparent" x="265" y="0" width="201" height="14" uuid="200bf000-704f-4596-bde1-697b8c8f04bb"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{NOMRBR}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement style="filed" x="466" y="0" width="89" height="14" uuid="96bb3402-51e9-45c8-b7d0-3cbd49bcae4b"/>
+				<box rightPadding="3"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CRDMVK}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="56">
+			<rectangle>
+				<reportElement x="1" y="0" width="186" height="56" forecolor="#CCCCCC" backcolor="#FFFFFF" uuid="e8f57496-cbcc-4444-a07b-349dff927b27"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="187" y="0" width="186" height="56" forecolor="#CCCCCC" backcolor="#FFFFFF" uuid="b0c2b298-99ff-4880-b679-bf562366dc7b"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="369" y="0" width="185" height="56" forecolor="#CCCCCC" backcolor="#FFFFFF" uuid="3281669b-e05c-4392-b024-8b5c7b087034"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="4" y="0" width="172" height="15" uuid="42cfa193-35b4-4303-bd97-13cbe5bedfa9"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[COORDINADOR GRUPO CONTABLE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="191" y="0" width="165" height="15" uuid="89c3a321-21b2-4089-b054-3fb303e60b5c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Coodinador Grupo de Tesoreria]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="372" y="0" width="170" height="15" uuid="64baaeb8-7810-43e7-a143-44c3f8c73f14"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Firma y sello Beneficiario]]></text>
+			</staticText>
+			<line>
+				<reportElement x="4" y="43" width="172" height="1" forecolor="#CCCCCC" uuid="a34f326f-b171-4f34-b5df-5c84d8f32e29"/>
+			</line>
+			<line>
+				<reportElement x="372" y="42" width="172" height="1" forecolor="#CCCCCC" uuid="aa0896ec-ae96-47b2-ad64-65e56e67ff98"/>
+			</line>
+			<line>
+				<reportElement x="191" y="42" width="165" height="1" forecolor="#CCCCCC" uuid="7332f115-968c-46fa-9c81-f2f7b8c450bb"/>
+			</line>
+			<staticText>
+				<reportElement x="373" y="43" width="45" height="13" uuid="a92a99d3-d9e2-4d1f-9310-b8b57219418c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[c.c ó Nit]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+</jasperReport>

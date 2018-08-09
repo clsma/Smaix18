@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAKRG">
+        <desc>Inserción tabla de KRG</desc>
+        <sql>
+           INSERT INTO SMAKRG (NROKRG, NOMKRG, STDKRG, 
+            TELKRG, NROCIU, DIRKRG, 
+            NVLKRG, SKLKRG, GRDKRG, 
+            BASKRG, VLHKRG, SQLBKR, CODCIA) 
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAKRG">
+        <desc>Update tabla de KRG</desc>
+        <sql>
+           UPDATE SMAKRG SET  NOMKRG=?, STDKRG=?, 
+            TELKRG=?, NROCIU=?, DIRKRG=?, 
+            NVLKRG=?, SKLKRG=?, GRDKRG=?, 
+            BASKRG=?, VLHKRG=?, SQLBKR=?
+            WHERE NROKRG=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAKRG">
+        <desc>Delete tabla de KRG</desc>
+        <sql>
+           DELETE FROM SMAKRG
+            WHERE NROKRG=?
+        </sql>
+    </statement>
+    
+</sentencias>

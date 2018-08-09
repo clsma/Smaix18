@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="CALENDARACTIVITYSEARCH">
+        <desc>Obtiene datos de calendario</desc>
+        <sql>
+            SMA_ACADEMIC.calendaractivitysearch(?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+</sentencias>

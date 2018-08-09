@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMASPR">
+        <desc>Inserción tabla de Proveedores</desc>
+        <sql>
+            INSERT INTO SMASPR (AUTSPR,BKOSPR,CBTSPR,CITSPR,CLDSPR,CMNSPR,NROPQK,CODSPR,CONSPR,CRSSPR,CRTSPR,CTASPR,CTDSPR
+            ,CVGSPR,DIRSPR,EMLSPR,FAXSPR,FCHSPR,FRMSPR,GRNSPR,GRTSPR,GTASPR,ICASPR,IDECIU,IVASPR,KTGSPR,MVLSPR,NOMSPR,NROSPR
+            ,PAISPR,PCCSPR,PCTSPR,PRDSPR,PTSSPR,RPSSPR,RTASPR,RTFSPR,SMPSPR,SOCSPR,SRVSPR,STDSPR,STMSPR,TELSPR,TFCSPR,TIKSPR,
+            TPCSPR,TPOSPR,VGCSPR,VNCSPR,VTASPR,WEBSPR) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,
+            ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+   
+    
+    <statement name="UPDATE_SMASPR">
+        <desc>Update tabla de Proveedors</desc>
+        <sql>
+            UPDATE SMASPR SET AUTSPR=?,BKOSPR=?,CBTSPR=?,CITSPR=?,CLDSPR=?,CMNSPR=?,NROPQK=?,CODSPR=?,CONSPR=?,CRSSPR=?,
+    CRTSPR=?,CTASPR=?,CTDSPR=?,CVGSPR=?,DIRSPR=?,EMLSPR=?,FAXSPR=?,FCHSPR=?,FRMSPR=?,GRNSPR=?,GRTSPR=?,GTASPR=?,
+    ICASPR=?,IDECIU=?,IVASPR=?,KTGSPR=?,MVLSPR=?,NOMSPR=?,PAISPR=?,PCCSPR=?,PCTSPR=?,PRDSPR=?,PTSSPR=?,RPSSPR=?,
+    RTASPR=?,RTFSPR=?,SMPSPR=?,SOCSPR=?,SRVSPR=?,STDSPR=?,STMSPR=?,TELSPR=?,TFCSPR=?,TIKSPR=?,TPCSPR=?,TPOSPR=?,
+    VGCSPR=?,VNCSPR=?,VTASPR=?,WEBSPR=? where nrospr=?
+        </sql>
+    </statement>
+    <statement name="DELETE_SMADKS">
+        <desc>Delete tabla de departamentos</desc>
+        <sql>
+            DELETE SMADKS  WHERE  IDEDKS=? and codcia =?  
+        </sql>
+    </statement>
+    <statement name="INSERT_SMADOC">
+        <desc>Delete tabla de departamentos</desc>
+        <sql>
+          insert into smadoc (CODCIA,NRODOC,TPOPRS,NROPRS,FHEDOC,FHVDOC,NRODRQ,STDDOC)
+            values (?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+
+</sentencias>

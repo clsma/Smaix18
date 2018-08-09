@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<!-- Descriptor de Biblioteca de Etiquetas -->
+<taglib>
+   <tlibversion>1.0</tlibversion>
+   <jspversion>1.1</jspversion>
+
+  <tag>
+    <name>listGeneric</name>
+    <tagclass>tablib.jdbc.listGeneric</tagclass>
+    <bodycontent>JSP</bodycontent>
+
+	<attribute>
+		<name>objeto</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+	<attribute>
+		<name>sql</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+	<attribute>
+		<name>orden</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+	<attribute>
+		<name>filtro</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+  </tag>         
+     
+</taglib>
+

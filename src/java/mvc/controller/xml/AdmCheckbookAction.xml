@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMACHK">
+        <desc>Inserción tabla de Chequera</desc>
+        <sql>
+            INSERT INTO SMACHK (NROCHK, NROQNT, FCHCHK,
+            BGNCHK, ENDCHK, ULTCHK,
+            STDCHK, SQLBKR) 
+            VALUES (?,?,?,?,?,?,?,?)
+
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMACHK">
+        <desc>Update tabla de Chequera</desc>
+        <sql>
+            UPDATE SMACHK SET  NROQNT=?, FCHCHK=?,
+            BGNCHK=?, ENDCHK=?, ULTCHK=?,
+            STDCHK=?, SQLBKR=?
+            WHERE NROCHK=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMACHK">
+        <desc>Delete tabla de Chequera</desc>
+        <sql>
+           DELETE FROM SMACHK
+            WHERE NROCHK=?
+        </sql>
+    </statement>
+    
+</sentencias>
+

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAMAT">
+        <desc>Inserción tabla de Asignaturas</desc>
+        <sql>
+            INSERT INTO SMAMAT(CODMAT,NOMMAT,NPQMAT,NROARE,CRDMAT,PJAMAT,PJBMAT,PJCMAT,
+            PJDMAT,TEOMAT,PRAMAT,INVMAT,TIPAUL,TPOMAT,KLCMAT,NTSMAT,HABMAT,LBLMAT,KNPMAT,INTMAT,
+            SMNMAT,RTCMAT,VTRMAT,CLRMAT,NGRMAT,CODMDL,NROMAT,IDEDKS) 
+            VALUES (  ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?,?, ?, ?,?,?)
+        </sql>
+    </statement>
+    
+    
+    <statement name="UPDATE_SMAMAT">
+        <desc>Update tabla de Asignaturas</desc>
+        <sql>
+            UPDATE SMAMAT SET NOMMAT = ?, NPQMAT = ?, NROARE = ?, CRDMAT = ?, PJAMAT = ?, 
+            PJBMAT =?, PJCMAT = ?, PJDMAT = ? , TEOMAT = ?, PRAMAT = ?, INVMAT = ?, 
+            TIPAUL = ?, TPOMAT = ?, KLCMAT = ?, NTSMAT = ?, HABMAT = ?, LBLMAT = ?, KNPMAT = ?, 
+            INTMAT = ?,SMNMAT =?, RTCMAT = ?, VTRMAT = ?, CLRMAT = ?, NGRMAT = ?, CODMDL =?,IDEDKS=? 
+            WHERE  trim(CODMAT) =? and trim(nromat)=?
+        </sql>
+    </statement>
+    <statement name="DELETE_SMAMAT">
+        <desc>Delete tabla de ciudades</desc>
+        <sql>
+            delete from smamat where nromat=?
+        </sql>
+    </statement>
+
+    <statement name="GETREC">
+        <desc>GETREC</desc>
+        <sql>
+            SELECT *, CASE WHEN NROELM 
+            IN (SELECT CODRXM 
+            FROM SMARXM 
+            WHERE CODMAT =?   AND CODCIA=? AND TPORXM='REC' AND STDRXM='ACTIVO ..' 
+            THEN 'CHECKED' ELSE ' ' END AS CHKREC
+            FROM SMAELM
+            WHERE CODELM ='MAT' 
+            AND TIPELM='RQRS'
+        </sql>
+    </statement>
+    <statement name="INSERTRXM">
+        <desc>Guarda Nombre Asignatura</desc>
+        <sql>
+            INSERT INTO SMARXM (NRORXM,NROMAT,CODRXM,TPORXM,STDRXM)
+            values (?,?,?,?,?)
+        </sql>
+    </statement>
+
+    <statement name="DELETETRXM">
+        <desc>Elimina Nombre Asignatura</desc>
+        <sql>
+            delete from smarxm where  nromat=? and tporxm=?
+        </sql>
+    </statement>
+</sentencias>

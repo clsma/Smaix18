@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN" 
+ "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+
+<taglib>
+    <tlibversion>1.0</tlibversion>
+    <jspversion>1.1</jspversion>
+    <shortname>nav</shortname>
+    <uri>/tags/alphanavbar</uri>
+    <info>
+     The Alphabetical Navigation Bar Java Display Tag Library creates an alphabetic navigation bar, 
+     by slicing and dicing string data stored in a java.util.List object into 36 alphabetically sub list.
+    </info>
+
+    <tag>
+    
+        <name>alphanavbar</name>
+        <tagclass>org.alphadisplaytag.tags.AlphabeticTableTag</tagclass>
+        <bodycontent>JSP</bodycontent>
+        <info>Display a Alphabetical Navitagion Bar</info>        
+
+        <attribute>
+            <!-- Reference to the object used as source for the table. Can be an expression like
+                 requestScope.object.property. Required. -->
+            <name>name</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <!-- A Key Column from the object strored in the java.util.List object used to create alphebatical lists -->
+            <name>keycolumn</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+	        <!-- Needed by Struts or Tile to pass the URI for creating the alphabetic key links. -->
+	        <name>requestURI</name>
+	        <required>false</required>
+	        <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <!--An implicit variable of this name will be created and placed into 
+                NESTED scope. The object is also added to pageContext under this name.-->
+            <name>id</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        
+    </tag>
+    
+</taglib>

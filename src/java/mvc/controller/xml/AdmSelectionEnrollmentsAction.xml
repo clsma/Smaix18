@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="CALENDARACTIVITYSEARCH">
+        <desc>Obtiene datos de calendario</desc>
+        <sql>
+            SMA_ACADEMIC.calendaractivitysearch(?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAACT">
+        <desc>Inserción en tabla de actas</desc>
+        <sql>
+            INSERT INTO SMAACT ( CODCIA, CODACT, NROACT, CODPRS,
+                                TPOACT, DOCACT, FCHACT, TXTACT,
+                                STDACT, ORGACT, SQLBKR )
+                       VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  )
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMASLC">
+        <desc>Inserción en tabla de proceso de selección</desc>
+        <sql>
+            INSERT INTO SMASLC (NROSLC, CODCIA, NROACT, CODOFR, CODSLC, TPOSLC, IDESLC, FCHSLC, AGNPRS, 
+                                PRDPRS, ASGSLC, SRTSLC, STDSLC, CODPRS, FHAEVN, PJAEVN, SWAEVN, FHBEVN, 
+                                PJBEVN, SWBEVN, FHCEVN, PJCEVN, SWCEVN, FHDEVN, PJDEVN, SWDEVN, SQLBKR, FCTSLC )
+                       VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, 
+                                ?, ?, ?, ?, ?, ?, ?, ?, ?,
+                                ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMASLS">
+        <desc>Inserción en tabla de seleccionados</desc>
+        <sql>
+            INSERT INTO SMASLS (NROSLS, NROSLC, CODDBI, CODBAS, CODCRS, STDSLS, IDEQKS, PTJSLS, PSTSLS)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAACT">
+        <desc>Actualización en tabla de actas</desc>
+        <sql>
+            UPDATE SMAACT SET STDACT = ?
+                        WHERE NROACT = ?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMASLS">
+        <desc>Eliinacion de una Seleccionado</desc>
+        <sql>
+            DELETE FROM SMASLS
+                        WHERE NROSLS = ?
+        </sql>
+    </statement>
+    
+</sentencias>

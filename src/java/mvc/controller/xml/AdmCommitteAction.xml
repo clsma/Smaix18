@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMACTE">
+        <desc>Inserción tabla Comite</desc>
+        <sql>
+            INSERT INTO SMACTE(CODCIA,NROCTE,TPOCTE,NOMCTE,FNCCTE,FCHCTE,STDCTE)
+                        VALUES (?, ?, ?, ?, ?, ?, ?)
+
+        </sql>
+    </statement>
+    
+    
+    
+</sentencias>

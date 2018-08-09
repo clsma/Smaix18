@@ -1,0 +1,90 @@
+ul {
+    clear: both;
+    font-family: Helvetica, Arial, sans-serif;
+    list-style-type: none;
+    position: relative;
+    margin: 2em;
+    padding: 1em;
+}
+
+ul li {
+    position: relative;
+    z-index: 200;
+    padding: 0 0.5em;
+    line-height: 1.5;
+    float: left;
+}
+
+ul.links {
+    font-family: Georgia, serif;
+}
+
+ul.links div.ahover {
+    background: #ffb url('up.png') no-repeat center bottom;
+    padding-bottom: 10px;
+}
+
+ul.comics li:hover {
+    color: #134;
+}
+
+div.ahover {
+    position: absolute;
+}
+
+ul.comics div.ahover {
+    background: #adf;
+    border: 2px solid #cef;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+}
+
+ul.comics li {
+    clear: left;
+    color: #222;
+}
+
+ul.comics {
+    font-size: 1.1em;
+}
+
+ul.cards li {
+    color: #eee;
+    background: #222;
+    text-align: center;
+    margin: 3px;
+    height: 5em;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border: 3px solid #111;
+}
+
+ul.cards li:hover {
+    color: #f43;
+}
+
+ul.cards div.ahover {
+    background: #f43;
+    padding: 3px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border: 1px solid #555;
+}
+
+ul.letters {
+    font-size: 2em;
+    font-weight: bold;
+    width: 10em;
+}
+
+ul.letters li {
+    color: #abb;
+}
+
+ul.letters li:hover {
+    color: #fff;
+}
+
+ul.letters div.ahover {
+    background: #344;
+}

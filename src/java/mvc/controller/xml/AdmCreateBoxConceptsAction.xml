@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAKNP">
+        <desc>Inserción tabla de Conceptos</desc>
+        <sql>
+           INSERT INTO smaknp(
+            codcia, grpknp, nomknp, npqknp, 
+            vlrknp, tpoknp, exepgs, klcknp, codpqk, codknp, 
+            codtrc, delknp, codevn, cxcpqk, 
+            sqlbkr, ideknp)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, 
+            ?, ?, ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAKNP">
+        <desc>Update tabla de Conceptos</desc>
+        <sql>
+          UPDATE smaknp
+                SET codcia=?, grpknp=?, nomknp=?, npqknp=?, 
+                    vlrknp=?, tpoknp=?, exepgs=?, klcknp=?, codpqk=?, 
+                    codtrc=?, delknp=?, codevn=?, cxcpqk=?, 
+                    sqlbkr=? , codknp=?
+                WHERE ideknp=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAKNP">
+        <desc>Delete tabla de Conceptos</desc>
+        <sql>
+           DELETE FROM smaknp WHERE codknp=?
+        </sql>
+    </statement>
+    
+</sentencias>

@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+	<title>{#jbimages_dlg.title}</title>
+	<script type="text/javascript" src="../../tiny_mce_popup.js"></script>
+	<script type="text/javascript" src="js/dialog.js"></script>
+	<!--<script type="text/javascript" src="../../../../../jquery-ui-1.8.7.custom/js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src=".../../../../../jquery.json-2.4.js"></script>-->
+
+	<link href="css/dialog.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <!-- servlet/Adm/OffersAcademic?state=Adjunto  UploadImage-->
+<!--	<form class="form-inline" id="upl" name="upl" action="ci/index.php/upload/{#jbimages_dlg.lang_id}" method="post" enctype="multipart/form-data" target="upload_target" onsubmit="jbImagesDialog.inProgress();">
+		-->
+		<form class="form-inline" id="upl" name="upl" action="/servlet/Adm/UploadImage?cas=ss" method="post" enctype="multipart/form-data" target="upload_target" onsubmit="jbImagesDialog.inProgress();">
+		
+		<h2>{#jbimages_dlg.select_an_image}</h2>
+		
+		<div id="upload_in_progress" class="upload_infobar"><img src="img/spinner.gif" width="16" height="16" class="spinner">{#jbimages_dlg.upload_in_progress}&hellip; <div id="upload_additional_info"></div></div>
+		<div id="upload_infobar" class="upload_infobar"></div>	
+		<input type='hidden' id='url_img' name='url'>
+		<p id="upload_form_container" style='text-align:center'>
+			<input id="uploader" name="userfile" accept="image/*" type="file" class="jbFileBox" onChange="enviar_imagen()" size="25">
+			
+		</p>
+		<button type="button" class="btn">{#jbimages_dlg.upload}</button>
+		<script>
+		function enviar_imagen(){ 
+	
+			var m=window.location.href;
+			var href=m.split('/vista/')[0];
+			var cod=Math.floor((Math.random()*10000000)+1);
+			document.getElementById('url_img').value=window.location.host;
+			
+			
+				document.upl.action=href+'/servlet/Adm/UploadImage?cod='+cod;
+				document.upl.submit();
+				jbImagesDialog.inProgress();
+				}
+		</script>
+		<div id="close_link"><a href="#" onclick="tinyMCEPopup.close(); return false;">Close [&times;]</a></div>
+	
+	</form>
+
+	<iframe id="upload_target" name="upload_target" src="/servlet/Adm/UploadImage/blank"></iframe>
+
+</body>
+</html>

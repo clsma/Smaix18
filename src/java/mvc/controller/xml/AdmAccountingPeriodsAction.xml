@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAPQA">
+        <desc>Inserción tabla de periodos contables</desc>
+        <sql>
+            INSERT INTO SMAPQA(AGNPQA,CODCIA,CRRPQA,FCHPQA,FHCPQA,NOMPQA,NROPQA,SQLBKR,STDPQA,TPOPQA)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAPQP">
+        <desc>Actualizar registro de la tabla periodos contables</desc>
+        <sql>
+         UPDATE smapqp set stdpqp = ?, sqlbkr = ?
+            where nropqp = ?
+        </sql>
+    </statement>
+    <statement name="UPDATE_SMAPQPFCH">
+        <desc>Actualizar registro de la tabla periodos contables</desc>
+        <sql>
+         UPDATE smapqp set stdpqp = ?, fchpqp=?,sqlbkr = ?
+            where nropqp = ?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAPQA">
+        <desc>Eliminar registro de la tabla periodos contables</desc>
+        <sql>
+            DELETE FROM SMAPQA WHERE CODCIA = ? and NROPQA=?
+        </sql>
+    </statement>
+    
+     <statement name="UPDATE_SMAPQA">
+        <desc>Actualizar registro de la tabla periodos contables</desc>
+        <sql>
+            UPDATE SMAPQA SET CRRPQA=?,FCHPQA=?,FHCPQA=?,NOMPQA=?,SQLBKR=?,STDPQA=?,TPOPQA=? where codcia=? and NROPQA=?
+        </sql>
+    </statement>
+    
+    
+     <statement name="UPDATE_SMAPQASTD">
+        <desc>Actualizar tabla periodos contables Estado</desc>
+        <sql>
+            UPDATE SMAPQA SET STDPQA=? where codcia=? and NROPQA=?
+        </sql>
+    </statement>
+    
+    
+     <statement name="UPDATE_SMAPQPSEC">
+        <desc>Actualizar registro de la tabla periodos contables</desc>
+        <sql>
+            update smapqp set stdpqp = ? where nropqa = ? and mespqp =?
+        </sql>
+    </statement>
+    
+</sentencias>

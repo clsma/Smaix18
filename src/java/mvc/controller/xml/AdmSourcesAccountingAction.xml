@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMACMP">
+        <desc>Inserción tabla de Areas</desc>
+        <sql>
+           INSERT INTO smacmp(
+            codcia, codcmp, nomcmp, npqcmp, nrocmp, tpocmp, valcmp, fhacmp, 
+            nrofte, klcfte, obscmp)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, 
+            ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMACMP">
+        <desc>Update tabla de Areas</desc>
+        <sql>
+           UPDATE smacmp
+            SET codcia=?, codcmp=?, nomcmp=?, npqcmp=?,  tpocmp=?, valcmp=?, 
+            fhacmp=?, nrofte=?, klcfte=?, obscmp=?
+            WHERE nrocmp=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMACMP">
+        <desc>Delete tabla de Areas</desc>
+        <sql>
+           DELETE FROM SMACMP
+            WHERE NROCMP=?
+        </sql>
+    </statement>
+    
+</sentencias>

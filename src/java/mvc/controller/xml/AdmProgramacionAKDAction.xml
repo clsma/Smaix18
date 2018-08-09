@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="CALENDARACTIVITYSEARCH">
+        <desc>Obtiene datos de calendario</desc>
+        <sql>
+            SMA_ACADEMIC.calendaractivitysearch(?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAPGR">
+        <desc>Update tabla de horario</desc>
+        <sql>
+            UPDATE SMAPGR SET CODAUL = ? 
+             WHERE NROPAK = ? 
+               AND DAYPGR = ? 
+               AND HORPGR = ?
+               AND TO_DATE( TO_CHAR( FCHPGR,'yyyy-Mon-dd' ), 'yyyy-Mon-dd') 
+                   BETWEEN TO_DATE( ? ,'yyyy-Mon-dd' ) - 1
+                       AND TO_DATE( ? ,'yyyy-Mon-dd' ) + 1
+        </sql>
+    </statement>
+    
+</sentencias>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMARQT">
+        <desc>Inserción tabla de Respuesta de Custionarios</desc>
+        <sql>
+           INSERT INTO smarqt(
+            nrorqt, nroqst, tpoqst, nroans, nroscv, nrotry, shwcta, nroqkt, ntarqt, codrqt, txtans)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAQKT">
+        <desc>Inserción tabla de Respuesta de Custionarios</desc>
+        <sql>
+           INSERT INTO smaqkt(
+            nroqkt, nroprs, codqkt, tpoqkt, fchqkt, horqkt, sqlbkr, nroqtr
+            )
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMANQT">
+        <desc>Inserción tabla de Respuesta de Custionarios</desc>
+        <sql>
+           INSERT INTO smanqt(
+            nronqt,codcia, nroqtr, tpoprs, codprs, ntanqt, fchnqt, nrotry, sqlbkr)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    
+    
+</sentencias>

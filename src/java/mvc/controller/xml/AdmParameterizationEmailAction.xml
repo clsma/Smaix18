@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="UPDATE_SMATXT">
+        <desc>Actualizar mensajes de Correos</desc>
+        <sql>
+           UPDATE SMATXT SET MSGTXT = ?, MEMTXT = ?, SQLBKR = ? WHERE NROTXT = ?
+        </sql>
+    </statement>
+        
+</sentencias>

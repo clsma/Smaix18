@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6f8a2100-2a4d-467f-ba99-088fd99bc1d8">
+	<property name="ireport.zoom" value="1.6105100000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="pcodcia" class="java.lang.String"/>
+	<parameter name="ptitrpt" class="java.lang.String"/>
+	<parameter name="ptxtxml" class="java.lang.String"/>
+	<parameter name="recordset" class="java.sql.ResultSet" isForPrompting="false"/>
+	<parameter name="prutaImagen" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String"/>
+	<queryString language="plsql">
+		<![CDATA[{call SMA_ACCOUNTING_REPORTS.accounts_payable_xml($P{ptxtxml},$P{recordset})}]]>
+	</queryString>
+	<field name="MES" class="java.lang.String"/>
+	<field name="GRUPO" class="java.lang.String"/>
+	<field name="DOCCXP" class="java.lang.String"/>
+	<field name="VLRINI" class="java.lang.Double"/>
+	<field name="VLRRXC" class="java.lang.Double"/>
+	<field name="VLRCXP" class="java.lang.Double"/>
+	<field name="VLRPOP" class="java.lang.Double"/>
+	<field name="VLRDVL" class="java.lang.Double"/>
+	<field name="VLRSLD" class="java.lang.Double"/>
+	<field name="NOMTRC" class="java.lang.String"/>
+	<variable name="TOTINI" class="java.lang.Double" resetType="Group" resetGroup="codcia" calculation="Sum">
+		<variableExpression><![CDATA[$F{VLRINI}]]></variableExpression>
+	</variable>
+	<variable name="TOTRXC" class="java.lang.Double" resetType="Group" resetGroup="codcia">
+		<variableExpression><![CDATA[$F{VLRRXC}]]></variableExpression>
+	</variable>
+	<variable name="TOTCXP" class="java.lang.Double" resetType="Group" resetGroup="codcia">
+		<variableExpression><![CDATA[$F{VLRCXP}]]></variableExpression>
+	</variable>
+	<variable name="TOTPOP" class="java.lang.Double" resetType="Group" resetGroup="codcia">
+		<variableExpression><![CDATA[$F{VLRPOP}]]></variableExpression>
+	</variable>
+	<variable name="TOTDVL" class="java.lang.Double" resetType="Group" resetGroup="codcia">
+		<variableExpression><![CDATA[$F{VLRDVL}]]></variableExpression>
+	</variable>
+	<variable name="TOTSLD" class="java.lang.Double" resetType="Group" resetGroup="codcia">
+		<variableExpression><![CDATA[$F{VLRSLD}]]></variableExpression>
+	</variable>
+	<variable name="SUBINI" class="java.lang.Double" resetType="Group" resetGroup="mes" calculation="Sum">
+		<variableExpression><![CDATA[$F{VLRINI}]]></variableExpression>
+	</variable>
+	<variable name="SUBRXC" class="java.lang.Double" resetType="Group" resetGroup="mes" calculation="Sum">
+		<variableExpression><![CDATA[$F{VLRRXC}]]></variableExpression>
+	</variable>
+	<variable name="SUBPOP" class="java.lang.Double" resetType="Group" resetGroup="mes" calculation="Sum">
+		<variableExpression><![CDATA[$F{VLRPOP}]]></variableExpression>
+	</variable>
+	<variable name="SUBCXP" class="java.lang.Double" resetType="Group" resetGroup="mes" calculation="Sum">
+		<variableExpression><![CDATA[$F{VLRCXP}]]></variableExpression>
+	</variable>
+	<variable name="SUBDVL" class="java.lang.Double" resetType="Group" resetGroup="mes" calculation="Sum">
+		<variableExpression><![CDATA[$F{VLRDVL}]]></variableExpression>
+	</variable>
+	<variable name="SUBSLD" class="java.lang.Double" resetType="Group" resetGroup="mes" calculation="Sum">
+		<variableExpression><![CDATA[$F{VLRSLD}]]></variableExpression>
+	</variable>
+	<group name="codcia">
+		<groupExpression><![CDATA[$P{pcodcia}]]></groupExpression>
+		<groupFooter>
+			<band height="19">
+				<rectangle radius="0">
+					<reportElement x="0" y="0" width="802" height="18" forecolor="#CCCCCC" backcolor="#DFEFF0" uuid="b1b51abe-9eee-4fe3-b139-2e61182212d6"/>
+				</rectangle>
+				<textField>
+					<reportElement x="130" y="2" width="75" height="12" uuid="e2e68f9b-5491-436a-9805-f67418678a92">
+						<printWhenExpression><![CDATA[$V{TOTINI}>0]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<pen lineStyle="Dashed"/>
+						<topPen lineWidth="0.75" lineStyle="Dashed"/>
+						<leftPen lineStyle="Dashed"/>
+						<bottomPen lineStyle="Dashed"/>
+						<rightPen lineStyle="Dashed"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{TOTINI}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="210" y="2" width="75" height="12" uuid="9d750169-f846-450e-b3ec-b316d8b6e130">
+						<printWhenExpression><![CDATA[$V{TOTRXC}>0]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<pen lineStyle="Dashed"/>
+						<topPen lineWidth="0.75" lineStyle="Dashed"/>
+						<leftPen lineStyle="Dashed"/>
+						<bottomPen lineStyle="Dashed"/>
+						<rightPen lineStyle="Dashed"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{TOTRXC}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="290" y="2" width="75" height="12" uuid="67cd0618-032a-457f-9b58-386448a11850">
+						<printWhenExpression><![CDATA[$V{TOTCXP}>0]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<pen lineStyle="Dashed"/>
+						<topPen lineWidth="0.75" lineStyle="Dashed"/>
+						<leftPen lineStyle="Dashed"/>
+						<bottomPen lineStyle="Dashed"/>
+						<rightPen lineStyle="Dashed"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{TOTCXP}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="370" y="2" width="75" height="12" uuid="33474c7f-0b85-4bc3-b047-8e957e1a5825">
+						<printWhenExpression><![CDATA[$V{TOTPOP}>0]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<pen lineStyle="Dashed"/>
+						<topPen lineWidth="0.75" lineStyle="Dashed"/>
+						<leftPen lineStyle="Dashed"/>
+						<bottomPen lineStyle="Dashed"/>
+						<rightPen lineStyle="Dashed"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{TOTPOP}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="450" y="2" width="75" height="12" uuid="94de8667-f052-4c50-a401-17cbede40e1c">
+						<printWhenExpression><![CDATA[$V{TOTDVL}>0]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<pen lineStyle="Dashed"/>
+						<topPen lineWidth="0.75" lineStyle="Dashed"/>
+						<leftPen lineStyle="Dashed"/>
+						<bottomPen lineStyle="Dashed"/>
+						<rightPen lineStyle="Dashed"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{TOTDVL}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="530" y="2" width="75" height="12" uuid="52c147f7-c433-40af-ba75-2ab958a76e2c">
+						<printWhenExpression><![CDATA[$V{TOTSLD}>0]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<pen lineStyle="Dashed"/>
+						<topPen lineWidth="0.75" lineStyle="Dashed"/>
+						<leftPen lineStyle="Dashed"/>
+						<bottomPen lineStyle="Dashed"/>
+						<rightPen lineStyle="Dashed"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{TOTSLD}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="16" y="2" width="105" height="12" forecolor="#003333" uuid="99672254-c151-45ad-92a1-36987fe63b41"/>
+					<textElement verticalAlignment="Middle">
+						<font size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[TOTAL]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="mes">
+		<groupExpression><![CDATA[$F{MES}]]></groupExpression>
+		<groupHeader>
+			<band height="23">
+				<textField>
+					<reportElement x="1" y="0" width="83" height="15" uuid="461a3b43-70c5-4d2b-976c-72f01e3a1749"/>
+					<textElement verticalAlignment="Middle">
+						<font size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{MES}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="1" y="15" width="801" height="1" uuid="2a49fa69-2ec0-4323-b709-e2c3ed78a7cd"/>
+					<graphicElement>
+						<pen lineWidth="0.75" lineStyle="Dashed"/>
+					</graphicElement>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="13">
+				<textField>
+					<reportElement x="130" y="1" width="75" height="12" uuid="a0787e7d-a7ee-41bc-b278-9ae1b20b8c63">
+						<printWhenExpression><![CDATA[$V{SUBINI}>0]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<pen lineStyle="Dashed"/>
+						<topPen lineWidth="0.75" lineStyle="Dashed"/>
+						<leftPen lineStyle="Dashed"/>
+						<bottomPen lineStyle="Dashed"/>
+						<rightPen lineStyle="Dashed"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{SUBINI}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="210" y="1" width="75" height="12" uuid="7baaeed3-8f20-4278-b976-e2e438b1f28a">
+						<printWhenExpression><![CDATA[$V{SUBRXC}>0]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<pen lineStyle="Dashed"/>
+						<topPen lineWidth="0.75" lineStyle="Dashed"/>
+						<leftPen lineStyle="Dashed"/>
+						<bottomPen lineStyle="Dashed"/>
+						<rightPen lineStyle="Dashed"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{SUBRXC}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="290" y="1" width="75" height="12" uuid="86dca114-21fd-4db3-bbfa-526c0032f8c2">
+						<printWhenExpression><![CDATA[$V{SUBCXP}>0]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<pen lineStyle="Dashed"/>
+						<topPen lineWidth="0.75" lineStyle="Dashed"/>
+						<leftPen lineStyle="Dashed"/>
+						<bottomPen lineStyle="Dashed"/>
+						<rightPen lineStyle="Dashed"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{SUBCXP}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="370" y="1" width="75" height="12" uuid="84a838c4-dd0b-43f3-9267-162aa6960388">
+						<printWhenExpression><![CDATA[$V{SUBPOP}>0]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<pen lineStyle="Dashed"/>
+						<topPen lineWidth="0.75" lineStyle="Dashed"/>
+						<leftPen lineStyle="Dashed"/>
+						<bottomPen lineStyle="Dashed"/>
+						<rightPen lineStyle="Dashed"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{SUBPOP}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="450" y="1" width="75" height="12" uuid="fc3957e8-bef1-4818-8444-553b2b7532be">
+						<printWhenExpression><![CDATA[$V{SUBDVL}>0]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<pen lineStyle="Dashed"/>
+						<topPen lineWidth="0.75" lineStyle="Dashed"/>
+						<leftPen lineStyle="Dashed"/>
+						<bottomPen lineStyle="Dashed"/>
+						<rightPen lineStyle="Dashed"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{SUBDVL}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="530" y="0" width="75" height="12" uuid="2a0d4117-9a8c-497d-bfe3-84fb996ce931">
+						<printWhenExpression><![CDATA[$V{SUBSLD}>0]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<pen lineStyle="Dashed"/>
+						<topPen lineWidth="0.75" lineStyle="Dashed"/>
+						<leftPen lineStyle="Dashed"/>
+						<bottomPen lineStyle="Dashed"/>
+						<rightPen lineStyle="Dashed"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{SUBSLD}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="16" y="1" width="105" height="12" forecolor="#003333" uuid="4533f98f-218e-4d2f-a0f9-f553df1414b0"/>
+					<textElement verticalAlignment="Middle">
+						<font size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[SUBTOTAL MES]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="98" splitType="Stretch">
+			<subreport>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="802" height="98" isPrintWhenDetailOverflows="true" uuid="cd490120-6f80-419d-a816-2916aa8f5dd7"/>
+				<subreportParameter name="pcodcia">
+					<subreportParameterExpression><![CDATA[$P{pcodcia}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ptitrpt">
+					<subreportParameterExpression><![CDATA[$P{ptitrpt}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="prutaImagen">
+					<subreportParameterExpression><![CDATA[$P{prutaImagen}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "CabeceraHorizontal.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<rectangle radius="0">
+				<reportElement x="0" y="2" width="802" height="15" forecolor="#CCCCCC" backcolor="#DFEFF0" uuid="36395d31-a150-40ac-b0e9-2e167b63f6ca"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="16" y="2" width="105" height="15" forecolor="#003333" uuid="1f3a855e-f1d2-4857-99ef-a11223b29b3c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[DOCUMENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="2" width="75" height="15" forecolor="#003333" uuid="e28cac71-3377-4854-9bd0-4f6755b267b9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[VALOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="2" width="75" height="15" forecolor="#003333" uuid="9f2ccfbd-84cd-4826-a04f-f1aea8636d71"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[DESC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="2" width="75" height="15" forecolor="#003333" uuid="20ae9578-9529-434c-8bf5-0234382e4e95"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[NETO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="2" width="75" height="15" forecolor="#003333" uuid="f938378b-e1d4-4cfe-be99-709d51c194e7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[PAGADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="450" y="2" width="75" height="15" forecolor="#003333" uuid="05b7f9c4-2f90-4634-8c44-3d0173e63d83"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[DEVUELTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="530" y="2" width="75" height="15" forecolor="#003333" uuid="78193bbd-6ecb-4078-b84e-fe56c9d9d5c0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[SALDO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="18" width="801" height="1" uuid="64613188-64a2-480b-89ac-240578e5395b"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="12" splitType="Stretch">
+			<textField>
+				<reportElement x="16" y="0" width="105" height="12" uuid="02dc4c88-b684-44c8-a49b-f35d849f7c25"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DOCCXP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="0" width="75" height="12" isRemoveLineWhenBlank="true" uuid="c6f7a52a-46cf-43a3-b22d-a5c8ac3d7bdc">
+					<printWhenExpression><![CDATA[$F{VLRINI} > 0]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VLRINI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="0" width="75" height="12" isRemoveLineWhenBlank="true" uuid="844411fb-6fb8-405f-9b14-a81f6317fc7d">
+					<printWhenExpression><![CDATA[$F{VLRRXC}>0]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VLRRXC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="0" width="75" height="12" isRemoveLineWhenBlank="true" uuid="b44afdfd-a03d-4500-a44c-b978b95baeee">
+					<printWhenExpression><![CDATA[$F{VLRCXP}>0]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VLRCXP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="530" y="0" width="75" height="12" uuid="2e189a1c-3d96-46cb-aeda-f4e0279797b9">
+					<printWhenExpression><![CDATA[$F{VLRSLD}>0]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VLRSLD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="610" y="0" width="192" height="12" uuid="5eb44b08-3b3b-403c-b041-25e3299f67f6"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMTRC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="450" y="0" width="75" height="12" isRemoveLineWhenBlank="true" uuid="1c23bb3e-5d1e-4185-bb59-fadd2e27f80c">
+					<printWhenExpression><![CDATA[$F{VLRDVL}>0]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VLRDVL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="0" width="75" height="12" isRemoveLineWhenBlank="true" uuid="45fca0b3-7757-4a4d-90ab-6c68c7563e23">
+					<printWhenExpression><![CDATA[$F{VLRPOP}>0]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VLRPOP}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+</jasperReport>

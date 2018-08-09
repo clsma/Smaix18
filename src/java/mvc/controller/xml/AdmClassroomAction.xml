@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAAUL">
+        <desc>Inserción tabla de ciudades</desc>
+        <sql>
+            INSERT INTO SMAAUL( ACHAUL,AIRAUL,AREAUL,ATRAUL,BLKAUL,CLRAUL,CODAUL,CODCIA,CODCRS,CODEDF,CODSCH,LFTOBJ,
+            LRGAUL,MAXAUL,MSAAUL,NOMAUL,NROAUL,NROCRS,NROSDE,PHTOBJ,PSOAUL,SLLAUL,SMTPSM,SQLBKR,STDAUL,TIPAUL,TOPOBJ,
+            VLAAUL,VLMAUL,VLSAUL,VLVAUL,VTLAUL ) 
+            VALUES ( ?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?,?,? )
+        </sql>
+    </statement>
+    
+    
+    <statement name="UPDATE_SMAAUL">
+        <desc>Update tabla de Aulas</desc>
+        <sql>
+            UPDATE SMAAUL SET ACHAUL=?,AIRAUL=?,AREAUL=?,ATRAUL=?,BLKAUL=?,CLRAUL=?,NROAUL=?,CODCRS=?,CODSCH=?,LFTOBJ=?,
+            LRGAUL=?,MAXAUL=?,MSAAUL=?,NOMAUL=?,NROCRS=?,NROSDE=?,PHTOBJ=?,PSOAUL=?,SLLAUL=?,SMTPSM=?,SQLBKR=?,STDAUL=?,
+            TIPAUL=?,TOPOBJ=?,VLAAUL=?,VLMAUL=?,VLSAUL=?,VLVAUL=?,VTLAUL=? where codcia=? and codaul=? and codedf=?
+        </sql>
+    </statement>
+    <statement name="DELETE_SMAAUL">
+        <desc>Delete tabla de Aulas</desc>
+        <sql>
+            DELETE from SMAAUL  WHERE  CODCIA=? AND CODAUL=? AND NROSDE=? AND CODEDF=?
+        </sql>
+    </statement>
+
+</sentencias>

@@ -1,0 +1,124 @@
+.botonind{
+	font-family: Verdana ,Tahoma ,Helvatica ,Times New Roman; 
+	font-size: 10px; 
+	color:#FFFFFF; 
+	border: 0px; 
+	background-color: #FFFFFF;  
+	font-weight: bold;
+	height: 20px;
+	width: 18px;
+	background: url("../img/okIII.png") 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.botonadd{
+	font-family: Verdana ,Tahoma ,Helvatica ,Times New Roman; 
+	font-size: 10px; 
+	color:#FFFFFF; 
+	border: 0px; 
+	background-color: #FFFFFF;  
+	font-weight: bold;
+	height: 25px;
+	width: 25px;
+	background: url("../img/Actualizar.png") 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.botonedit{
+	font-family: Verdana ,Tahoma ,Helvatica ,Times New Roman; 
+	font-size: 10px; 
+	color:#FFFFFF; 
+	border: 0px; 
+	background-color: #FFFFFF;  
+	font-weight: bold;
+	height: 25px;
+	width: 25px;
+	background: url("../img/edit.gif") 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.botondelete{
+	font-family: Verdana ,Tahoma ,Helvatica ,Times New Roman; 
+	font-size: 10px; 
+	color:#FFFFFF; 
+	border: 0px; 
+	background-color: #FFFFFF;  
+	font-weight: bold;
+	/*height: 25px;
+	width: 25px;*/
+	background: url("../img/delete.gif") 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.botondeletePST{
+	font-family: Verdana ,Tahoma ,Helvatica ,Times New Roman; 
+	font-size: 10px; 
+	color:#FFFFFF; 
+	border: 0px; 
+	background-color: #FFFFFF;  
+	font-weight: bold;
+	position : static !important;
+	height: 15px;
+	/*width: 25px;*/
+	background: url("../img/delete.gif") 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.botonsave{
+	font-family: Verdana ,Tahoma ,Helvatica ,Times New Roman; 
+	font-size: 10px; 
+	color:#FFFFFF; 
+	border: 0px; 
+	background-color: #FFFFFF;  
+	font-weight: bold;
+	height: 25px;
+	width: 25px;
+	background: url("../img/save.gif") 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.tabdg tbody tr:nth-child(2n){
+	background-color: #E9E7E2;
+}
+/*
+.ui-table { border-collapse: inherit !important; border: none; margin-bottom: 8px; }
+.ui-table tr td { border: 1px solid #cccccc; border-right: none; border-bottom: none; padding: 3px 1px; }
+.ui-table tr th { border: 1px solid #92D400; border-right: none; border-bottom: none; padding: 3px 1px; }
+.ui-table tr th { background: #92D400 url(../image/ui/ui-bg_gloss-wave_30_92D400_500x100.png) 50% 50% repeat-x; font-size: 12px; font-weight: normal; color: #ffffff; }
+.ui-table tr:last-child td:first-child { border-radius: 0px 0px 0px 4px; }
+.ui-table tr:last-child td:last-child { border-radius: 0px 0px 4px 0px; }
+.ui-table tr:first-child th:first-child { border-radius: 4px 0px 0px 0px; }
+.ui-table tr:first-child th:last-child { border-radius: 0px 4px 0px 0px; border-right: 1px solid #92D400; }
+.ui-table tr td:last-child { border-right: 1px solid #cccccc; }
+.ui-table tr:last-child td { border-bottom: 1px solid #cccccc; }
+
+.ui-table thead{
+	background-color: #D9F0A4;
+}*/
+
+#divLstPRS table{
+	margin-top: 15px;
+}
+
+#divLstPRS table tbody tr:nth-child(2n+1){
+	background-color: #E9E7E2;
+}
+
+/*table tr.rowtitle{
+	color: white;
+}
+*/
+.cellCenterVer td,.cellCenterVer th{
+	vertical-align: middle; 
+}
+table tr:not(.rowtitle){
+	color : #A2A2A2;
+}
+
+.colorFilas tbody tr:nth-child(2n){
+	background-color: #E9E7E2;
+}
+
+input,select{
+	margin:0;
+}

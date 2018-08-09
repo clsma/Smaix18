@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMASDE">
+        <desc>Insercion tabla de Sedes</desc>
+        <sql>
+            [record]
+            [nrosde value="?"][/nrosde]
+            [codsde value="?"][/codsde]
+            [nomsde value="?"][/nomsde]
+            [npqsde value="?"][/npqsde]
+            [tposde value="?"][/tposde]
+            [dirsde value="?"][/dirsde]
+            [telsde value="?"][/telsde]
+            [codciu value="?"][/codciu]
+            [emlsde value="?"][/emlsde]
+            [vlrsde value="?"][/vlrsde]
+            [znasde value="?"][/znasde]
+            [clbsde value="?"][/clbsde]
+            [krasde value="?"][/krasde]
+            [krbsde value="?"][/krbsde]
+            [codcia value="?"][/codcia]
+            [/record]
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMASDE">
+        <desc>Actualizar registro de la tabla Sedes</desc>
+        <sql>
+            UPDATE SMASDE SET  codsde=?, nomsde=?,  npqsde=?,tposde=?,  dirsde=?,  telsde=?, codciu=?,
+            emlsde=?,vlrsde=?,znasde=?,clbsde=?, krasde=?,krbsde=? WHERE CODCIA=? AND NROSDE=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMASDE">
+        <desc>Eliminar registro de la tabla facultades</desc>
+        <sql>
+            DELETE FROM SMASDE WHERE NROSDE = ? and CODCIA=?
+        </sql>
+    </statement>
+    
+</sentencias>

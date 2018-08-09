@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAFDP">
+        <desc>Inserción tabla de Factura o documento de Cuentas por pagar</desc>
+        <sql>
+            INSERT INTO SMAFDP (NROFDP, CODTRC, TPOTRC,
+            CODFCD, CONFDP, NROPYS,
+            VLRFDP, ABNFDP, DUDFDP,
+            VLRBGN, INTFDP, NROQTS,
+            FCHFDP, MDLFDP, NROTRX,
+            SQLBKR) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMATRX">
+        <desc>Inserción tabla de Transacciones</desc>
+        <sql>
+            INSERT INTO SMATRX (NROTRX, NROPQC, FCHTRX,
+            TPOTRX, NROUSR, STDTRX,
+            DSPTRX, OBSTRX, TPDTRX,
+            DOCTRX, NROPQP, NROTRN, 
+            NROCMP, VLRTRX, NROMVP,
+            SQLBKR) 
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAMVX">
+        <desc>Inserción tabla de Movimiento</desc>
+        <sql>
+            INSERT INTO SMAMVX (NROMVX, NROTRX, CSCMVX,
+            NROPQK, NROPRS, TPOMVX,
+            DBTMVX, CRDMVX, NROCST,
+            DSPMVX, SQLBKR) 
+            VALUES (?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="ESQUEMAS">
+        <desc>Obtiene datos de Esquemas</desc>
+        <sql>
+            sma_accounts.entry_scheme(?,?,?)
+        </sql>
+    </statement>
+    
+    
+    
+    <statement name="UPDATE_SMARTN">
+        <desc>Update tabla de Retencion</desc>
+        <sql>
+            UPDATE SMARTN SET 
+             BUVRTN=?, BPSRTN=?,
+             PTJRTN=?
+            WHERE NRORTN=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMACHK">
+        <desc>Delete tabla de Chequera</desc>
+        <sql>
+           DELETE FROM SMACHK
+            WHERE NROCHK=?
+        </sql>
+    </statement>
+    
+</sentencias>
+

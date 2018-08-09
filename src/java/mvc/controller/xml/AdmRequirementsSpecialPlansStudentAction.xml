@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="DELETE_SMAROP">
+        <desc>ELIMINACION</desc>
+        <sql>
+          delete from smarop where nroprs = ?
+        </sql>
+    </statement>
+    
+     
+    <statement name="INSERT_SMAROP">
+        <desc>INSERTAR</desc>
+        <sql>
+         insert into smarop (CODCIA,NROROP,NRORPE,STDROP,SQLBKR,NROPRS) values(?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+   
+    
+</sentencias>

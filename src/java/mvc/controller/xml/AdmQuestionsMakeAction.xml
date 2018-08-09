@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAQST">
+        <desc>Inserción tabla de preguntas</desc>
+        <sql>
+            INSERT INTO SMAQST( CODCIA, NROCTG, NROQST, NOMQST, TXTQST, DFLGRD, TPOQST, CODPRS, TPOPRS, SQLBKR )
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMASCV">
+        <desc>Inserción tabla de respuestas de tipo acierto</desc>
+        <sql>
+            INSERT INTO SMASCV( CODCIA, NROSCV, NROQST, TXQSCV, TXASCV, SQLBKR )
+                   VALUES (?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAQST_QAC">
+        <desc>Actualizacion tabla de preguntas para tipo acierto</desc>
+        <sql>
+            UPDATE SMAQST SET NOMQST = ?,
+                              NROCTG = ?
+                        WHERE CODCIA = ?
+                          AND NROQST = ?
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAQST_OTHERS">
+        <desc>Actualizacion tabla de preguntas para otros tipos != Acierto</desc>
+        <sql>
+            UPDATE SMAQST SET NOMQST = ?,
+                              NROCTG = ?,
+                              TXTQST = ?                             
+                        WHERE CODCIA = ?
+                          AND NROQST = ?
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMASCV">
+        <desc>Actualizacion tabla de respuestas de tipo acierto</desc>
+        <sql>
+            UPDATE SMASCV SET TXQSCV = ?,
+                              TXASCV = ?                             
+                        WHERE CODCIA = ?
+                          AND NROSCV = ?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAQST">
+        <desc>Eliminacion de tabla de preguntas</desc>
+        <sql>
+            DELETE FROM SMAQST WHERE CODCIA = ? AND NROQST = ?
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAANS_OTHERS">
+        <desc>Inserción tabla de respuestas de de todos los tipos excepto acierto, multiple ponderada y numerica</desc>
+        <sql>
+            INSERT INTO SMAANS( CODCIA, NROANS, NROQST, TXTANS, FRCANS, CMTANS, SQLBKR )
+                   VALUES (?, ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAANS_QNU">
+        <desc>Inserción tabla de respuestas de tipo numerica</desc>
+        <sql>
+            INSERT INTO SMAANS( CODCIA, NROANS, NROQST, TXTANS, FRCANS, CMTANS, MGEANS, SQLBKR )
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAANS_QOP">
+        <desc>Inserción tabla de respuestas de tipo opción multiple ponderada</desc>
+        <sql>
+            INSERT INTO SMAANS( CODCIA, NROANS, NROQST, TXTANS, FRCANS, CMTANS, PTJANS, SQLBKR )
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAANS_QNU">
+        <desc>Actualizacion tabla de respuestas de tipo numerica</desc>
+        <sql>
+            UPDATE SMAANS SET FRCANS = ?,
+                              CMTANS = ?,
+                              MGEANS = ?                             
+                        WHERE CODCIA = ?
+                          AND NROANS = ?
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAANS_QVF">    
+        <desc>Actualizacion tabla de respuestas de tipo verdadero y falso</desc>
+        <sql>
+            UPDATE SMAANS SET FRCANS = ?,
+                              CMTANS = ?,                             
+                              TXTANS = ?
+                        WHERE CODCIA = ?
+                          AND NROANS = ?
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAANS_QOM_QRC">
+        <desc>Actualizacion tabla de respuestas de tipo opcion multiple y respuesta corta</desc>
+        <sql>
+            UPDATE SMAANS SET TXTANS = ?,
+                              CMTANS = ?,                             
+                              FRCANS = ?
+                        WHERE CODCIA = ?
+                          AND NROANS = ?
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAANS_QOP">
+        <desc>Actualizacion tabla de respuestas de tipo opcion multiple ponderada</desc>
+        <sql>
+            UPDATE SMAANS SET TXTANS = ?,
+                              CMTANS = ?,                             
+                              FRCANS = ?,
+                              PTJANS = ?
+                        WHERE CODCIA = ?
+                          AND NROANS = ?
+        </sql>
+    </statement>
+    
+</sentencias>

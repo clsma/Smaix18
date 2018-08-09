@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAVTO">
+        <desc>Tabla votos</desc>
+        <sql>
+            INSERT INTO SMAVTO (NROVTO,NROPRS,FCHVTO,FHVVTO,CODVTO,NROUSR,STDVTO) 
+                        VALUES (?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAHNS">
+        <desc>Tabla votos</desc>
+        <sql>
+            INSERT INTO SMAHNS (NROHNS,IDEBAS,IDEHNS,NROUSR) 
+                        VALUES (?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="LST_SMA">
+        <desc>Listado Hermanos</desc>
+        <sql>
+            sma_welfare_office.students_brothers(?,?)
+        </sql>
+    </statement>
+    
+</sentencias>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMARBR">
+        <desc>Inserción tabla de Rubro</desc>
+        <sql>
+           INSERT INTO smarbr(
+            codcia, nrorbr, codrbr, nomrbr, npqrbr, nvlrbr, auxrbr, tporbr, 
+            dpnrbr, codpqk, tpopgs, clrrbr, iderbr, tiprbr, sqvrbr, sqkrbr, 
+            prvrbr, prkrbr, vewrbr, sqlbkr , cxmrbr)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, 
+            ?, ?, ?, ?, ?, ?, ?, ?, 
+            ?, ?, ?, ? , ?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMARBR">
+        <desc>Update tabla de Rubro</desc>
+        <sql>
+           UPDATE smarbr
+            SET codcia=?, codrbr=?, nomrbr=?, npqrbr=?, nvlrbr=?, auxrbr=?, 
+            tporbr=?, dpnrbr=?, codpqk=?, tpopgs=?, clrrbr=?, iderbr=?, tiprbr=?, 
+            sqvrbr=?, sqkrbr=?, prvrbr=?, prkrbr=?, vewrbr=?, sqlbkr=? , cxmrbr =?
+            WHERE nrorbr=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMARBR">
+        <desc>Delete tabla de Rubro</desc>
+        <sql>
+           DELETE FROM smarbr WHERE nrorbr=?
+        </sql>
+    </statement>
+    
+</sentencias>

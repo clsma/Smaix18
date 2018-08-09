@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAUNV">
+        <desc>Inserción tabla de Universidades</desc>
+        <sql>
+            INSERT INTO SMAUNV(IDEUNV,NRIUNV,CODUNV,NOMUNV,NPQUNV,DIRUNV,TELUNV,FAXUNV,EMLUNV,WEBUNV,IDECIU,SQLBKR)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAUNV">
+        <desc>Actualizar registro de la tabla Universidades</desc>
+        <sql>
+            UPDATE SMAUNV SET NRIUNV=?,CODUNV=?,NOMUNV=?,NPQUNV=?,DIRUNV=?,TELUNV=?,FAXUNV=?,EMLUNV=?,WEBUNV=?,IDECIU=?,SQLBKR=?  where IDEUNV=?
+
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAUNV">
+        <desc>Eliminar registro de la tabla Universidades</desc>
+        <sql>
+            DELETE FROM SMAUNV WHERE IDEUNV = ? 
+        </sql>
+    </statement>
+    
+</sentencias>

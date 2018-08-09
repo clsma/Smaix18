@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+      <statement name="INSERT_SMAACT">
+        <desc>Inserción tabla de Actas</desc>
+        <sql>
+            INSERT INTO SMAACT(CODCIA,CODACT,NROACT,CODPRS,TPOACT,DOCACT,FCHACT,TXTACT,STDACT,ORGACT,SQLBKR)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+      
+    <statement name="INSERT_SMACOM">
+        <desc>Inserción tabla de Com</desc>
+        <sql>
+            INSERT INTO SMACOM(CODCIA,NROCOM,FCHCOM,TPOCOM,STDCOM,NROCTE,NROACT,TXICOM,TXFCOM)
+            VALUES (?, ?, ?, ?, ?, ?, ?,?,?)
+        </sql>
+    </statement>
+    
+   
+   
+</sentencias>

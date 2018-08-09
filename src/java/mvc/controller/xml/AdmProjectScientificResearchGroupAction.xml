@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAPPG">
+        <desc>Insert tabla de PPG</desc>
+        <sql>
+             Insert into SMAPPG(nroppg, nropig, codprs, tpoppg, sqlbkr, tpoinv) values(?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    
+    <statement name="UPDATE_SMAPIA">
+        <desc>Update tabla de PIA</desc>
+        <sql>
+             Update SMAPIA set srcpia=? Where nropia=?
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAPIG">
+        <desc>Update tabla de Grupo</desc>
+        <sql>
+             INSERT INTO SMAPIG (
+            CODCIA, NROPIG, NOMPIG, 
+            NROPIL, FCHPIG, CODPRS, 
+            CODPIG, TPOPIG, NROPLI, 
+            SQLBKR, NROSLI) 
+            VALUES (?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAPIG">
+        <desc>Update tabla de Grupo</desc>
+        <sql>
+             UPDATE SMAPIG SET  NOMPIG=?, 
+            CODPRS=?, 
+            CODPIG=?,  NROPLI=?, NROSLI=?
+            WHERE NROPIG=?
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAPRS">
+        <desc>Update tabla de Grupo</desc>
+        <sql>
+             Update SMAPRS set nomprs=?, apeprs=?, telprs=?, dirprs=?, emlprs=?, ideciu=?
+                where nriprs=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAPPG">
+        <desc>Delete tabla de Grupo</desc>
+        <sql>
+             Delete from smappg where codprs=? and nropig=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAPIG">
+        <desc>Delete tabla de Grupo</desc>
+        <sql>
+             Delete from smapig where nropig=? 
+        </sql>
+    </statement>
+   
+   
+   <statement name="UPDATE_SMAPPG">
+        <desc>Update tabla de Grupo</desc>
+        <sql>
+             Update smappg set tpoinv=?
+                Where nropig=?
+        </sql>
+    </statement>
+    
+    
+    <statement name="UPDATE_SMAPIG_LDR">
+        <desc>Update tabla de Dueño del Grupo</desc>
+        <sql>
+           Update Smapig set codprs = ?
+            where nropig=?
+        </sql>
+    </statement>
+    
+    
+    <statement name="INSERT_SMAPIP">
+        <desc>Insert tabla de Persona Grupo</desc>
+        <sql>
+           Insert into smapip(nropip, nroprs, nropir, nropig, sqlbkr) values(?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAPIP">
+        <desc>Update Lider del Grupo</desc>
+        <sql>
+           Update Smapip set nropir = ?
+            where nropig=? and nroprs=?
+        </sql>
+    </statement>
+    
+    
+</sentencias>

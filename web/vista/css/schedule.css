@@ -1,0 +1,110 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 6/08/2015, 10:57:28 AM
+    Author     : clsma
+*/
+
+
+.midterms {
+    width: 100px;  
+
+}
+
+.midterms table {
+    background: #E0ECFF;
+}
+
+.midterms td {
+    background: #eee;
+}
+
+.item {
+    text-align: center;
+    border: 1px solid #499B33;
+    background: #fafafa;
+    width: 100px;
+}
+
+.itemGraf {
+    text-align: center;
+    width: 30px;
+}
+
+.remove {
+    text-align: center;
+    border: 1px solid #499B33;
+    background: #BEBEBE;
+    width: 100px;
+}
+
+.over {
+    border: 1px solid #8A0829;
+    background: #F5A9BC;
+}
+
+.schedule { 
+    width: 860px;
+    margin: auto;
+}
+
+.schedule table {
+    background: white;
+    width: 100%;
+}
+
+.schedule td {
+    background: #BEBEBE;
+    text-align: center;
+    padding: 2px;
+}
+
+.schedule td.empty
+{
+    background: #ADD8E6;
+    width: 105px;
+}
+
+.scheduled
+{
+    background: #F3F6FF;
+
+    
+}
+.scheduled-over{
+    background: #8FC28B;
+}
+
+.assigned {
+    border: 1px solid #BDBDBD;
+    background: #fafafa;
+}
+
+.ttlrow{
+    border: #000000 solid 2px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:10px;
+    font-weight:bold;
+    color: #0000CC ;
+    background-color: #FFFFFF;			 
+}
+
+.quitarFondo{
+    background-image: none;
+
+}
+.programmed{
+    border: 1px dashed blue;
+}
+
+.selectedTd{
+    background-color: red;
+}
+.loaded {
+    background-image: url('../img/oksmall.png');
+    background-repeat: no-repeat;
+    background-position: right top;
+}

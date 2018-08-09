@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMASCP">
+        <desc>Inserción tabla SCP</desc>  
+        <sql>
+            INSERT INTO SMASCP(NROSCP,CODCIA,TPOSCP,CODPRS,TPOPRS,STDSCP,NROBDG,FCHSCP,ITMSCP,NVLSCP,OBSSCP,SYSSCP,CODSCP,NROPSP,TIPSCP)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+  
+    
+    
+    
+</sentencias>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMANMT">
+        <desc>Inserción tabla de NMT</desc>
+        <sql>
+           INSERT INTO SMANMT (CODCIA, NRONMT, IDENMT,
+            NROWRK, NRODIV, DPNNMT, 
+            NROKRG, TPONMT, STDNMT, 
+            NVLNMT) VALUES (?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAKNM">
+        <desc>Update tabla de KNM</desc>
+        <sql>
+           INSERT INTO SMAKNM (NROKNM, NROKRG, NRONMT,
+            NROWRK, TPOKNM, FCHKNM, 
+            STDKNM, SQLBKR) 
+            VALUES (?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAKNM">
+        <desc>Delete tabla de KNM</desc>
+        <sql>
+           UPDATE SMAKNM SET NROWRK=?
+             WHERE NROKNM=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAKNM">
+        <desc>Delete tabla de KNM</desc>
+        <sql>
+           DELETE FROM SMAKNM 
+             WHERE NROKNM=?
+        </sql>
+    </statement>
+    
+</sentencias>

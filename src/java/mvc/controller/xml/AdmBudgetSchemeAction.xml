@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMABGM">
+        <desc>Inserción tabla de Areas</desc>
+        <sql>
+        INSERT INTO SMABGM
+        (NROBGM, CSCBGM, NRORBR, CODBGM, TPOBGM, NVLBGM, TIPBGM, DPNBGM, STDBGM, SQLBKR)
+        VALUES (?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAARE">
+        <desc>Update tabla de Areas</desc>
+        <sql>
+           
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMABGM">
+        <desc>Delete tabla de Areas</desc>
+        <sql>
+           Delete from smabgm where tpobgm=? 
+            and nrorbr in (Select nrorbr from smarbr where tporbr=?)
+        </sql>
+    </statement>
+    
+</sentencias>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    <statement name="INSERT_SMAPQK">
+        <desc>Inserción tabla de pqk</desc>
+        <sql>
+            insert into SMAPQK  (CODCIA,NROPQK,CODPQK,NOMPQK,DPNPQK,CSTPQK,EXEPQK,TRCPQK,SQMPQK,TPOPQK,SPCPQK,SLDPQK,CNTPQK,TRFPQK,GENPQK,MNTPQK,PRCPQK,TPRPQK,CODPRS,CPTPQK,SQLBKR) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAPQK">
+        <desc>Actualizacion tabla de pqk</desc>
+        <sql>
+            update smapqk 
+            set nompqk = ?,cstpqk = ?,trcpqk =?,tpopqk = ?,spcpqk = ?,sqlbkr = ?, cntpqk = ?
+            where codcia = ?
+            and nropqk = ?
+
+        </sql>
+    </statement>
+    <statement name="DELETE_SMAPQK">
+        <desc>Eliminar tabla de pqk</desc>
+        <sql>
+           delete  from smapqk  where codcia = ? and nropqk= ?
+        </sql>
+    </statement>
+    
+    
+    
+    
+    
+</sentencias>
+
+

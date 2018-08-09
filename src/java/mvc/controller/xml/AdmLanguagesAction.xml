@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAIDM">
+        <desc>Inserción tabla de Idioma</desc>
+        <sql>
+           Insert into SMAIDM (NROIDM,NROPRS,STDIDM,
+            RADIDM,WRTIDM,CNVIDM,
+            RADPRC,WRTPRC,CNVPRC,
+            BLGIDM,OTHIDM,NVLIDM,
+            SQLBKR) 
+            values (?,?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAIDM">
+        <desc>Update tabla de Areas</desc>
+        <sql>
+           Update SMAIDM Set NROPRS=?,STDIDM=?,
+            RADIDM=?,WRTIDM=?,CNVIDM=?,
+            RADPRC=?,WRTPRC=?,CNVPRC=?,
+            BLGIDM=?,OTHIDM=?,NVLIDM=?,SQLBKR=?
+            Where NROIDM=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAIDM">
+        <desc>Delete tabla de Areas</desc>
+        <sql>
+          
+        </sql>
+    </statement>
+    
+</sentencias>

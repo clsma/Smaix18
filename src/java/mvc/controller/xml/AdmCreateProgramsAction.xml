@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAPGM">
+        <desc>Inserción tabla de Programas</desc>
+        <sql>
+            Insert into SMAPGM (IDEPGM,CODCIA,NROPGM,
+            CODPGM,NOMPGM,TPOPGM,
+            STDPGM,NPQPGM,NROPSM,
+            IDEPRG,JNDPGM,TELPGM,
+            EXTPGM,FCHPGM,SMTPGM,
+            KRDPRS,STRPRS,RSLPGM,
+            NROCST,CODRGS,TPONRM,
+            NRONRM,FCHNRM,CODORG,
+            STGPGM,PRDPGM,KPCPGM,
+            CRDAKD,SNEPGM,NROSIC,IDESCN,NRORGM,IDEDKS,IDEPRG) 
+            values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAPGM">
+        <desc>Inserción tabla de Programas</desc>
+        <sql>
+            Update SMAPGM Set CODCIA=?,NROPGM=?,
+            CODPGM=?,NOMPGM=?,TPOPGM=?,
+            STDPGM=?,NPQPGM=?,NROPSM=?,
+            IDEPRG=?,JNDPGM=?,TELPGM=?,
+            EXTPGM=?,FCHPGM=?,SMTPGM=?,
+            KRDPRS=?,STRPRS=?,RSLPGM=?,
+            NROCST=?,CODRGS=?,TPONRM=?,
+            NRONRM=?,FCHNRM=?,CODORG=?,
+            STGPGM=?,PRDPGM=?,KPCPGM=?,
+            CRDAKD=?,SNEPGM=?,NROSIC=?, IDESCN=?, NRORGM = ? , IDEDKS = ? 
+            Where IDEPGM=?
+        </sql>
+    </statement>
+    
+    
+    <statement name="UPDATE_SMAPRG">
+        <desc>Update tabla de Programas</desc>
+        <sql>
+            Update SMAPRG Set IDEFAC=?,NOMPRG=?,
+            TPOPRG=?,STDPRG=?,CODPRG=?,
+            NPQPRG=?,FCHPRG=?,CODCNV=?,
+            TITPRG=?,PRDPRG=?,PASPRG=?,
+            PGRPRG=?,MSOPRG=?,VSOPRG=?,
+            OBGPRG=?,OBJPRG=?
+            Where IDEPRG=?
+        </sql>
+    </statement>
+    
+    
+    
+    <statement name="INSERT_SMAPRG">
+        <desc>Update tabla de Programas</desc>
+        <sql>
+            Insert into SMAPRG (IDEPRG,IDEFAC,NOMPRG,
+            TPOPRG,STDPRG,CODPRG,
+            NPQPRG,FCHPRG,CODCNV,
+            TITPRG,PRDPRG,PASPRG,
+            PGRPRG,MSOPRG,VSOPRG,
+            OBGPRG,OBJPRG) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAPGM">
+        <desc>Delete tabla de Programas</desc>
+        <sql>
+            DELETE FROM SMAPGM WHERE IDEPGM=?
+        </sql> 
+    </statement>
+    
+    <statement name="DELETE_SMAPRG">
+        <desc>Delete tabla de Programas</desc>
+        <sql>
+            DELETE FROM SMAPRG WHERE IDEPRG=?
+        </sql>
+    </statement>
+    
+</sentencias>

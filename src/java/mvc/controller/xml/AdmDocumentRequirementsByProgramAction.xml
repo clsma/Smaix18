@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMADQP">
+        <desc>Inserción tabla de Documentos por Programa</desc>
+        <sql>
+           INSERT INTO smadqp(
+            codcia, nrodqp, tpodqp, nropgm, stddqp, nrodqr, sqlbkr)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMADQP">
+        <desc>Delete tabla de Documentos por Programa</desc>
+        <sql>
+           DELETE FROM smadqp WHERE nrodqp=? AND codcia=?
+        </sql>
+    </statement>
+    
+</sentencias>

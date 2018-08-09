@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAPRS">
+        <desc>Inserción tabla de personas</desc>
+        <sql>
+            INSERT INTO SMAPRS(nroprs, codcia, titprs, codprs, apeprs, 
+                               nomprs, npqprs, nacprs, fhnprs, ideprs, 
+                               nriprs, epsprs, sngprs, civprs, sexprs, 
+                               dirprs, telprs, celprs, ideciu, emlprs, 
+                               pswprs, expprs, eskprs, estprs, snpprs, 
+                               nroxvt, psnprs, pnoprs, snoprs, papprs, 
+                               sapprs)
+                        VALUES (?, ?, ?, ?, ?, 
+                                ?, ?, ?, ?, ?, 
+                                ?, ?, ?, ?, ?, 
+                                ?, ?, ?, ?, ?, 
+                                ?, ?, ?, ?, ?, 
+                                ?, ?, ?, ?, ?, 
+                                ?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAPRS">
+        <desc>Update tabla de personas</desc>
+        <sql>
+            UPDATE SMAPRS SET APEPRS = ?, NOMPRS = ?,
+                              FHNPRS = ?, SEXPRS = ?,
+                              EMLPRS = ?, PNOPRS = ?, 
+                              SNOPRS = ?, PAPPRS = ?,
+                              SAPPRS = ?
+                        WHERE NRIPRS = ? 
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAPRS_VALD">
+        <desc>Update tabla de personas</desc>
+        <sql>
+            UPDATE SMAPRS SET NRIPRS=?,TDIPRS=?,IDEPRS=?,CODPRS=?
+                        WHERE NROPRS = ? 
+        </sql>
+    </statement>
+    
+</sentencias>

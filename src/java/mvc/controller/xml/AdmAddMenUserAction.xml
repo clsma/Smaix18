@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAMNU">
+        <desc>Inserción tabla de menús por usuario</desc>
+        <sql>
+           INSERT INTO SMAMNU( IDEMNU, IDEMNX,  NROUSR, NVLMNU, SQLBKR ) 
+           VALUES ( ?, ?, ?, ?, ? )
+        </sql>
+    </statement>
+        
+    <statement name="DELETE_SMAMNU">
+        <desc>Delete tabla de menús por usuario (esto se hace antes del guardar)</desc>
+        <sql>
+           DELETE FROM SMAMNU
+            WHERE NROUSR=?
+        </sql>
+    </statement>
+    
+</sentencias>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMASDY">
+        <desc>Inserción tabla de Studios</desc>
+        <sql>
+           Insert into SMASDY (NROSDY,CODCIA,NROPRS,
+            TPOSDY,TITSDY,CODUNV,
+            BGNSDY,ENDSDY,SMTSDY,
+            PROSDY,TRJPRO,NOMTIT,
+            CODKLG,TITKLG,SQLBKR)
+            values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMASDY">
+        <desc>Update tabla de Studios</desc>
+        <sql>
+           Update SMASDY Set CODCIA=?,NROPRS=?,
+            TPOSDY=?,TITSDY=?,CODUNV=?,
+            BGNSDY=?,ENDSDY=?,SMTSDY=?,
+            PROSDY=?,TRJPRO=?,NOMTIT=?,
+            CODKLG=?,TITKLG=?,SQLBKR=?
+            Where NROSDY=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMASDY">
+        <desc>Delete tabla de Studios</desc>
+        <sql>
+           
+        </sql>
+    </statement>
+    
+</sentencias>

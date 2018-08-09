@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="475" leftMargin="70" rightMargin="50" topMargin="30" bottomMargin="20" uuid="eb3d6529-cf75-4f06-af4f-eb40ab92f85a">
+	<property name="ireport.zoom" value="1.3310000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="48"/>
+	<parameter name="recordset" class="java.sql.ResultSet" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ptxtxml" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="prutaImagen" class="java.lang.String">
+		<defaultValueExpression><![CDATA["/home/clsma/NetBeansProjects/Smaix14/web/utility/reportes/Jasper_Reports_UDS/templates/images/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ptitrpt" class="java.lang.String"/>
+	<parameter name="pcodcia" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="pphoto" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="pideirp" class="java.lang.String"/>
+	<parameter name="pfirma" class="java.lang.String"/>
+	<queryString language="plsql">
+		<![CDATA[{call SMA_CERTIFICATE_REPORTS.one_model_certificate($P{ptxtxml},$P{recordset})}]]>
+	</queryString>
+	<field name="MEMCRM" class="java.lang.String"/>
+	<field name="ELBCRT" class="java.lang.String"/>
+	<field name="FCHCRT" class="java.sql.Timestamp"/>
+	<field name="NROCRT" class="java.lang.String"/>
+	<field name="MEMFMA" class="java.lang.String"/>
+	<field name="NRIPRS" class="java.lang.String"/>
+	<background>
+		<band height="742">
+			<image scaleImage="FillFrame">
+				<reportElement x="104" y="221" width="267" height="266" uuid="c678661a-a524-4af2-9d2e-9adbed1c99a1"/>
+				<imageExpression><![CDATA[$P{prutaImagen}+"Certificate_logo.png"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<pageHeader>
+		<band height="74" splitType="Stretch">
+			<subreport>
+				<reportElement x="-59" y="0" width="200" height="74" uuid="6b9aca62-b4a5-4886-8c0f-ea3485e364b9"/>
+				<subreportParameter name="pcodcia">
+					<subreportParameterExpression><![CDATA[$P{pcodcia}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="prutaImagen">
+					<subreportParameterExpression><![CDATA[$P{prutaImagen}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="recordset">
+					<subreportParameterExpression><![CDATA[$P{recordset}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ptitrpt">
+					<subreportParameterExpression><![CDATA[$P{ptitrpt}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="pideirp">
+					<subreportParameterExpression><![CDATA[$P{pideirp}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Head.jasper"]]></subreportExpression>
+			</subreport>
+			<textField evaluationTime="Report">
+				<reportElement x="469" y="63" width="47" height="11" uuid="a00c4ec4-6f17-4829-8754-4379bd9c840f"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="409" y="63" width="59" height="11" uuid="78429cf3-4221-47d8-bae9-93feedea0f5a"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pág "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="16">
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="475" height="16" uuid="d325fede-cf91-457f-967a-542f64570d52"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="SansSerif" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MEMCRM}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="45">
+			<staticText>
+				<reportElement x="375" y="30" width="99" height="15" uuid="fc4c606a-7a7d-4714-8f1d-fd73041616c4"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="9" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[www.unisucre.edu.co]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="34" width="212" height="11" forecolor="#000000" uuid="30e57fba-96e2-4e61-987a-97fbd5c85798"/>
+				<textElement verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Email: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="14" width="246" height="31" forecolor="#000000" uuid="8e6949d3-85f0-43a1-bbcf-3c3dca4a1201"/>
+				<textElement verticalAlignment="Top">
+					<font size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="54" y="0" width="192" height="15" uuid="fbd4e6bf-fb82-4413-a914-ca7b8d7f6e1c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isItalic="true" pdfFontName="Helvetica-Oblique"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ELBCRT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="70" height="15" uuid="b67ea05e-8fce-4bd2-af70-5c4ef6a14c40"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Elaborado por:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="336" y="0" width="140" height="15" uuid="82f5321d-d718-4945-ae84-bb63f0611583"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Número de verificación: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="398" y="0" width="76" height="15" uuid="e1cbfb26-d1d4-4ebd-9d82-a4966f44b690"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="true" isPdfEmbedded="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NROCRT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+	<summary>
+		<band height="85">
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="65" width="212" height="20" uuid="563fdc0c-a951-4529-b2e7-57d608f46ed3"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+				</box>
+				<textElement markup="html"/>
+				<textFieldExpression><![CDATA[$F{MEMFMA}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="RealSize" isUsingCache="true" onErrorType="Blank">
+				<reportElement x="0" y="0" width="212" height="65" uuid="460f04b4-b9d1-42bf-8253-998a03109cbb"/>
+				<imageExpression><![CDATA[$P{pfirma}+".png"]]></imageExpression>
+			</image>
+		</band>
+	</summary>
+</jasperReport>

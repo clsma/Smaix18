@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMABTK">
+        <desc>Inserción tabla de Biblioteca</desc>
+        <sql>
+            INSERT INTO SMABTK (NROBTK, NOMBTK, NPQBTK,
+            CODBTK, DIRBTK, TELBTK,
+            NROSDE, EMLBTK, URLBTK,
+            PSOBTK, BLKBTK, NROUSR,
+            STDBTK, ORDBTK)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMABTK">
+        <desc>Update tabla de Biblioteca</desc>
+        <sql>
+            UPDATE SMABTK SET NOMBTK=?, NPQBTK=?,
+            CODBTK=?, DIRBTK=?, TELBTK=?,
+            NROSDE=?, EMLBTK=?, URLBTK=?,
+            PSOBTK=?, BLKBTK=?, NROUSR=?,
+            STDBTK=?, ORDBTK=?
+            WHERE NROBTK=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMABTK">
+        <desc>Delete tabla de Biblioteca</desc>
+        <sql>
+           DELETE FROM SMABTK
+            WHERE NROBTK=?
+        </sql>
+    </statement>
+    
+</sentencias>
+

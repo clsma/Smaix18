@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+ 
+<!DOCTYPE web-app  
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">    
+   
+<web-app>         
+    <listener>          
+        <listener-class>mvc.model.SessionListener</listener-class>
+        <listener-class>mvc.model.ContextListener</listener-class>
+        
+    </listener> 
+    <filter> 
+        <filter-name>Login Filter</filter-name>
+        <filter-class>mvc.model.FilterListener</filter-class>
+        <async-supported>true</async-supported>
+    </filter>
+    
+    <!-- ControllerServlet sevlet usado como controlador Maestro -->
+    <servlet>
+        <servlet-name>controller</servlet-name> 
+        <servlet-class>mvc.controller.ControllerServlet</servlet-class>
+        <async-supported>true</async-supported>
+    </servlet> 
+    <servlet-mapping>  
+        <servlet-name>controller</servlet-name>
+        <url-pattern>/servlet/*</url-pattern>
+    </servlet-mapping>
+    <!-- Tiempo maximo de sesiones ( Minutos ) -->
+    <session-config>
+        <session-timeout>40</session-timeout>
+    </session-config> 
+ 
+    <!-- Fichero Predetrminado de Bienvenida -->
+    <welcome-file-list>
+        <welcome-file>/vista/sistemas/login/login.jsp</welcome-file>
+    </welcome-file-list>
+    <!-- Pagina de no encontrado-->
+    <error-page>
+        <error-code>404</error-code> 
+        <location>/vista/404_error.jsp</location>
+    </error-page> 
+    <!-- Pagina de Error-->
+    <error-page>
+        <error-code>500</error-code>
+        <location>/vista/errorPage.jsp</location>
+    </error-page> 
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/vista/errorPage.jsp</location> 
+    </error-page>
+    <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/vista/errorPage.jsp</location>
+    </error-page>   
+     
+</web-app>

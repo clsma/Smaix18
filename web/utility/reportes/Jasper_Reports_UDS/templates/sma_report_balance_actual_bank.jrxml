@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="26f641f0-323d-4572-8616-c343d6f61ee2">
+	<property name="ireport.zoom" value="1.2396694214876032"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="sldfin" forecolor="#000000" pattern="#,##0.00">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{SLDPQK}<0]]></conditionExpression>
+			<style forecolor="#990000" pattern="#,##0.00"/>
+		</conditionalStyle>
+	</style>
+	<style name="crdmvk" forecolor="#000000" pattern="#,##0.00">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{CRDMVK}<0]]></conditionExpression>
+			<style forecolor="#990000" pattern="#,##0.00"/>
+		</conditionalStyle>
+	</style>
+	<style name="dbtmvk" forecolor="#000000" pattern="#,##0.00">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{DBTMVK}<0]]></conditionExpression>
+			<style forecolor="#990000" pattern="#,##0.00"/>
+		</conditionalStyle>
+	</style>
+	<style name="sldini" forecolor="#000000" pattern="#,##0.00">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{SLDPQK}<0]]></conditionExpression>
+			<style forecolor="#990000" pattern="#,##0.00"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="prutaImagen" class="java.lang.String"/>
+	<parameter name="pcodcia" class="java.lang.String"/>
+	<parameter name="ptitrpt" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA["C:\\Users\\AdminHeon\\Documents\\NetBeansProjects\\Reportes\\src\\presupuestoUDC\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ptxtxml" class="java.lang.String"/>
+	<parameter name="recordset" class="java.sql.ResultSet" isForPrompting="false"/>
+	<queryString language="plsql">
+		<![CDATA[{call SMA_CASH_REPORTS.banks_now_xml($P{ptxtxml},$P{recordset})}]]>
+	</queryString>
+	<field name="CODPQK" class="java.lang.String"/>
+	<field name="NOMPQK" class="java.lang.String"/>
+	<field name="SLDPQK" class="java.lang.Double"/>
+	<field name="DBTMVK" class="java.lang.Double"/>
+	<field name="CRDMVK" class="java.lang.Double"/>
+	<field name="SDIPQK" class="java.lang.Double"/>
+	<group name="ttpdpn">
+		<groupExpression><![CDATA[]]></groupExpression>
+		<groupFooter>
+			<band height="29">
+				<line>
+					<reportElement x="2" y="2" width="546" height="1" uuid="4ead3f2c-f8a8-4a8f-8a62-458bd80b5918"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="77" splitType="Stretch">
+			<subreport>
+				<reportElement x="-4" y="0" width="509" height="55" uuid="640db17b-849e-4dbd-8583-b91f8ca52605"/>
+				<subreportParameter name="pfchcorte">
+					<subreportParameterExpression><![CDATA[]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ptitrpt">
+					<subreportParameterExpression><![CDATA[$P{ptitrpt}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="pcodcia">
+					<subreportParameterExpression><![CDATA[$P{pcodcia}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="pPAGE_NUMBER">
+					<subreportParameterExpression><![CDATA[$V{PAGE_NUMBER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ptxtxml">
+					<subreportParameterExpression><![CDATA[$P{ptxtxml}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="prutaImagen">
+					<subreportParameterExpression><![CDATA[$P{prutaImagen}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Head.jasper"]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement x="442" y="63" width="80" height="11" uuid="fdec4664-14f0-4920-8d70-d0f53c013fe7"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pág "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="522" y="63" width="40" height="11" uuid="8d309f81-5d3e-45bf-b348-966bd2403582"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="14" splitType="Stretch">
+			<staticText>
+				<reportElement x="4" y="1" width="57" height="12" uuid="529182e9-2dc5-4686-b7c8-c9d64fbd3bdb"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CODIGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="61" y="1" width="205" height="12" uuid="40053f23-6296-4c87-9b60-8558297ddb86"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CUENTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="266" y="1" width="73" height="12" uuid="64d72c53-7ad6-4b45-8372-fc121a9ff859"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SALDO ANTERIOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="339" y="1" width="70" height="12" uuid="082948ae-02cf-4a7c-8e88-34e36fdadad6"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DEBITO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="409" y="1" width="70" height="12" uuid="0f021836-ed47-4395-a0d8-1ff634bdfc71"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CREDITO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="479" y="1" width="70" height="12" uuid="fecc7049-f0f0-45da-a0ca-1bd1ed4aadb1"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SALDO FINAL]]></text>
+			</staticText>
+			<line>
+				<reportElement x="3" y="1" width="546" height="1" uuid="50649532-8477-4c0c-aacf-7538340c8c18"/>
+			</line>
+			<line>
+				<reportElement x="3" y="13" width="546" height="1" uuid="483ce7dd-d8b2-47e9-927e-4c958811ebaa"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="12" splitType="Stretch">
+			<textField>
+				<reportElement x="4" y="1" width="57" height="11" uuid="e9066653-e49b-44b8-b71b-0caa8a181924"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CODPQK}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="61" y="1" width="205" height="11" uuid="4ebb8208-2971-4f25-8d28-0cb1abbdca5f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMPQK}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement style="sldini" x="266" y="1" width="73" height="11" uuid="0072e3c6-0be7-4cba-a700-6955c8ec71d7"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SDIPQK}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement style="dbtmvk" x="339" y="1" width="70" height="11" uuid="5a83e031-0ff9-4afd-a610-eda55741706f"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DBTMVK}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement style="crdmvk" x="409" y="1" width="70" height="11" uuid="d2c6800a-a3d8-40c8-89d7-cf030ab18949"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CRDMVK}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement style="sldfin" x="476" y="1" width="73" height="11" uuid="b0bbbf7d-168f-4790-8e8f-aebd063522d8"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SLDPQK}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

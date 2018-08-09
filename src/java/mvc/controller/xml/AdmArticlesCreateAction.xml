@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAACT">
+        <desc>Inserción tabla de Actas</desc>
+        <sql>
+            INSERT INTO SMAACT(CODCIA,CODACT,NROACT,CODPRS,TPOACT,DOCACT,FCHACT,TXTACT,STDACT,ORGACT,SQLBKR)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAART">
+        <desc>Inserción tabla de Actas</desc>
+        <sql>
+            INSERT INTO SMAART (NROART, CODCIA, CODART,
+            LNAART, DSPART, RFRART,
+            UNDART, LNBART, CNCART,
+            TPOART, CTRART, NROFBK,
+            CFTART, CNTART, CTOART,
+            VLRART, DESART, VLPART,
+            BNSART, IVAART, CLSART, PLCART) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    
+
+    
+    <statement name="UPDATE_SMAART">
+        <desc>Actualizar registro de la tabla Articulos</desc>
+        <sql>
+           Update smaart set CODART=?,LNAART=?,DSPART=?,RFRART=?,UNDART=?,LNBART=?,CNCART=?,TPOART=?,CTRART=?,
+            NROFBK=?,CFTART=?,CNTART=?,CTOART=?,VLRART=?,DESART=?,VLPART=?,BNSART=?,IVAART=?, CLSART=?, PLCART=?
+            where NROART=? and CODCIA=?
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAARC">
+        <desc>Insertar registro de la tabla Articulos</desc>
+        <sql>
+         INSERT INTO SMAARC(NROARC,CODCIA,TPOARC,NROART,NROSCP,NUMARC,VLRARC )
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAACS">
+        <desc>iNSERTAR registro de la tabla Accedorios</desc>
+        <sql>
+         INSERT INTO SMAACS(CODCIA,NROACS,TPOACS,NROART,ARTACS,STDACS,SQLBKR)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAACS">
+        <desc>DELETE registro de la tabla Accedorios</desc>
+        <sql>
+         DELETE FROM SMAACS
+            WHERE NROACS=?
+        </sql>
+    </statement>
+   
+</sentencias>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sentencias version="1.0">
+    <statement name="INSERT_SMADQM">
+        <desc>Inserción tabla de ciudades</desc>
+        <sql>
+            INSERT INTO SMADQM( IDEDQM ,CODDQM ,NOMDQM, DSPDQM,VNCDQM) 
+            VALUES ( ?, ?, ?,? ,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMADQM">
+        <desc>Update tabla de ciudades</desc>
+        <sql>
+            UPDATE SMADQM SET CODDQM=?, NOMDQM=?, DSPDQM=?,VNCDQM=? WHERE IDEDQM=?
+           
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMADQM">
+        <desc>Delete tabla de ciudades</desc>
+        <sql>
+            DELETE SMADQM  WHERE IDEDQM=? 
+        </sql>
+    </statement>
+</sentencias>

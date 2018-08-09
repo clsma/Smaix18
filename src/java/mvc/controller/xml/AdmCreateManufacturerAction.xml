@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAFBK">
+        <desc>Inserción tabla de Fabricantes</desc>
+        <sql>
+            INSERT INTO SMAFBK(CODCIA,CODFBK,DIRFBK,EMLFBK,FAXFBK,NOMFBK,NROFBK,STDFBK,TELFBK,TPOFBK)
+            VALUES (? , ? , ? ,? , ? , ? , ? , ? , ? ,? )
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAFBK">
+        <desc>Actualiza registro Fabricantes</desc>
+        <sql>
+            Update smafbk set CODFBK=?,DIRFBK=?,EMLFBK=?,FAXFBK=?,NOMFBK=?,STDFBK=?,TELFBK=?,TPOFBK=? 
+            where CODCIA=? and NROFBK=?
+        </sql>
+    </statement>
+    
+    
+  
+</sentencias>

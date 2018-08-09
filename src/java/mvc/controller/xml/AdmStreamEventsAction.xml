@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="DELETE_SMADFE">
+        <desc>Delete SMADFE</desc>
+        <sql>
+           DELETE  FROM SMADFE WHERE NROFJE=?
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMADFE">
+        <desc>Insert tabla de SMADFE</desc>
+        <sql>
+           INSERT INTO SMADFE (NRODFE, NROFJE, CSCDFE, NROFJA, STDDFE) 
+            VALUES (?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    
+    
+    
+</sentencias>

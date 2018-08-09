@@ -1,0 +1,53 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{
+	text-align:center; 	
+	}
+	
+#body{
+	width:100%;
+	text-align:left; 
+	}
+	
+legend{
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:14px; color:#151515; 
+	background-color:#B90000;
+	font-weight:bold;
+	}	
+	
+#title{
+	text-align:center;
+	background-color:transparent;
+	background-image:url(../iconos/banerPrueba.bmp);
+	background-repeat:no-repeat;
+	color:#FFF;
+		
+	}	
+	
+label{
+	text-align:right;	
+}	
+
+div{
+	background-color:transparent;
+	}
+	
+/**DIV como tablas*/
+.table { 
+	display: table; 
+	width:100%;
+	
+	}
+.table .row { display: table-row; }
+.table .cell { display: table-cell; position:relative;float:left; }
+#header{
+	font-weight:bold;
+	border-bottom-style:groove;
+	border-top-style:outset ;
+	border-left-style:groove;
+	border-right-style:outset;	
+	background-color:#CA0000;
+
+	}

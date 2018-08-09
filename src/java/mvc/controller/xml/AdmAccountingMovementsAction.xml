@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="SELECT_SMAMVX">
+        <desc>Obtiene Datos de los movimientos contables borradores</desc>
+        <sql>
+            sma_accounts.movements_draft( ?, ? )
+        </sql>
+    </statement>
+    <statement name="SELECT_SMAMVK">
+        <desc>Obtiene Datos de los movimientos contables</desc>
+        <sql>
+            sma_accounts.movements_draft_mvk( ?, ? )
+        </sql>
+    </statement>
+    
+</sentencias>

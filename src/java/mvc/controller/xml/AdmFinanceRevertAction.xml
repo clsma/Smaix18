@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMACRD">
+        <desc>Inserción tabla de Areas</desc>
+        <sql>
+           INSERT INTO SMAARE( NROARE, CODCIA,  CODARE, NOMARE, NPQARE, CLRARE, SQLBKR ) 
+           VALUES ( ?, ?, ?, ?, ?, ?, ? )
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMACRD">
+        <desc>Update tabla de Credito</desc>
+        <sql>
+           UPDATE SMACRD SET STDCRD=?
+            WHERE NROCRD=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAARE">
+        <desc>Delete tabla de Areas</desc>
+        <sql>
+           DELETE FROM SMAARE
+            WHERE NROARE=?
+        </sql>
+    </statement>
+    
+</sentencias>

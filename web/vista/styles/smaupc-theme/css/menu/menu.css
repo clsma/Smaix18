@@ -1,0 +1,36 @@
+.headMenu{
+	width: 100%;
+	/*background-color: #FDBC5C;*/
+	background-color: #218955;
+	 
+}
+
+
+
+/** Estilos menú sma **/
+
+.colorInstitucional{
+ background-color: #218955;   
+}
+
+#tblSmaHeader {
+    width: 100%;
+    background-color: #218955;    
+}
+#tblSmaFooter {
+    width: 100%;
+    background-color: #218955;    
+}
+
+#cssmenu{
+clear: both;  
+min-height: 50px; 
+/*background-color: #ffa200;*/
+border: 5px; 
+border-color: red;	
+}
+
+
+body{
+    background-color: #EFEFEF
+}

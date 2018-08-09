@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+   <statement name="INSERT_SMALNG">
+        <desc>Inserción tabla de idiomas</desc>
+        <sql>
+           INSERT INTO SMALNG( NROLNG,CODLNG ,NOMLNG, SQLBKR) 
+           VALUES ( ?, ?, ?, ? )
+        </sql>
+    </statement>
+    
+     <statement name="UPDATE_SMALNG">
+        <desc>Update tabla de idiomas</desc>
+        <sql>
+          UPDATE SMALNG SET CODLNG=?, NOMLNG=?, SQLBKR=? WHERE NROLNG=?           
+        </sql>
+    </statement>
+    
+     <statement name="DELETE_SMALNG">
+        <desc>Delete tabla de idiomas</desc>
+        <sql>
+          DELETE SMALNG  WHERE NROLNG=?            
+        </sql>
+    </statement>
+</sentencias>
+
+

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMACLA">
+        <desc>Inserción tabla de Areas</desc>
+        <sql>
+           INSERT INTO SMACLA (NROCLA, TPOCLA, TITCLA,
+            TXTCLA, HTMCLA, SQLBKR) 
+            VALUES (?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMACLA">
+        <desc>Inserción tabla de Areas</desc>
+        <sql>
+           UPDATE SMACLA set  TPOCLA=?, TITCLA=?,
+            TXTCLA=?, HTMCLA=?, SQLBKR=?
+            WHERE NROCLA=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMACLA">
+        <desc>Inserción tabla de Areas</desc>
+        <sql>
+           DELETE FROM SMACLA 
+            WHERE NROCLA=?
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMACLS">
+        <desc>Update tabla de Cls</desc>
+        <sql>
+           INSERT INTO SMACLS VALUES(?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMACLS">
+        <desc>Delete tabla de Cls</desc>
+        <sql>
+           DELETE FROM SMACLS
+            WHERE NROCLS=?
+        </sql>
+    </statement>
+    
+     <statement name="DELETE_SMACLS_SMACLA">
+        <desc>Delete tabla de Cls</desc>
+        <sql>
+           DELETE FROM SMACLS
+            WHERE NROCLA=?
+        </sql>
+    </statement>
+    
+</sentencias>

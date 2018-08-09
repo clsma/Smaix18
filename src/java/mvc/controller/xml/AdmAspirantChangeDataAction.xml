@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMADBI">
+        <desc>Inserción tabla de aspirantes</desc>
+        <sql>
+            INSERT INTO SMADBI (CODDBI,NROPRS,NROPGM,SMTPSM,AGADBI,SMADBI,PGSDBI,PGTDBI,RZPDBI,RZKDBI,RZIDBI,ATCDBI,PBKDBI,MPBDBI,TPODBI,STDDBI,CODOFR,INSDBI,CODBAS,NGRBAS,PLNDBI,JNDDBI,STDPLN,IDEUNV) 
+                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+     <statement name="UPDATE_SMADBI">
+        <desc>Actualizacion tabla de aspirantes</desc>
+        <sql>
+                UPDATE SMADBI SET SMTPSM = ? ,AGADBI = ? ,
+                                  SMADBI = ? ,PGSDBI = ? ,
+                                  PGTDBI = ? ,RZPDBI = ? ,
+                                  RZKDBI = ? ,RZIDBI = ? ,
+                                  ATCDBI = ? ,PBKDBI = ? ,
+                                  MPBDBI = ? ,TPODBI = ? ,
+                                  STDDBI = ? ,CODOFR = ? ,
+                                  INSDBI = ? ,CODBAS = ? ,
+                                  NGRBAS = ? ,PLNDBI = ? ,
+                                  JNDDBI = ? ,STDPLN = ? ,
+                                  IDEUNV = ? 
+                            WHERE CODDBI = ? 
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAPRS">
+        <desc>Actualizacion de la tabla de personas</desc>
+        <sql>
+            UPDATE SMAPRS SET NACPRS = ?,FHNPRS = ?,
+                            EPSPRS = ?,SNGPRS = ?,
+                            CIVPRS = ?,SEXPRS = ?,
+                            DIRPRS = ?,TELPRS = ?,
+                            CELPRS = ?,IDECIU = ?,
+                            EMLPRS = ?,PSWPRS = ?,
+                            EXPPRS = ?,ESKPRS = ?,
+                            ESTPRS = ?,SNPPRS = ?,
+                            NROXVT = ?,PSNPRS = ?,
+                            PNOPRS = ?,SNOPRS = ?,
+                            PAPPRS = ?,SAPPRS = ?,
+                            BROPRS = ?,ZNAPRS = ?,
+                            DISPRS = ?,VTOPRS = ?,
+                            MILPRS = ?,NRMPRS = ?,
+                            NDMPRS = ?,DIFPRS = ?,
+                            TEFPRS = ?,SBNPRS = ?,
+                            TRJPRS = ?,TDIPRS = ?,
+                            NRIPRS = ?,APEPRS = ?,
+                            NOMPRS = ?,CODPRS = ?,
+                            IDEPRS = ?,FHXPRS = ? 
+                            WHERE NROPRS = ?
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMADBC">
+        <desc>Insercion en la tabla de Datos complementarios</desc>
+        <sql>
+            INSERT INTO SMADBC ( NRODBC, CODCIA, NROPRS, VULDBC, ETNDBC, RSGDBC, VCTDBC, 
+                                 SBNDBC, STRDBC, SCTDBC, DISDBC, CAPDBC, HNSDBC, POSDBC, 
+                                 HESDBC, SDYJFE, JOBJFE, FMLDBC, DPNDBC, CNVDBC, DOMDBC, 
+                                 SQLBKR )
+                        VALUES ( ? , ? , ? , ? , ? , ? , ? , 
+                                 ? , ? , ? , ? , ? , ? , ? , 
+                                 ? , ? , ? , ? , ? , ? , ? , 
+                                 ? )
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMADBC">
+        <desc>Actualizacion en la tabla de Datos complementarios</desc>
+        <sql>
+            UPDATE SMADBC SET VULDBC = ? , ETNDBC = ? , RSGDBC = ? , VCTDBC = ? , 
+                              SBNDBC = ? , STRDBC = ? , SCTDBC = ? , DISDBC = ? , 
+                              CAPDBC = ? , HNSDBC = ? , POSDBC = ? , HESDBC = ? , 
+                              SDYJFE = ? , JOBJFE = ? , FMLDBC = ? , DPNDBC = ? , 
+                              CNVDBC = ? , DOMDBC = ? , SQLBKR = ? 
+                      WHERE NROPRS = ?
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMADBS">
+        <desc>Insercion en la tabla estudios basicos</desc>
+        <sql>
+            INSERT INTO SMADBS (NRODBS,CODCIA,NROPRS,TPOPRS,IDEKLG,ESKDBS,BGNDBS,ENDDBS,JNDDBS,CALDBS,CARDBS,ESPDBS,METDBS,IDMDBS,VLRDBS,VALDBS,SQLBKR)
+                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMADBS">
+        <desc>Actualizacion en la tabla estudios basicos</desc>
+        <sql>
+            UPDATE SMADBS SET IDEKLG = ?, ESKDBS = ?,
+                              BGNDBS = ?, ENDDBS = ?,
+                              JNDDBS = ?, CALDBS = ?,
+                              CARDBS = ?, ESPDBS = ?,
+                              METDBS = ?, IDMDBS = ?,
+                              VLRDBS = ?, VALDBS = ?
+                         WHERE NROPRS = ?
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAICF">
+        <desc>Insercion en la tabla icfes</desc>
+        <sql>
+            INSERT INTO SMAICF (NROICF,CODCIA,SNPICF,PTJICF,FCHICF,CODCIU,TPOIDE,NRIPRS,PSTICF,NROXVT,TPOICF,NROPRS)
+                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAICF">
+        <desc>Actualizacion en la tabla icfes</desc>
+        <sql>
+            UPDATE SMAICF SET SNPICF = ?, PTJICF = ?,
+                              FCHICF = ?, CODCIU = ?,
+                              TPOIDE = ?, PSTICF = ?,
+                              NRIPRS = ?, NROXVT = ?
+                        WHERE NROICF = ?
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMADBZ">
+        <desc>Insercion en la tabla de datos financieros</desc>
+        <sql>
+            INSERT INTO SMADBZ (NRODBZ,CODCIA,NROPRS,FMSDBZ,APRDBZ,NGSDBZ,VIVDBZ,DUVDBZ,NPRDBZ,NBRDBZ,STEDBZ,QCEDBZ,SQLBKR)
+                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMADBZ">
+        <desc>Actualizacion en la tabla de datos financieros</desc>
+        <sql>
+            UPDATE SMADBZ SET FMSDBZ = ?, APRDBZ = ?,
+                              NGSDBZ = ?, VIVDBZ = ?,
+                              DUVDBZ = ?, NPRDBZ = ?,
+                              NBRDBZ = ?, STEDBZ = ?,
+                              QCEDBZ = ?
+                         WHERE NROPRS = ?
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAPIN">
+        <desc>Actualizacion en la tabla de pines</desc>
+        <sql>
+            UPDATE SMAPIN SET NROPRS = ?, 
+                              CODDBI = ?, 
+                              STDPIN = ?
+                      WHERE NROPIN = ?
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAEMS">
+        <desc>Insercion en la tabla de email</desc>
+        <sql>
+            Insert into SMAEMS (NROEMS,CODCIA,CODDIV,TPOEMS,FCHEMS,
+                                FHEEMS,FHVEMS,FRMEMS,TO_EMS,CC_EMS,
+                                BCCEMS,MSGEMS,TXTEMS,ATTEMS,CODPRS,
+                                TPOPRS,STDEMS,KNDSRV,TPOSRV,CODSRV,
+                                SQLBKR) 
+                        values (?,?,?,?,?,
+                                ?,?,?,?,?,
+                                ?,?,?,?,?,
+                                ?,?,?,?,?,
+                                ?)
+        </sql>
+    </statement> 
+    
+    <statement name="INSERT_SMADBR">
+        <desc>Insercion en la tabla de examenes ICFES</desc>
+        <sql>
+            Insert into SMADBR ( NRODBR , NROXVA , NROPRS , VLRDBR , PTJDBR ,
+                                 MAXDBR , RESDBR , SQLBKR ) 
+                        values (?,?,?,?,?,
+                                ?,?,?)
+        </sql>
+    </statement> 
+    
+     <statement name="DELETE_SMADBR">
+        <desc>Delete en la tabla de examenes ICFES</desc>
+        <sql>
+            DELETE FROM SMADBR WHERE NROPRS = ?
+        </sql>
+    </statement> 
+    
+</sentencias>

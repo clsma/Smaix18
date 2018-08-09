@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMATDQ">
+        <desc>Inserción tabla de recuperacion de pagos</desc>
+        <sql>
+            INSERT INTO SMATDQ (CODCIA, NROTDQ, TPOTDQ, NROQNT, FILTDQ, FCHTDQ, NROUSR, NITCIA, CODBKO, FHATDQ, HRATDQ, MODTDQ, TPOQNT, RGSTDQ, SUMTDQ, STDTDQ, SYSTDQ, SQLBKR)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMATAQ">
+        <desc>Inserción tabla Maestro recuperacion de pagos</desc>
+        <sql>
+            INSERT INTO SMATAQ (NROTAQ,NROTDQ,LINTAQ,SQLBKR)
+                        VALUES (?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+</sentencias>

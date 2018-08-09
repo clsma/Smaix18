@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAPBK">
+        <desc>Inserción tabla de Publicaciones</desc>
+        <sql>
+           Insert into SMAPBK (NROPBK, CODCST, NROPRS, TPOPRS, TPOPBK, NOMPBK, EDTPBK, AGNPBK, SQLBKR) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAPBK">
+        <desc>Update tabla de Publicaciones</desc>
+        <sql>
+           Update SMAPBK Set CODCST=?, NROPRS=?, TPOPRS=?, TPOPBK=?, NOMPBK=?, EDTPBK=?, AGNPBK=?, SQLBKR=?
+            Where NROPBK=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAPBK">
+        <desc>Delete tabla de Publicaciones</desc>
+        <sql>
+           
+        </sql>
+    </statement>
+    
+</sentencias>

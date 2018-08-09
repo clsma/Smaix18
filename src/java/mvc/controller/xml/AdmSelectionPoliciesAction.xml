@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMASIC">
+        <desc>Inserción tabla de SMASIC</desc>
+        <sql>
+                INSERT INTO SMASIC(nrosic, codcia, nomsic, stdsic)
+                         VALUES(?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMASIP">
+        <desc>Inserción tabla de SMASIP</desc>
+        <sql>
+            INSERT INTO SMASIP(NROSIP, NROSIS, NROXVA, BGNSIP, ENDSIP, PTJSIP, TXTSIP, PTPSIP, STDSIP, NROSIC, NROSIQ)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMASIQ" >
+        <desc>Inserción tabla de SMASIQ</desc>
+        <sql>
+                INSERT INTO SMASIQ(nrosiq, nrosis, nrosic, ptjsiq)
+                         VALUES(?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMASIQ" >
+        <desc>Update tabla de SMASIQ</desc>
+        <sql>
+              UPDATE SMASIQ SET PTJSIQ = ? WHERE NROSIQ = ?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMASIP">
+        <desc>Delete tabla de SMASIP</desc>
+        <sql>
+            DELETE FROM SMASIP WHERE NROSIP = ?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMASIP_NROSIS_NROSIC">
+        <desc>Delete tabla de SMASIP</desc>
+        <sql>
+            DELETE FROM SMASIP WHERE NROSIS = ? AND NROSIC = ?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMASIQ">
+        <desc>Delete tabla de SMASIQ</desc>
+        <sql>
+            DELETE FROM SMASIQ WHERE NROSIQ = ?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMASIC">
+        <desc>Delete tabla de SMASIC</desc>
+        <sql>
+            DELETE FROM SMASIC WHERE NROSIC = ?
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAPGM" >
+        <desc>Update tabla de SMAPGM</desc>
+        <sql>
+              UPDATE SMAPGM SET NROSIC = ? WHERE IDEPGM = ?
+        </sql>
+    </statement>
+
+</sentencias>

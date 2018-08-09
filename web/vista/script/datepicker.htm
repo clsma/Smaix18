@@ -1,0 +1,383 @@
+<HTML>
+<HEAD>
+<TITLE>DatePicker</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../css/datepicker.css">
+<SCRIPT LANGUAGE=javascript>
+
+/********************************************************************
+	DatePicker 1.3                                          2003-03-20
+
+	A datepicker for IE 4 or higher.
+	You'll also need datepicker.css to run it.
+
+	// Markus Gemstad
+	gemstad@hotmail.com
+   http://www.gemstad.com (references, samples etc)
+********************************************************************/
+
+// Global variables
+var g_oDatePicker = null;
+
+// Class constructor
+function DatePicker(sDivMain, iStartYear, iEndYear, bStartWithSunday)
+{
+   // Public variables (settings)
+   this.m_iStartYear = iStartYear;
+   this.m_iEndYear   = iEndYear;
+
+   this.m_arrDays          = new Array("Lun", "Mar", "Mie", "Jue", "Vie", "Sab", "Dom");
+   this.m_arrMonths        = new Array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
+   this.m_sClose           = "Salir";
+   this.m_bStartWithSunday = (bStartWithSunday!=null) ? bStartWithSunday : false;
+   this.m_iStartDay        = (this.m_bStartWithSunday) ? 6 : 0; // Day to start week on, index of m_arrDays
+
+   this.m_oSetValueOn = null;
+
+   // Private variables
+   g_oDatePicker = this;
+   this.m_bInit  = false;
+
+   this.m_oDivMain   = eval("parent." + sDivMain);
+   this.m_oDivHead   = null;
+   this.m_oDivBody   = null;
+
+   this.m_oNowDate    = new Date();
+   this.m_iMonth      = this.m_oNowDate.getMonth();
+   this.m_iYear       = this.m_oNowDate.getFullYear();
+
+   this.m_sHighlightBg       = "";
+   this.m_sHighlightSundayBg = "";
+   this.m_sHighlightTodayBg  = "";
+
+   this.m_sRestoreHighlightBg       = "";
+   this.m_sRestoreHighlightSundayBg = "";
+   this.m_sRestoreHighlightTodayBg  = "";
+   
+   // Public functions
+   this.open       = DatePickerOpen;
+   this.chooseDate = DatePickerChooseDate;
+   this.close      = DatePickerClose;
+
+   this.setInitDate = DatePickerSetInitDate;
+   this.setYear     = DatePickerSetYear;
+   this.setMonth    = DatePickerSetMonth;
+   this.setPosition = DatePickerSetPosition;
+
+   this.forward  = DatePickerForward;
+   this.backward = DatePickerBackward;
+
+   // Private functions
+   this.init = DatePickerInit;
+
+   this.highlightDate = DatePickerHighlightDate;
+   this.getColors     = DatePickerGetColors;
+   this.makeMainHTML  = DatePickerMakeMainHTML;
+   this.makeBodyHTML  = DatePickerMakeBodyHTML;
+}
+
+// Highlight a date (normaly on mouseover)
+function DatePickerHighlightDate(objHtml, bRestore, sDay)
+{
+   if(bRestore)
+      eval("objHtml.style.background = this.m_sRestoreHighlight"+sDay+"Bg");
+   else
+      eval("objHtml.style.background = this.m_sHighlight"+sDay+"Bg");
+}
+
+// Get the colors for the highlights
+function DatePickerGetColors()
+{
+
+   if( navigator.appName.indexOf("Netscape")!=0 ){
+
+	   if(this.m_sHighlightBg == "") // Only if this hasen't been done before
+	   {
+	      this.m_sHighlightBg       = document.styleSheets[0].rules[10].style.backgroundColor;
+	      this.m_sHighlightSundayBg = document.styleSheets[0].rules[11].style.backgroundColor;
+	      this.m_sHighlightTodayBg  = document.styleSheets[0].rules[15].style.backgroundColor;
+	
+	      this.m_sRestoreHighlightBg       = document.styleSheets[0].rules[0].style.backgroundColor;
+	      this.m_sRestoreHighlightSundayBg = document.styleSheets[0].rules[3].style.backgroundColor;
+	      this.m_sRestoreHighlightTodayBg  = document.styleSheets[0].rules[14].style.backgroundColor;
+	   }
+	}
+}
+
+// Init the picker so that the choosen date (year, month) is open the first time
+function DatePickerSetInitDate(iYear, iMonth)
+{
+   this.m_iYear  = parseInt(iYear);
+   this.m_iMonth = parseInt(iMonth);
+
+   if(this.m_bInit)
+   {
+      this.m_oDivHead.innerHTML = this.makeMainHTML();
+      this.m_oDivBody.innerHTML = this.makeBodyHTML();
+   }
+}
+
+// Update the picker and show the desired year
+function DatePickerSetYear(iYear, bNoFocus)
+{
+   this.m_iYear = parseInt(iYear);
+   this.m_oDivBody.innerHTML = this.makeBodyHTML();
+	if(!bNoFocus)
+		frmDatePicker.cboYear.focus();
+}
+
+// Update the picker and show the desired month
+function DatePickerSetMonth(iMonth, bNoFocus)
+{
+   this.m_iMonth = parseInt(iMonth);
+   this.m_oDivBody.innerHTML = this.makeBodyHTML();
+	if(!bNoFocus)
+	   frmDatePicker.cboMonth.focus();
+}
+
+function DatePickerForward()
+{
+	// If last month and last year, go no further
+	if(frmDatePicker.cboMonth.options.length-1 == frmDatePicker.cboMonth.selectedIndex &&
+		frmDatePicker.cboYear.options.length-1 == frmDatePicker.cboYear.selectedIndex)
+		return;
+
+	// If last month, increase a year
+	if(frmDatePicker.cboMonth.selectedIndex == 11)
+	{
+		frmDatePicker.cboYear.selectedIndex += 1;
+		frmDatePicker.cboMonth.selectedIndex = 0;
+		this.setYear(frmDatePicker.cboYear.value, true);
+		this.setMonth(frmDatePicker.cboMonth.value, true);
+	}
+	else // Increase a month
+	{
+		frmDatePicker.cboMonth.selectedIndex += 1;
+		this.setMonth(frmDatePicker.cboMonth.value, true);
+	}
+}
+
+function DatePickerBackward()
+{
+	// If last month and last year, go no further
+	if(0 == frmDatePicker.cboMonth.selectedIndex && 0 == frmDatePicker.cboYear.selectedIndex)
+		return;
+
+	// If first month, decrease a year
+	if(frmDatePicker.cboMonth.selectedIndex == 0)
+	{
+		frmDatePicker.cboYear.selectedIndex -= 1;
+		frmDatePicker.cboMonth.selectedIndex = 11;
+		this.setYear(frmDatePicker.cboYear.value, true);
+		this.setMonth(frmDatePicker.cboMonth.value, true);
+	}
+	else // Decrease a month
+	{
+		frmDatePicker.cboMonth.selectedIndex -= 1;
+		this.setMonth(frmDatePicker.cboMonth.value, true);
+	}
+}
+
+// Close/hide the datepicker
+function DatePickerClose()
+{
+   this.m_oDivMain.style.visibility = "hidden";
+}
+
+// Select/return a date (normaly on onclick)
+function DatePickerChooseDate(sDate)
+{
+   var sMonth = this.m_iMonth + 1;
+   
+   if(sMonth <= 9)
+      sMonth = "0" + sMonth;
+   if(sDate <= 9)
+      sDate = "0" + sDate;
+
+  // this.m_oSetValueOn.value = this.m_iYear + '-' + sMonth + '-' + sDate;
+   this.m_oSetValueOn.value = sDate + '/' + sMonth  + '/' +  this.m_iYear ;
+   this.close();
+}
+
+// Create the picker, set/get default values
+function DatePickerInit()
+{
+   this.getColors();
+      
+   this.m_oDivHead = document.all("divDatePickerHead");
+   this.m_oDivBody = document.all("divDatePickerBody");
+
+   this.m_oDivHead.innerHTML = this.makeMainHTML();
+   this.m_oDivBody.innerHTML = this.makeBodyHTML();
+
+   this.m_bInit = true;
+}
+
+// Show the picker
+function DatePickerOpen(oSetValueOn)
+{
+   if(document.all) parent.event.cancelBubble = true;
+   //this.m_oSetValueOn = "parent." + sSetValueOn;
+   this.m_oSetValueOn = oSetValueOn;
+
+   if(!this.m_bInit) // Only init if hasn't been done before
+      this.init();
+   else
+      this.m_oDivBody.innerHTML = this.makeBodyHTML();
+
+   this.setPosition();
+   
+   if( navigator.appName.indexOf("Netscape")!=0 ){
+	   this.m_oDivMain.style.visibility = "visible";
+   }
+}
+
+// Create HTML code for the main/top part of the picker
+function DatePickerMakeMainHTML()
+{
+   var sHTML      = "";
+   var sThisMonth = "";
+   var sThisYear  = "";
+   
+   sHTML += "<TABLE WIDTH=\"100%\" BORDER=0 CELLSPACING=0 CELLPADDING=2 CLASS=tableBgBorder>"
+   sHTML += "   <FORM METHOD=post ACTION=byJavascript NAME=frmDatePicker>"
+   sHTML += "      <TR>" 
+   sHTML += "         <TD CLASS=cellHead><A HREF=\"#\" onClick=\"g_oDatePicker.backward();return false;\" CLASS=linkArrow>&lt;&lt;</A></TD>"
+   sHTML += "         <TD CLASS=cellHead>"
+   sHTML += "            <SELECT NAME=cboMonth CLASS=cboMonth onChange=\"g_oDatePicker.setMonth(this.value)\">";
+
+   for(var i = 0; i < this.m_arrMonths.length; i++) // Months
+   {
+      sThisMonth = "";
+      if(this.m_iMonth == i)
+         sThisMonth = " SELECTED";
+      sHTML += "<OPTION" + sThisMonth + " VALUE=" + i + ">" + this.m_arrMonths[i] + "</OPTION>";
+   }
+
+   sHTML += "            </SELECT>"
+   sHTML += "         </TD>"
+   sHTML += "         <TD CLASS=cellHead>" 
+   sHTML += "            <SELECT NAME=cboYear CLASS=cboYear onChange=\"g_oDatePicker.setYear(this.value)\">";
+
+   for(var i = this.m_iStartYear; i <= this.m_iEndYear; i++) // Years
+   {
+      sThisYear = "";
+      if(this.m_iYear == i)
+         sThisYear = " SELECTED";
+      sHTML += "<OPTION" + sThisYear + " VALUE=" + i + ">" + i + "</OPTION>";
+   }
+
+   sHTML += "            </SELECT>"
+   sHTML += "         </TD>"
+   sHTML += "         <TD CLASS=cellHead><A HREF=\"#\" onClick=\"g_oDatePicker.forward();return false;\" CLASS=linkArrow>&gt;&gt;</A></TD>"
+   sHTML += "         <TD WIDTH=\"100%\" CLASS=cellHead>&nbsp;</TD>"
+   sHTML += "         <TD CLASS=cellHead><A HREF=\"#\" onClick=\"g_oDatePicker.close();return false;\" CLASS=linkClose>" + this.m_sClose + "</A></TD>"
+   sHTML += "      </TR>"
+   sHTML += "   </FORM>"
+   sHTML += "</TABLE>"
+
+   return sHTML;
+}
+
+// Create HTML code for the date section/body of the picker
+function DatePickerMakeBodyHTML()
+{
+   var sHTML    = "";
+   var iWeekDay = new Date(this.m_iYear, this.m_iMonth, 1).getDay();
+   var iEndDate = new Date(this.m_iYear, (this.m_iMonth+1), 1).getDate();
+   var iCounter = 1;
+   var iSunday;
+
+   // Fix startday so that week can start on different days (ie Monday or Sunday)
+   iWeekDay = iWeekDay-this.m_iStartDay;
+   if(iWeekDay<1) iWeekDay = iWeekDay+7;
+
+   if(iEndDate==1) // Fix for NT!? Thanx to Jeff Miner
+      iEndDate = new Date(this.m_iYear, (this.m_iMonth+1), 0).getDate();
+
+   sHTML += "<TABLE WIDTH=100% CLASS=tableBgBorder BORDER=0 CELLSPACING=1 CELLPADDING=2><TR ALIGN=CENTER>";
+
+   var iDay = this.m_iStartDay;
+   for(var i=0; i<7; i++) // Days 0-6
+   {
+      if(iDay==6) // Sunday
+      {
+         sHTML += "<TD CLASS=cellDaySunday>" + this.m_arrDays[iDay] + "</TD>";
+         iSunday = i+1;
+      }
+      else
+         sHTML += "<TD CLASS=cellDay>" + this.m_arrDays[iDay] + "</TD>";
+      iDay = (iDay==this.m_arrDays.length-1) ? 0 : iDay+1;
+   }
+
+   for(var i=0; i<7; i++) // Dates (rows) 0-6
+   {
+      sHTML += "<TR ALIGN=CENTER>";
+      for(var i2=1; i2<=7; i2++) // Days (columns) 1-7
+      {
+         sDay = "";
+		   if(this.m_oNowDate.getMonth() == this.m_iMonth &&
+      		this.m_oNowDate.getFullYear() == this.m_iYear &&
+				this.m_oNowDate.getDate() == iCounter) // If today
+				sDay = "Today";
+         else if(i2==iSunday) // If Sunday
+            sDay = "Sunday";
+
+         if((i2 < iWeekDay && iCounter == 1) || (iCounter > iEndDate)) // If not start date or over end date
+            sHTML += "<TD CLASS=cellEmpty>&nbsp;</TD>";
+         else // Start date count now
+         {
+            sHTML += "<TD onClick=\"g_oDatePicker.chooseDate(" + iCounter + ");\" onMouseOver=\"g_oDatePicker.highlightDate(this, false, '"+sDay+"');\" " + 
+                     "onMouseOut=\"g_oDatePicker.highlightDate(this, true, '"+sDay+"');\" CLASS=cellDate" + sDay + ">" + iCounter + "</TD>";
+            iCounter++;
+         }
+      }
+      sHTML += "</TR>";
+   }
+   sHTML += "</TABLE>"
+   return sHTML;
+}
+
+// Relative to input, below it
+function DatePickerSetPosition()
+{
+   var iLeft = 0;
+   var iTop  = 0;
+   
+   if( navigator.appName.indexOf("Netscape")!=0 ){
+ 	  var oDiv  = this.m_oDivMain.style;
+   }  
+   
+   var oObj  = this.m_oSetValueOn;
+
+   //iLeft += oObj.offsetWidth;
+   iTop  += oObj.offsetHeight + 2;
+
+   while(oObj != null)
+   {
+      iLeft += oObj.offsetLeft;
+      iTop  += oObj.offsetTop;
+      oObj   = oObj.offsetParent;
+   }
+
+   // If box gets outside clientArea to the right, place left of oRelativeTo
+   if(parent.document.body.clientWidth < (iLeft+document.body.clientWidth))
+      iLeft = iLeft-document.body.clientWidth+(this.m_oSetValueOn.offsetWidth);
+   // If box gets outside clientArea at the bottom, place above oRelativeTo
+   if(parent.document.body.clientHeight < (iTop+document.body.clientHeight))
+      iTop = iTop-document.body.clientHeight-(this.m_oSetValueOn.offsetHeight+4);
+
+   if( navigator.appName.indexOf("Netscape")!=0 ){
+	   oDiv.left = iLeft;
+	   oDiv.top  = iTop;
+    }
+}
+
+</SCRIPT>
+</HEAD>
+<BODY TOPMARGIN="0" LEFTMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0">
+
+<DIV ID=divDatePickerHead></DIV>
+<DIV ID=divDatePickerBody></DIV>
+
+</BODY>
+</HTML>

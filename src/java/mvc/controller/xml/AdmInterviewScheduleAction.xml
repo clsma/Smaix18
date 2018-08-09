@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAAEG">
+        <desc>Inserción tabla de Entrevistas</desc>
+        <sql>
+           INSERT INTO smaaeg(
+            codcia, nroaeg, nrocvd, codaul, nroqtr, fchaeg, horaeg, codbas, 
+            vlraeg, stdaeg, sqlbkr, nrodeg)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, 
+            ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAKRD">
+        <desc>Inserción tabla de Credencial</desc>
+        <sql>
+           INSERT INTO smakrd(
+            codcia, nrokrd, codofr, jndkrd, pqtkrd, nrocrd, nropin, lgrkrd, 
+            fchkrd, horkrd, nrosde, codedf, nroaul, nomaul, nribas, coddbi, 
+            disbas, stdkrd, nroexo, nroixo, sqlbkr, tpokrd)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, 
+            ?, ?, ?, ?, ?, ?, ?, ?, 
+            ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAPDF">
+        <desc>Inserción tabla de pdf</desc>
+        <sql>
+           INSERT INTO smapdf (NROPDF, CODCIA, CODRPT, NRORPT, CODPDF,
+	                       NOMPDF, BINPDF, FCHPDF, FHVPDF, STDPDF, SQLBKR)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAAEG">
+        <desc>Update tabla de Entrevistas</desc>
+        <sql>
+           
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAAEG">
+        <desc>Delete tabla de Entrevistas</desc>
+        <sql>
+           delete  from
+            smaaeg
+            where codbas='0'
+            and   nrodeg=?
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMADEG">
+        <desc>Insert en Cabecera de Entrevista</desc>
+        <sql>
+           INSERT INTO smadeg(
+            codcia, nrodeg, nrocvd, codaul, nroqtr, inideg, findeg, intdeg, sqlbkr)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, 
+            ?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_REP_SMAAEG">
+        <desc>Update Detalle Reporgramacion</desc>
+        <sql>
+           UPDATE smaaeg SET codbas='0'
+            WHERE nrodeg=? and codbas=?
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_REP_SMAAEG_COD">
+        <desc>Update Detalle Reporgramacion Aspirante</desc>
+        <sql>
+           UPDATE smaaeg SET codbas=?
+            WHERE nrodeg=? and fchaeg=? and horaeg=?
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_REP_SMAAEG_COD_SMAKRD">
+        <desc>Update Credencial Aspirante</desc>
+        <sql>
+           UPDATE smakrd SET stdkrd='Inactivo'
+            WHERE coddbi=?
+        </sql>
+    </statement>
+    
+</sentencias>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMADAK">
+        <desc>Inserción tabla de Derechos Academicos</desc>
+        <sql>
+            INSERT INTO SMADAK (NRODAK, CODCIA, CODDAK,
+            TPODAK, NOMDAK, DSPDAK,
+            STDDAK, FCTDAK, SQLBKR)
+            VALUES (?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMADAK">
+        <desc>Update tabla de Derechos Academicos</desc>
+        <sql>
+            UPDATE SMADAK SET  CODCIA=?, CODDAK=?,
+            TPODAK=?, NOMDAK=?, DSPDAK=?,
+            STDDAK=?, FCTDAK=?, SQLBKR=?
+            WHERE NRODAK=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMADAK">
+        <desc>Delete tabla de Derechos Academicos</desc>
+        <sql>
+           DELETE FROM SMADAK
+            WHERE NRODAK=?
+        </sql>
+    </statement>
+    
+</sentencias>
+

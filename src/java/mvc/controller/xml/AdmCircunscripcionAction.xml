@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMACCN">
+        <desc>Inserción tabla de Circunscripcion</desc>
+        <sql>
+            INSERT INTO SMACCN (IDECCN, CODCCN ,NOMCCN ) 
+            VALUES ( ?, ?, ? )
+        </sql>
+    </statement>
+    
+    
+    <statement name="UPDATE_SMACCN">
+        <desc>Update tabla de Circunscripcion</desc>
+        <sql>
+            UPDATE SMACCN SET CODCCN=?,NOMCCN=?  WHERE  IDECCN=?
+        </sql>
+    </statement>
+    <statement name="DELETE_SMACCN">
+        <desc>Delete tabla de Circunscripcion</desc>
+        <sql>
+            DELETE SMACCN  WHERE  IDECCN=?
+        </sql>
+    </statement>
+
+</sentencias>

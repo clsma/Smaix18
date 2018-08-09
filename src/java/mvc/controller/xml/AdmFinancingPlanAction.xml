@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAPFI">
+        <desc>Inserción tabla de Plan Financiacion</desc>
+        <sql>
+           INSERT INTO SMAPFI (CODEMP, CODPFI, TPOPFI,
+            INTPFI, PTJPFI, QTSPFI,
+            MDLPFI, FCHPFI, NOMPFI,
+            EDTPFI, CODKNP, NROPQK,
+            CODCMP, STDPFI, MODPFI,
+            NEWPFI, PYSPFI, SPCPFI,
+            KDUPFI, XTAPFI, XTPPFI,
+            NPSPFI, SQLBKR) 
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAPDE">
+        <desc>Insert tabla de Plan Financiacion</desc>
+        <sql>
+           INSERT INTO SMAPDE VALUES(?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAPDP">
+        <desc>Insert tabla de Plan FInanciacion</desc>
+        <sql>
+           INSERT INTO SMAPDP VALUES(?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAPFI">
+        <desc>Update tabla de Plan Financiacion</desc>
+        <sql>
+           UPDATE  SMAPFI SET CODEMP=?, TPOPFI=?,
+            INTPFI=?, PTJPFI=?, QTSPFI=?,
+            MDLPFI=?, FCHPFI=?, NOMPFI=?,
+            EDTPFI=?, CODKNP=?, NROPQK=?,
+            CODCMP=?, STDPFI=?, MODPFI=?,
+            NEWPFI=?, PYSPFI=?, SPCPFI=?,
+            KDUPFI=?, XTAPFI=?, XTPPFI=?,
+            NPSPFI=? 
+            WHERE CODPFI=?
+           
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAPDE">
+        <desc>Insert tabla de Plan FInanciacion</desc>
+        <sql>
+           DELETE FROM SMAPDE WHERE CODPDB=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAPDP">
+        <desc>Insert tabla de Plan FInanciacion</desc>
+        <sql>
+           DELETE FROM SMAPDP WHERE CODPDB=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAPXK">
+        <desc>Insert tabla de Plan FInanciacion</desc>
+        <sql>
+           DELETE FROM SMAPXK WHERE CODPFI=?
+        </sql>
+    </statement>
+    
+    
+</sentencias>

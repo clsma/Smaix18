@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<sentencias version="1.0">
+    
+    <statement name="DELETE_SMASMT">
+        <desc>Delete tabla de Smestre</desc>
+        <sql>
+           DELETE FROM SMASMT 
+            WHERE CODCIA=? AND AGNPRS=? 
+            AND PRDPRS=? AND IDEPGM=?
+            AND NROPSM=? AND SMTPSM=?
+            AND CODKLS=?
+        </sql>
+    </statement>
+    
+   
+    
+</sentencias>

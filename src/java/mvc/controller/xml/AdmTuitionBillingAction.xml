@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="CALENDARACTIVITYSEARCH">
+        <desc>Obtiene listado de las actividades de calendario</desc>
+        <sql>
+            sma_academic.calendaractivitysearch(?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMATIW">
+        <desc></desc>
+        <sql>
+            INSERT INTO SMATIW(NROTIW, TPOTIW, STDTIW, FCHTIW, FHPTIW, HORTIW)
+                        VALUES(?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAFET">
+        <desc></desc>
+        <sql>
+            INSERT INTO SMAFET(NROFET, NROTIW, NROFES, STDFET)
+                        VALUES(?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="SELECT_LIST_PERSON">
+        <desc></desc>
+        <sql>
+            sma_accounts_receivable.billing_list_person(?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAFQK">
+        <desc></desc>
+        <sql>
+            INSERT INTO SMAFQK (NROFQK,CODKLS,NROFEV,FHAFQK,SWAFQK,PJAFQK,FHBFQK,SWBFQK,PJBFQK,FHCFQK,SWCFQK,PJCFQK,FHDFQK,SWDFQK,PJDFQK)
+                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+</sentencias>

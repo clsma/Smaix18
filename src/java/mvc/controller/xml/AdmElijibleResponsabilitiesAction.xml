@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    <statement name="INSERT_SMAGSU">
+        <desc>Inserción tabla de ciudades</desc>
+        <sql>
+            INSERT INTO smagcu(
+            NROGCU, CODCIA, NROGCR, CODPRS ,NOMGCU, APEGCU ,EMLGCU ,CELGCU ,PSWGCU ,STDGCU ,TPOGCU ,SQLBKR)
+            VALUES ( ?, ?, ?, ? ,? ,? ,? ,? ,? ,? ,? ,? )
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAGCU">
+        <desc>Actualizar registro de responsable de PQRS</desc>
+        <sql>
+            UPDATE SMAGCU SET
+                    NOMGCU = ?, 
+                    APEGCU = ?,
+                    EMLGCU = ?,
+                    CELGCU = ?,
+                    STDGCU = ?,
+                    NROGCR = '3'
+            WHERE trim(CODCIA)=? AND trim(CODPRS)=?
+        </sql>
+    </statement>
+    
+    <statement name="REVOKE_SMAGCU">
+        <desc>Update tabla de Responsables</desc>
+        <sql>
+         UPDATE SMAGCU SET NROGCR = '4' WHERE trim(CODCIA)=? AND trim(CODPRS)=?
+           
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAGCU">
+        <desc>DELETE tabla de Responsables</desc>
+        <sql>
+            DELETE SMAGCU WHERE CODCIA=? AND CODPRS=?
+           
+        </sql>
+    </statement>
+    
+</sentencias>

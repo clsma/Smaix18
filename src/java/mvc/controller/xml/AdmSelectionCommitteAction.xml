@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMACVD">
+        <desc>Inserción tabla de SMACVD</desc>
+        <sql>INSERT INTO smacvd(codcia, nrocvd, nomcvd, tpocvd, fchcvd, stdcvd, sqlbkr)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAEVD">
+        <desc>Inserción tabla de SMAEVD</desc>
+        <sql>INSERT INTO smaevd(codcia, nroevd, nrocvd, codprs, tpoprs, stdevd, sqlbkr)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMACVD">
+        <desc>Actualizacion tabla de SMACVD</desc>
+        <sql>
+            UPDATE SMACVD   SET   NOMCVD=?, TPOCVD=?, FCHCVD=?, STDCVD=?, SQLBKR=?
+            WHERE CODCIA =? AND NROCVD=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAEVD">
+        <desc>Eliminacion Evaluador</desc>
+        <sql>
+            delete  from smaevd    where codcia=? and nroevd=?
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAAEP">
+        <desc>Eliminacion Evaluador</desc>
+        <sql>
+            INSERT INTO SMAAEP(CODCIA, NROAEP, NROCVD, CODOFR, NROPGM, STDAEP, SQLBKR)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAAEP">
+        <desc>Eliminacion Evaluador</desc>
+        <sql>
+            delete from smaaep where codcia = ? and nroaep = ?
+        </sql>
+    </statement>
+  
+    <statement name="INSERT_SMAPPA">
+        <desc>Insercion smappa</desc>
+        <sql>
+            INSERT INTO smappa(codcia, nropap, coddbi, codprs, obsppa, sqlbkr)
+            VALUES (?, ?, ?, ?, ?, ?)
+
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAPPA">
+        <desc>Eliminacion SMAPPA</desc>
+        <sql>
+            delete  from SMAPPA    where codcia=? and coddbi=?
+        </sql>
+    </statement>
+    
+     <statement name="DELETE_SMAAEP2">
+        <desc>Eliminacion Evaluador</desc>
+        <sql>
+            delete from smaaep where codcia = ? and nrocvd = ?
+        </sql>
+    </statement>
+    
+      <statement name="DELETE_SMACVD2">
+        <desc>Eliminacion Evaluador</desc>
+        <sql>
+            delete from smacvd where codcia = ? and nrocvd = ?
+        </sql>
+    </statement>
+    
+      <statement name="DELETE_SMAEVD2">
+        <desc>Eliminacion Evaluador</desc>
+        <sql>
+            delete from smaevd where codcia = ? and nrocvd = ?
+        </sql>
+    </statement>
+    
+  
+
+
+</sentencias>

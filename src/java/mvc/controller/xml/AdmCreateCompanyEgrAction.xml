@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAMPS">
+        <desc>Inserción tabla de Areas</desc>
+        <sql>
+           Insert into SMAMPS (CODEMP,NPQEMP,NOMEMP,
+            APEEMP,DIREMP,TELEMP,
+            FAXEMP,NRIEMP,NITEMP,
+            NROPTE,CNVEMP,EMLEMP,
+            GRTEMP,CNTEMP,CODPQK,
+            BROEMP,ZNAEMP,CODCIU,
+            WWWEMP,SQLBKR) 
+            values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAARE">
+        <desc>Update tabla de Areas</desc>
+        <sql>
+           
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAARE">
+        <desc>Delete tabla de Areas</desc>
+        <sql>
+          
+        </sql>
+    </statement>
+    
+</sentencias>

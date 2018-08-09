@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMADST">
+        <desc>Inserción tabla de Proyecto</desc>
+        <sql>
+           INSERT INTO SMADST (NRODST, AGNPRS, PRDPRS, TPOPRS, NROPRS, CODDST, FCHDST, SQLBKR) 
+            VALUES (?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMADST">
+        <desc>Update tabla de Areas</desc>
+        <sql>
+           Update SMADST Set AGNPRS=?, PRDPRS=?, TPOPRS=?, NROPRS=?, CODDST=?, FCHDST=?, SQLBKR=?
+            Where NRODST=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMADST">
+        <desc>Delete tabla de Areas</desc>
+        <sql>
+          
+        </sql>
+    </statement>
+    
+</sentencias>

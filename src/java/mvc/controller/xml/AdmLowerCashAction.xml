@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAKJM">
+        <desc>Inserción tabla de Cajas Menores</desc>
+        <sql>
+            INSERT INTO SMAKJM (NROKJM, NROUSR, NOMKJM,
+            STDKJM, NROPQK, CRDPQK,
+            NROCMP, NROCST, BGNKJM, 
+            SLDKJM, MAXKJM, FCHKJM,
+            NRORSL, NRORBR) 
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAKJM">
+        <desc>Update tabla de Cajas Menores</desc>
+        <sql>
+            UPDATE SMAKJM SET  NROUSR=?, NOMKJM=?,
+            STDKJM=?, NROPQK=?, CRDPQK=?,
+            NROCMP=?, NROCST=?, BGNKJM=?,
+            SLDKJM=?, MAXKJM=?
+           
+            WHERE NROKJM=? and NRORSL=? 
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAKJM">
+        <desc>Delete tabla de Caja Menores</desc>
+        <sql>
+            DELETE FROM SMAKJM
+            WHERE NROKJM=? and NRORSL=?
+        </sql>
+    </statement>
+    
+</sentencias>
+

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAEXA">
+        <desc>Inserción tabla de Proyecto</desc>
+        <sql>
+           INSERT INTO SMAEXA (NROEXA, NROPRS, TPOPRS, TLOEXA, ATMEXA, CODUNV, SQLBKR)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAEXA">
+        <desc>Update tabla de Areas</desc>
+        <sql>
+           Update SMAEXA Set  NROPRS=?, TPOPRS=?, TLOEXA=?, ATMEXA=?, CODUNV=?, SQLBKR=?
+            Where NROEXA=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAEXA">
+        <desc>Delete tabla de Areas</desc>
+        <sql>
+          
+        </sql>
+    </statement>
+    
+</sentencias>

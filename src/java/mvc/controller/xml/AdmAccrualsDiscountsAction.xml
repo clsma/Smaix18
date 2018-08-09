@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMADYD">
+        <desc>Inserción tabla de DYD</desc>
+        <sql>
+           INSERT INTO SMADYD (NRODYD, KNPDYD, TPODYD, 
+            KLFDYD, NOMDYD, LQDDYD, 
+            VLRDYD, PTJDYD, PRCDYD, 
+            STDDYD, FCHDYD, NROPRS, 
+            CODDYD, CALDYD, FACDYD, 
+            PRIDYD, NITDYD, DIGDYD, 
+            CODEMP, CHKDYD, PQKDYD, 
+            NITDYD, SQLBKR) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMADYD">
+        <desc>Update tabla de DYD</desc>
+        <sql>
+           UPDATE SMADYD SET KNPDYD=?, TPODYD=?, 
+            KLFDYD=?, NOMDYD=?, LQDDYD=?, 
+            VLRDYD=?, PTJDYD=?, PRCDYD=?, 
+            STDDYD=?, FCHDYD=?, NROPRS=?, 
+            CODDYD=?, CALDYD=?, FACDYD=?, 
+            PRIDYD=?, NITDYD=?, DIGDYD=?, 
+            CODEMP=?, CHKDYD=?, PQKDYD=?,
+            NITDYD=?, SQLBKR=?
+            WHERE NRODYD=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMADYD">
+        <desc>Delete tabla de DYD</desc>
+        <sql>
+           DELETE FROM SMADYD
+            WHERE NRODYD=?
+        </sql>
+    </statement>
+    
+</sentencias>
+

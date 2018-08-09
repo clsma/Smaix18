@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d3993b74-4a35-4280-9060-a9d5bf9d0280">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ptxtxml" class="java.lang.String"/>
+	<parameter name="pcodcia" class="java.lang.String"/>
+	<parameter name="ptitrpt" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA["C:\\Users\\USER\\Documents\\NetBeansProjects\\Reporte\\src\\Contabilidad\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="prutaImagen" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="recordset" class="java.sql.ResultSet" isForPrompting="false"/>
+	<queryString language="plsql">
+		<![CDATA[select x.codpqk
+                     , x.nompqk
+                     , x.nropqk
+                     , x.exepqk
+                     , case when substr(x.codpqk,1,1) = '1' 
+                            then 'ACTIVO'
+                            when substr(x.codpqk,1,1) = '2' 
+                            then 'PASIVO'
+                            when substr(x.codpqk,1,1) = '3' 
+                            then 'PATRIMONIO'
+                       end tpopqk  --p_fchini as fchini, p_fchfin as fchfin,pperacum  as pperacum,
+                     , length(x.codpqk) as lvlpqk
+                     , x.sldpqk
+                from (
+                      select a1.codpqk
+                           , a1.nompqk
+                           , a1.nropqk
+                           , a1.exepqk
+                           , (
+                               select sum(nvl(b.vlrpqi,'0'))
+                                 from (
+                                        select * 
+                                          from smapqk
+                                         where substr( smapqk.codpqk , 1, 1 ) in ( '1', '2' , '3', '8' )
+                                          and smapqk.codcia = 'UDS'
+                                       ) a2
+                                    , ( 
+                                         select * 
+                                           from smapqi 
+                                          where smapqi.vlrpqi != 0.0 
+                                            and smapqi.nropqa = '0000000141'
+                                      ) b
+                                where b.nropqk(+) = a2.nropqk
+                           start with a2.nropqk = a1.nropqk
+                           connect by a2.dpnpqk = prior a2.nropqk
+                            ) sldpqk
+                      from smapqk a1
+                     where substr( a1.codpqk , 1, 1 ) in ( '1', '2' , '3', '8' )
+                       and a1.codcia = 'UDS'
+--                  order by replace(a1.codpqk, ' ' , '0' ) ; 
+                       ) x where sldpqk > 0
+                  order by replace(x.codpqk, ' ' , '0' )]]>
+	</queryString>
+	<field name="CODPQK" class="java.lang.String"/>
+	<field name="NOMPQK" class="java.lang.String"/>
+	<field name="NROPQK" class="java.lang.String"/>
+	<field name="EXEPQK" class="java.lang.String"/>
+	<field name="TPOPQK" class="java.lang.String"/>
+	<field name="LVLPQK" class="java.math.BigDecimal"/>
+	<field name="SLDPQK" class="java.math.BigDecimal"/>
+	<variable name="activo" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[($F{CODPQK}.equals("1"))? $F{SLDPQK}:0]]></variableExpression>
+	</variable>
+	<variable name="vlista" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{CODPQK}]]></variableExpression>
+	</variable>
+	<variable name="patrimonio" class="java.lang.Double" resetType="Group" resetGroup="tpopqk" calculation="Sum">
+		<variableExpression><![CDATA[($F{CODPQK}.equals("3"))? $F{SLDPQK}:0]]></variableExpression>
+	</variable>
+	<variable name="pasivo" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[($F{CODPQK}.equals("2"))? $F{SLDPQK}:0]]></variableExpression>
+	</variable>
+	<group name="tpopqk">
+		<groupExpression><![CDATA[$F{TPOPQK}]]></groupExpression>
+		<groupHeader>
+			<band height="38">
+				<rectangle radius="5">
+					<reportElement x="5" y="4" width="562" height="29" forecolor="#CCCCCC" backcolor="#FFFFFF" uuid="2de87424-c279-4ccf-af5d-80427ae04671"/>
+				</rectangle>
+				<staticText>
+					<reportElement x="35" y="17" width="81" height="13" uuid="c4d59e98-e52d-45d1-a984-d521682ec00f"/>
+					<textElement textAlignment="Left" verticalAlignment="Bottom">
+						<font size="8" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[CODIGO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="116" y="17" width="189" height="13" uuid="8426a9f8-cd87-40d9-9656-c5d3c61caee0"/>
+					<textElement textAlignment="Left" verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CUENTA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="446" y="17" width="113" height="13" uuid="de20da96-ae36-44e2-9718-263e88b75561">
+						<printWhenExpression><![CDATA[]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font size="8" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[SALDO INICIAL]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="35" y="4" width="291" height="13" uuid="5a09b0dd-3d0d-46e1-ab3a-ff83d73e05c0"/>
+					<textElement verticalAlignment="Middle">
+						<font size="8" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{TPOPQK}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="25">
+				<textField>
+					<reportElement x="121" y="3" width="184" height="20" uuid="60d595a1-9b21-47f2-971d-56ff13be0abb"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA["TOTAL "+$F{TPOPQK}+"S "]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="307" y="3" width="10" height="20" uuid="a02ed1e9-2bf6-486c-924c-0c425b64a19d"/>
+					<textElement verticalAlignment="Middle">
+						<font isBold="true" pdfFontName="Helvetica" isPdfEmbedded="false"/>
+					</textElement>
+					<text><![CDATA[$]]></text>
+				</staticText>
+				<line>
+					<reportElement x="358" y="3" width="200" height="1" forecolor="#CCCCCC" uuid="39889c75-0d1e-479d-ab6a-c30f416103db"/>
+				</line>
+				<textField pattern="¤ #,##0.00">
+					<reportElement x="446" y="5" width="116" height="18" uuid="8ff405ec-e185-4ac5-b4d4-2ede426c489e">
+						<printWhenExpression><![CDATA[($F{TPOPQK}.equals("ACTIVO"))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{activo}]]></textFieldExpression>
+				</textField>
+				<textField pattern="¤ #,##0.00">
+					<reportElement x="452" y="5" width="111" height="18" uuid="1f29bf97-e8b1-40ee-ae8d-62dc6d536c0c">
+						<printWhenExpression><![CDATA[($F{TPOPQK}.equals("PASIVO"))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{pasivo}]]></textFieldExpression>
+				</textField>
+				<textField pattern="¤ #,##0.00">
+					<reportElement x="463" y="5" width="100" height="18" uuid="c623bc8f-01cb-4a15-a240-a94ec0c40361">
+						<printWhenExpression><![CDATA[($F{TPOPQK}.equals("PATRIMONIO"))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{patrimonio}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="100" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="572" height="87" uuid="4ef01e31-cefa-4192-b8da-a3f6dd22edf6"/>
+				<subreportParameter name="ptitrpt">
+					<subreportParameterExpression><![CDATA[$P{ptitrpt}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="pcodcia">
+					<subreportParameterExpression><![CDATA[$P{pcodcia}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="pPAGE_NUMBER">
+					<subreportParameterExpression><![CDATA[$V{PAGE_NUMBER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="prutaImagen">
+					<subreportParameterExpression><![CDATA[$P{prutaImagen}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Head.jasper"]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement x="473" y="63" width="56" height="11" uuid="49587b81-e3e4-48d2-afa0-efb344f08cea"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pág "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="530" y="63" width="29" height="11" uuid="6a0ae4dd-aa5d-45c8-abb4-d44af6a5fe02"/>
+				<textElement>
+					<font size="8" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<rectangle>
+				<reportElement stretchType="RelativeToBandHeight" x="5" y="0" width="555" height="15" isPrintWhenDetailOverflows="true" forecolor="#DFEFF0" backcolor="#DFEFF0" uuid="8e5aa8b7-de82-4453-80fc-38e7a23ffaf8">
+					<printWhenExpression><![CDATA[$V{vlista} % 2 == 0]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement stretchType="RelativeToBandHeight" x="5" y="0" width="555" height="15" isPrintWhenDetailOverflows="true" forecolor="#F6F6F6" backcolor="#F6F6F6" uuid="5ce5a1d0-38f6-4e86-99f0-4cb5a01b713c">
+					<printWhenExpression><![CDATA[$V{vlista} % 2 == 1]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField>
+				<reportElement x="35" y="0" width="81" height="15" uuid="88f5a516-3a16-450d-9ef8-0bf9f1e0726c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CODPQK}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="116" y="-1" width="306" height="15" uuid="b4405d31-2338-4e0c-8aee-c194cad7ca25"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMPQK}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="462" y="2" width="100" height="13" uuid="e7b2d50d-85fa-444f-a63a-961d21aebba9"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{SLDPQK}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement x="538" y="4" width="24" height="20" uuid="b8b69628-7f1c-4afe-ae8f-67878ca172b6"/>
+				<textElement textAlignment="Right">
+					<font isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="102">
+			<rectangle>
+				<reportElement stretchType="RelativeToBandHeight" x="3" y="50" width="564" height="19" isPrintWhenDetailOverflows="true" forecolor="#F6F6F6" backcolor="#F6F6F6" uuid="2336e9d1-1774-46d3-8639-a24d7dbc4b82">
+					<printWhenExpression><![CDATA[$V{vlista} % 2 == 1]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle radius="5">
+				<reportElement x="3" y="0" width="564" height="48" forecolor="#CCCCCC" backcolor="#FFFFFF" uuid="5187683d-c84e-47cf-957f-ef3b38b4dfb6"/>
+			</rectangle>
+			<textField>
+				<reportElement x="5" y="48" width="97" height="20" uuid="e3ab595d-324c-4652-94d8-53bb4eb457dd"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA["TOTAL ACTIVOS"]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="104" y="50" width="116" height="18" uuid="67d949d1-30c3-4ade-956f-391cc2b4364b"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{activo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="309" y="5" width="97" height="20" uuid="a692c224-df19-4ec5-9cf4-95f0bae81499"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA["TOTAL PASIVOS"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="309" y="24" width="97" height="20" uuid="733898ac-d913-4035-838a-e9b3d150ec63"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA["TOTAL PATRIMONIO"]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="453" y="24" width="111" height="19" uuid="3c443230-e9a1-4a7a-b37e-205e09c82be9"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{patrimonio}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="453" y="5" width="111" height="19" uuid="677d8ebe-54b1-4bf9-9f63-28a18b45c5b3"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{pasivo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="309" y="48" width="127" height="20" uuid="19860c30-48e3-445b-903d-14cdc34b427d"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA["PASIVO + PATRIMONIO"]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="453" y="50" width="109" height="19" uuid="fa0f5280-d5a0-473e-828d-1151829b854b">
+					<printWhenExpression><![CDATA[($F{TPOPQK}.equals("PATRIMONIO"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{pasivo}+$V{patrimonio}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+	<noData>
+		<band height="58">
+			<subreport>
+				<reportElement stretchType="RelativeToTallestObject" x="-21" y="0" width="200" height="58" uuid="214e8cab-12e4-4765-8e3d-68c452e87be8"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="pcodcia">
+					<subreportParameterExpression><![CDATA[$P{pcodcia}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ptxtxml">
+					<subreportParameterExpression><![CDATA[$P{ptxtxml}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="recordset">
+					<subreportParameterExpression><![CDATA[$P{recordset}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ptitrpt">
+					<subreportParameterExpression><![CDATA[$P{ptitrpt}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="prutaImagen">
+					<subreportParameterExpression><![CDATA[$P{prutaImagen}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "sma_report_no_data_found.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</noData>
+</jasperReport>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMAMRF">
+        <desc>Inserción tabla de Contenido</desc>
+        <sql>
+          INSERT INTO smamrf(
+            nromrf, codcia, codmat, codmrf, nommrf, fchmrf, nroelm, docmrf, 
+            tpmrf, stdmrf, objmrf, mtdmrf, jstmrf, bblmrf, sqlbkr)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, 
+            ?, ?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAMRF">
+        <desc>Update tabla de Contenido</desc>
+        <sql>
+           UPDATE smamrf
+            SET  codcia=?, codmrf=?, nommrf=?, nroelm=?, 
+            docmrf=?, tpmrf=?, stdmrf=?, objmrf=?, mtdmrf=?, jstmrf=?, bblmrf=?, 
+            sqlbkr=?, fchmrf=?
+            WHERE nromrf=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAMRF">
+        <desc>Delete tabla de Contenido</desc>
+        <sql>
+           DELETE FROM smamrf where nromrf=?
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAKTM">
+        <desc>Insert tabla de Capitulo</desc>
+        <sql>
+           INSERT INTO smaktm(
+            nroktm, nromrf, dpnktm, cscktm, codktm, nomktm, tpoktm, objktm, 
+            mtdktm, jstktm, bblktm, dspktm, sqlbkr)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, 
+            ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAKTM">
+        <desc>Update tabla de Capitulo</desc>
+        <sql>
+           UPDATE smaktm
+           SET nromrf=?, dpnktm=?, cscktm=?, codktm=?, nomktm=?, tpoktm=?, 
+           objktm=?, mtdktm=?, jstktm=?, bblktm=?, dspktm=?, sqlbkr=?
+           WHERE nroktm=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAKTM">
+        <desc>Update tabla de Capitulo</desc>
+        <sql>
+           DELETE FROM  smaktm WHERE nroktm=?
+        </sql>
+    </statement>
+    
+    <statement name="INSERT_SMAMKT">
+        <desc>Insert tabla de Tema</desc>
+        <sql>
+           INSERT INTO smamkt(
+            nromkt, nroktm, titmkt, dspmkt, bblmkt, sqlbkr)
+            VALUES (?, ?, ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMAMKT">
+        <desc>Update tabla de Tema</desc>
+        <sql>
+           UPDATE smamkt
+            SET  nroktm=?, titmkt=?, dspmkt=?, bblmkt=?, sqlbkr=?
+            WHERE nromkt=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMAMKT">
+        <desc>Delete tabla de Tema</desc>
+        <sql>
+           DELETE FROM smamkt WHERE nromkt=?
+        </sql>
+    </statement>
+    
+</sentencias>

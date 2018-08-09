@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMADXC">
+        <desc>Inserción tabla de Retencion</desc>
+        <sql>
+            INSERT INTO SMADXC (NRODXC, CODCST, TPOTRC,
+            CODTRC, CONDXC, SRVDXC,
+            VLRDXC, ABNDXC, DUDDXC,
+            VLRBGN, INTDXC, NROQTS,
+            FCHDXC, MDLDXC, NROTRN,
+            CODUSR, SQLBKR) 
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMARTN">
+        <desc>Update tabla de Retencion</desc>
+        <sql>
+            UPDATE SMARTN SET 
+             BUVRTN=?, BPSRTN=?,
+             PTJRTN=?
+            WHERE NRORTN=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMACHK">
+        <desc>Delete tabla de Chequera</desc>
+        <sql>
+           DELETE FROM SMACHK
+            WHERE NROCHK=?
+        </sql>
+    </statement>
+    
+</sentencias>
+

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sentencias version="1.0">
+    
+    <statement name="INSERT_SMADPT">
+        <desc>Inserción tabla de Departamentos</desc>
+        <sql>
+           INSERT INTO SMADPT( IDEDPT, IDEPAI, NOMDPT, CODDPT ) 
+           VALUES ( ?, ?, ?, ?)
+        </sql>
+    </statement>
+    
+    <statement name="UPDATE_SMADPT">
+        <desc>Update tabla de Departamentos</desc>
+        <sql>
+           UPDATE SMADPT SET IDEPAI=?, NOMDPT=?, CODDPT=? 
+            WHERE IDEDPT=?
+        </sql>
+    </statement>
+    
+    <statement name="DELETE_SMADPT">
+        <desc>Delete tabla de Departamentos</desc>
+        <sql>
+           DELETE  FROM SMADPT 
+            WHERE IDEDPT=?
+        </sql>
+    </statement>
+    
+</sentencias>
