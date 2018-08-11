@@ -16,7 +16,7 @@
         <meta name="author" content="clsma" />
         <meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0 user-scalable=yes" />
 
-        <title>Smaix14</title>
+        <title>Smaix18</title>
         <%=imports.get("bootstrap")%>
         <link type="text/css" rel="stylesheet" href="<%=clsma.getBASE()%>/vista/sistemas/mmenu/menu/css/demo.css?v=asd" />
         <link type="text/css" rel="stylesheet" href="<%=clsma.getBASE()%>/vista/sistemas/mmenu/dist/core/css/jquery.mmenu.all.css?v=ass" />

@@ -28,7 +28,7 @@ String idemenu = "001";
         <%=SCRIPT_NORMAL%>
         <%=SCRIPT_FUNCIONES%>
 
-        <TITLE>Sma ver ix14 (Software de Manejo Académico y Administrativo)</TITLE>
+        <TITLE>Sma ver ix18 (Software de Manejo Académico y Administrativo)</TITLE>
         <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
 
         <link rel="shortcut icon"   href="<%= BASEURL%>/vista/styles/<%=STYLE_%>/img/favicon.ico" >

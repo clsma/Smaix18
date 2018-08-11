@@ -359,7 +359,7 @@ function init_menu() {
         searchfield: true,
         counters: true,
         navbar: {
-            title: 'Smaix14'
+            title: 'Smaix18'
         },
         navbars: [
             {

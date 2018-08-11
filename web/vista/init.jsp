@@ -19,7 +19,7 @@
         <%=SCRIPT_ACCORD%>
 
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title> Software de manejo avanzado V - ix14  </title>
+        <title> Software de manejo avanzado V - ix18  </title>
         <meta name="keywords" content="" />
         <meta name="description" content="" />
         <script type="text/javascript"  src="<%= BASEURL%>/vista/js/init/formForgetPassword.js" ></script>
@@ -82,7 +82,7 @@
                                                                 <div class="image"><img src="<%=BASEURL%>/vista/styles/<%=STYLE_%>/img/imginit/banner1.jpg" width="671" height="225" alt="" id="imgRandom" name="imgRandom" /></div>
                                                                 <div class="caption1">
                                                                     <h2><%=clsma.getNOMBRE_CIA()%></h2>
-                                                                    <p>SMA versión ix14</p>
+                                                                    <p>SMA versión ix18</p>
                                                                 </div>
                                                                 <div class="border"></div>
                                                             </div></td>
@@ -96,7 +96,7 @@
                                                                 <p class="byline"><%=clsma.getLEMA_CIA()%></p>
                                                                 <div class="content">
                                                                     <div  class="image-style3 image-style3a"><img id="imgJef" src="<%=BASEURL%>/vista/styles/<%=STYLE_%>/img/imginit/banner4.jpg" width="168" height="146" alt="" /><span></span></div>
-                                                                    <p>Presentamos la nueva plataforma SMA IX14, Sistema de informacion integrado para apoyo a los estudiantes, docentes y funcionarios de la Universidad<a href="#">
+                                                                    <p>Presentamos la nueva plataforma SMA IX18, Sistema de informacion integrado para apoyo a los estudiantes, docentes y funcionarios de la Universidad<a href="#">
                                                                             <strong style="color:maroon">mas...</strong></a></p>
                                                                     <p><a  href="#" class="button-style1" style="position: relative;top: -40px"><span>Ultimas convocatorias</span></a><a href="#" target="_blank" ><img src="<%=BASEURL%>/vista/img/logo_clsma.png" width="180" height="65" style="position: relative;top: -20px;left: 45px" /></a></p>
 

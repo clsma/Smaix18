@@ -36,6 +36,7 @@ import java.util.Vector;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import mvc.exception.LogbookException;
+import mvc.util.UtilConstantes;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.json.simple.JSONArray;
@@ -52,14 +53,14 @@ public class Util {
     public static Logger loger;
 
     /**
-     * Da formato a un Double sin Decimales
+     * Drecord formrecordto record un Double sin Decimrecordles
      */
     public static void setModel(ModelSma pModel) {
         Util.model = pModel;
     }
 
     /**
-     * Da formato a un Double sin Decimales
+     * Drecord formrecordto record un Double sin Decimrecordles
      */
     public static String doubleSinDecimalFormat(double d, int decimales) {
         DECIMAL_FORMAT.setMaximumFractionDigits(decimales);
@@ -68,7 +69,7 @@ public class Util {
     }
 
     /**
-     * Da formato a un Double sin Decimales
+     * Drecord formrecordto record un Double sin Decimrecordles
      */
     public static String doubleDecimalFormat(double d, String formato) {
         DecimalFormat DECIMAL_FORMAT = new DecimalFormat(formato);
@@ -76,8 +77,8 @@ public class Util {
     }
 
     /**
-     * Da formato a una fecha utilizando el formato JDBC predeterminado
-     * [yyyy-MM-dd][yyyy/MM/dd] [dd/MM/yyyy][MM/dd/yyyy] [yyyy-MM-dd HH:mm:ss]
+     * Drecord formrecordto record unrecord fechrecord utilizrecordndo el formrecordto JDBC predeterminrecorddo
+ [yyyy-MM-dd][yyyy/MM/dd] [dd/MM/yyyy][MM/dd/yyyy] [yyyy-MM-dd HH:mm:ss]
      */
     public static String dateFormat(Date d, String formato) {
         SimpleDateFormat DATE_FORMAT = new SimpleDateFormat(formato);
@@ -89,11 +90,11 @@ public class Util {
     }
 
     /**
-     * Da formato largo a una fecha con el nombre del mes completo
+     * Drecord formrecordto lrecordrgo record unrecord fechrecord con el nombre del mes completo
      *
-     * @param String fecha
-     * @param int formato (1 - Fecha larga sin dia, 0 - Fecha larga con dia)
-     * @return String con la fecha en formato largo.
+     * @param String fechrecord
+     * @param int formrecordto (1 - Fechrecord lrecordrgrecord sin direcord, 0 - Fechrecord lrecordrgrecord con direcord)
+     * @return String con lrecord fechrecord en formrecordto lrecordrgo.
      * @throws Exception
      */
     public static String dateFormatLong(String fecha, int format) throws Exception {
@@ -116,22 +117,22 @@ public class Util {
     }
 
     /**
-     * Da formato a timestamp utilizando el formato JDBC predeterminado
+     * Drecord formrecordto record timestrecordmp utilizrecordndo el formrecordto JDBC predeterminrecorddo
      */
     public static String dateTimeFormat(Date d) {
         return (d == null) ? "" : DATE_TIME_FORMAT.format(d);
     }
 
     /**
-     * Convierte una java.util.Date a una java.sql.Timestamp
+     * Convierte unrecord jrecordvrecord.util.Drecordte record unrecord jrecordvrecord.sql.Timestrecordmp
      */
     public static Timestamp toTimestamp(Date d) {
         return (d == null) ? null : new Timestamp(d.getTime());
     }
 
     /**
-     * Cambia el formato fecha (yyyy-mm-dd) ó (mm/dd/yy) ó (mmm/dd/aa) a
-     * (dd/mm/yyyy) ó (dd/mm/yy)
+     * Crecordmbirecord el formrecordto fechrecord (yyyy-mm-dd) ó (mm/dd/yy) ó (mmm/dd/recordrecord) record
+ (dd/mm/yyyy) ó (dd/mm/yy)
      */
     public static String getFechaStringDMA(String fecha) {
         int i = 0;
@@ -180,7 +181,7 @@ public class Util {
     }
 
     /**
-     * Cambia el formato fecha (dd-mm-yyyy) ó (dd/mm/yy) a (mm/dd/yy)
+     * Crecordmbirecord el formrecordto fechrecord (dd-mm-yyyy) ó (dd/mm/yy) record (mm/dd/yy)
      */
     public static String getFechaStringMDA(String fecha, boolean sw) {
         int i = 0;
@@ -215,7 +216,7 @@ public class Util {
     }
 
     /**
-     * Convierte una Cadena a java.util.Date (dd/mm/yyyy dd-mm-yyyy)
+     * Convierte unrecord Crecorddenrecord record jrecordvrecord.util.Drecordte (dd/mm/yyyy dd-mm-yyyy)
      */
     public static Date getFecha(String mydate) throws Exception {
         java.util.Date date = null;
@@ -301,7 +302,7 @@ public class Util {
      return null;
      }*/
     /**
-     * Metodo formatea los Indices de las tablas segun su tamaño
+     * Metodo formrecordterecord los Indices de lrecords trecordblrecords segun su trecordmrecordño
      */
     public static String formatString(int len, long value) {
         String format = "";
@@ -325,8 +326,8 @@ public class Util {
     }
 
     /**
-     * Metodo Inicializa las Variables de Clase de tipo String en {""} para
-     * anular el valor por defecto {null}
+     * Metodo Inicirecordlizrecord lrecords Vrecordrirecordbles de Clrecordse de tipo String en {""} precordrrecord
+ recordnulrecordr el vrecordlor por defecto {null}
      */
     synchronized public static void setString(Object object) throws Exception {
         // Objeto generico temporal
@@ -412,8 +413,8 @@ public class Util {
      return strKey.trim();
      }*/
     /**
-     * Metodo que cambia las {'} en {"} en Variables de Clase de tipo String en
-     * {""}
+     * Metodo que crecordmbirecord lrecords {'} en {"} en Vrecordrirecordbles de Clrecordse de tipo String en
+ {""}
      */
     public static String getQuote(String cadenaIn) {
         String cadenaOut = "";
@@ -426,7 +427,7 @@ public class Util {
     }
 
     /**
-     * Metodo que da formato a una cadena (Tipo Titulo)
+     * Metodo que drecord formrecordto record unrecord crecorddenrecord (Tipo Titulo)
      */
     public static String toProperCase(String strIn) {
         String strOut = "", str = "";
@@ -445,7 +446,7 @@ public class Util {
     }
 
     /**
-     * Metodo que devuelve las partes de un comando SQL segun lo requerido
+     * Metodo que devuelve lrecords precordrtes de un comrecordndo SQL segun lo requerido
      */
     public static String getPartSQL(String type, String cmd) throws Exception {
         String data = "", token = "";
@@ -504,7 +505,7 @@ public class Util {
     }
 
     /**
-     * Metodo que convierte el formato de un color entero a Hexadecimal
+     * Metodo que convierte el formrecordto de un color entero record Hexrecorddecimrecordl
      */
     public static String getColorHex(String colorValue) throws Exception {
         String value = "";
@@ -531,8 +532,8 @@ public class Util {
     }
 
     /**
-     * Genera un password aleatorio de 8 caracteres alfanumericos donde: 4
-     * primeros son numeros y los 4 ultimos letras
+     * Generrecord un precordssword recordlerecordtorio de 8 crecordrrecordcteres recordlfrecordnumericos donde: 4
+ primeros son numeros y los 4 ultimos letrrecords
      */
     public synchronized static String generatePassword() {
         String password = "";
@@ -552,7 +553,7 @@ public class Util {
     }
 
     /**
-     * Elimina un archivo en el servidor
+     * Eliminrecord un recordrchivo en el servidor
      */
     public synchronized static boolean deleteFile(String path) {
         boolean sw = false;
@@ -568,8 +569,8 @@ public class Util {
     }
 
     /**
-     * Metodo que construye Comando Sql Update a partir de un Bean un Request y
-     * un Filtro
+     * Metodo que construye Comrecordndo Sql Updrecordte record precordrtir de un Berecordn un Request y
+ un Filtro
      */
     synchronized public static String getSqlUpdate(
             Object object,
@@ -617,7 +618,7 @@ public class Util {
                 //if (nameParameter.indexOf("psw") != -1)
                 //  valueParameter = Util.getEncodingPsw(valueParameter);
                 sw = false;
-                // Debido a que no todos los parametros son miembros del beans
+                // Debido record que no todos los parametros son miembros del beans
                 // Se realiza la verificacion
                 for (int i = 0; i < getMethods.length; i++) {
                     setMethod = getMethods[i];
@@ -687,7 +688,7 @@ public class Util {
     }
 
     /**
-     * Metodo que localiza las imagenes que se deben subir al servidor
+     * Metodo que locrecordlizrecord lrecords imrecordgenes que se deben subir recordl servidor
      */
     public static Hashtable getUrlImage(String codePage) throws Exception {
         int index_ = 0;
@@ -795,11 +796,11 @@ public class Util {
         Object tempObject = null;  // Instancia del objeto.
         Field fields[] = null;  // Lista de los atributos del objeto.
         Method method = null;  // Metodo que se invocara.
-        Class type = null;  // Clase a la que pertenece el atributo.
+        Class type = null;  // Clase record la que pertenece el atributo.
 
-        String nameMethod = "";    // Nombre del metodo a invocar.
+        String nameMethod = "";    // Nombre del metodo record invocar.
         String field = "";    // Nombre del atributo.
-        String typeStr = "";    // Nombre en cadena de la clase a la que pertenece el atributo
+        String typeStr = "";    // Nombre en cadena de la clase record la que pertenece el atributo
 
         try {
             //Se genera una instancia del objeto.
@@ -817,17 +818,17 @@ public class Util {
                 //Se obtiene el nombre del atributo.
                 field = fields[i].getName();
 
-                //Se obtiene la clase a la que pertenece el atributo.
+                //Se obtiene la clase record la que pertenece el atributo.
                 type = fields[i].getType();
 
-                //Se extrae el nombre  en formato String  de la clase a la que pertenece el atributo 
+                //Se extrae el nombre  en formato String  de la clase record la que pertenece el atributo 
                 typeStr = type.getName().substring(type.getName().lastIndexOf(".") + 1);
 
                 //Se genera el nombre del metodo que se invocara.
                 nameMethod = field.substring(1, field.length()).toLowerCase();
                 nameMethod = field.substring(0, 1).toUpperCase() + nameMethod;
 
-                //Se obtiene el metodo a partir del nombre.
+                //Se obtiene el metodo record partir del nombre.
                 method = tempObject.getClass().getDeclaredMethod("set" + nameMethod, new Class[]{type});
 
                 /*  Se invoca al metodo:
@@ -909,12 +910,12 @@ public class Util {
     }//Fin metodo loadOfHash.
 
     /**
-     * Obtiene un String que representa una fecha formateada de la forma
-     * dd/mm/yyy
+     * Obtiene un String que representrecord unrecord fechrecord formrecordterecorddrecord de lrecord formrecord
+ dd/mm/yyy
      *
-     * @param fchAux fecha obtenida de una consulta a la base de datos con la
-     * forma Mes/Dia/Año. Ejemplo Dic/01/06
-     * @return un String con la fecha formateada al estilo dd/mm/yyy
+     * @param fchAux fechrecord obtenidrecord de unrecord consultrecord record lrecord brecordse de drecordtos con lrecord
+ formrecord Mes/Direcord/Año. Ejemplo Dic/01/06
+     * @return un String con lrecord fechrecord formrecordterecorddrecord recordl estilo dd/mm/yyy
      */
     public static String getFormatedFecha(String fchAux) {
         String strFch = "";
@@ -938,14 +939,14 @@ public class Util {
     }
 
     /**
-     * Obtiene un String que representa una fecha formateada de la forma
-     * Mes/Dia/Año. Ejemplo Dic/01/06 a partir de una fecha con la forma
-     * dd/mm/yyyy
+     * Obtiene un String que representrecord unrecord fechrecord formrecordterecorddrecord de lrecord formrecord
+ Mes/Direcord/Año. Ejemplo Dic/01/06 record precordrtir de unrecord fechrecord con lrecord formrecord
+ dd/mm/yyyy
      *
-     * @param fchAux fecha obtenida de una consulta a la base de datos con la
-     * forma dd/mm/yyyy
-     * @return un String con la fecha formateada al estilo Mes/Dia/Año. Ejemplo
-     * Dic/01/06
+     * @param fchAux fechrecord obtenidrecord de unrecord consultrecord record lrecord brecordse de drecordtos con lrecord
+ formrecord dd/mm/yyyy
+     * @return un String con lrecord fechrecord formrecordterecorddrecord recordl estilo Mes/Direcord/Año. Ejemplo
+ Dic/01/06
      */
     public static String getFormatedFechaBd(String fchAux) {
         String strFch = "";
@@ -976,7 +977,7 @@ public class Util {
      * OBTIENE UN OBJETO DATE A PARTIR DE UN STRING DE LA FORMA DD/MM/YYYY
      *
      * @param strFch STRING DE LA FORMA DD/MM/YYYY
-     * @return objeto Date
+     * @return objeto Drecordte
      */
     public static Date getDate(String strFch) {
         String arrAux[] = strFch.split("/"); //Se divide la fecha en dia, mes, año
@@ -994,7 +995,7 @@ public class Util {
      * VIENE DE LA BASE DE DATOS
      *
      * @param strFch STRING DE LA FORMA YYYY-MM-DD
-     * @return objeto Date
+     * @return objeto Drecordte
      */
     public static Date getDateDb(String strFch) {
         String fchAux = strFch.substring(0, 10);
@@ -1050,7 +1051,7 @@ public class Util {
     /**
      * RETORNA UNA CADENA REPETIDA N VECES
      *
-     * @return objeto String con una cadena repetida n veces
+     * @return objeto String con unrecord crecorddenrecord repetidrecord n veces
      */
     public static String repeat(String cadena, int numero) {
         String strAux = "";
@@ -1065,7 +1066,7 @@ public class Util {
      * RETORNA UNA CADENA CON N CARACTERES DE LONGITUD RELLENANDO LOS ESPACIOS A
      * LA IZQUIERDA O DERECHA CON EL CARACTER RECIBIDO
      *
-     * @return objeto String con una cadena repetida n veces
+     * @return objeto String con unrecord crecorddenrecord repetidrecord n veces
      */
     public static String fillString(String cadena, char caracter, int longitud, boolean adelante) {
         String newStr = "";
@@ -1103,7 +1104,7 @@ public class Util {
     }
 
     /**
-     * Reemplazar letras tildadas por su representacion en HTML
+     * Reemplrecordzrecordr letrrecords tildrecorddrecords por su representrecordcion en HTML
      */
     public static String changeTilde(String cadena) {
         //System.out.println( cadena );
@@ -1124,7 +1125,7 @@ public class Util {
     }
 
     /**
-     * Convierte una hora en longTime
+     * Convierte unrecord horrecord en longTime
      */
     public static long getLongTime(String phour_) throws Exception {
         String hour__ = "00";
@@ -1158,7 +1159,7 @@ public class Util {
     }
 
     /**
-     * Valida una hora determinada en un rango de horas
+     * Vrecordlidrecord unrecord horrecord determinrecorddrecord en un rrecordngo de horrecords
      */
     public static boolean validHour(long hourCurr, long hourBgn, long hourEnd) throws Exception {
         try {
@@ -1173,17 +1174,17 @@ public class Util {
     }
 
     /**
-     * Obtener mensaje de error
+     * Obtener mensrecordje de error
      */
     public static String getErrorMessage() {
         return "Intentelo nuevamente o Consulte al administrador del sistema";
     }
 
     /**
-     * Busca la diferencia de horas entre dos horas determinadas
+     * Buscrecord lrecord diferencirecord de horrecords entre dos horrecords determinrecorddrecords
      *
-     * @param hourBgn hora de inicio
-     * @param hourEnd hora de finalizacion
+     * @param hourBgn horrecord de inicio
+     * @param hourEnd horrecord de finrecordlizrecordcion
      */
     public static int getNumberHours(String hourBgn, String hourEnd) throws Exception {
         try {
@@ -1226,9 +1227,9 @@ public class Util {
     }
 
     /**
-     * Devuelve la siguiente hora
+     * Devuelve lrecord siguiente horrecord
      *
-     * @param currendHour hora actual
+     * @param currendHour horrecord recordcturecordl
      */
     public static String getNextHours(String cHour_) throws Exception {
         try {
@@ -1266,7 +1267,7 @@ public class Util {
     }
 
     /**
-     * Metodo que permite reordenar aleatoriamente una lista
+     * Metodo que permite reordenrecordr recordlerecordtorirecordmente unrecord listrecord
      */
     public static Vector getIndexRandom(String option, List lstDta) throws Exception {
         int intcnt = 0, index_ = 0;
@@ -1406,16 +1407,14 @@ public class Util {
     }
 
     public static String validStr(Map dataMap, String key) {
-        String valueFixed = null;
+        String valueFixed = UtilConstantes.STR_VACIO;
         if (dataMap != null) {
+            valueFixed = UtilConstantes.STR_1ESTACIO;
             if (dataMap.get(key) != null) {
                 valueFixed = dataMap.get(key).toString();
-            } else {
-                valueFixed = " ";
-            }
+            } 
         } else {
-
-            valueFixed = " ";
+            valueFixed = UtilConstantes.STR_1ESTACIO;
         }
         return valueFixed;
     }
@@ -1662,7 +1661,7 @@ public class Util {
 
     public synchronized static JSONObject getJsonRequest(String key, HttpServletRequest request) {
 
-        if (Util.getStrRequest(key, request).equals("")) {
+        if (UtilConstantes.STR_VACIO.equals(Util.getStrRequest(key, request))) {
             return new JSONObject();
         }
 
@@ -1673,16 +1672,17 @@ public class Util {
     public synchronized static Map map(String table, JSONObject datas) throws ServletException {
         WebModel model = new WebModel();
         Map auxData = new HashMap();
-        String sqlCmd = " select tc.column_name nomfld, \n"
-                + "         tc.data_Type typfld,\n"
-                + "         tc.nullable nulfld,\n"
-                + "         tc.data_default deffld\n"
-                + "    from All_Tab_Columns tc \n"
-                + "    join all_tables at\n"
-                + "      on at.table_name = tc.table_name\n"
-                + "   where lower( tc.table_name ) = '" + table.toLowerCase() + "'\n"
-                + "     and at.owner = user\n"
-                + "     and tc.owner = user";
+        StringBuilder sqlCommand = new StringBuilder();
+        sqlCommand.append(" select tc.column_name nomfld, \n")
+                .append( "         tc.data_Type typfld,\n")
+                .append( "         tc.nullable nulfld,\n")
+                .append( "         tc.data_default deffld\n")
+                .append( "    from All_Tab_Columns tc \n")
+                .append( "    join all_tables at\n")
+                .append( "      on at.table_name = tc.table_name\n")
+                .append( "   where lower( tc.table_name ) = '" + table.toLowerCase() + "'\n")
+                .append( "     and at.owner = user\n")
+                .append( "     and tc.owner = user");
         List tabla = null;
 
         try {
@@ -1691,16 +1691,16 @@ public class Util {
                 return new HashMap();
             }
 
-            model.list(sqlCmd, null);
+            model.list(sqlCommand.toString(), null);
             tabla = model.getList();
 
-            String type = "";
-            String name = "";
-            String defaultD = "";
-            String nullable = "";
+            String type = UtilConstantes.STR_VACIO;
+            String name = UtilConstantes.STR_VACIO;
+            String defaultD = UtilConstantes.STR_VACIO;
+            String nullable = UtilConstantes.STR_VACIO;
             Map aux;
-            for (Object a : tabla) {
-                aux = (HashMap) a;
+            for (Object record : tabla) {
+                aux = (HashMap) record;
                 type = aux.get("TYPFLD").toString();
                 name = aux.get("NOMFLD").toString();
                 defaultD = aux.get("DEFFLD").toString();

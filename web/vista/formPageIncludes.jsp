@@ -20,7 +20,7 @@
 %>
 <%@ include file="/vista/formvalidSessionLogin.jsp" %>
 <%    }--%>
-%>
+
 <%    String base = BASEURL;
     String control = CONTROLLER;
     Map imports = new HashMap();

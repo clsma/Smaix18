@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletException;
 import mvc.model.HibernateUtil;
+import mvc.util.ClsmaException;
+import mvc.util.ClsmaTypeException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -128,70 +130,78 @@ public class AdmDepartmentsAction extends Action {
     }
 
     private void saveDepartament() throws Exception {
-        JSONObject json = new JSONObject();
         JSONObject formu = Util.getJsonRequest("formulario", request);
-        Session sesion = this.getNewSession();
-        Transaction tra = HibernateUtil.getNewTransaction(sesion);
+        Transaction transaccion  = null ; 
         try {
-
-            tra.begin();
+            Session sesion = this.getNewSession();
+            transaccion = HibernateUtil.getNewTransaction(sesion);
+            openSqlCommand();
+            transaccion.begin();
             Map    datos  = Util.map("smadpt", formu);
             String idedpt = Util.validStr(datos, "idedpt").toString();
             String coddpt = Util.validStr(datos, "coddpt").toString();
-            String npqdpt = Util.validStr(datos, "npqdpt").toString();
-            String nomdpt = Util.validStr(datos, "nomdpt").toString();
+            String npqdpt = Util.validStr(datos, "npqdpt").toString().toUpperCase();
+            String nomdpt = Util.validStr(datos, "nomdpt").toString().toUpperCase();
 
             if(idedpt.isEmpty()){
-                sqlCmd = "select distinct coddpt \n"
-                       + "  from smadpt \n"
-                       + " where coddpt = '" + coddpt + "'";
+                sqlCommand.append("select distinct coddpt \n")
+                        .append("  from smadpt \n")
+                        .append(" where coddpt = '")
+                        .append(coddpt)
+                        .append("'");
 
-                sqlCmd = (String) model.getData(sqlCmd, null);
-                if(!sqlCmd.isEmpty()){
-
-                    json.put("exito", "ERROR");
-                    json.put("msg", "Ya existe ese código de departamento");
-                    tra.rollback();
-
+                sqlCmd = (String) model.getData(sqlCommand.toString(), null);
+                if(!sqlCmd.isEmpty()){                                       
+                    throw new ClsmaException(ClsmaTypeException.ERROR, "Ya existe ese código de departamento");                                       
                 }else{
+                    openSqlCommand();
+                    sqlCommand.append("select distinct nomdpt \n")
+                            .append("  from smadpt \n")
+                            .append(" where UPPER(npqdpt) = '" )
+                            .append( npqdpt)
+                            .append( "' \n")
+                            .append("    or UPPER(nomdpt) = '" )
+                            .append(nomdpt )
+                            .append( "'");
 
-                    sqlCmd = "select distinct nomdpt \n"
-                           + "  from smadpt \n"
-                           + " where npqdpt = '" + npqdpt + "' \n"
-                           + "    or nomdpt = '" + nomdpt + "'";
-
-                    sqlCmd = (String) model.getData(sqlCmd, null);
-                    if(!sqlCmd.isEmpty()){
-
-                        json.put("exito", "ERROR");
-                        json.put("msg", "Ya existe ese nombre de departamento");
-                        tra.rollback();
-
+                    sqlCmd = (String) model.getData(sqlCommand.toString(), null);
+                    if(!sqlCmd.isEmpty()){                                                                      
+                        throw new ClsmaException(ClsmaTypeException.ERROR, "Ya existe ese nombre de departamento");                                       
                     }else{
-
                         idedpt = model.saveLogBook(datos, "smadpt", sesion);
                         json.put("exito", "OK");
                         json.put("msg", model.MSG_SAVE);
-                        tra.commit();
-
                     }
                 }
 
             } else {
                     model.updateLogBook(datos, "smadpt", idedpt.toString().trim(), sesion);
                     json.put("exito", "OK");
-                    json.put("msg", model.MSG_SAVE);
-                    tra.commit();
+                    json.put("msg", model.MSG_UPDATE);
+                    
             }
-
+            transaccion.commit();  
+            json.put("exito", "OK");
+            json.put("msg", model.MSG_SAVE);
+         
+        } catch (ClsmaException cle) {
+            cle.writeJsonError(json);
+            
+            if(transaccion != null)
+                transaccion.rollback();
+           
         } catch (Exception e) {
             json.put("exito", "ERROR");
             json.put("msg", model.setError(e));
-            write(json);
-            tra.rollback();
+            
+            if(transaccion != null)
+                transaccion.rollback();
+            
             Util.logError(e);
+        }finally{
+            write(json);
         }
-        write(json);
+        
     }
 
     private void fillform() throws Exception {
@@ -219,27 +229,27 @@ public class AdmDepartmentsAction extends Action {
     }
 
     private List smaDpt(String idedpt) {
-
+        openSqlCommand();
         try {
-
-            sqlCmd = "  select smadpt.idedpt \n" 
-                   + "       , smadpt.coddpt \n" 
-                   + "       , smadpt.nomdpt \n" 
-                   + "       , smadpt.npqdpt \n" 
-                   + "       , smapai.nompai \n" 
-                   + "       , smadpt.idepai \n" 
-                   + "    from smapai \n" 
-                   + "    join smadpt \n" 
-                   + "      on smadpt.idepai = smapai.idepai \n"
-                   + "   where smapai.codcia = '" + model.getCodCia() + "' \n";
+            sqlCommand.append("  select smadpt.idedpt \n")
+                    .append("       , smadpt.coddpt \n")
+                    .append("       , smadpt.nomdpt \n")
+                    .append("       , smadpt.npqdpt \n")
+                    .append("       , smapai.nompai \n")
+                    .append("       , smadpt.idepai \n")
+                    .append("    from smapai \n")
+                    .append("    join smadpt \n")
+                    .append("      on smadpt.idepai = smapai.idepai \n");
 
             if (!idedpt.trim().isEmpty()) {
-                sqlCmd += " and smadpt.idedpt = '" + idedpt + "' \n";
+                sqlCommand.append(" and smadpt.idedpt = '" );
+                sqlCommand.append(idedpt );
+                sqlCommand.append( "' \n");
             }
-            sqlCmd +=  "order by smapai.nompai \n"
-                   +          ", smadpt.nomdpt ";
+            sqlCommand.append("order by smapai.nompai \n")
+                    .append(", smadpt.nomdpt ");
             
-            model.list(sqlCmd, null);
+            model.list(sqlCommand.toString(), null);
             return model.getList();
         } catch (Exception e) {
             Util.logError(e);

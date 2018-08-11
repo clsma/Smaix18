@@ -17,6 +17,8 @@ import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletException;
 import mvc.model.HibernateUtil;
+import mvc.util.ClsmaException;
+import mvc.util.ClsmaTypeException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -46,9 +48,9 @@ public class AdmCountriesAction extends Action {
             } else if (event.equals("EDIT")) {
                 fillform();
             }
-
         } catch (Exception e) {
-            Util.logError(e);
+            if(!(e instanceof ClsmaException))
+                Util.logError(e);
         }
     }
 
@@ -61,7 +63,7 @@ public class AdmCountriesAction extends Action {
         try {
             String idepai = Util.getStrRequest("idepai", request);
 
-            List smapai = smaPai(idepai);
+            List smapai = getListaPaises(idepai);
 
             jQgridTab tab = new jQgridTab();
             tab.setColumns(new String[]{"IDEPAI", "NOMCNT", "CODPAI", "ISAPAI", "ISBPAI", "NOMPAI", "EDIT", "DELETE"});
@@ -109,91 +111,96 @@ public class AdmCountriesAction extends Action {
     private void delCountries() throws Exception {
         
         String nropai = Util.getStrRequest("id", request);
-        Session sesion = this.getNewSession();
-        Transaction tra = HibernateUtil.getNewTransaction(sesion);
         
+        Transaction transaccion = null;
+         
         try {
+            Session sesion = this.getNewSession();
+            transaccion = HibernateUtil.getNewTransaction(sesion);      
+            transaccion.begin();
             model.deleteLogBook("smapai", nropai, sesion);
             json.put("exito", "OK");
-            json.put("msg", model.MSG_SAVE);
-            tra.commit();
-        } catch (Exception e) {
-            json.put("exito", "ERROR");
-            json.put("msg", "No se pudo eliminar, existen ciudades que tienen ese país");
+            json.put("msg", model.MSG_DELETE);            
+        } catch (Exception e) {              
             write(json);
-            tra.rollback();
-//            Util.logError(e);
+            if (transaccion != null) {
+                transaccion.rollback();
+            }
+            throw new ClsmaException(ClsmaTypeException.ERROR.getDescription(), "No se pudo eliminar, existen ciudades que tienen ese país", e);
+            
+            
+        }finally{
+            if (transaccion != null )
+                transaccion.commit();
         }
         write(json);
     }
 
     private void saveCountries() throws Exception {
-        JSONObject json = new JSONObject();
         JSONObject formu = Util.getJsonRequest("formulario", request);
-        Session sesion = this.getNewSession();
-        Transaction tra = HibernateUtil.getNewTransaction(sesion);
+        Transaction transaccion = null;
+        openSqlCommand();
         try {
-
-            tra.begin();
+            Session sesion = this.getNewSession();
+            transaccion = HibernateUtil.getNewTransaction(sesion);
+            transaccion.begin();
             Map    datos  = Util.map("smapai", formu);
             String idepai = Util.validStr(datos, "idepai").toString();
             String codpai = Util.validStr(datos, "codpai").toString();
-            String nompai = Util.validStr(datos, "nompai").toString();
-            
-            
+            String nompai =  Util.validStr(datos, "nompai").toString().toUpperCase();
+                      
             if(idepai.isEmpty()){
-                  
-            
-                sqlCmd = "select distinct codpai \n"
-                       + "  from smapai \n"
-                       + " where codcia = '" + model.getCodCia() + "' \n"
-                       + "   and codpai = '" + codpai + "'";
-             
-                sqlCmd = (String) model.getData(sqlCmd, null);
-                if(!sqlCmd.isEmpty()){
+                
+                sqlCommand.append("select distinct codpai \n")
+                        .append("  from smapai \n")
+                        .append(" where codpai = '").append(codpai).append("'");
 
-                    json.put("exito", "ERROR");
-                    json.put("msg", "Ya existe ese código de país");
-                    write(json);
-                    tra.rollback();
+                sqlCmd = (String) model.getData(sqlCommand.toString(), null);
+                
+                if(sqlCmd.isEmpty()){
+                   openSqlCommand();                                        
+                    sqlCommand.append( "select distinct nompai \n")
+                              .append( "  from smapai \n")
+                              .append( " where UPPER(nompai) = '" )
+                              .append( nompai ) 
+                              .append(  "'");
 
-                }else{
-
-                    sqlCmd = "select distinct nompai \n"
-                           + "  from smapai \n"
-                           + " where codcia = '" + model.getCodCia() + "' \n"
-                           + "   and nompai = '" + nompai + "'";
-
-                    sqlCmd = (String) model.getData(sqlCmd, null);
-                    if(!sqlCmd.isEmpty()){
-                        json.put("exito", "ERROR");
-                        json.put("msg", "Ya existe ese nombre de país");
-                        write(json);
-                        tra.rollback();
-                    }else{
+                    sqlCmd = (String) model.getData(sqlCommand.toString(), null);
+                    if(sqlCmd.isEmpty()){
                         datos.put("codcia", model.getCodCia());
                         idepai = model.saveLogBook(datos, "smapai", sesion);
                         json.put("exito", "OK");
                         json.put("msg", model.MSG_SAVE);
-                        tra.commit();
+                    }else{                        
+                        throw new ClsmaException(ClsmaTypeException.ERROR.getDescription(), "Ya existe ese nombre de país"); 
                     }
-                }
+                }else{                      
+                    throw new ClsmaException(ClsmaTypeException.ERROR.getDescription(), "Ya existe ese código de país");                                        
+               }
 
-            } else {
+            } else {                
                     model.updateLogBook(datos, "smapai", idepai.toString().trim(), sesion);
                     json.put("exito", "OK");
                     json.put("msg", model.MSG_SAVE);
-                    tra.commit();
+                    
             }
+             transaccion.commit();
+        } catch (ClsmaException cle) {
+             cle.writeJsonError(json);
 
+             if(transaccion != null) 
+                transaccion.rollback();             
         } catch (Exception e) {
             json.put("exito", "ERROR");
             json.put("msg", model.setError(e));
-            write(json);
-            tra.rollback();
+            
+            if(transaccion != null) 
+                transaccion.rollback();
             Util.logError(e);
+        }finally{
+            write(json);
         }
-        write(json);
+        
     }
 
     private void fillform() throws Exception {
@@ -201,7 +208,7 @@ public class AdmCountriesAction extends Action {
         String nropai = Util.getStrRequest("id", request);
         try {
 
-            List smapai = smaPai(nropai);
+            List smapai = getListaPaises(nropai);
 
             HashMap hasLgn = new HashMap();
 
@@ -220,28 +227,32 @@ public class AdmCountriesAction extends Action {
         write(json);
     }
 
-    private List smaPai(String idepai) {
-
+    private List getListaPaises(String idepai) {
+        sqlCommand = new StringBuilder();
         try {
-
-            sqlCmd = "   select smapai.idepai \n" 
-                   + " 	      , smapai.codpai \n" 
-                   + " 	      , smapai.isapai \n" 
-                   + "	      , smapai.isbpai \n" 
-                   + "	      , smapai.nompai \n" 
-                   + "	      , nvl(smapai.codcnt,'000') codcnt \n"
-                   + "	      , nvl(vewcnt.nomcnt,' ') nomcnt \n"
-                   + "     from smapai \n"
-                   + "left join vewcnt \n"
-                   + "       on vewcnt.codcnt = smapai.codcnt \n"
-                   + "    where smapai.codcia = '" + model.getCodCia() + "' \n";
+            sqlCommand.append("SELECT smapai.idepai, \n" )
+                      .append("       smapai.codpai, \n" )          
+                      .append("       smapai.isapai, \n" )
+                      .append("	      smapai.isbpai, \n" )
+                      .append("	      smapai.nompai, \n" )
+                      .append("	      nvl(smapai.codcnt,'000') codcnt, \n")
+                      .append("	      nvl(vewcnt.nomcnt,' ') nomcnt \n")
+                      .append("  FROM smapai \n")
+                      .append("LEFT JOIN vewcnt \n")
+                      .append("       ON vewcnt.codcnt = smapai.codcnt \n");
+                      
+                      /*.append(       " smapai.codcia = '" )
+                      .append(model.getCodCia() )
+                      .append("' \n");*/
 
             if (!idepai.trim().isEmpty()) {
-                sqlCmd += " and smapai.idepai = '" + idepai + "' \n";
+                sqlCommand.append(" WHERE smapai.idepai = '" );
+                sqlCommand.append(  idepai );
+                sqlCommand.append("' \n");
             }
-            sqlCmd +=  "order by smapai.nompai ";
+            sqlCommand.append(  "ORDER BY smapai.nompai ");
             
-            model.list(sqlCmd, null);
+            model.list(sqlCommand.toString(), null);
             return model.getList();
         } catch (Exception e) {
             Util.logError(e);

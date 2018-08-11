@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletException;
 import mvc.model.HibernateUtil;
+import mvc.util.ClsmaException;
+import mvc.util.ClsmaTypeException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -129,81 +131,75 @@ public class AdmCitiesAction extends Action {
 
     private void saveCity() throws Exception {
         JSONObject json = new JSONObject();
-        JSONObject formu = Util.getJsonRequest("formulario", request);
-        Session sesion = this.getNewSession();
-        Transaction tra = HibernateUtil.getNewTransaction(sesion);
+        JSONObject formHttp = Util.getJsonRequest("formulario", request);
+        Transaction transaccion = null;
         try {
-
-            tra.begin();
-            Map    datos  = Util.map("smaciu", formu);
+            Session sesion = this.getNewSession();
+            transaccion = HibernateUtil.getNewTransaction(sesion);
+            transaccion.begin();
+            Map    datos  = Util.map("smaciu", formHttp);
             String ideciu = Util.validStr(datos, "ideciu").toString();
             String codciu = Util.validStr(datos, "codciu").toString();
             String npqciu = Util.validStr(datos, "npqciu").toString();
             String nomciu = Util.validStr(datos, "nomciu").toString();
-
+            openSqlCommand();
             if(ideciu.isEmpty()){
-                sqlCmd = "select distinct codciu \n"
-                       + "  from smaciu \n"
-                       + " where codciu = '" + codciu + "' \n"
-                       + "   and idedpt in ( \n"
-                       + "                   select smadpt.idedpt \n"
-                       + "                     from smapai \n"
-                       + "                     join smadpt \n"
-                       + "                       on smadpt.idepai = smapai.idepai \n"
-                       + "                    where smapai.codcia = '" + model.getCodCia() + "' \n"
-                       + "                  )";
+                sqlCommand.append("select distinct codciu \n")
+                       .append( "  from smaciu \n")
+                       .append( " where codciu = '" + codciu + "' \n")
+                       .append( "   and idedpt in ( \n")
+                       .append( "                   select smadpt.idedpt \n")
+                       .append( "                     from smapai \n")
+                       .append( "                     join smadpt \n")
+                       .append( "                       on smadpt.idepai = smapai.idepai \n")
+                     //  .append( "                    where smapai.codcia = '" + model.getCodCia() + "' \n")
+                       .append( "                  )");
 
-                sqlCmd = (String) model.getData(sqlCmd, null);
+                sqlCmd = (String) model.getData(sqlCommand.toString(), null);
                 if(!sqlCmd.isEmpty()){
-
-                    json.put("exito", "ERROR");
-                    json.put("msg", "Ya existe ese código de ciudad");
-                    tra.rollback();
-
+                    throw new ClsmaException(ClsmaTypeException.ERROR, "Ya existe ese código de ciudad");                   
                 }else{
+                    openSqlCommand();
+                    sqlCommand.append("select distinct nomciu \n")
+                            .append("  from smapai \n")
+                            .append("  join smadpt \n")
+                            .append("    on smadpt.idepai = smapai.idepai \n")
+                            .append("  join smaciu \n")
+                            .append("    on smaciu.idedpt = smadpt.idedpt \n")
+                            .append("   and ( smaciu.npqciu = '" + npqciu + "' or \n")
+                            .append("         smaciu.nomciu = '" + nomciu + "' ) \n");
+                            //append(" where smapai.codcia = '" + model.getCodCia() + "' \n");
 
-                    sqlCmd = "select distinct nomciu \n"
-                           + "  from smapai \n"
-                           + "  join smadpt \n"
-                           + "    on smadpt.idepai = smapai.idepai \n"
-                           + "  join smaciu \n"                           
-                           + "    on smaciu.idedpt = smadpt.idedpt \n"
-                           + "   and ( smaciu.npqciu = '" + npqciu + "' or \n"
-                           + "         smaciu.nomciu = '" + nomciu + "' ) \n"
-                           + " where smapai.codcia = '" + model.getCodCia() + "' \n";
-
-                    sqlCmd = (String) model.getData(sqlCmd, null);
+                    sqlCmd = (String) model.getData(sqlCommand.toString(), null);
                     if(!sqlCmd.isEmpty()){
-
-                        json.put("exito", "ERROR");
-                        json.put("msg", "Ya existe ese nombre de ciudad");
-                        tra.rollback();
-
+                        throw new ClsmaException(ClsmaTypeException.ERROR, "Ya existe ese nombre de ciudad"); 
                     }else{
-
                         ideciu = model.saveLogBook(datos, "smaciu", sesion);
                         json.put("exito", "OK");
                         json.put("msg", model.MSG_SAVE);
-                        tra.commit();
-
                     }
                 }
 
             } else {
                     model.updateLogBook(datos, "smaciu", ideciu.toString().trim(), sesion);
                     json.put("exito", "OK");
-                    json.put("msg", model.MSG_SAVE);
-                    tra.commit();
+                    json.put("msg", model.MSG_SAVE);           
             }
-
+            transaccion.commit();
+        } catch (ClsmaException cle) {
+            cle.writeJsonError(json);
+            if(transaccion != null)
+                transaccion.rollback();
+                    
         } catch (Exception e) {
             json.put("exito", "ERROR");
             json.put("msg", model.setError(e));
-            write(json);
-            tra.rollback();
+            if(transaccion != null)
+                transaccion.rollback(); 
             Util.logError(e);
-        }
-        write(json);
+        }finally{
+            write(json);
+        }        
     }
 
     private void fillform() throws Exception {
@@ -231,33 +227,31 @@ public class AdmCitiesAction extends Action {
     }
 
     private List smaCiu(String ideciu) {
-
+        openSqlCommand();
         try {
-
-            sqlCmd = "  select smaciu.ideciu \n" 
-                   + "       , smaciu.idedpt \n" 
-                   + "       , smaciu.codciu \n" 
-                   + "       , smaciu.nomciu \n" 
-                   + "       , smaciu.npqciu \n" 
-                   + "       , smadpt.nomdpt \n" 
-                   + "       , smapai.nompai \n" 
-                   + "       , smapai.idepai \n" 
-                   + "    from smapai \n" 
-                   + "    join smadpt \n" 
-                   + "      on smadpt.idepai = smapai.idepai \n"
-                   + "    join smaciu \n" 
-                   + "      on smaciu.idedpt = smadpt.idedpt \n"
-                   + "   where smapai.codcia = '" + model.getCodCia() + "' \n";
+        sqlCommand.append( "  select smaciu.ideciu \n" )
+                   .append( "       , smaciu.idedpt \n" )
+                   .append( "       , smaciu.codciu \n" )
+                   .append( "       , smaciu.nomciu \n" )
+                   .append( "       , smaciu.npqciu \n" )
+                   .append( "       , smadpt.nomdpt \n" )
+                   .append( "       , smapai.nompai \n" )
+                   .append( "       , smapai.idepai \n" )
+                   .append( "    from smapai \n" )
+                   .append( "    join smadpt \n" )
+                   .append( "      on smadpt.idepai = smapai.idepai \n")
+                   .append( "    join smaciu \n" )
+                   .append( "      on smaciu.idedpt = smadpt.idedpt \n");
+                   //.append( "   where smapai.codcia = '" + model.getCodCia() + "' \n");
 
             if (!ideciu.trim().isEmpty()) {
-                sqlCmd += " and smaciu.ideciu = '" + ideciu + "' \n";
+                sqlCommand.append( " WHERE  smaciu.ideciu = '" + ideciu + "' \n");
             }
-            sqlCmd +=  "order by smapai.nompai \n"
-                   +   "       , smadpt.nomdpt \n"
-                   +   "       , smaciu.nomciu " ;
-                    
-            
-            model.list(sqlCmd, null);
+            sqlCommand.append("order by smapai.nompai \n")
+                      .append("       , smadpt.nomdpt \n")
+                      .append("       , smaciu.nomciu " );
+                                
+            model.list(sqlCommand.toString(), null);
             return model.getList();
         } catch (Exception e) {
             Util.logError(e);

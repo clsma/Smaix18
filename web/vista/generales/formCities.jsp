@@ -1,11 +1,4 @@
 
-
-<%-- 
-    Document   : formCities
-    Created on : 2/09/2016 10:27:52 AM
-    Author     : Ing. Jacobo Llanos
---%>
-
 <%@include file="/vista/formPageIncludes.jsp" %>
 <html>
     <head>

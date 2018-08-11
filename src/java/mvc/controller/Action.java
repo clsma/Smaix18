@@ -26,6 +26,9 @@ public abstract class Action implements Serializable {
     protected RequestDispatcher rd = null;
     protected SessionFactory sessionInstance = null;
     protected Session currentSession = null;
+    protected StringBuilder sqlCommand;
+    private  StringBuilder sqlCmd;
+
 
     /**
      * *
@@ -127,4 +130,16 @@ public abstract class Action implements Serializable {
     public String getMessage(String errorMessage) {
         return errorMessage.split(":")[1];
     }
+    
+    public void openSqlCommand(){
+        if(sqlCmd == null){
+            sqlCmd = new StringBuilder();             
+        }else{
+            sqlCmd.setLength(0);
+        }
+        sqlCommand = sqlCmd;
+    }
+    public StringBuilder getSqlCommand(){
+        return sqlCmd;
+    }        
 }
