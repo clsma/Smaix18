@@ -1,0 +1,107 @@
+.midterms {
+    width: 80px;  
+}
+
+.midterms table {
+    background: #E0ECFF;
+}
+
+.midterms td {
+    background: #eee;
+}
+
+.item {
+    text-align: center;
+    border: 1px solid #499B33;
+    background: #fafafa;
+    width: 80px;
+    cursor: move;
+}
+
+.remove {
+    text-align: center;
+    border: 1px solid #499B33;
+    background: #BEBEBE;
+    width: 80px;
+}
+
+.over {
+    border: 1px solid #8A0829;
+    background: #F5A9BC;
+}
+
+.schedule { 
+    width: 860px;
+    margin: auto;
+}
+
+.schedule table {
+    background: white;
+    width: 100%;
+}
+
+.schedule td {
+    background: #BEBEBE;
+    text-align: center;
+    padding: 2px;
+}
+
+.schedule td.empty
+{
+    background: #ADD8E6;
+    width: 82px;
+}
+
+.scheduled
+{
+    /*background: #F3F6FF;*/
+    width: 103px;
+    min-height: 25px;
+}
+.scheduled-over{
+    background: #8FC28B;
+}
+
+.assigned {
+    border: 1px solid #BC2A4D;
+    background: #fafafa;
+    cursor: pointer;
+}
+
+.loaded {
+    background-image: url('../../../img/oksmall.png');
+    background-repeat: no-repeat;
+    background-position: right top; 
+}
+
+.prohibited {
+    cursor: not-allowed;
+    border-style: dashed;
+    border-color: darkblue;
+}
+
+.ttlrow{
+    border: #000000 solid 2px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:10px;
+    font-weight:bold;
+    color: #0000CC ;
+    background-color: #FFFFFF;			 
+}
+
+.tableMetal {  
+    background-image: url("../../vista/img/tabInactive.jpg");
+    font-family: Verdana,Arial,sans-serif;  
+    font-size: 10px; 
+    color: #333333; 
+    font-weight:normal; 
+}
+.tablas{
+    background: url("../../vista/img/Background.jpg");
+}
+.message{
+    font-family: Verdana,Arial,sans-serif;  
+    font-size: 10px; 
+    color:#330099;
+    font-weight:bold;
+}
