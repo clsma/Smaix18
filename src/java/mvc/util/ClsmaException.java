@@ -50,8 +50,8 @@ public class ClsmaException extends Exception {
     }
     
     public void writeJsonError(JSONObject json){
-        json.put("exito", this.getType());
-        json.put("msg", this.getMessage());
+        json.put(UtilConstantes.STR_KEY_JSON_EXITO, this.getType());
+        json.put(UtilConstantes.STR_KEY_JSON_MSG , this.getMessage());
     }
 
 }

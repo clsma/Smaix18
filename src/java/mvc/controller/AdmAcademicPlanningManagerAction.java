@@ -21,6 +21,7 @@ import mvc.model.HibernateUtil;
 import mvc.model.ModelSma;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.jfree.util.Log;
 import org.json.simple.JSONArray;
 import taglib.form.inputForm;
 
@@ -55,7 +56,7 @@ public class AdmAcademicPlanningManagerAction extends Action {
         isPgm = getObject("isPgm", session) == null
                 ? false
                 : (Boolean) getObject("isPgm", session);
-
+       System.out.println("Event"+event);
         try {
             if (event.equals("LSTPGMS")) {
                 showPrograms();

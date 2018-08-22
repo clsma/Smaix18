@@ -352,8 +352,6 @@ function setDelproject(a, b, c) {
     }
 }
 
-
-
 function setDelSemester(a, b, c) {
     if (c.IDESMT!=='NEW') {
         var img = $('<img/>');

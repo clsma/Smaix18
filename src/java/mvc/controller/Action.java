@@ -139,7 +139,13 @@ public abstract class Action implements Serializable {
         }
         sqlCommand = sqlCmd;
     }
-    public StringBuilder getSqlCommand(){
-        return sqlCmd;
+    
+    public StringBuilder setSqlCommand(String linea){
+        sqlCommand.append(linea);
+        return sqlCommand;
+    }
+    public String getSqlCommand(){
+        System.out.println(sqlCommand.toString());
+        return sqlCommand.toString();
     }        
 }
