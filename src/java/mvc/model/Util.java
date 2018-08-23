@@ -1680,7 +1680,7 @@ public class Util {
                 .append( "    from All_Tab_Columns tc \n")
                 .append( "    join all_tables at\n")
                 .append( "      on at.table_name = tc.table_name\n")
-                .append( "   where lower( tc.table_name ) = '" + table.toLowerCase() + "'\n")
+                .append( "   where lower( tc.table_name ) = '" ).append( table.toLowerCase() ).append( "'\n")
                 .append( "     and at.owner = user\n")
                 .append( "     and tc.owner = user");
         List tabla = null;

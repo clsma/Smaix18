@@ -75,27 +75,41 @@ public class AdmAcademicProgramRequestAction extends Action {
             } 
             if ("SAVE".equals(event)) {
                 savePak();
+                return;
+            }             
+            if ("GETCRS".equals(event)) {
+                listCrs();
+                return;
+            }             
+            if ("DATACRS".equals(event)) {
+                getDataCrs();
+                return;
             } 
+            if ("SAVECRS".equals(event)) {
+                saveCrs();
+                return;
+            }             
+            if ("DELCRS".equals(event)) {
+                deleteCrs();
+            } 
+            if ("GETSMT".equals(event)) {
+                getSmt();
+            }
+            if ("DELSMT".equals(event)) {
+                deleteSmt();
+            }             
+            if ("SAVESMT".equals(event)) {
+                saveSmt();
+            } 
+            if ("DELGRP".equals(event)) {
+                delGrp();
+            } 
+            
+            
             if (event.equals("LSTDKS")) {
                 lstDks();
-            } else if (event.equals("SAVESMT")) {
-                saveSmt();
-            } else if (event.equals("GETSMT")) {
-                getSmt();
-            } else if (event.equals("SMTCRS")) {
+            }  else if (event.equals("SMTCRS")) {
                 ComboSmt();
-            } else if (event.equals("SAVECRS")) {
-                saveCrs();
-            } else if (event.equals("GETCRS")) {
-                listCrs();
-            } else if (event.equals("DATACRS")) {
-                getDataCrs();
-            } else if (event.equals("DELCRS")) {
-                deleteCrs();
-            } else if (event.equals("DELGRP")) {
-                delGrp();
-            } else if (event.equals("DELSMT")) {
-                deleteSmt();
             } else if (event.equals("SAVEPDA")) {
                 savePda();
             } else if (event.equals("DELPDA")) {
@@ -612,10 +626,10 @@ public class AdmAcademicProgramRequestAction extends Action {
     private void saveSmt() throws Exception {
         JSONObject form = Util.getJsonRequest("form", request);
 
-        Map datos = Util.map("smasmt", form);
+        Map datos = Util.map("smarsm", form);
         datos.put("smtpsm", Util.validStr(form, "nropssShw"));
         datos.put("stdsmt", "Abierto");
-        model.saveLogBook(datos, "smasmt", null);
+        model.saveLogBook(datos, "smarsm", null);
 
         json.put("exito", "OK");
         json.put("msg", model.MSG_SAVE);
@@ -625,23 +639,23 @@ public class AdmAcademicProgramRequestAction extends Action {
     }
 
     private void getSmt() throws Exception {
+        openSqlCommand();
+        setSqlCommand("select smasmt.idesmt , \n");
+        setSqlCommand("       smapss.smtpsm ,\n");
+        setSqlCommand("       nompsd ,\n");
+        setSqlCommand("       smapsd.nropsm ,\n");
+        setSqlCommand("       nompgm\n");
+        setSqlCommand("  from SMARSM smasmt\n");
+        setSqlCommand("  join smapss\n");
+        setSqlCommand("    on smapss.nropss = smasmt.nropss\n");
+        setSqlCommand("  join smapsd\n");
+        setSqlCommand("    on smapsd.nropsd = smapss.nropsd\n");
+        setSqlCommand("  join smapgm\n");
+        setSqlCommand("    on smapgm.idepgm = smapsd.idepgm\n");
+        setSqlCommand(" where smasmt.nropkp = '" ).append( nropkp ).append( "'\n");
+        setSqlCommand("  order by  nompgm  asc ,smtpsm asc");
 
-        sqlCmd = "select smasmt.idesmt , \n"
-                + "       smapss.smtpsm ,\n"
-                + "       nompsd ,\n"
-                + "       smapsd.nropsm ,\n"
-                + "       nompgm\n"
-                + "  from smasmt\n"
-                + "  join smapss\n"
-                + "    on smapss.nropss = smasmt.nropss\n"
-                + "  join smapsd\n"
-                + "    on smapsd.nropsd = smapss.nropsd\n"
-                + "  join smapgm\n"
-                + "    on smapgm.idepgm = smapsd.idepgm\n"
-                + " where smasmt.nropkp = '" + nropkp + "'\n"
-                + "  order by  nompgm  asc ,smtpsm asc";
-
-        model.list(sqlCmd, null);
+        model.list(getSqlCommand(), null);
 
         jQgridTab tab = new jQgridTab();
         tab.setColumns(new String[]{"IDESMT", "SMTPSM", "NOMPGM", "NROPSM", "DEL"});
@@ -701,8 +715,8 @@ public class AdmAcademicProgramRequestAction extends Action {
             jQgridTab tab = new jQgridTab();
             tab.setColumns(columna.split(UtilConstantes.STR_COMA));
             tab.setTitles(title.split(UtilConstantes.STR_COMA));
-            tab.setSelector("jqSmt");
-            tab.setPaginador("jqSmtP");
+            tab.setSelector("jqSmt_Proj");
+            tab.setPaginador("jqSmtP_Proj");
             tab.setWidths(new int[]{0, 200, 40, 150, 60, 20, 120, 0, 80, 0, 60, 60});
             tab.setHiddens(new int[]{0, 7, 9});
             tab.setKeys(new int[]{0});
@@ -734,8 +748,10 @@ public class AdmAcademicProgramRequestAction extends Action {
             Util.logError(e);
             json.put("exito", "ERROR");
             json.put("msg", model.setError(e));
+        }finally{
+            write(json);
         }
-        write(json);
+        
     }
 
     private void listSemesters() throws SQLException, IOException {
@@ -790,18 +806,18 @@ public class AdmAcademicProgramRequestAction extends Action {
     }
 
     private String ComboSmt() throws IOException, Exception {
-
-        sqlCmd = " select smasmt.idesmt , smasmt.smtpsm  || ' - ' || nropsm || ' - '|| nompsd nomsmt\n"
-                + "  from smasmt\n"
-                + "  join smapss\n"
-                + "    on smapss.nropss = smasmt.nropss\n"
-                + "  join smapsd\n"
-                + "    on smapsd.nropsd = smapss.nropsd\n"
-                + " where smasmt.nropkp = '" + nropkp + "'\n"
-                + " order by smasmt.smtpsm";
+        openSqlCommand();
+        setSqlCommand(" select smasmt.idesmt , smasmt.smtpsm  || ' - ' || nropsm || ' - '|| nompsd nomsmt\n");
+        setSqlCommand("  from SMARSM smasmt\n");
+        setSqlCommand("  join smapss\n");
+        setSqlCommand("    on smapss.nropss = smasmt.nropss\n");
+        setSqlCommand("  join smapsd\n");
+        setSqlCommand("    on smapsd.nropsd = smapss.nropsd\n");
+        setSqlCommand(" where smasmt.nropkp = '" ).append(nropkp ).append("'\n");
+        setSqlCommand(" order by smasmt.smtpsm");
 
         inputForm combo = new inputForm();
-        combo.setFilter(sqlCmd);
+        combo.setFilter(getSqlCommand());
         combo.setName("idesmt");
         combo.setType("select");
         combo.setTitle("Semestre para el curso");
@@ -812,26 +828,26 @@ public class AdmAcademicProgramRequestAction extends Action {
     private void saveCrs() throws Exception {
         JSONObject form = Util.getJsonRequest("form", request);
 
-        Map datos = Util.map("smacrs", form);
+        Map datos = Util.map("smarcr", form);
 
         String idesmt = Util.validStr(datos, "idesmt");
         String idecrs = Util.validStr(datos, "idecrs");
 
         if (idecrs.trim().isEmpty()) {
 
-            String nrocrs = model.callFunctionOrProcedure("sma_academic_department.course_sequence('" + idesmt + "')");
-            String codcrs = model.callFunctionOrProcedure("sma_academic_department.course_code('" + idesmt + "')");
+            String nrocrs = model.callFunctionOrProcedure("SMA_ACADEMIC_PROGRAM_PROJECT.course_sequence('" + idesmt + "')");
+            String codcrs = model.callFunctionOrProcedure("SMA_ACADEMIC_PROGRAM_PROJECT.course_code('" + idesmt + "')");
             datos.put("nrocrs", nrocrs);
             datos.put("fchcrs", new Date());
             datos.put("codcrs", codcrs);
             datos.put("stdcrs", "Generado");
 
 //                if ( Util.validStr(datos, "tpocrs").trim().equals(request) )
-            model.saveLogBook(datos, "smacrs", null);
-            json.put("msg", model.MSG_SAVE);
+            model.saveLogBook(datos, "smarcr", null);
+            json.put(UtilConstantes.STR_KEY_JSON_MSG, model.MSG_SAVE);
         } else {
-            model.updateLogBook(datos, "smacrs", idecrs, null);
-            json.put("msg", model.MSG_UPDATE);
+            model.updateLogBook(datos, "smarcr", idecrs, null);
+            json.put(UtilConstantes.STR_KEY_JSON_MSG, model.MSG_UPDATE);
         }
 
         json.put("exito", "OK");
@@ -849,7 +865,7 @@ public class AdmAcademicProgramRequestAction extends Action {
         tab.setKeys(new int[]{0});
         tab.setSelector("jqCrs");
         tab.setFilterToolbar(true);
-        tab.setDataList(smacrs(""));
+        tab.setDataList(smacrs(UtilConstantes.STR_VACIO));
         tab.setPaginador("pagerCrs");
 
         LinkedHashMap map = new LinkedHashMap();
@@ -870,27 +886,27 @@ public class AdmAcademicProgramRequestAction extends Action {
     }
 
     private List smacrs(String idecrs) throws SQLException {
-
-        sqlCmd = "select smacrs.*,\n"
-                + "         tpocrs nomtpo,\n"
-                + "         nompsd\n"
-                + "   from smacrs\n"
-                + "   join smasmt\n"
-                + "     on smasmt.idesmt = smacrs.idesmt\n"
-                + "   join smapss\n"
-                + "     on smapss.nropss = smasmt.nropss\n"
-                + "   join smapsd \n"
-                + "     on smapsd.nropsd = smapss.nropsd\n"
-                + "  where smasmt.nropkp = '" + nropkp + "'\n";
+        openSqlCommand();
+        setSqlCommand("SELECT smacrs.*,\n");
+        setSqlCommand("       tpocrs nomtpo,\n");
+        setSqlCommand("       nompsd\n");
+        setSqlCommand(" FROM SMARCR smacrs\n");
+        setSqlCommand(" JOIN SMARSM smasmt\n");
+        setSqlCommand("   ON smasmt.idesmt = smacrs.idesmt \n");
+        setSqlCommand(" JOIN smapss\n");
+        setSqlCommand("   ON smapss.nropss = smasmt.nropss \n");
+        setSqlCommand(" JOIN smapsd \n");
+        setSqlCommand("   ON smapsd.nropsd = smapss.nropsd \n");
+        setSqlCommand("WHERE smasmt.nropkp = '" ).append( nropkp ).append( "'\n");
 //                    + "    and smacrs.tpocrs != 'Electiva'";
 
         if (!idecrs.trim().isEmpty()) {
-            sqlCmd += " and smacrs.idecrs = '" + idecrs + "'";
+            setSqlCommand(" AND smacrs.idecrs = '" ).append( idecrs ).append( "'");
         }
 
-        sqlCmd += " order by nomcrs asc,codcrs asc";
+        setSqlCommand( " ORDER BY nomcrs asc,codcrs asc");
 
-        model.list(sqlCmd, null);
+        model.list(getSqlCommand(), null);
         return model.getList();
 
     }
@@ -915,7 +931,7 @@ public class AdmAcademicProgramRequestAction extends Action {
         String idecrs = Util.getStrRequest("a", request);
         String cofirm = Util.getStrRequest("b", request);
 
-        sqlCmd = "sma_academic_department.course_delete( p_idecrs => '" + idecrs + "' , p_forze => " + cofirm + ")";
+        sqlCmd = "SMA_ACADEMIC_PROGRAM_PROJECT.course_delete( p_idecrs => '" + idecrs + "' , p_forze => " + cofirm + ")";
         String exito = model.callFunctionOrProcedure(sqlCmd);
 
         if (exito.equals("confirm")) {
@@ -933,36 +949,27 @@ public class AdmAcademicProgramRequestAction extends Action {
 
     private void delGrp() throws Exception {
         String nropak = Util.getStrRequest("a", request);
-        Session sesion = this.getNewSession();
-        Transaction tra = HibernateUtil.getNewTransaction(sesion);
+        Transaction transaccion = null;
 
         try {
-            tra.begin();
-
-            sqlCmd = "select count( nronts ) count\n"
-                    + " from smants\n"
-                    + "where nropak = '" + nropak + "'";
-            sqlCmd = (String) model.getData(sqlCmd, sesion);
-            if (Integer.parseInt(sqlCmd) > 0) {
-                json.put("exito", "ERROR");
-                json.put("msg", "Este grupo posee estudiantes matriculados, No puede eliminar.");
-                write(json);
-                return;
-            }
-
+            Session sesion = this.getNewSession();
+            transaccion = HibernateUtil.getNewTransaction(sesion);
+            transaccion.begin();
+           
             model.deleteLogBook("smapxg", "nropak=~" + nropak + "~|", sesion);
             if (isPgm) {
-                model.deleteLogBook("smagrp", "nropak=~" + nropak + "~|", sesion);
+                model.deleteLogBook("smargr", "nropak=~" + nropak + "~|", sesion);
             }
-            model.deleteLogBook("smapak", nropak, sesion);
+            model.deleteLogBook("smarpa", nropak, sesion);
 
             json.put("exito", "OK");
             json.put("msg", model.MSG_DELETE);
-            tra.commit();
+            transaccion.commit();
 
             write(json);
         } catch (Exception e) {
-            tra.rollback();
+            if(transaccion != null)
+                transaccion.rollback();
             throw e;
         }
 
@@ -970,14 +977,14 @@ public class AdmAcademicProgramRequestAction extends Action {
 
     private void deleteSmt() throws Exception {
         String idesmt = Util.getStrRequest("a", request);
+        openSqlCommand();
+        setSqlCommand(" SELECT count( idegrp ) count \n");
+        setSqlCommand("   FTOM SMARCR smacrs \n");
+        setSqlCommand("   JOIN SMARGR smagrp \n");
+        setSqlCommand("     ON smagrp.idecrs = smacrs.idecrs \n");
+        setSqlCommand("  WHERE smacrs.idesmt = '" ).append( idesmt ).append( "'");
 
-        sqlCmd = " select count( idegrp ) count\n"
-                + "   from smacrs\n"
-                + "   join smagrp\n"
-                + "     on smagrp.idecrs = smacrs.idecrs\n"
-                + "  where smacrs.idesmt = '" + idesmt + "'";
-
-        sqlCmd = (String) model.getData(sqlCmd, null);
+        sqlCmd = (String) model.getData(getSqlCommand(), null);
         if (Integer.parseInt(sqlCmd) > 0) {
             json.put("exito", "ERROR");
             json.put("msg", "Hay cursos con grupos creados en este semestre.No puede eliminar.");
@@ -985,7 +992,7 @@ public class AdmAcademicProgramRequestAction extends Action {
             return;
         }
 
-        model.deleteLogBook("smasmt", idesmt, null);
+        model.deleteLogBook("smarsm", idesmt, null);
 
         json.put("exito", "OK");
         json.put("msg", model.MSG_DELETE);
