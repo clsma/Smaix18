@@ -103,6 +103,9 @@ public class AdmAcademicProgramRequestAction extends Action {
             } 
             if ("DELGRP".equals(event)) {
                 delGrp();
+            }             
+            if ("GETLBR".equals(event)) {
+                lstLbr();
             } 
             
             
@@ -114,9 +117,7 @@ public class AdmAcademicProgramRequestAction extends Action {
                 savePda();
             } else if (event.equals("DELPDA")) {
                 delpda();
-            } else if (event.equals("GETLBR")) {
-                lstLbr();
-            } else if (event.equals("GETELC")) {
+            }else if (event.equals("GETELC")) {
                 getElectives();
             } else if (event.equals("LSTINTEGRATED")) {
                 lstIntegrated();
@@ -407,10 +408,10 @@ public class AdmAcademicProgramRequestAction extends Action {
             setSqlCommand( "                                p_codprs => '" ).append( model.getCodPrs() ).append( "',\n");
             setSqlCommand( "                                 p_codmat => smamat.codmat\n");
             setSqlCommand( "                              ) canedit\n");
-            setSqlCommand( "  from table ( sma_academic_program.groups_data( p_agnprs => '" ).append( agnprs ).append( "' , p_prdprs => '" ).append( prdprs ).append( "' ) )smapak\n");
+            setSqlCommand( "  from table ( SMA_ACADEMIC_PROGRAM_PROJECT.groups_data( p_agnprs => '" ).append( agnprs ).append( "' , p_prdprs => '" ).append( prdprs ).append( "' ) )smapak\n");
             setSqlCommand( "  join smamat\n");
             setSqlCommand( "    on smamat.nromat = smapak.nromat\n");
-            setSqlCommand( "  join smapak smapak_\n");
+            setSqlCommand( "  join SMARPA smapak_\n");
             setSqlCommand( "    on smapak_.nropak = smapak.nropak\n");
             setSqlCommand( "  left join SMARGR smagrp");
             setSqlCommand( "    on smagrp.nropak = smapak.nropak\n");
@@ -440,23 +441,23 @@ public class AdmAcademicProgramRequestAction extends Action {
     }
 
     public static String tblPrfHrs(String nroprf, String agnprs, String prdprs, ModelSma model) throws SQLException {
-
-        String sqlCmd = "select smaelm.nroelm , \n"
-                + "       smaelm.nomelm ,\n"
-                + "       nvl( cnthrs , 0 ) cnthrs,\n"
-                + "       smahpr.nrohpr"
-                + "  from smaelm \n"
-                + "  left join smahpr\n"
-                + "    on smaelm.nroelm = smahpr.tpohrs\n"
-                + "   and smahpr.nroprf = '" + nroprf + "'\n";
+        StringBuilder sqlCommand = new StringBuilder();
+        sqlCommand.append("select smaelm.nroelm , \n")
+                    .append( "       smaelm.nomelm ,\n")
+                    .append( "       nvl( cnthrs , 0 ) cnthrs,\n")
+                    .append( "       smahpr.nrohpr")
+                    .append( "  from smaelm \n")
+                    .append( "  left join smahpr\n")
+                    .append( "    on smaelm.nroelm = smahpr.tpohrs\n")
+                    .append( "   and smahpr.nroprf = '" ).append( nroprf ).append( "'\n");
         if (!agnprs.trim().isEmpty() || !prdprs.trim().isEmpty()) {
-            sqlCmd += "   and smahpr.agnprs || smahpr.prdprs = '" + agnprs + prdprs + "'\n";
+            sqlCommand.append("   and smahpr.agnprs || smahpr.prdprs = '" ).append( agnprs ).append( prdprs ).append( "'\n");
         }
-        sqlCmd += " where codelm = 'PRF'\n"
-                + "   and tipelm = 'HOUR'\n"
-                + "   and swhelm = 1";
+        sqlCommand.append(" where codelm = 'PRF'\n")
+                .append( "   and tipelm = 'HOUR'\n")
+                .append( "   and swhelm = 1");
 
-        model.list(sqlCmd, null);
+        model.list(sqlCommand.toString(), null);
         jQgridTab tab = new jQgridTab();
         tab.setColumns(new String[]{"NROELM", "NOMELM", "CNTHRS", "NROHPR"});
         tab.setTitles(new String[]{"", "Descripción", "cant.", "NROHPR"});
@@ -487,7 +488,7 @@ public class AdmAcademicProgramRequestAction extends Action {
 
             tra.begin();
 
-            Map smapak = Util.map("smapak", form);
+            Map smapak = Util.map("smarpa", form);
             Map smagrp = null;
 
             String codpsm = Util.validStr(form, "codpsm");
@@ -516,10 +517,10 @@ public class AdmAcademicProgramRequestAction extends Action {
                         + "                                                                                   p_nromat => '" + Util.validStr(form, "nromat") + "' )", sesion);
                 smapak.put("codpak", codpak);
 
-                nropak = model.saveLogBook(smapak, "smapak", sesion);
+                nropak = model.saveLogBook(smapak, "smarpa", sesion);
                 json.put("msg", model.MSG_SAVE);
             } else {
-                model.updateLogBook(smapak, "smapak", nropak, sesion);
+                model.updateLogBook(smapak, "smarpa", nropak, sesion);
                 json.put("msg", model.MSG_UPDATE);
             }
 
@@ -1138,18 +1139,18 @@ public class AdmAcademicProgramRequestAction extends Action {
     }
 
     private void lstLbr() throws Exception {
+        openSqlCommand();
+        setSqlCommand("SELECT * \n");
+        setSqlCommand("  FROM table( SMA_ACADEMIC_PROGRAM_PROJECT.groups_detail(\n");
+        setSqlCommand("                                           p_codcia => '" ).append( model.getCodCia() ).append( "',\n");
+        setSqlCommand("                                           p_codprs => '" ).append( model.getCodPrs() ).append( "',\n");
+        setSqlCommand("                                           p_idedks => '" ).append( idedks ).append( "',\n");
+        setSqlCommand("                                           p_agnprs => '" ).append( agnprs ).append( "',\n");
+        setSqlCommand("                                           p_prdprs => '" ).append( prdprs ).append( "',\n");
+        setSqlCommand("                                           p_type => 'LBR') )");
+        setSqlCommand("  order by smtpsm asc");
 
-        sqlCmd = "select *\n"
-                + "from table( sma_academic_department.groups_detail(\n"
-                + "                                                    p_codcia => '" + model.getCodCia() + "',\n"
-                + "                                                    p_codprs => '" + model.getCodPrs() + "',\n"
-                + "                                                    p_idedks => '" + idedks + "',\n"
-                + "                                                    p_agnprs => '" + agnprs + "',\n"
-                + "                                                    p_prdprs => '" + prdprs + "',\n"
-                + "                                                    p_type => 'LBR') )"
-                + "  order by smtpsm asc";
-
-        model.list(sqlCmd, null);
+        model.list(getSqlCommand(), null);
 
         jQgridTab tab = new jQgridTab();
         LinkedHashMap map = new LinkedHashMap();
@@ -1581,14 +1582,14 @@ public class AdmAcademicProgramRequestAction extends Action {
         JSONObject json = new JSONObject();
         openSqlCommand();
         
-        setSqlCommand("sma_academic_programmer.project_programs( p_codcia => '").append(model.getCodCia()).append("'\n");
+        setSqlCommand("SMA_ACADEMIC_PROGRAM_PROJECT.project_programs( p_codcia => '").append(model.getCodCia()).append("'\n");
         setSqlCommand("                                        , p_codprs => '").append(model.getCodPrs()).append("'\n");
         setSqlCommand("                                        , o_smapkp => ? )");
 
-        String columna = "IDEPGM,NROPKP,NOMPRG,NROPGM,NOMPGM,NOMSCN,JNDPGM,SAVE,COPY,VIEW,EDIT,STDPKP,FCIPKP,FCVPKP,IDEDKS,CODPKP";
-        String title = "Id,Id_Prog,Programa,Código,Prog-sede-Jorn,Sede,Jornada,Proyectar,Copiar,Consultar, Edit, STDPKP, fcipkp, fcvpkp, idedks, TITULO";
-       // String columna = "IDEPGM,NROPKP,NOMPRG,NROPGM,NOMPGM,NOMSCN,JNDPGM,SAVE,EDIT,STDPKP,FCIPKP,FCVPKP,IDEDKS,CODPKP";
-        // String title = "Id,Id_Prog,Programa,Código,Prog-sede-Jorn,Sede,Jornada,Proyectar, Edit, STDPKP, fcipkp, fcvpkp, idedks, TITULO";
+        //String columna = "IDEPGM,NROPKP,NOMPRG,NROPGM,NOMPGM,NOMSCN,JNDPGM,SAVE,COPY,VIEW,EDIT,STDPKP,FCIPKP,FCVPKP,IDEDKS,CODPKP";
+        //String title = "Id,Id_Prog,Programa,Código,Prog-sede-Jorn,Sede,Jornada,Proyectar,Copiar,Consultar, Edit, STDPKP, fcipkp, fcvpkp, idedks, TITULO";
+          String columna = "IDEPGM,NROPKP,NOMPRG,NROPGM,NOMPGM,NOMSCN,JNDPGM,SAVE,EDIT,STDPKP,FCIPKP,FCVPKP,IDEDKS";
+          String title = "Id,Id_Prog,Programa,Código,Prog-sede-Jorn,Sede,Jornada,Proyectar, Edit, stdpkp, fcipkp, fcvpkp, idedks";
         try {
             List lista = model.listarSP(getSqlCommand(), new Object[]{});
 
@@ -1600,9 +1601,9 @@ public class AdmAcademicProgramRequestAction extends Action {
             tab.setSelector("jqPgm");
             //tab.setFilterToolbar(true);
             tab.setPaginador("pagerPgm");
-            tab.setWidths(new int[]{0, 0, 350, 80, 250, 280, 60, 60, 60, 60, 60});
-            //tab.setWidths(new int[]{0, 0, 350, 80, 250, 280, 60, 60, 60});
-            tab.setHiddens(new int[]{0, 1, 11, 12, 13, 14, 15});
+            //tab.setWidths(new int[]{0, 0, 350, 80, 250, 280, 60, 60, 60, 60, 60});
+            tab.setWidths(new int[]{0, 0, 350, 80, 250, 280, 60, 60, 60});
+            tab.setHiddens(new int[]{0, 1, 9, 10, 11, 12});
             //tab.setHiddens(new int[]{0, 1, 10, 11, 12, 13});
             tab.setKeys(new int[]{0});
             tab.setDataList(lista);
@@ -1611,7 +1612,7 @@ public class AdmAcademicProgramRequestAction extends Action {
             tab.setGroupCollapse(false);
             tab.setGroupColumnShow(new Boolean[]{false});
             tab.setGroupOrder("asc");
-            tab.setFormatDate(new int[]{12, 13});
+            tab.setFormatDate(new int[]{10, 11});
 
             LinkedHashMap map = new LinkedHashMap();
             map.put("align", "center");
@@ -1620,10 +1621,13 @@ public class AdmAcademicProgramRequestAction extends Action {
             tab.setOptions(map);
 
             map = new LinkedHashMap();
-            map.put("7", "setGenProject");
+            /*map.put("7", "setGenProject");
             map.put("8", "setCopProject");
             map.put("9", "setVieProject");
-            map.put("10", "setEditProject");
+            map.put("10", "setEditProject");*/
+
+            map.put("7", "setGenProject");            
+            map.put("8", "setEditProject");
 
             tab.setFormatter(map);
             json.put("exito", "OK");

@@ -67,7 +67,8 @@ function detailProgram(id) {
     clsma.pkp = data.NROPKP;
     clsma.agnprs = $('#agnprs').val();
     clsma.prdprs = $('#prdprs').val();
-    clsma.tab.enableTab(1, 2, 3, 4, 5, 6, 7, 8, 9, 11).activeTab(8);
+    //clsma.tab.enableTab(1, 2, 3, 4, 5, 6, 7, 8, 9, 11).activeTab(8);
+    clsma.tab.enableTab(1, 2, 3, 4, 5, 6, 7, 8, 9, 11).activeTab(8).hideTab(4, 5, 6, 9);
     $('.advisegrp').empty().html(data.NOMPGM);
     $('#bgncrs').datepicker('option', 'minDate', data.FCIPKP);
     $('#endcrs').datepicker('option', 'maxDate', data.FCVPKP);
@@ -102,7 +103,7 @@ function configTabs() {
             }
             //if (id === 'DKS') {
             if (id === 'PGMS') {
-                this.disableTab(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12).hideTab(1, 12);
+                this.disableTab(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12).hideTab(1, 12);                
                 $('.rowButtonInt').hide();
                 $('.advisegrp').empty();
                 $('#MAT,#PRF').empty();
