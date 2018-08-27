@@ -107,6 +107,9 @@ public class AdmAcademicProgramRequestAction extends Action {
             if ("GETLBR".equals(event)) {
                 lstLbr();
             } 
+            if ("GETELC".equals(event)) {
+                getElectives();
+            } 
             
             
             if (event.equals("LSTDKS")) {
@@ -117,9 +120,7 @@ public class AdmAcademicProgramRequestAction extends Action {
                 savePda();
             } else if (event.equals("DELPDA")) {
                 delpda();
-            }else if (event.equals("GETELC")) {
-                getElectives();
-            } else if (event.equals("LSTINTEGRATED")) {
+            }else if (event.equals("LSTINTEGRATED")) {
                 lstIntegrated();
             } else if (event.equals("LSTMOD")) {
                 listModules();
@@ -538,12 +539,12 @@ public class AdmAcademicProgramRequestAction extends Action {
 
                 if (Util.validStr(smapak, "tpomat").equals("ELC")) {
 
-                    String idesmt = "sma_academic_department.semesteir_create( "
+                    String idesmt = "SMA_ACADEMIC_PROGRAM_PROJECT.semesteir_create( "
                             + "                                                p_codpsm => '" + codpsm + "', "
                             + "                                                p_nropkp => '" + nropkp + "' )";
                     idesmt = model.callFunctionOrProcedureNotTransaction(idesmt, sesion);
 
-                    String idecrs = "sma_academic_department.course_create( "
+                    String idecrs = "SMA_ACADEMIC_PROGRAM_PROJECT.course_create( "
                             + "                                               p_codpsm => '" + codpsm + "', "
                             + "                                               p_idesmt => '" + idesmt + "' )";
                     idecrs = model.callFunctionOrProcedureNotTransaction(idecrs, sesion);
@@ -551,7 +552,7 @@ public class AdmAcademicProgramRequestAction extends Action {
                     smagrp.put("idecrs", idecrs);
                 }
 
-                Map auxgrp = model.copy("smagrp", "nropak='" + nropak + "'", sesion);
+                Map auxgrp = model.copy("smargr", "nropak='" + nropak + "'", sesion);
                 if (auxgrp == null || auxgrp.isEmpty()) {
                     model.saveLogBook(smagrp, "smargr", sesion);
                 } else {
@@ -564,7 +565,7 @@ public class AdmAcademicProgramRequestAction extends Action {
 
                 Map smamat = model.copy("smamat", "codmat = '" + codmdl + "'", sesion);
                 //Verificar que no exista el grupo integrada
-                String nropakmdl = (String) model.getData("select nropak from smapak where nromat = '"
+                String nropakmdl = (String) model.getData("select nropak from smarpa where nromat = '"
                         + Util.validStr(smamat, "NROMAT") + "' and nropkp = '"
                         + Util.validStr(smapak, "NROPKP") + "' ", sesion);
 
@@ -596,7 +597,7 @@ public class AdmAcademicProgramRequestAction extends Action {
 
                 //Si no existe entonces creo integrada
                 if (nropakmdl.trim().isEmpty()) {
-                    nropakmdl = model.saveLogBook(smamdl, "smapak", sesion);
+                    nropakmdl = model.saveLogBook(smamdl, "smarpa", sesion);
                     smagrp.put("nropak", nropakmdl);
                 } else {
                     model.updateLogBook(smamdl, "nropak", nropakmdl, sesion);
@@ -1185,13 +1186,13 @@ public class AdmAcademicProgramRequestAction extends Action {
     }
 
     private void getElectives() throws Exception {
-
-        sqlCmd = "select smaelc.* , codmat || ' - ' || nommat || ' - Sem. ' || smtpsm || ' Pensum: ' || nompsd  nommatelc\n"
-                + "   from table( sma_academic_department"
-                + "               .elective_data( p_nropkp => '" + nropkp + "' , "
-                + "                               p_codcia => '" + model.getCodCia() + "' , "
-                + "                               p_codprs => '" + model.getCodPrs() + "' ) ) smaelc ";
-        model.list(sqlCmd, null);
+        openSqlCommand();
+        setSqlCommand("select smaelc.* , codmat || ' - ' || nommat || ' - Sem. ' || smtpsm || ' Pensum: ' || nompsd  nommatelc\n");
+        setSqlCommand("  from table( SMA_ACADEMIC_PROGRAM_PROJECT.elective_data( p_nropkp => ' " ).append( nropkp ).append( "' , \n");
+        setSqlCommand("                               p_codcia => '" ).append( model.getCodCia() ).append( "' , ");
+        setSqlCommand("                               p_codprs => '" ).append( model.getCodPrs() ).append( "' ) ) smaelc ");
+     
+        model.list(getSqlCommand(), null);
 
         jQgridTab tab = new jQgridTab();
         tab.setColumns(new String[]{"SMTPSM", "CODPSM", "NOMMATELC", "NROMAT", "CODPSE", "NOMPSE", "CODPAK", "NRIPRS", "NOMBRE", "BGNPAK", "ENDPAK", "NOMPSN", "DEL"});

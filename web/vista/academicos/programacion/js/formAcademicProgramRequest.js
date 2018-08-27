@@ -68,7 +68,8 @@ function detailProgram(id) {
     clsma.agnprs = $('#agnprs').val();
     clsma.prdprs = $('#prdprs').val();
     //clsma.tab.enableTab(1, 2, 3, 4, 5, 6, 7, 8, 9, 11).activeTab(8);
-    clsma.tab.enableTab(1, 2, 3, 4, 5, 6, 7, 8, 9, 11).activeTab(8).hideTab(4, 5, 6, 11);
+    // 4, 5, 6, 11
+    clsma.tab.enableTab(1, 2, 3, 4, 5, 6, 7, 8, 9, 11).activeTab(8).hideTab(11);
     $('.advisegrp').empty().html(data.NOMPGM);
     $('#bgncrs').datepicker('option', 'minDate', data.FCIPKP);
     $('#endcrs').datepicker('option', 'maxDate', data.FCVPKP);
