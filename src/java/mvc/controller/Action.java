@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import mvc.model.ModelSma;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.json.simple.JSONValue;
 
 /**
  * La clase base para todas las transiciones de estado
@@ -147,5 +148,9 @@ public abstract class Action implements Serializable {
     public String getSqlCommand(){
         System.out.println(sqlCommand.toString());
         return sqlCommand.toString();
-    }        
+    }     
+    
+    public void writeJsonResponse(Object jsonValue) throws IOException {
+        response.getWriter().write(JSONValue.toJSONString(jsonValue));
+    }
 }

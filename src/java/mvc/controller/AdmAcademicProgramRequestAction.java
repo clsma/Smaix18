@@ -159,10 +159,6 @@ public class AdmAcademicProgramRequestAction extends Action {
         }
     }
 
-    private void write(Object js) throws IOException {
-        response.getWriter().write(JSONValue.toJSONString(js));
-    }
-
     public static String validRol(ModelSma model, String tporol) throws SQLException {
 
         String sqlCmd = "select *\n"
@@ -1678,6 +1674,7 @@ public class AdmAcademicProgramRequestAction extends Action {
         map.put("align", "center");
         map.put("height", "250");
         map.put("ondblClickRow", "detailProgram");
+        
         tab.setOptions(map);
 
         json.put("exito", "OK");
@@ -1845,6 +1842,10 @@ public class AdmAcademicProgramRequestAction extends Action {
             write(json);
         }
         
+    }
+    
+     public void write(Object jsonValue) throws IOException {
+        response.getWriter().write(JSONValue.toJSONString(jsonValue));
     }
 
 }

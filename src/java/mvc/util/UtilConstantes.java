@@ -11,4 +11,6 @@ public class UtilConstantes {
     public static final String STR_KEY_JSON_EXITO ="exito";
     public static final String STR_KEY_JSON_MSG ="msg";
     public static final String STR_KEY_JSON_ERROR ="error";
+    public static final String STR_SALTO_LINEA ="\n";
+    
 }

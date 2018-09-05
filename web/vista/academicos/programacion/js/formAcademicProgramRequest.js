@@ -1308,7 +1308,7 @@ function searchPak() {
     clsma.tab.activeTab(0);
 
     if (getValue('agnprs') === '999') {
-        $('#DKS').empty().html('<span style="color:green;font-size:15px;font-weight:bold;text-align:center">No se han encontrado datos.</span>');
+        $('#PGM').empty().html('<span style="color:green;font-size:15px;font-weight:bold;text-align:center">No se han encontrado datos.</span>');
     } else {
         lstPgms();
 //        lstDks();
