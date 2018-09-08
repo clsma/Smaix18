@@ -6,8 +6,6 @@
 package mvc.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.Date;
 import java.util.Hashtable;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -30,7 +28,8 @@ public class AdmAcademicProgramApproveAction extends Action {
     private String agnprs;
     private String prdprs;
     private String accion;
-    private String nxtPge;
+    private String idepgm;
+    private String nropkp;
 
     @Override
     public void run() throws ServletException, IOException {
@@ -38,6 +37,8 @@ public class AdmAcademicProgramApproveAction extends Action {
         accion = Util.getStrRequest("event", request);
         agnprs = Util.getStrRequest("agnprs", request);
         prdprs = Util.getStrRequest("prdprs", request);
+        idepgm = Util.getStrRequest("idepgm", request);
+        nropkp = Util.getStrRequest("nropkp", request);
         try {
             if ("GETCAL".equals(accion)) {
                 getCalendario();
@@ -56,14 +57,14 @@ public class AdmAcademicProgramApproveAction extends Action {
             if ("GET_TABLE_TEACHER".equals(accion)){     
                 getListTabDocentes();
                 return;
-        }           
-
+            }           
+        /*
             rd = application.getRequestDispatcher(nxtPge);
             if (rd == null) {
                 throw new ServletException("No se pudo encontrar " + nxtPge);
             }
             rd.forward(request, response);
-
+        */
         } catch (Exception e) {
             Util.logError(e);
             throw new ServletException("Error Clase [" + getClass().getName() + "] Metodo [run()] " + e.getMessage());
@@ -71,38 +72,29 @@ public class AdmAcademicProgramApproveAction extends Action {
     }
 
     private void getListTabDocentes() throws IOException {
-        System.out.println("######################################################################### ");
-        String anio = request.getParameter("anio") != null ? request.getParameter("anio").trim() : "";
-        String periodo = request.getParameter("periodo") != null ? request.getParameter("periodo").trim() : "";
-        String program = request.getParameter("programa") != null ? request.getParameter("programa").trim() : "";
+        JSONObject json = new JSONObject();
         openSqlCommand();
-        setSqlCommand(" select distinct smaprf.codprs, trim(smaprf.apeprs)||' '||trim(smaprf.nomprs) as nomprs, ");
-        setSqlCommand("case when smaelm.nomelm isnull then 'NO DEFINIDO' else smaelm.nomelm end as nomelm, sum((smagrp.smngrp * ");
-        setSqlCommand("(case when smapxg.tpohrs = 'Catedra' then smapxg.hrsprf else 0 end))) over (partition by smapxg.codprs) ");
-        setSqlCommand("+ (smagrp.smngrp * (select case when sum(smaxda.hrsxda) isnull then 0 else sum(smaxda.hrsxda) end ");
-        setSqlCommand("from smaxda where smaxda.agnprs = smagrp.agnprs and smaxda.prdprs = smagrp.prdprs and smaxda.codprf = smapxg.codprs)) ");
-        setSqlCommand("hrstot from smagrp join smapxg on smapxg.codgrp = smagrp.codgrp join smaprf on smaprf.codprs = smapxg.codprs");
-        setSqlCommand("join smampy on smampy.codprs = smapxg.codprs left join smaelm on smaelm.codelm = 'PRF' and smaelm.tipelm = 'KLC' ");
-        setSqlCommand("and smaelm.nroelm = smampy.klcprs join smaapp on smaapp.codprf = smapxg.codprs and smaapp.codgrp = smagrp.codgrp ");
-        setSqlCommand("and smaapp.tpoapp = 'DKN' and smaapp.stdapp = 'Aprobada' where smagrp.agnprs = '").append( anio ).append( "' ");
-        setSqlCommand(" and smagrp.prdprs = '").append( periodo ).append( "'   and smagrp.nropgm = '").append( program ).append( "' ");
+        setSqlCommand("SMA_ACADEMIC_PROG_APPROVE.LST_REQ_TEACHERS(pcodcia => '").append(model.getCodCia()).append("', ")
+                                                         .append("pidepgm => '").append(idepgm).append("', ")
+                                                         .append("pnropkp => '").append(nropkp).append("', ")
+                                                         .append("osmaaux => ? )");                                                                       
         try {
-            model.listGenericHash(getSqlCommand());
-            List lista = model.getList();
+            
+            List lista = model.listarSP(getSqlCommand(), new Object[]{});                    
             StringBuilder HTML_ = new StringBuilder(UtilConstantes.STR_VACIO);
-            Hashtable infoSemester, infoTeacher = new Hashtable();            
-            String prs, estado  = "";
-            boolean band = false;                        
-            if (!lista.isEmpty()){
+            LinkedHashMap infoSemester, infoTeacher = new LinkedHashMap();            
+            if (lista.isEmpty()){
+                throw new ClsmaException(ClsmaTypeException.INFO, "<p>No Hay datos para mostrar</p>");                
+            }
                 HTML_.append("<div id='acordeon'>");
                 
                 for (int i = 0; i < lista.size(); i++){
-                    infoSemester = (Hashtable)lista.get(i);
+                    infoSemester = (LinkedHashMap)lista.get(i);
                     
                     HTML_.append("<h3> \n<div> \n<div class='cProfesores'> \n\t&nbsp;&nbsp;&nbsp; ");
-                    HTML_.append(infoSemester.get("codprs") ).append( " " ).append( infoSemester.get("nomprs") ).append( " (" ).append( infoSemester.get("nomelm") ).append( ")\n" );
+                    HTML_.append(infoSemester.get("CODPRS") ).append( " " ).append( infoSemester.get("NOMPRS") ).append( " (" ).append( infoSemester.get("NOMELM") ).append( ")\n" );
                     HTML_.append("</div> \n" );
-                    HTML_.append("<div class='cHorasTotales'>" ).append( infoSemester.get("hrstot") ).append( " Horas Cátedra en el programa</div> \n" );
+                    HTML_.append("<div class='cHorasTotales'>" ).append( infoSemester.get("HRSTOT") ).append( " Horas Cátedra en el programa</div> \n" );
                     HTML_.append("</div> \n</h3> \n <div> \n");
                     HTML_.append("<table style=\"width: 100%;\"> \n");
                     HTML_.append("<tr> \n <td> \n");
@@ -112,48 +104,45 @@ public class AdmAcademicProgramApproveAction extends Action {
                     HTML_.append("<td style='text-align:center'> Semestre</td> \n<td style='text-align:center'> Programa</td> \n<td style='text-align:center'> Materia</td> \n<td style='text-align:center'> Grupo</td> \n<td style='text-align:center'> Horas</td>  \n<td style='text-align:center'> Tipo hora</td>  \n<td style='text-align:center'>Estado</td>   \n<td style='text-align:center'>Mark</td>  \n<td style='text-align:center'>Estado</td>  \n");
                     HTML_.append("</tr> \n");
                     openSqlCommand();
-                    setSqlCommand("select * from sma_approve_academic_teacher_list('" ).append(model.getCodCia()).append("','")
-                            .append(model.getCodPrs()).append("','")
-                            .append(program).append("','")
-                            .append(anio).append("','")
-                            .append(periodo).append("','")
-                            .append(infoSemester.get("codprs")).append("')");
-                    
-                    model.listGenericHash(getSqlCommand());
-                    
-                    List infoTeachers = model.getList();
+                    setSqlCommand("SMA_ACADEMIC_PROG_APPROVE.LST_REQ_GROUPS( pcodcia => '").append(model.getCodCia()).append("',")
+                                                                   .append(" pcodprs => '").append(model.getCodPrs()).append("',")
+                                                                   .append(" pnropkp => '").append(nropkp).append("',")
+                                                                   .append(" pidepgm => '").append(idepgm).append("', ")
+                                                                   .append(" osmaaux => ? ) ");
+                                        
+                    List infoTeachers = model.listarSP(getSqlCommand(), new Object[]{});
                     for (int j = 0; j < infoTeachers.size(); j++){
-                        infoTeacher = (Hashtable)infoTeachers.get(j);
+                        infoTeacher = (LinkedHashMap)infoTeachers.get(j);
                         
                         HTML_.append("<tr> \n");
-                        HTML_.append("<td style='text-align:center' > " ).append( infoTeacher.get("smtpsm") ).append( "</td> \n");
-                        HTML_.append("<td style='text-align:left' > " ).append( infoTeacher.get("nompgm") ).append( "</td> \n");
-                        HTML_.append("<td style='text-align:left' > " ).append( infoTeacher.get("nommat") ).append( "</td> \n");
-                        HTML_.append("<td style='text-align:center' > " ).append( infoTeacher.get("nrogrp") ).append( "</td> \n");
-                        HTML_.append("<td style='text-align:center' > " ).append( infoTeacher.get("hrsprf") ).append( "</td> \n");
-                        HTML_.append("<td style='text-align:center' > " ).append( infoTeacher.get("tpohrs") ).append( "</td> \n");
-                        if ("Catedra".equals(infoTeacher.get("tpohrs"))) {
-                            HTML_.append("<td class='C_APRO" ).append( infoTeacher.get("stdapp") ).append( "' style='text-align:center' > " );
-                            HTML_.append(infoTeacher.get("stdapp")).append("</td> \n");
+                        HTML_.append("<td style='text-align:center' > " ).append( infoTeacher.get("SMTPSM") ).append( "</td> \n");
+                        HTML_.append("<td style='text-align:left' > " ).append( infoTeacher.get("NOMPGM") ).append( "</td> \n");
+                        HTML_.append("<td style='text-align:left' > " ).append( infoTeacher.get("NOMMAT") ).append( "</td> \n");
+                        HTML_.append("<td style='text-align:center' > " ).append( infoTeacher.get("NROGRP") ).append( "</td> \n");
+                        HTML_.append("<td style='text-align:center' > " ).append( infoTeacher.get("HRSPRF") ).append( "</td> \n");
+                        HTML_.append("<td style='text-align:center' > " ).append( infoTeacher.get("TPOHRS") ).append( "</td> \n");
+                        if ("Catedra".equals(infoTeacher.get("TPOHRS"))) {
+                            HTML_.append("<td class='C_APRO" ).append( infoTeacher.get("STDAPP") ).append( "' style='text-align:center' > " );
+                            HTML_.append(infoTeacher.get("STDAPP")).append("</td> \n");
                         } else {
                             HTML_.append("<td style='text-align:center' > </td> \n");
                         }
-                        if ("APROBADA".equals(infoTeacher.get("stdapp"))) {
+                        if ("APROBADA".equals(infoTeacher.get("STDAPP"))) {
                             HTML_.append("<td style='text-align:center' > </td> \n");
                             HTML_.append("<td style='text-align:center' > </td> \n");
-                        } else if ("Catedra".equals(infoTeacher.get("tpohrs"))){
-                            HTML_.append("<td align=\"center\" > <input type=\"checkbox\" id=\"codgrp\" name=\"codgrp\" onclick=\"validCombo(this)\" value=\"" ).append( infoTeacher.get("codgrp") ).append( "~" ).append( infoSemester.get("codprs") ).append( "\"></td> \n");
-                            HTML_.append("<td align=\"center\" > <select name=\"stdapp_" ).append( infoTeacher.get("codgrp") ).append( "~" ).append( infoSemester.get("codprs") ).append( "\" onclick=\"show_txt(this)\" class=\"combo\" id=\"stdapp_" ).append( infoTeacher.get("codgrp") ).append( "~" ).append( infoSemester.get("codprs") ).append( "\" title=\"Tipo de horas\" >" );
+                        } else if ("Catedra".equals(infoTeacher.get("TPOHRS"))){
+                            HTML_.append("<td align=\"center\" > <input type=\"checkbox\" id=\"codgrp\" name=\"codgrp\" onclick=\"validCombo(this)\" value=\"" ).append( infoTeacher.get("CODGRP") ).append( "~" ).append( infoSemester.get("CODPRS") ).append( "\"></td> \n");
+                            HTML_.append("<td align=\"center\" > <select name=\"stdapp_" ).append( infoTeacher.get("CODGRP") ).append( "~" ).append( infoSemester.get("CODPRS") ).append( "\" onclick=\"show_txt(this)\" class=\"combo\" id=\"stdapp_" ).append( infoTeacher.get("CODGRP") ).append( "~" ).append( infoSemester.get("CODPRS") ).append( "\" title=\"Tipo de horas\" >" );
                             HTML_.append(" <option value=\"\" style=\"background-color: #FFFFFF\"></option>" );
                             HTML_.append(" <option value=\"Aprobada\" style=\"background-color: #F2F2F2\">Aprobada</option>" );
                             HTML_.append(" <option value=\"Negada\" style=\"background-color: #FFFFFF\">Negada</option>" );
                             HTML_.append(" </select>" );
-                            HTML_.append("<input type=\"hidden\" id=\"codprf_" ).append( infoTeacher.get("codgrp") ).append( "~" );
-                            HTML_.append(infoSemester.get("codprs") ).append( "\" name=\"codprf_" ).append( infoTeacher.get("codgrp") ).append( "~" );
-                            HTML_.append( infoSemester.get("codprs") ).append( "\" value=\"" ).append( infoSemester.get("codprs") ).append( "\">" );                       
-                            HTML_.append("<input type=\"hidden\" id=\"nropkp_" ).append( infoTeacher.get("codgrp") ).append( "~" );
-                            HTML_.append( infoSemester.get("codprs") ).append( "\" name=\"nropkp_" ).append( infoTeacher.get("codgrp") ).append( "~" );
-                            HTML_.append( infoSemester.get("codprs") ).append( "\" value=\"" ).append( infoTeacher.get("nropkp") ).append( "\">" );
+                            HTML_.append("<input type=\"hidden\" id=\"codprf_" ).append( infoTeacher.get("CODGRP") ).append( "~" );
+                            HTML_.append(infoSemester.get("CODPRS") ).append( "\" name=\"codprf_" ).append( infoTeacher.get("CODGRP") ).append( "~" );
+                            HTML_.append( infoSemester.get("CODPRS") ).append( "\" value=\"" ).append( infoSemester.get("CODPRS") ).append( "\">" );                       
+                            HTML_.append("<input type=\"hidden\" id=\"nropkp_" ).append( infoTeacher.get("CODGRP") ).append( "~" );
+                            HTML_.append( infoSemester.get("CODPRS") ).append( "\" name=\"nropkp_" ).append( infoTeacher.get("CODGRP") ).append( "~" );
+                            HTML_.append( infoSemester.get("CODPRS") ).append( "\" value=\"" ).append( infoTeacher.get("NROPKP") ).append( "\">" );
                             HTML_.append("</td> \n");
                             HTML_.append("</tr> \n");
                         }else{
@@ -162,14 +151,14 @@ public class AdmAcademicProgramApproveAction extends Action {
                         }
                         HTML_.append("<tr> \n");
                         HTML_.append("<td colspan=\"10\" align=\"center\"> \n");
-                        HTML_.append("<table id=\"tbl_" ).append( infoTeacher.get("codgrp") ).append( "~" ).append( infoSemester.get("codprs") );
+                        HTML_.append("<table id=\"tbl_" ).append( infoTeacher.get("CODGRP") ).append( "~" ).append( infoSemester.get("CODPRS") );
                         HTML_.append("\" style=\"width: 100%; display: none;\" class=\"tbljusti\"> \n");
                         HTML_.append("<tr> \n");
                         HTML_.append("<td style=\"width: 100%;\"  align=\"center\"> \n");
                         HTML_.append("<fieldset> \n");
                         HTML_.append("<legend>JUSTIFICACION</legend> \n");
-                        HTML_.append("<textarea id=\"jstapp_" ).append( infoTeacher.get("codgrp") ).append( "~" ).append( infoSemester.get("codprs") ).append( "\" name=\"jstapp_" );
-                        HTML_.append(infoTeacher.get("codgrp")).append( "~" ).append( infoSemester.get("codprs") ).append( "\" cols=\"120\" rows=\"4\" style=\"width: 100%;\"></textarea> \n");
+                        HTML_.append("<textarea id=\"jstapp_" ).append( infoTeacher.get("CODGRP") ).append( "~" ).append( infoSemester.get("CODPRS") ).append( "\" name=\"jstapp_" );
+                        HTML_.append(infoTeacher.get("CODGRP")).append( "~" ).append( infoSemester.get("CODPRS") ).append( "\" cols=\"120\" rows=\"4\" style=\"width: 100%;\"></textarea> \n");
                         HTML_.append("</fieldset> \n");
                         HTML_.append("</td> \n");
                         HTML_.append("</tr> \n");
@@ -184,19 +173,18 @@ public class AdmAcademicProgramApproveAction extends Action {
                     HTML_.append("</tr> \n");
                     
                     openSqlCommand();
-                    setSqlCommand(" select smaxda.nroxda,  smaxda.codprf,  smapgm.nropgm,  smapgm.nompgm,  smahec.nomhec,  smaxda.hrsxda,  ");
-                    setSqlCommand("smaxda.tpohrs,  sum(case when tpohrs = 'Catedra' then hrsxda else 0 end) over () as totctd, " );
-                    setSqlCommand("sum(case when tpohrs = 'Tiempo completo' then hrsxda else 0 end) over () as totcom,  smaxda.stdxda  from smaxda  ");
-                    setSqlCommand("join smahec  on smahec.nrohec = smaxda.nrohec  join smapgm  on smapgm.nropgm = smaxda.nropgm ");
-                    setSqlCommand("where smaxda.stdxda = 'Confirmado'  and smaxda.stdpln = 'Confirmado'  and smaxda.agnprs = '" );
-                    setSqlCommand( anio ).append( "'  and smaxda.prdprs = '" ).append( periodo ).append( "' and smaxda.codprf = '" )
-                            .append( infoSemester.get("codprs") ).append( "'");
                     
-                    model.listGenericHash(getSqlCommand());
+                    setSqlCommand("SMA_ACADEMIC_PROG_APPROVE.LST_SPECIALHOURS_TEACHERS( pcodcia => '").append(model.getCodCia()).append("',")
+                                                                              .append(" pcodprs => '").append(model.getCodPrs()).append("',")
+                                                                              .append(" pnroprf => '").append(infoTeacher.get("NROPRF")).append("',")
+                                                                              .append(" pagnprs => '").append(agnprs).append("',")
+                                                                              .append(" pprdprs => '").append(prdprs).append("',")
+                                                                              .append(" osmaaux => ? ) ");                                                                                                                                    
                     
-                    if (!model.getList().isEmpty()){
-                        List lstDta = model.getList();
-                        Hashtable smaTmp = new Hashtable();
+                    List listaSht =model.listarSP(getSqlCommand(), new Object[]{});
+                    if (!listaSht.isEmpty()){
+                        List lstDta = listaSht; 
+                        LinkedHashMap smaTmp = new LinkedHashMap();
                         
                         HTML_.append("<tr> \n");
                         HTML_.append("<td> \n");
@@ -208,12 +196,12 @@ public class AdmAcademicProgramApproveAction extends Action {
                         HTML_.append("</tr> \n");
                         
                         for (int k = 0; k < lstDta.size(); k++) {
-                            smaTmp = (Hashtable)lstDta.get(k);
+                            smaTmp = (LinkedHashMap)lstDta.get(k);
                             HTML_.append("<tr> \n");
-                            HTML_.append("<td style='text-align:left'>" ).append( smaTmp.get("nompgm").toString() ).append( "</td> \n");
-                            HTML_.append("<td style='text-align:left'>" ).append( smaTmp.get("nomhec").toString() ).append( "</td> \n");
-                            HTML_.append("<td style='text-align:center'>" ).append( smaTmp.get("hrsxda").toString() ).append( "</td> \n");
-                            HTML_.append("<td style='text-align:center'>" ).append( smaTmp.get("tpohrs").toString() ).append( "</td> \n");
+                            HTML_.append("<td style='text-align:left'>" ).append( smaTmp.get("NOMPGM").toString() ).append( "</td> \n");
+                            HTML_.append("<td style='text-align:left'>" ).append( smaTmp.get("NOMHEC").toString() ).append( "</td> \n");
+                            HTML_.append("<td style='text-align:center'>" ).append( smaTmp.get("HRSXDA").toString() ).append( "</td> \n");
+                            HTML_.append("<td style='text-align:center'>" ).append( smaTmp.get("TPOHRS").toString() ).append( "</td> \n");
                             HTML_.append("</tr> \n");
                         }
                         HTML_.append("<tr> \n");
@@ -221,9 +209,9 @@ public class AdmAcademicProgramApproveAction extends Action {
                         HTML_.append("</tr> \n");
                         HTML_.append("<tr> \n");
                         HTML_.append("<td style='text-align:right'><b>Total Catedra: </b></td> \n");
-                        HTML_.append("<td style='text-align:center'>" ).append( smaTmp.get("totctd").toString() ).append( "</td> \n");
+                        HTML_.append("<td style='text-align:center'>" ).append( smaTmp.get("TOTCTD").toString() ).append( "</td> \n");
                         HTML_.append("<td style='text-align:right'><b>Total Tiempo Completo: </b></td> \n");
-                        HTML_.append("<td style='text-align:center'>" ).append( smaTmp.get("totcom").toString() ).append( "</td> \n");
+                        HTML_.append("<td style='text-align:center'>" ).append( smaTmp.get("TOTCOM").toString() ).append( "</td> \n");
                         HTML_.append("</tr> \n");
                         
                         HTML_.append("</table > \n");
@@ -236,22 +224,25 @@ public class AdmAcademicProgramApproveAction extends Action {
                 }
                 
                 HTML_.append("</div> \n");
-            }else {
-                HTML_.append("No Hay datos para mostrar");
-            }
-            response.getWriter().print(HTML_);            
+                                  
+            json.put(UtilConstantes.STR_KEY_JSON_EXITO, "OK");
+            json.put(UtilConstantes.STR_KEY_JSON_HTML, HTML_.toString());
+            //json.put(UtilConstantes.STR_KEY_JSON_HTML, "Esto es una prueba de esta verga");
+            
+        }catch(ClsmaException e){
+            json.put(UtilConstantes.STR_KEY_JSON_EXITO, UtilConstantes.STR_KEY_JSON_ERROR);
+            json.put(UtilConstantes.STR_KEY_JSON_HTML, e.getMessage());
         } catch (Exception exep) {
-            response.getWriter().print("Ha ocurrido un error: " + exep.getMessage());            
+            Util.logError(exep);            
+            json.put(UtilConstantes.STR_KEY_JSON_EXITO, UtilConstantes.STR_KEY_JSON_ERROR);
+            json.put(UtilConstantes.STR_KEY_JSON_HTML, model.setError(exep));
         }finally{
-            return;
-        }
-        
+            writeJsonResponse(json);
+        }        
     }
     
     private void getListSemester() throws  IOException {
-        JSONObject json = new JSONObject();
-        String idepgm = Util.getStrRequest("idepgm", request);
-        String nropkp = Util.getStrRequest("nropkp", request);
+        JSONObject json = new JSONObject();        
         
         //String codkls = Util.getStrRequest("codkls", request);
         openSqlCommand();
@@ -284,7 +275,7 @@ public class AdmAcademicProgramApproveAction extends Action {
             tab.setOptions(map);
 
             json.put(UtilConstantes.STR_KEY_JSON_EXITO, "OK");
-            json.put("html", tab.getHtml());
+            json.put(UtilConstantes.STR_KEY_JSON_HTML, tab.getHtml());
 
         } catch (Exception e) {
             Util.logError(e);
@@ -301,10 +292,10 @@ public class AdmAcademicProgramApproveAction extends Action {
         openSqlCommand();
 
         setSqlCommand("SMA_ACADEMIC_PROG_APPROVE.LST_REQ_PROGRAMS(pcodcia =>'").append(model.getCodCia()).append("'\n")
-                .append(",pcodprs => '").append(model.getCodPrs()).append("'\n")
-                .append(",pagnprs => '").append(agnprs).append("'\n")
-                .append(",pprdprs => '").append(prdprs).append("'\n")
-                .append(", osmaaux => ? ) ");
+                                                        .append(",pcodprs => '").append(model.getCodPrs()).append("'\n")
+                                                        .append(",pagnprs => '").append(agnprs).append("'\n")
+                                                        .append(",pprdprs => '").append(prdprs).append("'\n")
+                                                        .append(",osmaaux => ? ) ");
         String columna = "IDEPGM,NROPKP,NROPGM,NOMPGM,STGPGM,";
         String title = "IDEPGM,NROPKP,Id,Programa,Jornada";
         try {

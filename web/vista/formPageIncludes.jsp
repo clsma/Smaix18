@@ -32,6 +32,7 @@
     imports.put("time", SCRIPT_TIMEPKII);
     imports.put("editor", SCRIPT_EDITOR);
     imports.put("autocomplete", SCRIPT_AUTOCOMPLETE);
+    imports.put("accordion", SCRIPT_ACCORD);
 
     String neww = "<script src=\"" + clsma.getBASE() + "/vista/academicos/pensum/js/jquery.contextmenu.r2.js\"  charset=\"UTF-8\"></script> ";
     imports.put("contextmenu", neww);
@@ -55,7 +56,7 @@
 %>
 
 
-<%=HTML_DOCTYPE_ + SCRIPT_NORMAL + SCRIPT_JQGRID + SCRIPT_MONEY + SCRIP_MENU_VERTICAL + SCRIPT_TIMEPKII%>
+<%=HTML_DOCTYPE_ + SCRIPT_NORMAL + SCRIPT_JQGRID + SCRIPT_MONEY + SCRIP_MENU_VERTICAL + SCRIPT_TIMEPKII + SCRIPT_ACCORD%>
 
 <%
 //    request.setCharacterEncoding("UTF-8");

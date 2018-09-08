@@ -91,17 +91,25 @@ function lstSmt() {
         loading: true
     }).then(function (data) {        
         $('#SMT').empty().html(data.html);
-        lstPrf();
+        //lstPrf();
     });
 }
 
 function lstPrf() {                    
     clsma.$request({
-        data: ['GET_TABLE_TEACHER', {agnprs: clsma.agnprs, prdprs: clsma.prdprs}],
+        data: ['GET_TABLE_TEACHER', {idepgm: clsma.idepgm, nropkp: clsma.nropkp, agnprs:clsma.agnprs, prdprs: clsma.prdprs}],
         loading: true
     }).then(function (data) {
-        
-        $('#PRF').empty().html(data.html);
+        $('#PRF').empty().html(data.html);        
+        if(data.exito === "OK"){            
+            //$(document).ready(function(){
+                $( "#acordeon" ).accordion({
+                      heightStyle: "content",
+                      collapsible: true
+                });
+                $('.ui-accordion-content').css("height","auto");    
+             //});
+        }        
     });
 }
 
