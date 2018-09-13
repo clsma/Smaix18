@@ -14,11 +14,11 @@
         <group>
             <file>file:/C:/Users/developer/Documents/NetBeansProjects_oficial/Smaix18/web/vista/academicos/programacion/js/formAcademicProgramApprove.js</file>
             <file>file:/C:/Users/developer/Documents/NetBeansProjects_oficial/Smaix18/web/vista/academicos/programacion/formAcademicProgramApprove.jsp</file>
-            <file>file:/C:/Users/developer/Documents/NetBeansProjects_oficial/Smaix18/web/vista/academicos/programacion/formAcademicProgramApproveSemester.jsp</file>
-            <file>file:/C:/Users/developer/Documents/NetBeansProjects_oficial/Smaix18/web/vista/academicos/programacion/formAcademicProgramRequest.jsp</file>
+            <file>file:/C:/Users/developer/Documents/NetBeansProjects_oficial/Smaix18/web/vista/academicos/programacion/js/formAcademicPlanningManager.js</file>
             <file>file:/C:/Users/developer/Documents/NetBeansProjects_oficial/Smaix18/src/java/mvc/controller/AdmAcademicProgramRequestAction.java</file>
             <file>file:/C:/Users/developer/Documents/NetBeansProjects_oficial/Smaix18/web/vista/academicos/programacion/js/formAcademicProgramRequest.js</file>
             <file>file:/C:/Users/developer/Documents/NetBeansProjects_oficial/Smaix18/src/java/mvc/controller/AdmAcademicProgramApproveAction.java</file>
+            <file>file:/C:/Users/developer/Documents/NetBeansProjects_oficial/Smaix18/src/java/mvc/controller/AdmAcademicPlanningManagerAction.java</file>
         </group>
     </open-files>
 </project-private>

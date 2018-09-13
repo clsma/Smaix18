@@ -4,7 +4,6 @@
 <%    String usable = Util.getStrRequest("usable", request);
     //usable = AdmAcademicProgramApproveAction.validRol(model, usable);
     // String cal = AdmAcademicProgramApproveAction.validCalendar(model);   
-
 %>
 <html>
     <head>        

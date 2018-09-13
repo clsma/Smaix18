@@ -1332,7 +1332,7 @@ function savePrfAdd() {
     form.nroprf = form.prfpxg;
     form.tpohrs = getValue('tpohrsAdd');
     form.hrsprf = getValue('hrsprfAdd');
-
+    form.codcia = clsma.dataPrs.codcia;
     clsma.$confirm('¿ Desea enviar los datos ?').Aceptar(function () {
 
         clsma.$request({
@@ -1828,7 +1828,7 @@ function genCoursesProject(ideSmt , idePgm, smtpsm ) {
         }).then(function (data) {
             //var resp = $.parseJSON(data);
             if(data.exito==='OK'){                
-                data.fnc = 'showSemesters(%s)'.StringFormat(idePgm);
+                data.fnc = "showSemesters('%s')".StringFormat(idePgm);
             }
             clsma.$msg(data.msg, data.fnc, data.exito);
         }); 

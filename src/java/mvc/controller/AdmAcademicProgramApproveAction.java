@@ -57,18 +57,61 @@ public class AdmAcademicProgramApproveAction extends Action {
             if ("GET_TABLE_TEACHER".equals(accion)){     
                 getListTabDocentes();
                 return;
-            }           
-        /*
-            rd = application.getRequestDispatcher(nxtPge);
-            if (rd == null) {
-                throw new ServletException("No se pudo encontrar " + nxtPge);
+            }            
+            
+            if("GET_TABLE_SUMMARY".equals(accion)){              
+                listSummary();
+                return;
             }
-            rd.forward(request, response);
-        */
+
         } catch (Exception e) {
             Util.logError(e);
             throw new ServletException("Error Clase [" + getClass().getName() + "] Metodo [run()] " + e.getMessage());
         }
+    }
+
+    private void listSummary() throws IOException{       
+        JSONObject json = new JSONObject();
+        openSqlCommand();
+        setSqlCommand("SMA_ACADEMIC_PROG_APPROVE.LST_REQ_SUMMARY( pcodcia => '").append(model.getCodCia()).append("', ")
+                                                        .append("pidepgm => '").append(idepgm).append("', ")
+                                                        .append("pagnprs => '").append(agnprs).append("', ")
+                                                        .append("pprdprs => '").append(prdprs).append("', ")
+                                                        .append("pnropkp => '").append(nropkp).append("', ")
+                                                        .append("osmaaux =>  ? ) ");
+        
+        
+        String columna = "SMTPSM,HORAS,VALOR,(HORAS*VALOR)SUBTOTAL";
+        String title = "Semestre,Horas,V. Catedra,Subtotal";
+        try {
+            List lista = model.listarSP(getSqlCommand(), new Object[]{});
+            jQgridTab tab = new jQgridTab();
+            tab.setColumns(columna.split(UtilConstantes.STR_COMA));
+            tab.setTitles(title.split(UtilConstantes.STR_COMA));
+            tab.setSelector("jqSmm");
+            tab.setPaginador("pagerSmm");
+            tab.setWidths(new int[]{60, 60, 60, 60});            
+            tab.setDataList(lista);
+
+            LinkedHashMap map = new LinkedHashMap();
+            map.put("align", "center");
+            map.put("height", "200");
+            //map.put("ondblClickRow", "detailProgram");
+            //map.put("onSelectRow", "detailProgram");
+
+            tab.setOptions(map);
+
+            json.put(UtilConstantes.STR_KEY_JSON_EXITO, "OK");
+            json.put(UtilConstantes.STR_KEY_JSON_HTML, tab.getHtml());
+            
+         } catch (Exception e) {
+            Util.logError(e);
+            json.put(UtilConstantes.STR_KEY_JSON_EXITO, UtilConstantes.STR_KEY_JSON_ERROR);
+            json.put("msg", model.setError(e));
+        } finally {
+            writeJsonResponse(json);
+        } 
+     
     }
 
     private void getListTabDocentes() throws IOException {
@@ -108,6 +151,7 @@ public class AdmAcademicProgramApproveAction extends Action {
                                                                    .append(" pcodprs => '").append(model.getCodPrs()).append("',")
                                                                    .append(" pnropkp => '").append(nropkp).append("',")
                                                                    .append(" pidepgm => '").append(idepgm).append("', ")
+                                                                   .append(" pnroprf => '").append(infoSemester.get("NROPRF")).append("', ")
                                                                    .append(" osmaaux => ? ) ");
                                         
                     List infoTeachers = model.listarSP(getSqlCommand(), new Object[]{});
@@ -130,7 +174,8 @@ public class AdmAcademicProgramApproveAction extends Action {
                         if ("APROBADA".equals(infoTeacher.get("STDAPP"))) {
                             HTML_.append("<td style='text-align:center' > </td> \n");
                             HTML_.append("<td style='text-align:center' > </td> \n");
-                        } else if ("Catedra".equals(infoTeacher.get("TPOHRS"))){
+                        //} else if ("Catedra".equals(infoTeacher.get("TPOHRS"))){
+                        }else{
                             HTML_.append("<td align=\"center\" > <input type=\"checkbox\" id=\"codgrp\" name=\"codgrp\" onclick=\"validCombo(this)\" value=\"" ).append( infoTeacher.get("CODGRP") ).append( "~" ).append( infoSemester.get("CODPRS") ).append( "\"></td> \n");
                             HTML_.append("<td align=\"center\" > <select name=\"stdapp_" ).append( infoTeacher.get("CODGRP") ).append( "~" ).append( infoSemester.get("CODPRS") ).append( "\" onclick=\"show_txt(this)\" class=\"combo\" id=\"stdapp_" ).append( infoTeacher.get("CODGRP") ).append( "~" ).append( infoSemester.get("CODPRS") ).append( "\" title=\"Tipo de horas\" >" );
                             HTML_.append(" <option value=\"\" style=\"background-color: #FFFFFF\"></option>" );
@@ -145,9 +190,9 @@ public class AdmAcademicProgramApproveAction extends Action {
                             HTML_.append( infoSemester.get("CODPRS") ).append( "\" value=\"" ).append( infoTeacher.get("NROPKP") ).append( "\">" );
                             HTML_.append("</td> \n");
                             HTML_.append("</tr> \n");
-                        }else{
+                        /*}else{
                             HTML_.append("<td style='text-align:center' > </td> \n");
-                            HTML_.append("<td style='text-align:center' > </td> \n");
+                            HTML_.append("<td style='text-align:center' > </td> \n");*/
                         }
                         HTML_.append("<tr> \n");
                         HTML_.append("<td colspan=\"10\" align=\"center\"> \n");
@@ -227,7 +272,6 @@ public class AdmAcademicProgramApproveAction extends Action {
                                   
             json.put(UtilConstantes.STR_KEY_JSON_EXITO, "OK");
             json.put(UtilConstantes.STR_KEY_JSON_HTML, HTML_.toString());
-            //json.put(UtilConstantes.STR_KEY_JSON_HTML, "Esto es una prueba de esta verga");
             
         }catch(ClsmaException e){
             json.put(UtilConstantes.STR_KEY_JSON_EXITO, UtilConstantes.STR_KEY_JSON_ERROR);

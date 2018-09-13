@@ -109,8 +109,22 @@ public class AdmAcademicProgramRequestAction extends Action {
             } 
             if ("GETELC".equals(event)) {
                 getElectives();
-            } 
-            
+            }             
+            if ("SAVEADD".equals(event)) {
+                saveAdd();
+            }            
+            if ("LSTPXG".equals(event)) {
+                lstPxg();
+                return;
+            }
+            if ("DELPXG".equals(event)) {
+                deletePxg();
+                return;
+            }
+            if ("DTLPXG".equals(event)) {
+                detailPxg();
+                return;
+            }
             
             if (event.equals("LSTDKS")) {
                 lstDks();
@@ -133,15 +147,7 @@ public class AdmAcademicProgramRequestAction extends Action {
             } else if (event.equals("SAVEMAI")) {
                 saveMai();
             } else if (event.equals("DELMDL")) {
-                deleteMdl();
-            } else if (event.equals("SAVEADD")) {
-                saveAdd();
-            } else if (event.equals("LSTPXG")) {
-                lstPxg();
-            } else if (event.equals("DELPXG")) {
-                deletePxg();
-            } else if (event.equals("DTLPXG")) {
-                detailPxg();
+                deleteMdl();                      
             } else if (event.equals("SAVEHPR")) {
                 saveHpr();
             } else if (event.equals("HRSPRF")) {
@@ -273,6 +279,7 @@ public class AdmAcademicProgramRequestAction extends Action {
         setSqlCommand("                                    p_codcia => '").append(model.getCodCia()).append("',\n");
         setSqlCommand("                                    p_codprs => '").append(model.getCodPrs()).append("',\n");
         setSqlCommand("                                    p_idedks => '").append(idedks).append("',\n");
+        setSqlCommand("                                    p_idepgm => '").append(idepgm).append("',\n");
         setSqlCommand("                                    p_agnprs => '").append(agnprs).append("',\n");
         setSqlCommand("                                    p_prdprs => '").append(prdprs).append("') ) smapak \n");
         setSqlCommand("WHERE smapak.codpgm IN ( \n");
@@ -954,7 +961,7 @@ public class AdmAcademicProgramRequestAction extends Action {
             transaccion = HibernateUtil.getNewTransaction(sesion);
             transaccion.begin();
            
-            model.deleteLogBook("smapxg", "nropak=~" + nropak + "~|", sesion);
+            model.deleteLogBook("smapxx", "nropak=~" + nropak + "~|", sesion);
             if (isPgm) {
                 model.deleteLogBook("smargr", "nropak=~" + nropak + "~|", sesion);
             }
@@ -1429,14 +1436,14 @@ public class AdmAcademicProgramRequestAction extends Action {
     private void saveAdd() throws Exception {
         JSONObject form = Util.getJsonRequest("a", request);
 
-        Map data = Util.map("smapxg", form);
-        String nropxg = Util.validStr(form, "nropxg");
+        Map data = Util.map("smapxx", form);
+        String nropxg = Util.validStr(form, "nropxx");
 
         if (nropxg.trim().isEmpty()) {
-            model.saveLogBook(data, "smapxg", null);
+            model.saveLogBook(data, "smapxx", null);
             json.put("msg", model.MSG_SAVE);
         } else {
-            model.updateLogBook(data, "smapxg", nropxg, null);
+            model.updateLogBook(data, "smapxx", nropxg, null);
             json.put("msg", model.MSG_UPDATE);
         }
         json.put("exito", "OK");
@@ -1461,11 +1468,29 @@ public class AdmAcademicProgramRequestAction extends Action {
         return model.getList();
 
     }
+    
+    private List smapxx(String nropak, String nropxg) throws SQLException {
+
+        sqlCmd = "select smapxx.* , smaprs.apeprs || ' '  || smaprs.nomprs nombre , smaprs.nriprs\n"
+                + "  from smapxx\n"
+                + "  join smaprf\n"
+                + "    on smaprf.nroprf = smapxx.nroprf\n"
+                + "  join smaprs\n"
+                + "    on smaprs.nroprs = smaprf.nroprs\n"
+                + " where smapxx.nropak = '" + nropak + "'";
+
+        if (!nropxg.trim().isEmpty()) {
+            sqlCmd += " and smapxx.nropxg = '" + nropxg + "'";
+        }
+        model.list(sqlCmd, null);
+        return model.getList();
+
+    }
 
     private void lstPxg() throws Exception {
         String nropak = Util.getStrRequest("a", request);
 
-        List data = smapxg(nropak, "");
+        List data = smapxx(nropak, "");
 
         jQgridTab tab = new jQgridTab();
         tab.setColumns(new String[]{"NROPXG", "NRIPRS", "NOMBRE", "HRSPRF", "TPOHRS", "STDPXG", "DEL"});
@@ -1497,7 +1522,7 @@ public class AdmAcademicProgramRequestAction extends Action {
     private void deletePxg() throws Exception {
         String nropxg = Util.getStrRequest("a", request);
 
-        model.deleteLogBook("smapxg", nropxg, null);
+        model.deleteLogBook("smapxx", nropxg, null);
 
         json.put("exito", "OK");
         json.put("msg", model.MSG_DELETE);
@@ -1509,14 +1534,14 @@ public class AdmAcademicProgramRequestAction extends Action {
         String nropxg = Util.getStrRequest("a", request);
         String nropak = Util.getStrRequest("b", request);
 
-        List data = smapxg(nropak, nropxg);
-        Map smapxg = new HashMap();
+        List data = smapxx(nropak, nropxg);
+        Map smapxx = new HashMap();
         if (!data.isEmpty()) {
-            smapxg = ((HashMap) model.getList().get(0));
+            smapxx = ((HashMap) model.getList().get(0));
         }
 
         json.put("exito", "OK");
-        json.put("smapxg", smapxg);
+        json.put("smapxg", smapxx);
 
         write(json);
     }
@@ -1808,16 +1833,16 @@ public class AdmAcademicProgramRequestAction extends Action {
             trans.begin();
             openSqlCommand();
             setSqlCommand("SMA_ACADEMIC_PROGRAM_PROJECT.semesters_gen( p_idesxu => '" ).append( model.getSessionSxu() ).append( "' \n");
-            setSqlCommand("                                     , p_idepgm => '" ).append( idepgm ).append( "' \n");
-            setSqlCommand("                                     , p_idesmt => '" ).append( idesmt ).append( "' \n");
-            setSqlCommand("                                     , p_nropsd => '" ).append( nropsd ).append( "' \n");
-            setSqlCommand("                                     , p_smtpsm => '" ).append( smtpsm ).append( "' \n");
-            setSqlCommand("                                     , p_qrsppk =>  " ).append( qrsppk ).append( " \n");
-            setSqlCommand("                                     , o_errors => ? )");
+            setSqlCommand("                                         , p_idepgm => '" ).append( idepgm ).append( "' \n");
+            setSqlCommand("                                         , p_idesmt => '" ).append( idesmt ).append( "' \n");
+            setSqlCommand("                                         , p_nropsd => '" ).append( nropsd ).append( "' \n");
+            setSqlCommand("                                         , p_smtpsm => '" ).append( smtpsm ).append( "' \n");
+            setSqlCommand("                                         , p_qrsppk =>  " ).append( qrsppk ).append( " \n");
+            setSqlCommand("                                         , o_errors => ? )");
 
-            Map m = (HashMap) model.callStoredProcedure(getSqlCommand(), 2, null);
+            Map mapResult = (HashMap) model.callStoredProcedure(getSqlCommand(), 2, null);
 
-            String error = m.get("1").toString();
+            String error = mapResult.get("1").toString();
             if (!error.toLowerCase().contains("exito")) {
                 json.put("fnc", UtilConstantes.STR_VACIO);
                 throw new ClsmaException(ClsmaTypeException.ERROR, error);                                                                

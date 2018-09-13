@@ -10,7 +10,7 @@
     usable = AdmAcademicProgramRequestAction.validRol(model, usable);
     String cal = AdmAcademicProgramRequestAction.validCalendar(model);
     String text = "La diferencia entre \"Proyectar\" y \"Copiar\": La proyección se hace con base en la demanda de los cursos anteriores y reformas de pensum, la copia se duplicar lo que se tenía el período anterior al nuevo";
-
+    String codcia = model.getCodCia();
 %>
 <html>
     <head>
@@ -335,7 +335,7 @@
                                     <div id="tabsAd" style="width: 100%">
                                         <div id="LSTADD" title="Listado"></div>
                                         <div id="DTLADD" title="Detalle">
-                                            <in:input type="hidden" name="nropxg" />
+                                            <in:input type="hidden" name="nropxx" />
                                             <table>
                                                 <tr>
                                                     <td>

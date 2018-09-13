@@ -1015,7 +1015,7 @@ public class ModelSma extends Model implements Serializable {
         Map stp = callStoredProcedure("sma_system_manager.add_column("
                 + "                                        p_table => '" + tabla + "',"
                 + "                                        p_field => 'idesxu',"
-                + "                                        p_data_type => 'varchar2(20)',"
+                + "                                        p_data_type => 'idesxuvarchar2(20)',"
                 + "                                        p_return => ?)", 3, sesion);
 
         if (!stp.get("1").toString().equals("Exito")) {

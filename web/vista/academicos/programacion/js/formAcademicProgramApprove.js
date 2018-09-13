@@ -50,6 +50,8 @@ function configTabs() {
                 lstSmt();
             }else if(id === 'PRF'){
                 lstPrf();
+            }else if(id === 'RSM'){
+                lstSummary();
             }
         }
     });   
@@ -135,6 +137,19 @@ function detailProgram(id){
     setDates('#endpak,#endpxg', 'maxDate', data.FCVPKP);*/
 }
 
+function lstSummary(){
+        clsma.$request({
+        data: ['GET_TABLE_SUMMARY', {idepgm: clsma.idepgm, 
+                                     nropkp: clsma.nropkp, 
+                                     agnprs:clsma.agnprs, 
+                                     prdprs: clsma.prdprs}],
+        loading: true
+    }).then(function (data) {
+        if(data.exito === "OK"){            
+            $('#RSM').empty().html(data.html);
+        }        
+    });
+}
 function processDetailProgram(){
     $('#SEM > div').load(url,{ 'anio':anio,
                                'periodo':periodo, 
