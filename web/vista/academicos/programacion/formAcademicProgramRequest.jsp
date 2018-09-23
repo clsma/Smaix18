@@ -453,6 +453,11 @@
                 <div id="RQS" title="Requerimientos"></div>
                 <div id="MAT" title="Por asignaturas" data-parent="DTL"></div>
                 <div id="PRF" title="Por docentes" data-parent="DTL"></div>
+                <div id="RSM" title="Semestres Proyección" data-parent="SMTCRS">
+                    <div id="tabsRsm">
+                        <div id="LSTRSM" title="Listado de Semestres para proyección"></div>                       
+                    </div>
+                </div>
                 <div id="SMT" title="Semestres" data-parent="SMTCRS">
                     <div id="tabsSmt">
                         <div id="LSTSMT" title="Listado de Semestres"></div>
@@ -544,7 +549,7 @@
                             </fieldset>
                         </div>
                     </div>
-                </div>
+                </div>                
             </div>
             <div id="msg"></div>
         </div>
@@ -552,7 +557,7 @@
         <div id="SEMESTERPROJECT" title="Semestre" data-parent="DETAILS" style="display:none">
             <div style="width: 100%;margin-bottom: 10px;text-align: center">
                 <table style="display: inline-block" class="form-control">
-                    <tr>
+                    <!--tr>
                         <td style="width: 50%;margin-bottom: 10px">
                             <table>                                
                                 <tr>
@@ -576,7 +581,7 @@
                                 </tr>
                             </table>
                         </td>
-                    </tr>
+                    </tr-->
                     <tr>
                         <td colspan="2">
                             <div id="divSemesterProj"></div>

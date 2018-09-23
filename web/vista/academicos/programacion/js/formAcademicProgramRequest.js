@@ -69,7 +69,7 @@ function detailProgram(id) {
     clsma.prdprs = $('#prdprs').val();
     //clsma.tab.enableTab(1, 2, 3, 4, 5, 6, 7, 8, 9, 11).activeTab(8);
     // 4, 5, 6, 11
-    clsma.tab.enableTab(1, 2, 3, 4, 5, 6, 7, 8, 9, 11).activeTab(8).hideTab(11);
+    clsma.tab.enableTab(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12).activeTab(9).hideTab(12);
     $('.advisegrp').empty().html(data.NOMPGM);
     $('#bgncrs').datepicker('option', 'minDate', data.FCIPKP);
     $('#endcrs').datepicker('option', 'maxDate', data.FCVPKP);
@@ -84,7 +84,7 @@ function configTabs() {
         beforeActivate: function (a) {
 
             var id = a.newPanel.attr('id');
-            $('#MAT , #PRF , #LSTADD , #LSTSMT , #LSTCRS , .schedulecontainer, #LBR').empty();
+            $('#MAT , #PRF , #LSTADD , #LSTSMT , #LSTCRS , .schedulecontainer, #LBR, #LSTRSM').empty();
 
             hideButton('Nuevo Semestre');
             hideButton('Guardar Semestre');
@@ -102,9 +102,11 @@ function configTabs() {
                 delete clsma.isLbr;
                 $('.tblPrfHra').empty();
             }
+            console.log('TABS '+ id);
             //if (id === 'DKS') {
             if (id === 'PGMS') {
-                this.disableTab(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12).hideTab(1, 12);                
+                //this.disableTab(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12).hideTab(1, 12);                
+                this.disableTab(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13).hideTab(13);                
                 $('.rowButtonInt').hide();
                 $('.advisegrp').empty();
                 $('#MAT,#PRF').empty();
@@ -123,17 +125,18 @@ function configTabs() {
 //                validHorario();
             } else if (id === 'RQS') {
             } else if (id === 'CRS') {
-                if (clsma.ispgm) {
+               // if (clsma.ispgm) {
                     showButton('Nuevo Curso');
                     active_tab('#tabsCrs', 0);
                     lstCrs();
-                }
+               // }
             } else if (id === 'SMT') {
-                if (clsma.ispgm) {
+                //console.log(clsma.ispgm);
+               // if (clsma.ispgm) {
                     showButton('Nuevo Semestre');
                     active_tab('#tabsSmt', 0);
-                    lstSmt();                   
-                }
+                    lstSmt();                     
+               // }
 
             } else if (id === 'LBR') {
                 clsma.type = 'LBR';
@@ -146,6 +149,10 @@ function configTabs() {
                 active_tab('#tabInt', 0);
                 confModules();
 //                lstIntegerated();
+            }else if(id === 'RSM'){
+                active_tab('#tabRsm', 0);
+                $('#LSTRSM').empty();
+                showSemesters(clsma.idepgm, 'PROJ') ;
             }
 
             $('#msg').html(writeInfoMsg(msgTab(id)));
@@ -293,16 +300,17 @@ function configSearch() {
         size: 40
     });
     $('#programa').search({
-        nrosch: 'SCH_PSD_PAK',
+        nrosch: 'SCH_PSD_PAK_1',
         pkey: 'nropsd',
         title: 'Plan de estudios de mis programas',
         size: 40,
         hideColumn: ['NROPSD'],
         beforeSearchOpen: function (set) {
-            set.params = [('%s').StringFormat(clsma.dks)];
+            set.params = [('%s').StringFormat(clsma.idepgm)];
         },
         onSelectRow: function (data) {
-            $('#idepgm').val(data.IDEPGM);
+            var idepgm = isEmpty(data.IDEPGM) ? data.IDEPGM : clsma.idepgm;
+            $('#idepgm').val(idepgm);
         }
     });
     $('#semestre').search({
@@ -742,6 +750,7 @@ function saveSmt() {
 
     var form = getFormData('DTLSMT');
     form.nropkp = clsma.pkp;
+    form.idepgm = clsma.idepgm;
     clsma.$confirm('¿Desea enviar los datos?').Aceptar(function () {
         clsma.$request({
             data: ['SAVESMT', {form: $.toJSON(form)}],
@@ -756,7 +765,6 @@ function saveSmt() {
 }
 
 function lstSmt() {
-
     clsma.$request({
         data: ['GETSMT'],
         loading: true
@@ -1652,9 +1660,12 @@ function setGen(a, b, c) {
     }
 }
 
-function genProject(a,b) {
+function genProject(idepgm,b) {
+   clsma.idepgm = idepgm;
    active_tab('#tabsSmt', 0);
-   showSemesters(a, b);
+   
+   //showSemesters(idepgm, b);
+   lstSmt();
 }
 
 function setVieProject(a, b, c) {
@@ -1761,19 +1772,16 @@ function editProject(id) {
 }
 
 function showSemesters(pIdepgm, state) {
-    var idepgm = pIdepgm;
-    var divClone = $('#SEMESTERPROJECT').html();
-          
+    var idepgm = pIdepgm;          
     genericAjax({
         url: Rutac + '/Adm/AcademicProgramRequest',
         data: {event: 'SHOWSEM', idepgm: idepgm, state: state},
             loading: true,
         done: function (data) {
             data = $.parseJSON(data);
-            clsma.tab.enableTab(1, 2).activeTab(2);
-            $("#LSTSMT").empty().html(divClone);          
-            $("#LSTSMT #divSemesterProj").html(data.semesters);
-            $('#LSTSMT').show();
+            clsma.tab.enableTab(1, 2, 3).activeTab(2);
+            $("#LSTRSM").html(data.semesters);
+            $('#LSTRSM').show();
         }
     });
   //  showButton('Proyectar');

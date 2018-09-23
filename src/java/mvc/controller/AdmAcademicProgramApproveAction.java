@@ -6,16 +6,19 @@
 package mvc.controller;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.Hashtable;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import javax.servlet.ServletException;
+import jdk.nashorn.internal.ir.debug.JSONWriter;
 import static mvc.controller.AdmAcademicProgramRequestAction.set;
 import mvc.model.Util;
 import mvc.util.ClsmaException;
 import mvc.util.ClsmaTypeException;
 import mvc.util.UtilConstantes;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
@@ -30,6 +33,7 @@ public class AdmAcademicProgramApproveAction extends Action {
     private String accion;
     private String idepgm;
     private String nropkp;
+    private JSONObject json;
 
     @Override
     public void run() throws ServletException, IOException {
@@ -37,7 +41,7 @@ public class AdmAcademicProgramApproveAction extends Action {
         accion = Util.getStrRequest("event", request);
         agnprs = Util.getStrRequest("agnprs", request);
         prdprs = Util.getStrRequest("prdprs", request);
-        idepgm = Util.getStrRequest("idepgm", request);
+        idepgm = Util.getStrRequest("idepgm", request); 
         nropkp = Util.getStrRequest("nropkp", request);
         try {
             if ("GETCAL".equals(accion)) {
@@ -63,11 +67,63 @@ public class AdmAcademicProgramApproveAction extends Action {
                 listSummary();
                 return;
             }
-
+            
+            if ("APPROVE".equals(accion)){
+                approveRequestPAK();
+                return;
+            }            
+            
+            if ("PERSONALPOSITION".equals(accion)){                
+                getPersonalPosition();
+            }            
+             
         } catch (Exception e) {
             Util.logError(e);
             throw new ServletException("Error Clase [" + getClass().getName() + "] Metodo [run()] " + e.getMessage());
         }
+    }
+    
+    private void getPersonalPosition() throws Exception{
+        json = new JSONObject();
+        String topikp = UtilConstantes.STR_VACIO;
+        openSqlCommand();
+        setSqlCommand("SMA_ACADEMIC_PROG_APPROVE.GET_PERSONALPOSITION( PCODCIA  => '").append(model.getCodCia()).append("', \n" ).
+                                                            append(" PNROPRS => '").append(model.getNroPrs()).append("')");
+        
+        topikp = model.callFunction(getSqlCommand(), new Object[]{});
+        json.put(UtilConstantes.STR_KEY_JSON_EXITO, "OK");
+        json.put(UtilConstantes.STR_KEY_JSON_MSG, topikp);
+        
+        writeJsonResponse(json);                           
+    }
+    
+    private void approveRequestPAK() {
+        JSONArray arrMdl = Util.getJArrayRequest("form", request);
+        String[] arrCodgrp = request.getParameterValues("codgrp") != null ? request.getParameterValues("codgrp") : new String[0];
+        String nroapp = Util.getStrRequest("nroapp", request);           
+        String nroprs = Util.getStrRequest("nroprs", request);        
+        String tpoapp = Util.getStrRequest("tpoapp", request);        
+               
+        for(String nrogrp: arrCodgrp){
+            String jstapp = Util.getStrRequest("jstapp_" + nrogrp, request);           
+            String stdapp = Util.getStrRequest("stdapp_" + nrogrp, request);
+            String nroprf = Util.getStrRequest("nroprf_"+nrogrp, request);        
+            String nropkp = Util.getStrRequest("nropkp_"+nrogrp, request);        
+            openSqlCommand();
+            setSqlCommand("select sma_academic_program_approve_manager( pcodcia => '").append(model.getCodCia()).append("',")
+                                                                .append(" => '").append(nrogrp.split("~")[0]).append("',")
+                                                                .append(" => '").append(nropkp).append("',")
+                                                                .append(" => '").append(nroprf).append("',")
+                                                                .append(" => '").append(tpoapp).append("',")
+                                                                .append(" => '").append(jstapp).append("',")
+                                                                .append(" => '").append(Util.dateFormat(new Date(), "yyyy-MM-dd")).append("',")
+                                                                .append(" => '").append(stdapp).append("',")           
+                                                                .append(" => '").append(model.getNroPrs()).append("',")           
+                                                                .append(" => '").append(model.getNroPrs()).append("',")           
+                                                                .append(" => '").append(model.getTpoPrs()).append("')")    ;       
+    
+                                                                            
+        }      
     }
 
     private void listSummary() throws IOException{       
@@ -331,7 +387,7 @@ public class AdmAcademicProgramApproveAction extends Action {
     }
         
     private void getListAcaProgApprove(String agnprs, String prdprs) throws IOException {
-        JSONObject json = new JSONObject();
+        json = new JSONObject();
 
         openSqlCommand();
 
@@ -413,4 +469,5 @@ public class AdmAcademicProgramApproveAction extends Action {
         return lista;
     }
 
+    
 }

@@ -630,12 +630,33 @@ public class AdmAcademicProgramRequestAction extends Action {
 
     private void saveSmt() throws Exception {
         JSONObject form = Util.getJsonRequest("form", request);
+        
+        if(nropkp == null || nropkp.isEmpty()){
+            idepgm = Util.validStr(form, "idepgm");
+            openSqlCommand();
+            setSqlCommand("  SMA_ACADEMIC_PROGRAM_PROJECT.project_gen ( p_idesxu => '").append(model.getSessionSxu()).append("' ,\n").
+                                                                append("p_idepgm => '").append(idepgm).append("' ,\n").
+                                                                append("o_nropkp => ? ) ");
+            
+           Map mapResult = (HashMap) model.callStoredProcedure(getSqlCommand(), 2, null);
 
+           nropkp = mapResult.get("1").toString();                                   
+           form.put("nropkp", nropkp);
+        }
+        
         Map datos = Util.map("smarsm", form);
         datos.put("smtpsm", Util.validStr(form, "nropssShw"));
         datos.put("stdsmt", "Abierto");
         model.saveLogBook(datos, "smarsm", null);
-
+        openSqlCommand();
+        setSqlCommand("  SMA_ACADEMIC_PROGRAM_PROJECT.semesters_gen( p_idesxu => '").append(model.getSessionSxu()).append("' ,\n").
+                                                             append("p_nropkp => '").append(nropkp).append("' ,\n").
+                                                             append("p_idepgm => '").append(idepgm).append("' ,\n").
+                                                             append("p_idesmt => '").append("").append("' ,\n").
+                                                             append("p_nropsd => '").append("").append("' ,\n").
+                                                             append("p_smtpsm => '").append("").append("' ,\n").
+                                                             append("p_qrsppk => '").append("").append("' ,\n").
+                                                             append("o_errors => ? )");                        
         json.put("exito", "OK");
         json.put("msg", model.MSG_SAVE);
 
@@ -698,14 +719,14 @@ public class AdmAcademicProgramRequestAction extends Action {
         String idepgm = Util.getStrRequest("idepgm", request);
         String state = Optional.ofNullable(Util.getStrRequest("state", request)).orElse("PROJ")  ;
         openSqlCommand();
-        if ("PROJ".equals(state)) {
+        /*if ("PROJ".equals(state)) {
             setSqlCommand("SMA_ACADEMIC_PROGRAM_PROJECT.project_semesters ");
 
         } else {
             setSqlCommand("sma_academic_programmer.copy_semesters ");
 
-        }
-
+        }*/
+        setSqlCommand("SMA_ACADEMIC_PROGRAM_PROJECT.project_semesters ");
         setSqlCommand("( p_codcia => '").append(model.getCodCia()).append("'\n");
         setSqlCommand(", p_codprs => '").append(model.getCodPrs()).append("'\n");
         setSqlCommand(", p_idepgm => '").append(idepgm).append("'\n");
@@ -1601,7 +1622,7 @@ public class AdmAcademicProgramRequestAction extends Action {
 
     private void listPrograms() throws SQLException, IOException {
 
-        JSONObject json = new JSONObject();
+        json = new JSONObject();
         openSqlCommand();
         
         setSqlCommand("SMA_ACADEMIC_PROGRAM_PROJECT.project_programs( p_codcia => '").append(model.getCodCia()).append("'\n");
@@ -1611,7 +1632,7 @@ public class AdmAcademicProgramRequestAction extends Action {
         //String columna = "IDEPGM,NROPKP,NOMPRG,NROPGM,NOMPGM,NOMSCN,JNDPGM,SAVE,COPY,VIEW,EDIT,STDPKP,FCIPKP,FCVPKP,IDEDKS,CODPKP";
         //String title = "Id,Id_Prog,Programa,Código,Prog-sede-Jorn,Sede,Jornada,Proyectar,Copiar,Consultar, Edit, STDPKP, fcipkp, fcvpkp, idedks, TITULO";
           String columna = "IDEPGM,NROPKP,NOMPRG,NROPGM,NOMPGM,NOMSCN,JNDPGM,SAVE,EDIT,STDPKP,FCIPKP,FCVPKP,IDEDKS";
-          String title = "Id,Id_Prog,Programa,Código,Prog-sede-Jorn,Sede,Jornada,Proyectar, Edit, stdpkp, fcipkp, fcvpkp, idedks";
+          String title = "Id,Id_Prog,Programa,Código,Prog-sede-Jorn,Sede,Jornada,Solicitar, Edit, stdpkp, fcipkp, fcvpkp, idedks";
         try {
             List lista = model.listarSP(getSqlCommand(), new Object[]{});
 
