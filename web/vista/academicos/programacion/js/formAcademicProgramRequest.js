@@ -69,7 +69,7 @@ function detailProgram(id) {
     clsma.prdprs = $('#prdprs').val();
     //clsma.tab.enableTab(1, 2, 3, 4, 5, 6, 7, 8, 9, 11).activeTab(8);
     // 4, 5, 6, 11
-    clsma.tab.enableTab(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12).activeTab(9).hideTab(12);
+    clsma.tab.enableTab(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12).activeTab(9).hideTab(12);
     $('.advisegrp').empty().html(data.NOMPGM);
     $('#bgncrs').datepicker('option', 'minDate', data.FCIPKP);
     $('#endcrs').datepicker('option', 'maxDate', data.FCVPKP);
@@ -96,7 +96,7 @@ function configTabs() {
             hideButton('Nuevo Grupo Electiva');
             clearChildren('#GRP', '[name=knppak],#habmat,#lblmat');
             if (!['GRP'].has(id)) {
-                this.disableTab(10);
+                this.disableTab(11);
                 delete clsma.pak;
                 delete clsma.isElc;
                 delete clsma.isLbr;
@@ -131,13 +131,9 @@ function configTabs() {
                     lstCrs();
                // }
             } else if (id === 'SMT') {
-                //console.log(clsma.ispgm);
-               // if (clsma.ispgm) {
                     showButton('Nuevo Semestre');
                     active_tab('#tabsSmt', 0);
                     lstSmt();                     
-               // }
-
             } else if (id === 'LBR') {
                 clsma.type = 'LBR';
                 showButton('Nuevo Grupo Libre');
@@ -663,7 +659,7 @@ function fillTheFormMat(data) {
 
 function detailGrp(id) {
     if (id instanceof jQuery === false && !Object.isString(id)) {
-        clsma.tab.enableTab(10).activeTab(10);
+        clsma.tab.enableTab(11).activeTab(11);
         return;
     }
     var data = $(this).getGridParam('data').select(function () {
@@ -677,7 +673,7 @@ function detailGrp(id) {
         }
         clsma.pak = id;
     }
-    clsma.tab.enableTab(10).activeTab(10);
+    clsma.tab.enableTab(11).activeTab(11);
 }
 
 function getDataGrp() {
@@ -756,6 +752,9 @@ function saveSmt() {
             data: ['SAVESMT', {form: $.toJSON(form)}],
             loading: true
         }).then(function (data) {
+            /*if(data.nropkp !== 'NA'){
+                clsma.nropkp = data.nropkp;
+            }*/
             clsma.$msg(data.msg, function () {
                 lstSmt();
                 active_tab('#tabsSmt', [0]);
@@ -766,7 +765,7 @@ function saveSmt() {
 
 function lstSmt() {
     clsma.$request({
-        data: ['GETSMT'],
+        data: ['GETSMT', {nropkp:clsma.nropkp}],
         loading: true
     }).then(function (data) {
         $('#LSTSMT').empty().html(data.html);
@@ -989,7 +988,7 @@ function delPda() {
 
 function newLbr() {
     clsma.isLbr = true;
-    clsma.tab.enableTab(10).activeTab(10);
+    clsma.tab.enableTab(11).activeTab(11);
     $('.datapgm').hide();
 }
 
@@ -1025,7 +1024,7 @@ function detailLbr(id) {
 
     clsma.pak = id;
     clsma.isLbr = true;
-    clsma.tab.enableTab(10).activeTab(10);
+    clsma.tab.enableTab(11).activeTab(11);
 }
 
 function getElc() {
@@ -1091,7 +1090,7 @@ function newElec(id) {
 
 function newElective() {
     clsma.isElc = true;
-    clsma.tab.enableTab(10).activeTab(10);
+    clsma.tab.enableTab(11).activeTab(11);
     var data = $(clsma.nomtabElc).getRowData($(clsma.nomtabElc).getGridParam('selrow'));
     $('#codpsm').val(data.CODPSM);
     $('#codmat').val(data.CODPSE);
@@ -1112,7 +1111,7 @@ function detailElective(a, b, c) {
 function showElective(a) {
     clsma.pak = a;
     clsma.isElc = true;
-    clsma.tab.enableTab(10).activeTab(10);
+    clsma.tab.enableTab(11).activeTab(11);
 }
 
 function msgTab(id) {
@@ -1664,7 +1663,7 @@ function genProject(idepgm,b) {
    clsma.idepgm = idepgm;
    active_tab('#tabsSmt', 0);
    
-   //showSemesters(idepgm, b);
+   clsma.tab.enableTab(2, 3, 4).activeTab(3);
    lstSmt();
 }
 
@@ -1825,7 +1824,7 @@ console.debug($(this).attr('params'))
 function genCoursesProject(ideSmt , idePgm, smtpsm ) {
   var nrocrs = $('#nrocrs_'+ideSmt).val();  
   var nropsd = $('#idepsd_'+ideSmt).val();
-  var nropsm = document.getElementById("sch_"+ideSmt).getAttribute( "data-show" )
+  var nropsm = document.getElementById("sch_"+ideSmt).getAttribute( "data-show" );
   clsma.$confirm('¿Desea proyectar [ %s ] curso(s) en el semestre [ %s ] - Reforma [ %s]?'
             .StringFormat(nrocrs, smtpsm, nropsm))
             .Aceptar(function () {

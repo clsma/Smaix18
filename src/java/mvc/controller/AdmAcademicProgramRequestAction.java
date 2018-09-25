@@ -630,7 +630,7 @@ public class AdmAcademicProgramRequestAction extends Action {
 
     private void saveSmt() throws Exception {
         JSONObject form = Util.getJsonRequest("form", request);
-        
+        //json.put("nropkp","NA");
         if(nropkp == null || nropkp.isEmpty()){
             idepgm = Util.validStr(form, "idepgm");
             openSqlCommand();
@@ -642,13 +642,15 @@ public class AdmAcademicProgramRequestAction extends Action {
 
            nropkp = mapResult.get("1").toString();                                   
            form.put("nropkp", nropkp);
+           //json.put("nropkp", nropkp);
+           set("nropkp", nropkp, session);
         }
         
         Map datos = Util.map("smarsm", form);
         datos.put("smtpsm", Util.validStr(form, "nropssShw"));
         datos.put("stdsmt", "Abierto");
         model.saveLogBook(datos, "smarsm", null);
-        openSqlCommand();
+        /*openSqlCommand();
         setSqlCommand("  SMA_ACADEMIC_PROGRAM_PROJECT.semesters_gen( p_idesxu => '").append(model.getSessionSxu()).append("' ,\n").
                                                              append("p_nropkp => '").append(nropkp).append("' ,\n").
                                                              append("p_idepgm => '").append(idepgm).append("' ,\n").
@@ -656,7 +658,8 @@ public class AdmAcademicProgramRequestAction extends Action {
                                                              append("p_nropsd => '").append("").append("' ,\n").
                                                              append("p_smtpsm => '").append("").append("' ,\n").
                                                              append("p_qrsppk => '").append("").append("' ,\n").
-                                                             append("o_errors => ? )");                        
+                                                             append("o_errors => ? )"); 
+        */        
         json.put("exito", "OK");
         json.put("msg", model.MSG_SAVE);
 
@@ -665,6 +668,9 @@ public class AdmAcademicProgramRequestAction extends Action {
     }
 
     private void getSmt() throws Exception {
+        /*if(nropkp == null){
+            nropkp = Util.getStrRequest("nropkp", request);
+        }*/
         openSqlCommand();
         setSqlCommand("select smasmt.idesmt , \n");
         setSqlCommand("       smapss.smtpsm ,\n");
