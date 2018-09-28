@@ -1865,7 +1865,9 @@ public class AdmAcademicProgramRequestAction extends Action {
             setSqlCommand("                                         , p_nropsd => '" ).append( nropsd ).append( "' \n");
             setSqlCommand("                                         , p_smtpsm => '" ).append( smtpsm ).append( "' \n");
             setSqlCommand("                                         , p_qrsppk =>  " ).append( qrsppk ).append( " \n");
-            setSqlCommand("                                         , o_errors => ? )");
+            setSqlCommand("                                         , o_errors => ? ");
+            setSqlCommand("                                         , o_nropkp => ? )");
+
 
             Map mapResult = (HashMap) model.callStoredProcedure(getSqlCommand(), 2, null);
 
@@ -1874,7 +1876,10 @@ public class AdmAcademicProgramRequestAction extends Action {
                 json.put("fnc", UtilConstantes.STR_VACIO);
                 throw new ClsmaException(ClsmaTypeException.ERROR, error);                                                                
             } 
-            
+            String vNropkp = mapResult.get("2").toString();
+            if(vNropkp != null){
+                set("nropkp", vNropkp, session);
+            }
             json.put("exito", "OK");
             json.put("msg", "La proyección de la programación se ha realizado exitosamente!");
             trans.commit();
