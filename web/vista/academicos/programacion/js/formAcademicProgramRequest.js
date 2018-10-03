@@ -69,7 +69,8 @@ function detailProgram(id) {
     clsma.prdprs = $('#prdprs').val();
     //clsma.tab.enableTab(1, 2, 3, 4, 5, 6, 7, 8, 9, 11).activeTab(8);
     // 4, 5, 6, 11
-    clsma.tab.enableTab(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12).activeTab(9).hideTab(12);
+    clsma.tab.enableTab(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12).activeTab(9).hideTab(12);    
+
     $('.advisegrp').empty().html(data.NOMPGM);
     $('#bgncrs').datepicker('option', 'minDate', data.FCIPKP);
     $('#endcrs').datepicker('option', 'maxDate', data.FCVPKP);
@@ -1663,7 +1664,7 @@ function genProject(idepgm,b) {
    clsma.idepgm = idepgm;
    active_tab('#tabsSmt', 0);
    
-   clsma.tab.enableTab(2, 3, 4).activeTab(3);
+   clsma.tab.enableTab(2, 3, 4).activeTab(2);
    lstSmt();
 }
 

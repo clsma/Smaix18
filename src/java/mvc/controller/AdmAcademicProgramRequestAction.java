@@ -647,6 +647,9 @@ public class AdmAcademicProgramRequestAction extends Action {
         }
         
         Map datos = Util.map("smarsm", form);
+        if(datos.get("nropkp") == null){
+            datos.put("nropkp", nropkp);
+        }
         datos.put("smtpsm", Util.validStr(form, "nropssShw"));
         datos.put("stdsmt", "Abierto");
         model.saveLogBook(datos, "smarsm", null);
@@ -1633,7 +1636,7 @@ public class AdmAcademicProgramRequestAction extends Action {
         
         setSqlCommand("SMA_ACADEMIC_PROGRAM_PROJECT.project_programs( p_codcia => '").append(model.getCodCia()).append("'\n");
         setSqlCommand("                                        , p_codprs => '").append(model.getCodPrs()).append("'\n");
-        setSqlCommand("                                        , o_smapkp => ? )");
+        setSqlCommand("                                        , o_smaapj => ? )");
 
         //String columna = "IDEPGM,NROPKP,NOMPRG,NROPGM,NOMPGM,NOMSCN,JNDPGM,SAVE,COPY,VIEW,EDIT,STDPKP,FCIPKP,FCVPKP,IDEDKS,CODPKP";
         //String title = "Id,Id_Prog,Programa,Código,Prog-sede-Jorn,Sede,Jornada,Proyectar,Copiar,Consultar, Edit, STDPKP, fcipkp, fcvpkp, idedks, TITULO";
